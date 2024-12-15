@@ -8,17 +8,17 @@ function Nav() {
 
 <S.Component>
 <div>
-<S.LogoText>대시보드</S.LogoText>
+<S.LogoText>대tlqhem</S.LogoText>
  <S.Logo src={'./Logo.png'} alt='로고' ></S.Logo>
 </div>
 
 <div>
-<S.HomeText>응급처치</S.HomeText>
+<S.HomeText>응치</S.HomeText>
  <S.Home src={'./HomeWhite.png '} alt='홈'></S.Home>
 </div>
 
 <div>
-<S.DangerousText>프로필</S.DangerousText>
+<S.DangerousText>프필</S.DangerousText>
  <S.Dangerous src={'./ActivityPurple.png'} alt='응급사항'></S.Dangerous>
 </div>
 
