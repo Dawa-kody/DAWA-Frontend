@@ -13,7 +13,7 @@ function Nav() {
 </div>
 
 <div>
-<S.HomeText>응급처치</S.HomeText>
+<S.HomeText>응급처치 변경사항</S.HomeText>
  <S.Home src={'./HomeWhite.png '} alt='홈'></S.Home>
 </div>
 
