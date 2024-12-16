@@ -8,7 +8,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
+<<<<<<< HEAD
+  :root { 
+=======
   :root {
+>>>>>>> 37bbc0d8056a7765f52dcf5e4039e893b62e22e3
     --background: #0a0a0a;
     --foreground: #ededed;
   }
