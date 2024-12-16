@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "./pages/Nav";
+import Main from "./pages/Main";
 
 const HomePage: React.FC = () => {
-  return <Nav />;
+  return <Main />;
 };
 
 export default HomePage;
