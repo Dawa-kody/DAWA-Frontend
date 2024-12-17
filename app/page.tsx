@@ -5,7 +5,7 @@ import Nav from "./pages/Nav";
 const HomePage: React.FC = () => {
   return(
     <>
-      <Main />
+      <Nav />
     </>
   );
 };
