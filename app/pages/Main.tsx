@@ -14,10 +14,10 @@ function Main(){
 
     return(
         <>
-            {/* {modalOpen  && (
+            {modalOpen  && (
                 <VisitModal onClose={() => setModalOpen(false)} />
             )}
-            <button onClick={click}>button</button> */}
+
             <S.Container>
                 <S.TeacherSection>
                     <S.TeacherIconDiv>
@@ -28,7 +28,7 @@ function Main(){
 
                 <S.VisitModalDiv>
                     <S.ModalTitle>방문 기록 작성</S.ModalTitle>
-                    <S.ModalButton>방문기록 작성</S.ModalButton>
+                    <S.ModalButton onClick={click}>방문기록 작성</S.ModalButton>
                 </S.VisitModalDiv>
 
                 <S.RentDiv>
