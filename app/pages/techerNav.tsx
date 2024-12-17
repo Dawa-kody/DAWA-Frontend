@@ -7,23 +7,25 @@ function Nav() {
  <>
 
 <S.Component>
+
+<S.Hello>안녕하세요, 선생님!!</S.Hello>  
 <div>
-<S.LogoText>대시보드</S.LogoText>
- <S.Logo src={'./Logo.png'} alt='로고' ></S.Logo>
+ <S.Logo src={'./LogoText.png'} alt='로고' ></S.Logo>
 </div>
 
 <div>
-<S.HomeText>응급처치</S.HomeText>
+<S.HomeText>대시보드</S.HomeText>
  <S.Home src={'./HomeWhite.png '} alt='홈'></S.Home>
 </div>
 
 <div>
-<S.DangerousText>프로필</S.DangerousText>
- <S.Dangerous src={'./ActivityPurple.png'} alt='응급사항'></S.Dangerous>
+<S.DangerousText>응급사항</S.DangerousText>
+ <S.Dangerous src={'./UnActivityWhit.png'} alt='응급사항'></S.Dangerous>
 </div>
 
 
- <S.Login src={'./PersonPurple.png '} alt='프로필'></S.Login>
+
+ <S.Login src={'./PersonWhite.png '} alt='프로필'></S.Login>
 
 
 

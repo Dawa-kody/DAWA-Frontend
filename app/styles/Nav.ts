@@ -1,94 +1,64 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Logo=styled.img`
+interface ActiveProps {
+  isActive: boolean;
+}
 
-position: absolute;
-height: 44.87px;
-left:130px;
-top:20px;
+export const Component = styled.div`
+  width: 100%;
+  height: 75px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
 `;
 
-export const LogoText=styled.span`
+export const Logo = styled.img`
+  height: 45px;
+  margin-left: 130px;
+  width:122px;
+`;
 
-font-family: 'Pretendard Variable';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
+export const Homehap = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer; 
+  margin-left:700px;
+`;
 
-color: #DEDEDE;
-`
+export const Home = styled.img`
+postion:relative;
 
+`;
 
-export const Component=styled.div`
+export const HomeText = styled.span<ActiveProps>`
+  font-size: 20px;
+  font-weight: 700;
+  color: ${({ isActive }) => (isActive ? '#6948ED' : '#DEDEDE')};
+left:100px;
 
-width: 1520px;
-height: 100px;
-
-background: #FFFF;
-z-index:-1;
-`; 
-export const Momoka=styled.img`
-width: 1000px;
-height: 1000px;
-
-`
-
-
-
-export const Home=styled.img`
-position: absolute;
-left: 1000px;
-top:30px;
-`
-
-export const HomeText=styled.div`
-font-family: 'Pretendard Variable';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-
-color: #DEDEDE;
-
-margin-left: 1060px;
-margin-top:-100px;
-`
-
-
-
-
-export const Login=styled.img`
-position: absolute;
-left: 1400px;
-top:30px;
-`
-
-export const LoginText=styled.span`
-
-font-family: 'Pretendard Variable';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-
-color: #DEDEDE;
-`
-
+  `;
   
+  export const Loginhap = styled.div`
+  display: flex;
+  align-items: center;
 
-export const Dangerous=styled.img`
+  `;
+  export const Dangeroushap = styled.div``;
+
+export const Dangerous = styled.img`
+  margin-right: 10px;
+`;
+export const DangerousText = styled(HomeText)<ActiveProps>``;
+
+export const Login = styled.img`
+  margin-right: 100px;
+`;
+
+export const LoginText = styled(HomeText)<ActiveProps>``;
+
+
+export const Person=styled.img`
 position: absolute;
-left: 1200px;
-top:30px;
-`
-export const DangerousText=styled.span`
-font-family: 'Pretendard Variable';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-
-color: #DEDEDE;
+left:1300px;
 
 `
