@@ -34,7 +34,7 @@ function CardContent() {
                 <>
                     <S.Header>
                         <S.diseaseName>{H[0].Disease}</S.diseaseName>
-                        <S.CardTitle>만약 머리가 깨질 듯이 아프다면?</S.CardTitle>
+                        <S.CardTitle>{H[0].Title}</S.CardTitle>
 
                         <S.TagBox>
                             <S.diseaseTag>{`#${H[0].Tag}`}</S.diseaseTag>
