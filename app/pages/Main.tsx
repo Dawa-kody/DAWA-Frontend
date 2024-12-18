@@ -97,7 +97,7 @@ function Main(){
 
                 <S.VisitDiv>
                     <S.VisitTitle>방문기록</S.VisitTitle>
-                    {visitDataList.length > 0 ? (
+                    {/* {visitDataList.length > 0 ? (
                         visitDataList.map((visit, index) => (
                             <VisitData
                                 key={index}
@@ -108,8 +108,12 @@ function Main(){
                         ))
                     ) : (
                         <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
-                    )}
-
+                    )} */}
+                    <VisitData
+                        Date="08.27"
+                        Week="화요일"
+                        Content="안녕하세요"
+                    />
                 </S.VisitDiv>
 
                 <S.BedDiv>

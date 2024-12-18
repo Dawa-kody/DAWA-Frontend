@@ -51,7 +51,7 @@ export const Week = styled.div`
 
     font-family: Pretendard;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
 
     background: #F2F4F7;
     border-radius: 10px;
@@ -73,7 +73,11 @@ export const ContentBox = styled.textarea`
     position: absolute;
     width: 230px;
     height: 150px;
-    top: 90px;
+    top: 80px;
+
+    font-family: Pretendard;
+    font-size: 14px;
 
     resize: none;
+    background-color: white;
 `
