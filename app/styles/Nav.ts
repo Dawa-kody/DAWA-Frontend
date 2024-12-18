@@ -33,7 +33,7 @@ left:180px;
 export const Component=styled.div`
 width: 100%;
 height: 70px;
-background: #FFFF;
+background: #FFFFFF;
 z-index:-1;
 -webkit-user-select:none;
 -moz-user-select:none;
