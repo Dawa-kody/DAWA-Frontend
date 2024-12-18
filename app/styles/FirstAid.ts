@@ -69,38 +69,6 @@ export const Line = styled.div`
     border: 1px solid #E4E7EC;
 `
 
-/* 필터 태그를 나열할 안 보이는 틀 */
-export const FilterTagBox = styled.div`
-    position: absolute;
-    width: 1515px;
-    height: 45px;
-    left: 14px;
-    top: 63px;
-
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    /* background-color: black; */
-`
-
-/* 필터 틀 */
-export const FilterTag = styled.div`
-    position: relative;
-    height: 34px;
-    left: 25px;
-    top: 8px;
-
-    display: inline-block;
-    padding: 5px 15px 0px 15px;
-    justify-content: center;
-    align-items: center;
-    
-    font-family: Pretendard;
-
-    background: #F2F4F7;
-    border-radius: 16.8889px;
-`
-
 /* 카드 컴포넌트 모을 틀 */
 export const CardBox = styled.div`
     position: absolute;
