@@ -45,7 +45,6 @@
           <S.Login src={'./PersonPurple.png'} alt="프로필" />
         </S.Component>
 
-        <S.Momoka src={'./mokoko.png'} />
       </>
     );
   }

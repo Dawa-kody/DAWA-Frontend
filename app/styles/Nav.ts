@@ -40,11 +40,6 @@ z-index:-1;
 -ms-user-select:none;
 user-select:none
 `; 
-export const Momoka=styled.img`
-width: 1000px;
-height: 1000px;
-
-`
 
   export const HomeHap=styled.div`
   cursor: pointer;
