@@ -8,7 +8,6 @@ export const Logo=styled.img`
 position: absolute;
 width:56px;
 height:42px;
-
 height: 44.87px;
 top:8px;
 left:100px;
@@ -34,23 +33,37 @@ export const Component=styled.div`
 width: 100%;
 height: 70px;
 background: #FFFFFF;
-z-index:-1;
+z-index:-2;
 -webkit-user-select:none;
 -moz-user-select:none;
 -ms-user-select:none;
 user-select:none
+display: flex;
+justify-content: center;
+align-items: center;
 `; 
 
-  export const HomeHap=styled.div`
-  cursor: pointer;
-    display: flex;
-  align-items: center;
-  `
+  export const HomeHap=styled.div<{ active: boolean }>`
+cursor: pointer;
+width:240px;
+height:50px;
+background-color: ${(props) => (props.active ? '#F2ECF8' : "#FFFFF")};
+border-radius: 10px;
+display: flex;
+justify-content:center;
+align-items: center;
+padding-left: 10px;
+gap: 30px;
+position: absolute;
+right: 430px;
+top: 10px;
+z-index:1;
+    `
 
 export const Home=styled.img`
-position: absolute;
-left: 945px;
-top:20px;
+postion:absolute;
+display: flex;
+top:10px;
 `
 
 export const HomeText=styled.span<{ active: boolean }>`
@@ -60,9 +73,6 @@ font-style: normal;
 font-weight: 700;
 font-size: 20px;
 line-height: 24px;
-position:absolute;
-left:1000px;
-top:25px;
 `
 
 
@@ -84,14 +94,23 @@ color: #DEDEDE;
 `
 
   
-export const DangerousHap=styled.div`
+export const DangerousHap=styled.div<{active: boolean}>`
 cursor: pointer;
+width:240px;
+height:50px;
+background-color: ${(props) => (props.active ? '#F2ECF8' : "#FFFFF")};
+border-radius: 10px;
+display: flex;
+justify-content:center;
+align-items: center;
+gap: 20px;
+position: absolute;
+right: 190px;
+top: 10px;
+z-index:1;
 `
 
 export const Dangerous=styled.img`
-position: absolute;
-left: 1150px;
-top:20px;
 `
 export const DangerousText=styled.span<{ active: boolean }>`
 color: ${(props) => (props.active ? '#6948ED' : '#DEDEDE')};
@@ -100,8 +119,4 @@ font-style: normal;
 font-weight: 700;
 font-size: 20px;
 line-height: 24px;
-position:absolute;
-left:1200px;
-top:23px;
-
 `
