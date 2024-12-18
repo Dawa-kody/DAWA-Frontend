@@ -39,21 +39,19 @@ export const ListDiv = styled.div`
     width: 79px;
     height: 35px;
     left: 16px;
-    top: 56px;
+    top: 50px;
 `
 
 /* 날짜 ex)08.27 */
 export const Date = styled.span`
     position: absolute;
-    width: 43px;
-    height: 19px;
-    left: 40px;
-    top: 17px;
+    left: 30px;
+    top: 14px;
 
     font-family: Pretendard;
     font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 19px;
     /* identical to box height */
 
@@ -63,14 +61,12 @@ export const Date = styled.span`
 /* 개수 ex)1개 */
 export const Number = styled.span`
     position: absolute;
-    width: 21px;
-    height: 19px;
-    top: 17px;
+    top: 14px;
 
-    font-family: 'Pretendard';
+    font-family: Pretendard;
     font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 19px;
     /* identical to box height */
 
@@ -80,35 +76,29 @@ export const Number = styled.span`
 /* 개수 글자 */
 export const NumberTitle = styled.span`
     position: absolute;
-    width: 21px;
-    height: 14px;
 
     font-family: Pretendard;
     font-style: normal;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 14px;
 
-    color: #000000;
+    color: #98A2B3;
 `
 
 /* 날짜 */
 export const DateTitle = styled.span`
     position: absolute;
-    width: 21px;
-    height: 14px;
-    left: 40px;
+    left: 30px;
 
     font-family: Pretendard;
     font-style: normal;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 14px;
 
-    color: #000000;
+    color: #98A2B3;
 `
-
-
 
 /* 빌린 물건과 내용 구분선 */
 export const Line = styled.div`
@@ -130,3 +120,38 @@ export const BottomDiv = styled.div`
     background-color: #D9D6FE;
     border-radius: 0px 0px 10px 10px;
 `
+
+/* 미반납 */
+export const ReturnFalse = styled.span`
+    position: absolute;
+    left: 107px;
+    top: 16px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #D23B3B;
+`
+
+/* 반납완료 */
+export const ReturnTrue = styled.span`
+    position: absolute;
+    width: 56px;
+    height: 19px;
+    left: 102px;
+    top: 16px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+
+    color: #95979D;
+`
+
+

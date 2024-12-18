@@ -87,6 +87,7 @@ function Main(){
                                 Date={rent.Date}
                                 Item={rent.Item}
                                 Number={`${rent.Number}개`}
+                                Return={rent.Return}
                             />
                         ))
                     ) : (

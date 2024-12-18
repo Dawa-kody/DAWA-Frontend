@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "../styles/RentData";
 
 export interface RentDatas {
     Number: string,
     Date: string,
     Item: string
+    Return: boolean,
 }
 
-function RentData({Number, Date, Item}: RentDatas){
+function RentData({Number, Date, Item, Return}: RentDatas){
+
     return(
         <>
             <S.Container>
                 <S.ItemName>{Item}</S.ItemName>
                 <S.Line />
 
+                    {Return ? (
+                        <>
+                            <S.ReturnTrue>반납완료</S.ReturnTrue>
+                        </>
+                    ) : (
+                        <>
+                            <S.ReturnFalse>미반납</S.ReturnFalse>
+                        </>
+                    )}
                 <S.ListDiv>
                     <S.NumberTitle>개수</S.NumberTitle>
                     <S.DateTitle>날짜</S.DateTitle>
                     <S.Number>{Number}</S.Number>
                     <S.Date>{Date}</S.Date>
                 </S.ListDiv>
-
                 <S.BottomDiv />
             </S.Container>
         </>
