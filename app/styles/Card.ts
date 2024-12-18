@@ -70,3 +70,32 @@ export const CardTag = styled.div`
     background: #D4C9FF;
     border-radius: 9px;
 `
+
+/* 카드 컴포넌트가 아무것도 없을 때 띄우는 svg */
+export const CapsuleSvg = styled.img`
+    position: absolute;
+    width: 140px;
+    height: 97px;
+
+    top: 230px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+`
+
+/* 카드 컴포넌트가 아무것도 없을 때 띄우는 span */
+export const Notice = styled.span`
+    position: absolute;
+
+    top: 310px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: Pretendard;
+    font-weight: bold;
+    font-size: 22px;
+
+    color: #98A2B3;
+    margin: 0;
+`
