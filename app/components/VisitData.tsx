@@ -13,7 +13,7 @@ function VisitData({Date, Week, Content}: VisitDatas){
             <S.Date>{Date}</S.Date>
             <S.Week>{Week}</S.Week>
             <S.ContentLine />
-            <S.ContentBox maxLength={83}>{Content}</S.ContentBox>
+            <S.ContentBox maxLength={83} readOnly disabled>{Content}</S.ContentBox>
         </S.Container>
     );
 }
