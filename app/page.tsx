@@ -6,6 +6,7 @@ const HomePage: React.FC = () => {
   return(
     <>
       <Nav />
+      {/* <Main /> */}
     </>
   );
 };
