@@ -37,11 +37,11 @@ z-index:-2;
 -webkit-user-select:none;
 -moz-user-select:none;
 -ms-user-select:none;
-user-select:none
+user-select:none;
 display: flex;
 justify-content: center;
 align-items: center;
-`; 
+`
 
   export const HomeHap=styled.div<{ active: boolean }>`
 cursor: pointer;
@@ -61,7 +61,7 @@ z-index:1;
     `
 
 export const Home=styled.img`
-postion:absolute;
+position:absolute;
 display: flex;
 top:10px;
 `
