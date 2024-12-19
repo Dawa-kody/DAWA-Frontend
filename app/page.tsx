@@ -4,9 +4,9 @@ import Nav from "./pages/Nav";
 
 const HomePage: React.FC = () => {
   return(
-    <>
-      {/* <Nav />  */}
-      <Main />
+   <>
+      <Nav />  
+      {/*<Main */}
     </>
   );
 };
