@@ -21,10 +21,16 @@ function Main(){
     useEffect(() => {
         async function fetchVisitData() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/recodeGet`);
-                setVisitDataList(response.data);
+                const response = await axios.get<VisitDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`);
+                console.log(response.data);
+    
+                if (Array.isArray(response.data)) {
+                    setVisitDataList(response.data);
+                } else {
+                    setVisitDataList([]);
+                }
             } catch (error) {
-                console.error("방문 기록 데이터를 불러오는 중 에러 발생:", error);
+                console.error("대여 기록 데이터를 불러오는 중 에러 발생:", error);
             }
         }
         fetchVisitData();
@@ -33,14 +39,21 @@ function Main(){
     useEffect(() => {
         async function fetchRentData() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`);
-                setRentDataList(response.data);
+                const response = await axios.get<RentDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`);
+                console.log(response.data);
+    
+                if (Array.isArray(response.data)) {
+                    setRentDataList(response.data);
+                } else {
+                    setRentDataList([]);
+                }
             } catch (error) {
                 console.error("대여 기록 데이터를 불러오는 중 에러 발생:", error);
             }
         }
         fetchRentData();
     }, []);
+    
 
     function click(){
         setModalOpen(true);
@@ -81,14 +94,8 @@ function Main(){
                 <S.RentDiv>
                     <S.RentTitle>대여기록</S.RentTitle>
                     {rentDataList.length > 0 ? (
-                        rentDataList.map((rent, index) => (
-                            <RentData
-                                key={index}
-                                Date={rent.Date}
-                                Item={rent.Item}
-                                Number={`${rent.Number}개`}
-                                Return={rent.Return}
-                            />
+                        rentDataList.map(({ id, ...rent }) => (
+                            <RentData key={id} {...rent} />
                         ))
                     ) : (
                         <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
@@ -97,23 +104,13 @@ function Main(){
 
                 <S.VisitDiv>
                     <S.VisitTitle>방문기록</S.VisitTitle>
-                    {/* {visitDataList.length > 0 ? (
-                        visitDataList.map((visit, index) => (
-                            <VisitData
-                                key={index}
-                                Date={visit.Date}
-                                Week={visit.Week}
-                                Content={visit.Content}
-                            />
+                    {visitDataList.length > 0 ? (
+                        visitDataList.map(({ id, ...visit }) => (
+                            <VisitData key={id} {...visit} />
                         ))
                     ) : (
                         <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
-                    )} */}
-                    <VisitData
-                        Date="08.27"
-                        Week="화요일"
-                        Content="안녕하세요"
-                    />
+                    )}
                 </S.VisitDiv>
 
                 <S.BedDiv>
