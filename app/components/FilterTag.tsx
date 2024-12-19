@@ -14,13 +14,18 @@ function FilterTag() {
         async function fetchDiseaseData() {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/무언가`);
-                SetDisease(response.data);
+                console.log(response.data);  // 받아온 데이터의 구조 확인
+                if (Array.isArray(response.data)) {
+                    SetDisease(response.data);
+                } else {
+                    console.error("응답 데이터는 배열이 아닙니다.");
+                }
             } catch (error) {
                 console.error("병명 데이터를 불러오는 중 에러 발생:", error);
             }
         }
         fetchDiseaseData();
-    }, []);
+    }, []);    
 
     return (
         <>

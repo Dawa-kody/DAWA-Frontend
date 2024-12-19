@@ -2,12 +2,13 @@ import React from "react";
 import * as S from '../styles/VisitsData';
 
 export interface VisitDatas {
+    id: number,
     Date: string,
     Week: string,
     Content: string,
 }
 
-function VisitData({Date, Week, Content}: VisitDatas){
+function VisitData({Date, Week, Content}: Omit<VisitDatas, "id">){
     return(
         <S.Container>
             <S.Date>{Date}</S.Date>
