@@ -41,8 +41,8 @@ function Login(){
             if (response.status === 200) {
                 const { access, refresh } = response.data;
 
-                localStorage.setItem("access_token", response.data);
-                localStorage.setItem("refresh_token", response.data);
+                localStorage.setItem("access", access);
+                localStorage.setItem("refresh", refresh);
 
                 setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
                 router.push("/");
@@ -53,11 +53,11 @@ function Login(){
     };
 
     // 토큰 갱신
-    const onSilentRefresh = async (accessToken: string) => {
+    const onSilentRefresh = async (access: string) => {
         try {
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}`,
-            { access_token: accessToken },
+            { access: access },
             {
               headers: {
                 "Content-Type": "application/json",
@@ -69,8 +69,8 @@ function Login(){
           if (response.status === 200) {
             const { access, refresh } = response.data;
     
-            localStorage.setItem("access_token", access);
-            localStorage.setItem("refresh_token", refresh);
+            localStorage.setItem("access", JSON.stringify(access));
+            localStorage.setItem("refresh", JSON.stringify(refresh));
     
             setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
           }

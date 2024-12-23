@@ -18,12 +18,14 @@ function VisitModal({ onClose }: Modalprops) {
     const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault;
         const contentValue = content;
+        const token = localStorage.getItem('access_token');
 
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/recodeAdd`, contentValue, {
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit/write`, contentValue, {
                     headers: {
                         "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
                     },
                     withCredentials: true,
                 }
@@ -32,6 +34,8 @@ function VisitModal({ onClose }: Modalprops) {
         } catch (error) {
             console.log("방문기록 작성 실패:", error);
         }
+
+        onClose();
     };
 
     return (
