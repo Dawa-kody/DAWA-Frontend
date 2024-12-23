@@ -32,7 +32,7 @@ export const Component = styled.div`
   -ms-user-select: none;
   user-select: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -72,19 +72,48 @@ export const HomeHap = styled.div.withConfig({
 
 
 export const Login = styled.img`
+  position: relative;
+  left: -100px;
+  top: 5px;
+  cursor: pointer;
+  `;
+  
+  export const LoginHoverBox = styled.div`
+  display: flex;
+  flex-direction: column; 
   position: absolute;
+  top: 70px;          
   left: 1350px;
-  top: 20px;
-`;
+  background-color: #fff; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px;    
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  padding: 16px;          
+  z-index: 10;
+  align-items: center;    
+  gap: 8px;              
+  `;
 
-export const LoginText = styled.span`
-  font-family: 'Pretendard Variable';
+  
+export const Text=styled.span`
+ font-family: 'Pretendard Variable', sans-serif;
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
-  color: #DEDEDE;
-`;
+  color: #000;
+  cursor: pointer;
+`
+
+export const TextContainer=styled.div`
+ display: flex;
+  flex-direction: column;
+  align-items: center;   
+  gap: 8px;        
+`
+
+
+
 
 export const DangerousHap = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== '$active', // '$active'를 DOM에 전달하지 않음
@@ -95,7 +124,7 @@ export const DangerousHap = styled.div.withConfig({
   background-color: ${(props) => (props.$active ? '#F2ECF8' : '#FFFFFF')};
   border-radius: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 20px;
   position: absolute;
@@ -114,3 +143,4 @@ export const DangerousText = styled.span<{ active: boolean }>`
   font-size: 20px;
   line-height: 24px;
 `;
+
