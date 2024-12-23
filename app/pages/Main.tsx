@@ -17,11 +17,19 @@ function Main(){
     const [BActive, setBActive] = useState(true); //침대 현황 상태
     const [visitDataList, setVisitDataList] = useState<VisitDatas[]>([]); //방문 기록 데이터
     const [rentDataList, setRentDataList] = useState<RentDatas[]>([]); //대여 기록 데이터
+    const token = localStorage.getItem('access');
 
     useEffect(() => {
         async function fetchVisitData() {
+
             try {
-                const response = await axios.get<VisitDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`);
+                const response = await axios.get<VisitDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': '69420',
+                }
+            });
+
                 console.log(response.data);
     
                 if (Array.isArray(response.data)) {
@@ -30,7 +38,7 @@ function Main(){
                     setVisitDataList([]);
                 }
             } catch (error) {
-                console.error("대여 기록 데이터를 불러오는 중 에러 발생:", error);
+                console.error("방문 기록 데이터를 불러오는 중 에러 발생:", error);
             }
         }
         fetchVisitData();
@@ -39,7 +47,13 @@ function Main(){
     useEffect(() => {
         async function fetchRentData() {
             try {
-                const response = await axios.get<RentDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`);
+                const response = await axios.get<RentDatas[]>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': '69420',
+                }
+            });
+            
                 console.log(response.data);
     
                 if (Array.isArray(response.data)) {
