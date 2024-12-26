@@ -96,8 +96,8 @@ function Signup2(){
                         <S.ButtonGroup>
                             <S.InputLabel>성별</S.InputLabel>
                             <S.Buttons>
-                                    <S.MenButton isSelected={GenderValue === "Men"} onClick={handleGenderMenChange}>남자</S.MenButton>
-                                    <S.WomenButton isSelected={GenderValue === "Women"} onClick={handleGenderWomenChange}>여자</S.WomenButton>
+                                    <S.MenButton isSelected={GenderValue === "MAN"} onClick={handleGenderMenChange}>남자</S.MenButton>
+                                    <S.WomenButton isSelected={GenderValue === "WOMAN"} onClick={handleGenderWomenChange}>여자</S.WomenButton>
                             </S.Buttons>
                         </S.ButtonGroup>
 

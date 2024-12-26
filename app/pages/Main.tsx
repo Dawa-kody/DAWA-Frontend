@@ -23,6 +23,8 @@ function Main() {
   const [visitModalOpen, setVisitModalOpen] = useState(false);
   const [rentModalOpen, setRentModalOpen] = useState(false);
   const [Admin, setAdmin] = useState(false);
+  const [MToggle, SetMToggle] = useState(false);
+  const [WToggle, SetWToggle] = useState(false);
   const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
   const [BActive, setBActive] = useState(true); // 침대 현황 상태
   const [visitDataList, setVisitDataList] = useState<VisitDatas[]>([]); // 방문 기록 데이터
@@ -119,6 +121,14 @@ function Main() {
     setBActive(false);
   }
 
+  function MToggleing(){
+    SetMToggle(!MToggle);
+  }
+
+  function WToggleing(){
+    SetWToggle(!WToggle);
+  }
+
   return (
     <>
       <>
@@ -145,6 +155,78 @@ function Main() {
                 <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
               )}
             </S.TeacherSection>
+
+            <S.WriteListContainer>
+                <S.WriteTitle>문진표 작성</S.WriteTitle>
+                <S.WriteButton>문진표 작성</S.WriteButton>
+            </S.WriteListContainer>
+
+            <S.RentDiv>
+                <S.RentTitle>학생들의 가장 최근 대여</S.RentTitle>
+                
+                {rentDataList.length === 0 && (
+                    <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
+                )}
+
+                <S.RentDataCards>
+                    {rentDataList.map(({ id, ...rent }) => (
+                    <RentData key={id} {...rent} />
+                    ))}
+                </S.RentDataCards>
+            </S.RentDiv>
+
+            <S.VisitDiv>
+                <S.VisitTitle>학생들의 가장 최근 방문기록</S.VisitTitle>
+                
+                {visitDataList.length === 0 && (
+                    <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
+                )}
+                
+                <S.VisitDataCards>
+                    {visitDataList.map(({ id, ...visit }) => (
+                    <VisitData key={id} {...visit} />
+                    ))}
+                </S.VisitDataCards>
+            </S.VisitDiv>
+
+            <S.BedDiv>
+              <S.BedTitle>침대 사용 여부</S.BedTitle>
+              {BActive ? (
+                <>
+                  <S.AdminBedMenNonActiveDiv Active={true}>
+                    <S.BedIcon src={"/Bed.svg"} />
+                    {BActive && (
+                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
+                    )}
+                  </S.AdminBedMenNonActiveDiv>
+                  <S.BDMspan>남자 침대 사용 여부</S.BDMspan>
+                  <S.ManToggleContainer onClick={MToggleing}>
+                    <S.ManToggleCircle onClick={MToggleing} Active={MToggle} />
+                  </S.ManToggleContainer>
+
+                  <S.AdminBedWomenNonActiveDiv Active={true}>
+                    <S.BedIcon src={"/Bed.svg"} />
+                    {BActive && (
+                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
+                    )}
+                  </S.AdminBedWomenNonActiveDiv>
+                  <S.BDWspan>여자 침대 사용 여부</S.BDWspan>
+                  <S.WomanToggleContainer onClick={WToggleing}>
+                    <S.WomanToggleCircle onClick={WToggleing} Active={WToggle} />
+                  </S.WomanToggleContainer>
+                </>
+              ) : (
+                <>
+                  <S.AdminBedMenNonActiveDiv Active={false}>
+                    <S.BedIcon src={"/Bed.svg"} />
+                  </S.AdminBedMenNonActiveDiv>
+
+                  <S.AdminBedWomenNonActiveDiv Active={false}>
+                    <S.BedIcon src={"/Bed.svg"} />
+                  </S.AdminBedWomenNonActiveDiv>
+                </>
+              )}
+            </S.BedDiv>
           </S.Container>
         </>
       ) : (
@@ -162,6 +244,7 @@ function Main() {
 
               )}
             </S.TeacherSection>
+
             <S.WriteBox>
               <S.WriteCard onClick={visitModalClick}>방문기록 작성</S.WriteCard>
               <S.WriteCard onClick={rentModalClick}>물품 대여</S.WriteCard>
