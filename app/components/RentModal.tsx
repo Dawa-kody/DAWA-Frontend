@@ -61,4 +61,4 @@ function RentModal({ onClose }: Modalprops) {
 
 export default RentModal;
 
-// 대충 정해진 컴포넌트 몇가지를 고르면 거기에 적혀있는 string을 보내버리는 형식 ㄲ
+// 대충 정해진 컴포넌트 몇가지를 고르면 거기에 적혀있는 string을 보내버리는 형식 ㄱㄱ

@@ -101,7 +101,7 @@ export const RentCard = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: #D4C9FF;
+    background: #E4E7EC;
     border-radius: 16px;
 
     cursor: pointer;
