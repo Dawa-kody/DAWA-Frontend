@@ -4,6 +4,7 @@ export const Container = styled.div`
     width: 100vw;
     height: 100vh;
     
+    overflow: hidden;
     display: flex;
 `
 
@@ -126,7 +127,31 @@ export const RentDiv = styled.div`
 
     background: #FFFFFF;
     border-radius: 10px;
+    overflow: hidden;
 `
+/* 대여물품 카드 묶음 틀 */
+export const RentDataCards = styled.div`
+  position: relative;
+  max-width: 1260px;
+  left: 35px;
+  top: 100px;
+
+  display: grid;
+  grid-auto-columns: 178px;
+  grid-auto-flow: column;
+
+  overflow-x: scroll;  /* 수평 스크롤만 적용 */
+  overflow-y: hidden;  /* 수직 스크롤을 숨김 */
+
+  &::-webkit-scrollbar {
+    height: 8px; /* 가로 스크롤 높이 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+  }
+`;
 
 /* 대여기록 제목 */
 
@@ -149,21 +174,18 @@ export const RentTitle = styled.span`
 /* 대여한 기록이 존재하지 않습니다. */
 
 export const RentNonActiveSpan = styled.span`
-    position: absolute;
-    width: 314px;
-    height: 29px;
-    left: 500px;
-    top: 140px;
+  font-family: Pretendard Variable;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 29px;
+  color: #98A2B3;
 
-    font-family: Pretendard Variable;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 29px;
-    /* identical to box height */
-
-    color: #98A2B3;
-`
+  /* 스크롤되지 않도록 하기 위해 상위 요소에서 위치 조정 */
+  position: absolute;
+  left: 500px;
+  top: 140px;
+`;
 
 /* 방문기록 */
 
@@ -180,9 +202,34 @@ export const VisitDiv = styled.div`
 
     background: #FFFFFF;
     border-radius: 10px;
+    overflow: hidden;
 `
 
-/* 방문기록 */
+/* 방문기록 카드 묶음 틀 */
+export const VisitDataCards = styled.div`
+  position: relative;
+  max-width: 1250px;
+  left: 35px;
+  top: 100px;
+
+  display: grid;
+  grid-auto-columns: 283px;
+  grid-auto-flow: column;
+
+  overflow-x: scroll;  /* 수평 스크롤만 적용 */
+  overflow-y: hidden;  /* 수직 스크롤을 숨김 */
+
+  &::-webkit-scrollbar {
+    height: 8px; /* 수평 스크롤 높이 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+  }
+`;
+
+/* 방문기록 타이틀 */
 
 export const VisitTitle = styled.span`
     position: absolute;
@@ -202,21 +249,17 @@ export const VisitTitle = styled.span`
 
 /* 방문한 기록이 존재하지 않습니다. */
 export const VisitNonActiveSpan = styled.span`
-    position: absolute;
-    width: 314px;
-    height: 29px;
-    left: 500px;
-    top: 205px;
+  font-family: Pretendard Variable;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 29px;
+  color: #98A2B3;
 
-    font-family: Pretendard Variable;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 29px;
-    /* identical to box height */
-
-    color: #98A2B3;
-`
+  position: absolute;
+  left: 500px;
+  top: 205px;
+`;
 
 /* 침대 현황 */
 export const BedDiv = styled.div`
