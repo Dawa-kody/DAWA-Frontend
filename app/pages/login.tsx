@@ -23,7 +23,7 @@ function Login(){
     function GoSignup(){
         router.push("/Signup1");
     }
-
+    
     const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement>) => {
         const dto = {
             email: EmailValue,
@@ -39,10 +39,11 @@ function Login(){
             });
 
             if (response.status === 200) {
-                const { access, refresh } = response.data;
+                const { access, refresh, role } = response.data;
 
                 localStorage.setItem("access", access);
-                localStorage.setItem("refresh", refresh);
+                localStorage.setItem("refresh", refresh)
+                localStorage.setItem("role", role);
 
                 setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
                 router.push("/");
