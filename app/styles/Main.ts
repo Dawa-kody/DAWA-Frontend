@@ -79,40 +79,35 @@ export const VisitModalDiv = styled.div`
     border-radius: 9.43792px;
 `
 
-/* 방문 기록 작성 */
+/* 작성 카드 묶음용 div */
+export const WriteBox = styled.div`
+    position: absolute;
+    width: 1284px;
+    height: 178px;
+    left: 30px;
+    top: 262px;
 
-export const ModalTitle = styled.span`
-position: absolute;
-    width: 170px;
-    height: 36px;
-    top: 24px;
-    left: 24px;
-
-    font-family: Pretendard;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 36px;
-    /* identical to box height */
-
-    color: #000000;
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
 `
 
-/* 버튼 */
+/* 작성 카드 */
+export const WriteCard = styled.div`
+    width: 159px;
+    height: 100%;
 
-export const ModalButton = styled.button`
-    position: absolute;
-    width: 292px;
-    height: 40px;
-    top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background: #6948ED;
-    border-radius: 10px;
+    font-family: Pretendard;
+    font-size: 22px;
+    font-weight: 600;
 
     color: white;
-    font-family: Pretendard;
-    font-weight: 600;
-    font-size: 18;
+    background: #6948ED;
+    border-radius: 9.43792px;
 `
 
 /* 대여기록  */
@@ -309,16 +304,3 @@ export const BedIsFree = styled.span`
 
     color: white;
 `
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -18,11 +18,11 @@ function Signup2(){
     }
 
     function handleGenderMenChange(){
-        SetGenderValue("Men");
+        SetGenderValue("MAN");
     }
 
     function handleGenderWomenChange(){
-        SetGenderValue("Women");
+        SetGenderValue("WOMAN");
     }
 
     function GoLogin(){
