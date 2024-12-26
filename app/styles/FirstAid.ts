@@ -81,7 +81,29 @@ export const CardBox = styled.div`
     gap: 47.5px;
 `
 
+/* 선생님 화면 작성 탭 컨테이너 */
+export const AdminTextBox = styled.div`
+    position: absolute;
+    width: 960px;
+    height: 799.15px;
+    top: 160px;
 
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr 2fr 5fr;
 
+    border-radius: 15px;
+    background-color: white;
+`
 
+/* 응급처치 작성 탭 grid layout 가로 비율 묶음용 div */
+export const AdminGridColumn = styled.div`
+    width: 100%;
 
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+`
+
+/* 탭 요소 제목 박스 */
+export const TabTitleBox = styled.div`
+    
+`
