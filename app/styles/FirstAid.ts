@@ -4,8 +4,11 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100vw;
     height: auto;
+    
     display: flex;
     justify-content: center;
+
+    
 `
 
 /* 선생님이 알려주시는 약, 질병 관련 꿀TIPS ~  : 페이지 소개문 */
@@ -85,15 +88,18 @@ export const CardBox = styled.div`
 export const AdminTextBox = styled.div`
     position: absolute;
     width: 960px;
-    height: 799.15px;
+    height: 710px;
     top: 160px;
 
     display: grid;
-    grid-template-rows: 1fr 1fr 2fr 2fr 5fr;
+    grid-template-rows: 1fr 1fr 2fr 2fr 14fr;
 
+    border: 0.1px solid black;
     border-radius: 15px;
     background-color: white;
+    overflow: hidden;
 `
+
 
 /* 응급처치 작성 탭 grid layout 가로 비율 묶음용 div */
 export const AdminGridColumn = styled.div`
@@ -102,8 +108,209 @@ export const AdminGridColumn = styled.div`
     display: grid;
     grid-template-columns: 1fr 6fr;
 `
-
-/* 탭 요소 제목 박스 */
+/* 탭 요소 맨 위 제목 박스 */
 export const TabTitleBox = styled.div`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 300;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 0.1px solid black;
+    border-right: 0.1px solid black;
+`
+
+/* 인풋 박스 */
+export const InputBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 0.1px solid black;
+`
+
+/* 인풋 */
+export const Input = styled.input`
+    width: 95%;
+    height: 70%;
+
+    border: 1px solid black;
+`
+
+/* 선생님 페이지 필터 박스 가운데 모음용 div */
+export const AdminFilterContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 0.1px solid black;
+`
+
+/* 선생님 페이지 증상 키워드 필터 박스 틀 */
+export const AdminFilterBoxContainter = styled.div`
+    width: 100%;
+    height: 50px;
     
+    border-radius: 16px;
+    background-color: white;
+`
+
+/* 태그를 선택해 주세요 : 선생님 페이지필터 키워드 박스 소개문 */
+export const AdminKeywordTitle = styled.span`
+    position: relative;
+    left: 27px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+
+    color: #98A2B3;
+`
+
+/* 선생님 페이지 필터 요소와 소개문의 구분선 */
+export const AdminLine = styled.div`
+    position: relative;
+    width: 765px;
+    height: 0px;
+    top: -3px;
+    left: 26px;
+    
+    transform: scaleY(0.5);
+    border: 1px solid #95979D;
+`
+
+/* 선생님 페이지 썸네임 탭 내용 부분 div */
+export const SubnailDiv = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    border-bottom: 0.1px solid black;
+`
+
+/* 선생님 페이지 썸네일 배경 */
+export const subnail = styled.div`
+    position: relative;
+    width: 83px;
+    height: 47px;
+    left: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 8px;
+    background-color: #6948ED;
+`
+
+/* 선생님 페이지 썸네일 세로 구분선 */
+export const ColumnLine = styled.div`
+    position: relative;
+    width: 58px;
+    height: 0px;
+
+    border: 1px solid #E4E7EC;
+    transform: rotate(-90deg);
+`
+
+/* 이모지 선택 박스 */
+export const EmojiBox = styled.div`
+    position: relative;
+    width: 183px;
+    height: 47px;
+    left: -20px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+`
+
+/* 이모티콘 종류들 */
+export const Emoji = styled.img`
+    width: 28px;
+    height: 28px;
+`
+
+export const TextConatiner = styled.div`
+    width: 100%;
+    height: 100%;
+`
+
+/* 폰트 크기 탭 div */
+export const FontBox = styled.div`
+    width: 100%;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 0.1px solid black;
+`
+
+/* 글자 크기 : */
+export const FontSpan = styled.span`
+    position: relative;
+    left: 20px;
+
+    font-family: Pretendard;
+    font-size: 13px;
+    font-weight: 200;
+`
+
+/* select box */
+export const SelectBox = styled.select`
+    position: relative;
+    width: 60px;
+    height: 15px;
+    left: 30px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 10px;
+    padding-left: 40px;
+    border: 1px solid #ccc;
+
+    appearance: none;
+    background-color: #fff;
+    cursor: pointer;
+`;
+
+export const PreviewBox = styled.textarea<{ fontSize: string }>`
+    position: relative;
+    width: 95%;
+    height: 90%;
+    left: 15px;
+    top: 5px;
+
+    border: 0.1px solid black;
+    resize: none;
+
+    font-size: ${(props) => props.fontSize || "16px"};
+`;
+
+/* 확인 버튼*/
+export const SubmitButton = styled.button`
+    position: relative;
+    width: 126px;
+    height: 56px;
+    top: 903px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Pretendard;
+    font-size: 21px;
+    font-weight: 500;
+
+    color: white;
+    background: #6948ED;
+    border-radius: 5px;
 `
