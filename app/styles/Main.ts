@@ -282,8 +282,6 @@ export const BedDiv = styled.div`
 
 export const BedTitle = styled.span`
     position: absolute;
-    width: 111px;
-    height: 36px;
     left: 26px;
     top: 28px;
 
@@ -331,6 +329,71 @@ export const BedWomenNonActiveDiv = styled.div<{ Active : boolean }>`
     border-radius: 12.5839px;
 `
 
+/* 선생님 침대현황 비활성화 */
+
+export const AdminBedMenNonActiveDiv = styled.div<{ Active : boolean }>`
+    position: absolute;
+    width: 284px;
+    height: 120px;
+    left: 26px;
+    top: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background: ${({ Active }) => (Active ? '#7CD4FD' : '#F2F4F7')};
+    border-radius: 12.5839px;
+`
+
+export const AdminBedWomenNonActiveDiv = styled.div<{ Active : boolean }>`
+    position: absolute;
+    width: 284px;
+    height: 120px;
+    left: 26px;
+    top: 245px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background: ${({ Active }) => (Active ? '#FEA3B4' : '#F2F4F7')};
+    border-radius: 12.5839px;
+`
+
+/* 선생님 페이지 침대 사용 여부 작은 글씨 */
+export const BDMspan = styled.span`
+    position: relative;
+    left: -80px;
+    top: 32px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+
+    color: #95979D;
+`
+
+export const BDWspan = styled.span`
+    position: relative;
+    left: -80px;
+    top: 172px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+
+    color: #95979D;
+`
+
 /* 침대 svg */
 export const BedIcon = styled.img`
     width: 152px;
@@ -346,4 +409,140 @@ export const BedIsFree = styled.span`
     top: 10px;
 
     color: white;
+`
+
+/* 선생님 문진표 컨테이너 */
+export const WriteListContainer = styled.div`
+    position: absolute;
+    width: 335px;
+    height: 178px;
+    left: 30px;
+    top: 262px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 10px;
+`
+
+/* 문진표 작성 타이틀 */
+export const WriteTitle = styled.span`
+    position: absolute;
+    left: 22px;
+    top: 24px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 36px;
+    /* identical to box height */
+
+    color: #000000;
+`
+
+/* 문진표 발송 버튼 */
+export const WriteButton = styled.div`
+    position: relative;
+    width: 293px;
+    height: 40px;
+    top: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+    color: white;
+    background: #6948ED;
+    border-radius: 10px;
+`
+
+/* 사용 여부 boolean 토글 */
+export const ManToggleContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5px 3px;
+
+    position: absolute;
+    width: 39px;
+    height: 24px;
+    left: 273px;
+    top: 212px;
+
+    background: #7CD4FD;
+    border-radius: 75px;
+`
+
+export const WomanToggleContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5px 3px;
+
+    position: absolute;
+    width: 39px;
+    height: 24px;
+    left: 273px;
+    top: 372px;
+
+    background: #FEA3B4;
+    border-radius: 75px;
+`
+
+export const ManToggleCircle = styled.div<{ Active : boolean }>`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8.25px;
+
+    width: 18px;
+    height: 18px;
+
+    /* M3/sys/light/on-primary */
+    background: #FFFFFF;
+    border-radius: 18px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    transition: all 0.7s ease-in-out;
+    transform:${({ Active }) => (Active ? "translateX(0px)" : "translateX(-14px)")};
+    
+`
+
+export const WomanToggleCircle = styled.div<{ Active : boolean }>`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8.25px;
+
+    width: 18px;
+    height: 18px;
+
+    /* M3/sys/light/on-primary */
+    background: #FFFFFF;
+    border-radius: 18px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    transition: all 0.7s ease-in-out;
+    transform:${({ Active }) => (Active ? "translateX(0px)" : "translateX(-14px)")};
+    
 `
