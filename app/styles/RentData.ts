@@ -5,8 +5,6 @@ export const Container = styled.div`
     position: relative;
     width: 162px;
     height: 152px;
-    left: 35px;
-    top: 105px;
 
     display: flex;
     justify-content: center;

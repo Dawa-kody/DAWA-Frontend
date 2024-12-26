@@ -2,13 +2,10 @@ import styled from "styled-components";
 
 /* 방문기록 데이터 컴포넌트 틀 */
 export const Container = styled.div`
-    box-sizing: border-box;
     position: relative;
 
     width: 265px;
     height: 255px;
-    left: 35px;
-    top: 100px;
 
     display: flex;
     flex-direction: column;
@@ -17,7 +14,7 @@ export const Container = styled.div`
     background: #FFFFFF;
     border: 1px solid #E4E7EC;
     border-radius: 16.5896px;
-`
+`;
 
 /* 날짜 ex) 08.27 */
 export const Date = styled.span`
@@ -39,10 +36,10 @@ export const Date = styled.span`
 
 /* 날짜 요일 */
 export const Week = styled.div`
-    position: absolute;
+    position: relative;
     width: 60px;
     height: 28px;
-    left: 188px;
+    left: 87px;
     top: 22px;
 
     display: flex;
@@ -70,14 +67,14 @@ export const ContentLine = styled.div`
 
 /* 내용 적는 곳 */
 export const ContentBox = styled.textarea`
-    position: absolute;
-    width: 230px;
+    position: relative;
+    width:  230px; /* 부모 기준으로 설정 */
     height: 150px;
-    top: 80px;
+    margin: 50px 10px 0 10px;
 
     font-family: Pretendard;
     font-size: 14px;
 
     resize: none;
     background-color: white;
-`
+`;

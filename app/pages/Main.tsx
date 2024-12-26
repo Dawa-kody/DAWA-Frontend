@@ -80,7 +80,7 @@ function Main() {
     async function fetchRentData() {
       try {
         const response = await axios.get<RentDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/cocGet`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -145,37 +145,56 @@ function Main() {
                 <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
               )}
             </S.TeacherSection>
+          </S.Container>
+        </>
+      ) : (
+        <>
+          <S.Container>
+            <S.TeacherSection>
+              <S.TeacherIconDiv>
+                <S.TeacherIcon src={"/people.svg"} />
+              </S.TeacherIconDiv>
 
+              {TActive ? (
+                <S.TeacherState Active={true}>선생님 출근중</S.TeacherState>
+              ) : (
+                <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
+
+              )}
+            </S.TeacherSection>
             <S.WriteBox>
               <S.WriteCard onClick={visitModalClick}>방문기록 작성</S.WriteCard>
               <S.WriteCard onClick={rentModalClick}>물품 대여</S.WriteCard>
             </S.WriteBox>
 
             <S.RentDiv>
-              <S.RentTitle>대여기록</S.RentTitle>
-              {rentDataList.length > 0 ? (
-                rentDataList.map(({ id, ...rent }) => (
-                  <RentData key={id} {...rent} />
-                ))
-              ) : (
-                <S.RentNonActiveSpan>
-                  대여한 기록이 존재하지 않습니다.
-                </S.RentNonActiveSpan>
-              )}
+                <S.RentTitle>대여기록</S.RentTitle>
+                
+                {rentDataList.length === 0 && (
+                    <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
+                )}
+
+                <S.RentDataCards>
+                    {rentDataList.map(({ id, ...rent }) => (
+                    <RentData key={id} {...rent} />
+                    ))}
+                </S.RentDataCards>
             </S.RentDiv>
 
             <S.VisitDiv>
-              <S.VisitTitle>방문기록</S.VisitTitle>
-              {visitDataList.length > 0 ? (
-                visitDataList.map(({ id, ...visit }) => (
-                  <VisitData key={id} {...visit} />
-                ))
-              ) : (
-                <S.VisitNonActiveSpan>
-                  방문한 기록이 존재하지 않습니다.
-                </S.VisitNonActiveSpan>
-              )}
+                <S.VisitTitle>방문기록</S.VisitTitle>
+                
+                {visitDataList.length === 0 && (
+                    <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
+                )}
+                
+                <S.VisitDataCards>
+                    {visitDataList.map(({ id, ...visit }) => (
+                    <VisitData key={id} {...visit} />
+                    ))}
+                </S.VisitDataCards>
             </S.VisitDiv>
+
 
             <S.BedDiv>
               <S.BedTitle>침대 현황</S.BedTitle>
@@ -207,22 +226,6 @@ function Main() {
                 </>
               )}
             </S.BedDiv>
-          </S.Container>
-        </>
-      ) : (
-        <>
-          <S.Container>
-            <S.TeacherSection>
-              <S.TeacherIconDiv>
-                <S.TeacherIcon src={"/people.svg"} />
-              </S.TeacherIconDiv>
-
-              {TActive ? (
-                <S.TeacherState Active={true}>선생님 출근중</S.TeacherState>
-              ) : (
-                <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
-              )}
-            </S.TeacherSection>
           </S.Container>
         </>
       )}
