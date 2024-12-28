@@ -9,9 +9,13 @@ import VisitModal from "../components/VisitModal";
 import RentModal from "../components/RentModal";
 import VisitData from "../components/VisitData";
 import RentData from "../components/RentData";
+import VisitDataAdmin from "../components/VisitDataAdmin";
+import RentDataAdmin from "../components/RentDataAdmin";
 
 import { VisitDatas } from "../components/VisitData";
+import { VisitAdminDatas } from "../components/VisitDataAdmin";
 import { RentDatas } from "../components/RentData";
+import { RentAdminDatas } from "../components/RentDataAdmin";
 
 // JWT 디코딩 결과를 위한 타입 정의
 interface DecodedToken {
@@ -28,7 +32,13 @@ function Main() {
   const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
   const [BActive, setBActive] = useState(true); // 침대 현황 상태
   const [visitDataList, setVisitDataList] = useState<VisitDatas[]>([]); // 방문 기록 데이터
+  const [visitAdminDataList, setVisitAdminDataList] = useState<VisitAdminDatas[]>([]);
   const [rentDataList, setRentDataList] = useState<RentDatas[]>([]); // 대여 기록 데이터
+  const [rentAdminDataList, setRentAdminDataList] = useState<RentAdminDatas[]>([]);
+  const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
+    bed1: true,
+    bed2: true,
+  }); // 침대 상태 관리
   const token = localStorage.getItem('access');
 
   useEffect(() => {
@@ -79,6 +89,33 @@ function Main() {
   }, []);
 
   useEffect(() => {
+    async function fetchVisitAdminData() {
+      try {
+        const response = await axios.get<VisitAdminDatas[]>(
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit/allRecord`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'ngrok-skip-browser-warning': '69420',
+            },
+          }
+        );
+
+        console.log(response.data);
+
+        if (Array.isArray(response.data)) {
+          setVisitDataList(response.data);
+        } else {
+          setVisitDataList([]);
+        }
+      } catch (error) {
+        console.error("모든 학생 방문 기록 데이터를 불러오는 중 에러 발생:", error);
+      }
+    }
+    fetchVisitAdminData();
+  }, []);
+
+  useEffect(() => {
     async function fetchRentData() {
       try {
         const response = await axios.get<RentDatas[]>(
@@ -105,6 +142,107 @@ function Main() {
     fetchRentData();
   }, []);
 
+  useEffect(() => {
+    async function fetchAdminRentData() {
+      try {
+        const response = await axios.get<RentAdminDatas[]>(
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/allRecord`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'ngrok-skip-browser-warning': '69420',
+            },
+          }
+        );
+
+        console.log(response.data);
+
+        if (Array.isArray(response.data)) {
+          setRentDataList(response.data);
+        } else {
+          setRentDataList([]);
+        }
+      } catch (error) {
+        console.error("대여 기록 데이터를 불러오는 중 에러 발생:", error);
+      }
+    }
+    fetchAdminRentData();
+  }, []);
+
+  useEffect(() => {
+    // 침대 상태를 서버에서 가져옴
+    async function fetchBedStatus() {
+      try {
+        const response = await axios.get<{ bed1: boolean; bed2: boolean }>(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': '69420',
+          },
+        });
+
+        setBedStatus(response.data); // 서버에서 받아온 침대 상태를 설정
+      } catch (error) {
+        console.error("침대 상태를 가져오는 중 에러 발생:", error);
+      }
+    }
+    fetchBedStatus();
+  }, []);
+
+  const toggleBed = async (gender: "M" | "W") => {
+    if (!Admin) {
+      console.error("권한이 없습니다.");
+      return;
+    }
+
+    try {
+      // 침대 상태 토글 후 서버로 POST 요청
+      const newBedStatus = { ...bedStatus };
+      if (gender === "M") {
+        newBedStatus.bed1 = !bedStatus.bed1;
+      } else if (gender === "W") {
+        newBedStatus.bed2 = !bedStatus.bed2;
+      }
+
+      setBedStatus(newBedStatus); // UI에서 상태 업데이트
+
+      // 서버로 상태 업데이트
+      await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`, newBedStatus, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'ngrok-skip-browser-warning': '69420',
+        },
+      });
+    } catch (error) {
+      console.error("침대 상태를 업데이트하는 중 에러 발생:", error);
+    }
+  };
+
+  const StudentBedStatus = () => {
+  const [bedStatus, setBedStatus] = useState({
+    bed1: false,
+    bed2: false,
+  });
+
+  useEffect(() => {
+    const fetchBedStatus = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // 인증 토큰
+          },
+        });
+
+        setBedStatus(response.data);  // 서버로부터 받은 침대 상태로 업데이트
+      } catch (error) {
+        console.error('침대 상태를 불러오는 중 에러 발생:', error);
+      }
+    };
+
+    fetchBedStatus();
+    }, []);  // 컴포넌트가 마운트될 때 한 번만 실행
+  }
+  
+
   function visitModalClick() {
     setVisitModalOpen(true);
   }
@@ -121,12 +259,20 @@ function Main() {
     setBActive(false);
   }
 
-  function MToggleing(){
-    SetMToggle(!MToggle);
+  function MToggleing() {
+    if (!Admin) {
+      console.error("권한이 없습니다.");
+      return;
+    }
+    SetMToggle((prevMToggle) => !prevMToggle); // 이전 상태를 반영하여 업데이트
   }
-
-  function WToggleing(){
-    SetWToggle(!WToggle);
+  
+  function WToggleing() {
+    if (!Admin) {
+      console.error("권한이 없습니다.");
+      return;
+    }
+    SetWToggle((prevWToggle) => !prevWToggle); // 이전 상태를 반영하여 업데이트
   }
 
   return (
@@ -164,13 +310,13 @@ function Main() {
             <S.RentDiv>
                 <S.RentTitle>학생들의 가장 최근 대여</S.RentTitle>
                 
-                {rentDataList.length === 0 && (
+                {rentAdminDataList.length === 0 && (
                     <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
                 )}
 
                 <S.RentDataCards>
-                    {rentDataList.map(({ id, ...rent }) => (
-                    <RentData key={id} {...rent} />
+                    {rentAdminDataList.map(({ id, ...rent }) => (
+                    <RentDataAdmin key={id} {...rent} />
                     ))}
                 </S.RentDataCards>
             </S.RentDiv>
@@ -178,13 +324,13 @@ function Main() {
             <S.VisitDiv>
                 <S.VisitTitle>학생들의 가장 최근 방문기록</S.VisitTitle>
                 
-                {visitDataList.length === 0 && (
+                {visitAdminDataList.length === 0 && (
                     <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
                 )}
                 
                 <S.VisitDataCards>
-                    {visitDataList.map(({ id, ...visit }) => (
-                    <VisitData key={id} {...visit} />
+                    {visitAdminDataList.map(({ id, ...visit }) => (
+                    <VisitDataAdmin key={id} {...visit} />
                     ))}
                 </S.VisitDataCards>
             </S.VisitDiv>
@@ -193,37 +339,36 @@ function Main() {
               <S.BedTitle>침대 사용 여부</S.BedTitle>
               {BActive ? (
                 <>
-                  <S.AdminBedMenNonActiveDiv Active={true}>
+                  <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
                     <S.BedIcon src={"/Bed.svg"} />
-                    {BActive && (
-                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
-                    )}
-                  </S.AdminBedMenNonActiveDiv>
-                  <S.BDMspan>남자 침대 사용 여부</S.BDMspan>
-                  <S.ManToggleContainer onClick={MToggleing}>
-                    <S.ManToggleCircle onClick={MToggleing} Active={MToggle} />
+                      {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                    </S.AdminBedMenNonActiveDiv>
+
+                  <S.ManToggleContainer onClick={() => toggleBed("M")}>
+                    <S.ManToggleCircle Active={bedStatus.bed1} />
                   </S.ManToggleContainer>
 
-                  <S.AdminBedWomenNonActiveDiv Active={true}>
+                  <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
                     <S.BedIcon src={"/Bed.svg"} />
-                    {BActive && (
-                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
-                    )}
+                    {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
                   </S.AdminBedWomenNonActiveDiv>
-                  <S.BDWspan>여자 침대 사용 여부</S.BDWspan>
-                  <S.WomanToggleContainer onClick={WToggleing}>
-                    <S.WomanToggleCircle onClick={WToggleing} Active={WToggle} />
+
+                  <S.WomanToggleContainer onClick={() => toggleBed("W")}>
+                    <S.WomanToggleCircle Active={bedStatus.bed2} />
                   </S.WomanToggleContainer>
                 </>
               ) : (
                 <>
-                  <S.AdminBedMenNonActiveDiv Active={false}>
+                <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
                     <S.BedIcon src={"/Bed.svg"} />
-                  </S.AdminBedMenNonActiveDiv>
+                    {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
 
-                  <S.AdminBedWomenNonActiveDiv Active={false}>
+                  </S.BedMenNonActiveDiv>
+
+                  <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
                     <S.BedIcon src={"/Bed.svg"} />
-                  </S.AdminBedWomenNonActiveDiv>
+                    {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                  </S.BedWomenNonActiveDiv>
                 </>
               )}
             </S.BedDiv>
@@ -283,29 +428,23 @@ function Main() {
               <S.BedTitle>침대 현황</S.BedTitle>
               {BActive ? (
                 <>
-                  <S.BedMenNonActiveDiv Active={true}>
+                  <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
                     <S.BedIcon src={"/Bed.svg"} />
-                    {BActive && (
-                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
-                    )}
-                  </S.BedMenNonActiveDiv>
+                  </S.AdminBedMenNonActiveDiv>
 
-                  <S.BedWomenNonActiveDiv Active={true}>
+                  <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
                     <S.BedIcon src={"/Bed.svg"} />
-                    {BActive && (
-                      <S.BedIsFree>침대 사용 가능</S.BedIsFree>
-                    )}
-                  </S.BedWomenNonActiveDiv>
+                  </S.AdminBedWomenNonActiveDiv>
                 </>
               ) : (
                 <>
-                  <S.BedMenNonActiveDiv Active={false}>
+                  <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
                     <S.BedIcon src={"/Bed.svg"} />
-                  </S.BedMenNonActiveDiv>
+                  </S.AdminBedMenNonActiveDiv>
 
-                  <S.BedWomenNonActiveDiv Active={false}>
+                  <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
                     <S.BedIcon src={"/Bed.svg"} />
-                  </S.BedWomenNonActiveDiv>
+                  </S.AdminBedWomenNonActiveDiv>
                 </>
               )}
             </S.BedDiv>
