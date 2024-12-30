@@ -151,3 +151,36 @@ export const ReturnTrue = styled.span`
 
     color: #95979D;
 `
+
+export const student = styled.span`
+    position: absolute;
+    width: 21px;
+    height: 14px;
+    left: 19px;
+    top: calc(50% - 14px/2 - 19.5px);
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #98A2B3;
+`
+
+export const StudentName = styled.span`
+    position: absolute;
+    width: 42px;
+    height: 19px;
+    left: 19px;
+    top: calc(50% - 19px/2 + 1px);
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    color: #000000;
+`

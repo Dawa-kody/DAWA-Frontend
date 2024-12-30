@@ -3,28 +3,27 @@ import styled from "styled-components";
 export const LogoHap = styled.div``;
 
 export const Logo = styled.img`
-  position: absolute;
+  position: relative; 
   width: 56px;
-  height: 44.87px;
-  top: 8px;
-  left: 100px;
+  height: 38px;
+  left: 110px;
 `;
 
 export const LogoText = styled.span`
-  font-family: 'Pretendard';
+  font-family: Pretendard;
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 27px;
   line-height: 36px;
   color: #6938EF;
   position: absolute;
-  top: 20px;
-  left: 180px;
+  top: 30px;
+  left: 185px;
 `;
 
 export const Component = styled.div`
   width: 100%;
-  height: 70px;
+  height: 88px;
   background: #FFFFFF;
   z-index: 1;  /* 수정된 z-index */
   -webkit-user-select: none;
@@ -34,47 +33,48 @@ export const Component = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 `;
 
 export const HomeHap = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== '$active', // '$active'를 DOM에 전달하지 않음
-})<{ $active: boolean }>`
+  shouldForwardProp: (prop) => prop !== 'Active', // '$active'를 DOM에 전달하지 않음
+})<{ Active: boolean }>`
   cursor: pointer;
-  width: 240px;
+  width: 210px;
   height: 50px;
-  background-color: ${(props) => (props.$active ? '#F2ECF8' : '#FFFFFF')};
-  border-radius: 10px;
+  left: 580px;
+  background-color: ${(props) => (props.Active ? '#F2ECF8' : '#FFFFFF')};
+  border-radius: 8px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  padding-left: 12px;
   align-items: center;
-  padding-left: 10px;
-  gap: 30px;
-  position: absolute;
-  right: 450px;
-  top: 10px;
-  z-index: 1;
+  text-align: center;
+  gap: 25px;
+  position: relative;
   `;
   
   export const Home = styled.img`
-    position: absolute;
-    top: 10px;
-    left:20px;
+    width: 30px;
+    height: 30px;
   `;
   
   export const HomeText = styled.span<{ active: boolean }>`
   color: ${(props) => (props.active ? '#6948ED' : '#DEDEDE')};
-  font-family: 'Pretendard Variable';
+  top: 10px;
+  font-family: Pretendard Variable;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
 `;
 
 
 export const Login = styled.img`
+width: 60px;
+height: 60px;
   position: relative;
-  left: -100px;
-  top: 5px;
+  left: -180px;
   cursor: pointer;
   `;
   
@@ -83,7 +83,7 @@ export const Login = styled.img`
   flex-direction: column; 
   position: absolute;
   top: 70px;          
-  left: 1350px;
+  left: 1440px;
   background-color: #fff; 
   border: 1px solid #e0e0e0; 
   border-radius: 8px;    
@@ -112,35 +112,36 @@ export const TextContainer=styled.div`
   gap: 8px;        
 `
 
-
-
-
 export const DangerousHap = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== '$active', // '$active'를 DOM에 전달하지 않음
-})<{ $active: boolean }>`
+  shouldForwardProp: (prop) => prop !== 'Active', // '$active'를 DOM에 전달하지 않음
+})<{ Active: boolean }>`
   cursor: pointer;
-  width: 240px;
+  width: 210px;
   height: 50px;
-  background-color: ${(props) => (props.$active ? '#F2ECF8' : '#FFFFFF')};
-  border-radius: 10px;
+  left: 190px;
+  background-color: ${(props) => (props.Active ? '#F2ECF8' : '#FFFFFF')};
+  border-radius: 8px;
   display: flex;
-  justify-content: left;
+  flex-direction: row;
+  padding-left: 12px;
   align-items: center;
-  gap: 20px;
-  position: absolute;
-  right: 190px;
-  top: 10px;
-  z-index: 1;
+  text-align: center;
+  gap: 25px;
+  position: relative;
 `;
 
-export const Dangerous = styled.img``;
+export const Dangerous = styled.img`
+  width: 30px;
+  height: 30px;
+`;
 
 export const DangerousText = styled.span<{ active: boolean }>`
   color: ${(props) => (props.active ? '#6948ED' : '#DEDEDE')};
-  font-family: 'Pretendard Variable';
+  top: 10px;
+  font-family: Pretendard Variable;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
 `;
 

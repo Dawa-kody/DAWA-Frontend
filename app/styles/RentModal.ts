@@ -89,28 +89,58 @@ export const CardsDiv = styled.div`
 `
 
 /* 대여 물품 카드 */
-export const RentCard = styled.div`
+export const RentCard = styled.div<{ Click: boolean }>`
     width: 150px;
     height: 180px;
-
     font-family: Pretendard;
     font-size: 22px;
     font-weight: 500;
-
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background: #E4E7EC;
+    background: ${({ Click }) => (Click ? "#6948ED" : "#E4E7EC")};
     border-radius: 16px;
-
     cursor: pointer;
+
+    position: relative;
 
     /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;
-`
+`;
+
+export const ControlButtons = styled.div`
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    bottom: 30px;
+
+    button {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+
+        font-weight: bold;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+
+    span {
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+    }
+`;
 
 /* 확인 버튼 */
 export const submitbutton = styled.button`
