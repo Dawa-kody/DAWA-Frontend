@@ -3,12 +3,10 @@ import styled from "styled-components";
 /* 큰 컨테이너 */
 export const Container = styled.div`
     width: 100vw;
-    height: auto;
+    height: 100vh;
     
     display: flex;
     justify-content: center;
-
-    
 `
 
 /* 선생님이 알려주시는 약, 질병 관련 꿀TIPS ~  : 페이지 소개문 */
@@ -300,7 +298,7 @@ export const SubmitButton = styled.button`
     position: relative;
     width: 126px;
     height: 56px;
-    top: 903px;
+    top: 803px;
 
     display: flex;
     justify-content: center;

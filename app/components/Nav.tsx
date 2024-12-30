@@ -18,21 +18,21 @@ function Nav() {
         
          <S.LogoHap>
              <S.LogoText>다와</S.LogoText>
-            <S.Logo src={'Logo.png'} alt="로고" />
+            <S.Logo src={'Logo.svg'} alt="로고" />
          </S.LogoHap>
  
-         <S.HomeHap onClick={() => handleClick('home')} $active={activeMenu === 'home'}>
-            <S.Home src={activeMenu === 'home' ? 'HomePurple.png' : 'HomeWhite.png'} alt="홈" />
+         <S.HomeHap onClick={() => handleClick('home')} Active={activeMenu === 'home'}>
+            <S.Home src={activeMenu === 'home' ? 'HomePurple.svg' : 'HomeWhite.svg'} alt="홈" />
             <S.HomeText active={activeMenu === 'home'}>대시보드</S.HomeText>
          </S.HomeHap>
  
-         <S.DangerousHap onClick={() => handleClick('dangerous')} $active={activeMenu === 'dangerous'}>
+         <S.DangerousHap onClick={() => handleClick('dangerous')} Active={activeMenu === 'dangerous'}>
             <S.Dangerous
-              src={activeMenu === 'dangerous' ? 'ActivityPurple.png' : 'UnActivityWhite.png'} alt="응급사항" />
+              src={activeMenu === 'dangerous' ? 'ActivityPurple.svg' : 'ActivityWhite.svg'} alt="응급사항" />
             <S.DangerousText active={activeMenu === 'dangerous'}>응급처치</S.DangerousText>
          </S.DangerousHap>
  
-         <S.Login onMouseLeave={()=>setMouseOver(false) } onMouseEnter={()=>setMouseOver(true)} src={'./PersonPurple.png'}alt="프로필"/>
+         <S.Login onMouseLeave={()=>setMouseOver(false) } onMouseEnter={()=>setMouseOver(true)} src={'/PersonPurple.svg'} alt="프로필" />
          {MouseOver && (
         <S.LoginHoverBox onMouseLeave={() => setMouseOver(false)} 
                          onMouseEnter={() => setMouseOver(true)}>
