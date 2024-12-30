@@ -61,29 +61,37 @@ function RentModal({ onClose }: Modalprops) {
 
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const token = localStorage.getItem("access_token");
-
+        const token = localStorage.getItem("access");
+    
+        // 선택된 아이템 필터링
+        const selectedItems = cards.filter((card) => card.selected);
+    
         try {
-            const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rent/write`,
-                {
-                    selectedItems: cards.filter((card) => card.selected),
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
+            for (const item of selectedItems) {
+                // 각 아이템별로 요청 전송
+                await axios.post(
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
+                    {
+                        rental: item.name,
+                        count: item.count,
                     },
-                    withCredentials: true,
-                }
-            );
-            console.log("대여물품 기록 작성 성공:", response.data);
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true,
+                    }
+                );
+            }
+            console.log("대여물품 기록 작성 성공");
         } catch (error) {
-            console.log("대여물품 기록 작성 실패:", error);
+            console.error("대여물품 기록 작성 실패:", error);
         }
-
+    
         onClose();
-    };
+    };    
+    
 
     return (
         <S.background
