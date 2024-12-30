@@ -44,7 +44,7 @@ export const ListDiv = styled.div`
 export const Date = styled.span`
     position: absolute;
     left: 30px;
-    top: 14px;
+    top: 53px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -59,7 +59,7 @@ export const Date = styled.span`
 /* 개수 ex)1개 */
 export const Number = styled.span`
     position: absolute;
-    top: 14px;
+    top: 53px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -74,6 +74,7 @@ export const Number = styled.span`
 /* 개수 글자 */
 export const NumberTitle = styled.span`
     position: absolute;
+    top: 38px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -88,6 +89,7 @@ export const NumberTitle = styled.span`
 export const DateTitle = styled.span`
     position: absolute;
     left: 30px;
+    top: 38px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -156,13 +158,12 @@ export const student = styled.span`
     position: absolute;
     width: 21px;
     height: 14px;
-    left: 19px;
-    top: calc(50% - 14px/2 - 19.5px);
+    top: 2px;
 
     font-family: Pretendard;
     font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
+    font-weight: 300;
+    font-size: 11px;
     line-height: 14px;
 
     color: #98A2B3;
@@ -172,13 +173,12 @@ export const StudentName = styled.span`
     position: absolute;
     width: 42px;
     height: 19px;
-    left: 19px;
-    top: calc(50% - 19px/2 + 1px);
+    top: 16px;
 
     font-family: Pretendard;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 19px;
     /* identical to box height */
 

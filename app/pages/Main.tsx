@@ -144,9 +144,9 @@
           console.log(response.data);
 
           if (Array.isArray(response.data)) {
-            setVisitDataList(response.data);
+            setVisitAdminDataList(response.data);
           } else {
-            setVisitDataList([]);
+            setVisitAdminDataList([]);
           }
         } catch (error) {
           console.error("모든 학생 방문 기록 데이터를 불러오는 중 에러 발생:", error);
@@ -200,9 +200,9 @@
           console.log(response.data);
 
           if (Array.isArray(response.data)) {
-            setRentDataList(response.data);
+            setRentAdminDataList(response.data);
           } else {
-            setRentDataList([]);
+            setRentAdminDataList([]);
           }
         } catch (error) {
           console.error("모든 학생 대여 기록 데이터를 불러오는 중 에러 발생:", error);
