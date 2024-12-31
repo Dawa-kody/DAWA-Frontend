@@ -21,7 +21,7 @@ function Nav() {
     }
   }, [pathname]);
 
-  const handleNavigation = (menuName: 'home' | 'dangerous', path: string) => {
+  const shandleNavigation = (menuName: 'home' | 'dangerous', path: string) => {
     setActiveMenu(menuName);
     router.push(path); // 페이지 이동
   };
@@ -42,7 +42,7 @@ function Nav() {
       </S.LogoHap>
 
       <S.HomeHap
-        onClick={() => handleNavigation('home', '/')}
+        onClick={() => shandleNavigation('home', '/')}
         Active={activeMenu === 'home'}
       >
         <S.Home
@@ -53,7 +53,7 @@ function Nav() {
       </S.HomeHap>
 
       <S.DangerousHap
-        onClick={() => handleNavigation('dangerous', '/FirstAid')}
+        onClick={() => shandleNavigation('dangerous', '/FirstAid')}
         Active={activeMenu === 'dangerous'}
       >
         <S.Dangerous
