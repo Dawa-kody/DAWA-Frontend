@@ -23,7 +23,7 @@ function RentModal({ onClose }: Modalprops) {
         { name: "찜질팩", count: 0, selected: false },
     ]);
 
-    const handleCardClick = (index: number) => {
+    const handleCardClick = (index: number)     => {
         setCards((prev) =>
             prev.map((card, i) =>
                 i === index
