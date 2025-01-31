@@ -36,9 +36,9 @@ function Nav() {
          {MouseOver && (
         <S.LoginHoverBox onMouseLeave={() => setMouseOver(false)} 
                          onMouseEnter={() => setMouseOver(true)}>
-            <S.TextContainer>
-                <S.Text>로그아웃</S.Text>
-                <S.Text>비밀번호 변경</S.Text>
+            <S.TextContainer >
+                <S.Text onMouseLeave={() => setMouseOver(false)} >로그아웃</S.Text>
+                <S.Text                          onMouseEnter={() => setMouseOver(true)}>비밀번호 변경</S.Text>
             </S.TextContainer>
         </S.LoginHoverBox>
   )}
