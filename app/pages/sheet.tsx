@@ -9,9 +9,8 @@ function Sheet() {
   return (
     <>
       <Nav />
-
-      <S.Table>
-        <thead>
+      *<S.Table>
+       <thead>
           <S.Tr>
             <S.NumberTh scope="col">연번</S.NumberTh>
             <S.ClassTh scope="col">학년반</S.ClassTh>
@@ -25,13 +24,13 @@ function Sheet() {
 
         <tbody>
           <S.Tr>
-            <S.Td>11/15</S.Td>
+            <S.Td>1</S.Td>
             <S.Td>김우직</S.Td>
+            <S.Td>1104</S.Td>
             <S.Td>남</S.Td>
-            <S.Td></S.Td>
-            <S.Td></S.Td>
-            <S.Td></S.Td>
-            <S.Td></S.Td>
+            <S.Td>깨병</S.Td>
+            <S.Td>잘 어루고 달램</S.Td>
+            <S.Td>11:52</S.Td>
           </S.Tr>
         </tbody>
       </S.Table>
