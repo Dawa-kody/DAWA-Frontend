@@ -24,13 +24,16 @@ function Sheet() {
 
         <tbody>
           <S.Tr>
-            <S.Td>1</S.Td>
-            <S.Td>김우직</S.Td>
-            <S.Td>1104</S.Td>
-            <S.Td>남</S.Td>
-            <S.Td>깨병</S.Td>
-            <S.Td>잘 어루고 달램</S.Td>
-            <S.Td>11:52</S.Td>
+            <tr>
+
+            <S.Td><S.input type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input3 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.input type="text" defaultValue="" /></S.Td>
+            </tr>
           </S.Tr>
         </tbody>
       </S.Table>

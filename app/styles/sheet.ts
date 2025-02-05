@@ -1,26 +1,19 @@
 import styled from "styled-components";
 
 
-export const Nemo=styled.div`
-background-color:#6948ED;
-width:1010px;
-height:450px;
-margin-left:20px;
-margin-top:45px;
-border-radius:10px;
-`
+
 
 export const Table=styled.table`
 width:1010px;
-height:450px;
+height:450px
 margin-left:20px;
-margin-top:45px;
+margin-top:10px;
 table-layout:fixed;
 `
 
 export const NumberTh=styled.th`
 width: 10px;
-height: 41px;
+height: 30px;
 color:#000;
 border: 1px solid #000;
 background-color:#F0EDFE;
@@ -95,4 +88,23 @@ border: 1px solid #000;
 vertical-align: top;	/* 위 */
 vertical-align: bottom;   /* 아래 */
 vertical-align: middle;   /* 가운데 */
+`
+
+export const input=styled.input`
+width: 73px;
+height: 50px;
+color:#000;
+outline:none;
+`
+export const input2=styled.input`
+width: 108.5px;
+height: 50px;
+color:#000;
+outline:none;
+`
+export const input3=styled.input`
+width: 446.5px;
+height: 50px;
+color:#000;
+outline:none;
 `
