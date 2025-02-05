@@ -9,6 +9,7 @@ height:450px
 margin-left:20px;
 margin-top:10px;
 table-layout:fixed;
+border-collapse: collapse;
 `
 
 export const NumberTh=styled.th`
@@ -90,21 +91,27 @@ vertical-align: bottom;   /* 아래 */
 vertical-align: middle;   /* 가운데 */
 `
 
-export const input=styled.input`
+export const Shortinput=styled.input`
 width: 73px;
 height: 50px;
 color:#000;
 outline:none;
+border: none;
+border-collapse: collapse;
 `
-export const input2=styled.input`
+export const Mediuminput2=styled.input`
 width: 108.5px;
 height: 50px;
 color:#000;
 outline:none;
+border:none;
+border-collapse: collapse;
 `
-export const input3=styled.input`
+export const Longinput3=styled.input`
 width: 446.5px;
 height: 50px;
 color:#000;
 outline:none;
+border:none;
+border-collapse: collapse;
 `

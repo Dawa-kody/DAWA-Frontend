@@ -26,13 +26,13 @@ function Sheet() {
           <S.Tr>
             <tr>
 
-            <S.Td><S.input type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input2 type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input3 type="text" defaultValue="" /></S.Td>
-            <S.Td><S.input type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Longinput3 type="text" defaultValue="" /></S.Td>
+            <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
             </tr>
           </S.Tr>
         </tbody>
