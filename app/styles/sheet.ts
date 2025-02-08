@@ -1,20 +1,11 @@
 import styled from "styled-components";
 
-
-
-
 export const Table=styled.table`
-width:1010px;
-height:450px
 margin-left:20px;
-margin-top:10px;
-table-layout:fixed;
-border-collapse: collapse;
+margin-top:40px;
 `
 
 export const NumberTh=styled.th`
-width: 10px;
-height: 30px;
 color:#000;
 border: 1px solid #000;
 background-color:#F0EDFE;
@@ -74,44 +65,46 @@ background-color:#F0EDFE;
 `
 
 
-
-export const Tr=styled.tr`
-color:#000;
-`
-
 export const Td=styled.td`
-color:#000;
- width: 100px;
-height: 50px;
-text-align: center;
+color: #000;
 border: 1px solid #000;
-
-vertical-align: top;	/* 위 */
-vertical-align: bottom;   /* 아래 */
-vertical-align: middle;   /* 가운데 */
+padding:0;
+posiotion:relative;
 `
 
 export const Shortinput=styled.input`
-width: 73px;
+width: 100px;
 height: 50px;
-color:#000;
-outline:none;
-border: none;
-border-collapse: collapse;
+color: #000;
+outline: none;
+border: 0; 
+box-sizing: border-box;
 `
+
 export const Mediuminput2=styled.input`
 width: 108.5px;
 height: 50px;
-color:#000;
-outline:none;
-border:none;
-border-collapse: collapse;
+color: #000;
+outline: none;
+border: 0;
+box-sizing: border-box;
 `
+
+export const textarea=styled.textarea`
+width:500px;
+height:50px;
+resize: none;
+border:none;
+box-sizing: border-box;
+ &:focus {
+   outline: none;
+ }
+`
+
 export const Longinput3=styled.input`
 width: 446.5px;
 height: 50px;
-color:#000;
-outline:none;
-border:none;
-border-collapse: collapse;
+color: #000;
+outline: none;
+border: 0;
 `
