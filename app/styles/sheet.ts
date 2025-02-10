@@ -120,13 +120,55 @@
   `
 
 export const StudentSheetSpan=styled.span`
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 700;
-font-size: 35px;
-line-height: 42px;
-color: #000000;
-position:absolute;
-top:30px;
-left:30px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 42px;
+  color: #000000;
+  position:absolute;
+  top:30px;
+  left:30px;
+`
+
+export const TotalTable=styled.table`
+  margin-left:20px;
+  margin-top:240px;
+  table-layout: fixed;
+`
+
+export const Total=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+
+`
+
+export const Gender=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const Respiratory=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const Digestivesystem=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const Circulatorysystem=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
 `

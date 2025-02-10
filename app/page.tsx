@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
       {/* <Nav />   */}
       {/*<Main />*/}
       <Sheet />
-    -
     </>
   );
 };
