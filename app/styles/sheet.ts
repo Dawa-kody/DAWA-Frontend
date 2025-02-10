@@ -1,60 +1,63 @@
 import styled from "styled-components";
 
 
+
+
 export const Table=styled.table`
-color:#000;
-position:relative;
-left:20px;
+width:1010px;
+height:450px
+margin-left:20px;
+margin-top:10px;
+table-layout:fixed;
+border-collapse: collapse;
 `
 
 export const NumberTh=styled.th`
-color:#000;
 width: 10px;
-height: 50px;
+height: 30px;
+color:#000;
 border: 1px solid #000;
 background-color:#F0EDFE;
-  table-layout: fixed;    
-  border-collapse: collapse; 
 `
 
 export const ClassTh=styled.th`
-color:#000;
-width: 10px;
+width: 15px;
 height: 50px;
+color:#000;
 text-align: center;
 border: 1px solid #000;
 background-color:#F0EDFE;
 `
 
 export const NameTh=styled.th`
-color:#000;
-width: 100px;
+width: 15px;
 height: 50px;
+color:#000;
 text-align: center;
 border: 1px solid #000;
 background-color:#F0EDFE;
 `
 
 export const GenderTh=styled.th`
-color:#000;
-width: 60px;
+width: 10px;
 height: 50px;
+color:#000;
 text-align: center;
 border: 1px solid #000;
 background-color:#F0EDFE;
 `
 export const SickTh=styled.th`
-color:#000;
-width: 60px;
+width: 15px;
 height: 50px;
+color:#000;
 text-align: center;
 border: 1px solid #000;
 background-color:#F0EDFE;
 `
 
 export const HandleTh=styled.th`
-color:#000;
 width: 60px;
+color:#000;
 height: 50px;
 text-align: center;
 border: 1px solid #000;
@@ -62,8 +65,8 @@ background-color:#F0EDFE;
 `
 
 export const TimeTh=styled.th`
+width: 10px;
 color:#000;
-width: 60px;
 height: 50px;
 text-align: center;
 border: 1px solid #000;
@@ -86,4 +89,29 @@ border: 1px solid #000;
 vertical-align: top;	/* 위 */
 vertical-align: bottom;   /* 아래 */
 vertical-align: middle;   /* 가운데 */
+`
+
+export const Shortinput=styled.input`
+width: 73px;
+height: 50px;
+color:#000;
+outline:none;
+border: none;
+border-collapse: collapse;
+`
+export const Mediuminput2=styled.input`
+width: 108.5px;
+height: 50px;
+color:#000;
+outline:none;
+border:none;
+border-collapse: collapse;
+`
+export const Longinput3=styled.input`
+width: 446.5px;
+height: 50px;
+color:#000;
+outline:none;
+border:none;
+border-collapse: collapse;
 `
