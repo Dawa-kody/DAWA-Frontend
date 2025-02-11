@@ -59,7 +59,8 @@
   color: #000;
   border: 1px solid #000;
   padding:0;
-  position: relative;  
+  position: relative; 
+  height:100%; 
   `
 
   export const Shortinput=styled.input`
@@ -69,6 +70,7 @@
   outline: none;
   border: 0; 
   box-sizing: border-box;
+  padding:0;
   `
 
   export const Mediuminput2=styled.input`
@@ -78,14 +80,21 @@
   outline: none;
   border: 0;
   box-sizing: border-box;
+    padding:0;
   `
 
   export const Textarea = styled.textarea`
- width: 100%;
-  height:50px;
+  width: 100%;
+  height: 100%;
+  min-height: 50px; /* 원하는 최소 높이 설정 */
   resize: none;
   border: none;
   box-sizing: border-box;
+  padding: 4px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  display: block;
   &:focus {
     outline: none;
   }
@@ -153,22 +162,103 @@ export const Gender=styled.th`
 `
 
 export const Respiratory=styled.th`
-  width:60px;
+  width:70px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
 `
 
 export const Digestivesystem=styled.th`
-  width:60px;
+  width:70px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
 `
 
 export const Circulatorysystem=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+export const  Spirit=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Skin=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Urogenital=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Teeth=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Ibinolaryngology=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Ophthalmology=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+export const  Infection=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const  Gita=styled.th`
   width:60px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
+`
+
+export const  Gue=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+`
+
+export const Font=styled.span`
+  font-family: 'Inter';
+  font-size: 12px;
+ font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000000;
+`
+
+export const StudentSheetCheckText=styled.span`
+font-family: 'Pretendard';
+font-style: normal;
+font-weight: 700;
+font-size: 35px;
+line-height: 42px;
+color: #000000;
 `
