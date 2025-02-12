@@ -42,7 +42,7 @@ export const HomeHap = styled.div.withConfig({
   cursor: pointer;
   width: 210px;
   height: 50px;
-  left: 580px;
+  right: 470px;
   background-color: ${(props) => (props.Active ? '#F2ECF8' : '#FFFFFF')};
   border-radius: 8px;
   display: flex;
@@ -51,7 +51,7 @@ export const HomeHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: relative;
+  position: fixed;
   `;
   
   export const Home = styled.img`
@@ -70,20 +70,20 @@ export const HomeHap = styled.div.withConfig({
 `;
 
 
-export const Login = styled.img`
-width: 60px;
-height: 60px;
-  position: relative;
-  left: -180px;
-  cursor: pointer;
+  export const Login = styled.img`
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 170px;
+    cursor: pointer;
   `;
   
   export const LoginHoverBox = styled.div`
   display: flex;
   flex-direction: column; 
-  position: absolute;
+  position: fixed;
   top: 70px;          
-  left: 1440px;
+  right: 140px;
   background-color: #fff; 
   border: 1px solid #e0e0e0; 
   border-radius: 8px;    
@@ -118,7 +118,7 @@ export const DangerousHap = styled.div.withConfig({
   cursor: pointer;
   width: 210px;
   height: 50px;
-  left: 190px;
+  right: 250px;
   background-color: ${(props) => (props.Active ? '#F2ECF8' : '#FFFFFF')};
   border-radius: 8px;
   display: flex;
@@ -127,7 +127,7 @@ export const DangerousHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: relative;
+  position: fixed;
 `;
 
 export const Dangerous = styled.img`
