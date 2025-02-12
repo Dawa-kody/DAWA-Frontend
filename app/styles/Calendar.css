@@ -1,0 +1,104 @@
+.react-calendar__navigation {
+  width: 1200px;
+  height: 3.5rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 0 5.5rem;
+  color: rgb(203, 73, 73);
+}
+
+.react-calendar__navigation__label {
+  width: 5.5rem;
+  height: 1.375rem;
+  font-size: 16px;
+  border: none;
+  font-weight: 700;
+  background-color: #fff;
+  color: #000 !important; /* 중요: 스타일 적용 우선순위 높이기 */
+}
+
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+
+  cursor: pointer;
+  opacity: 0; /* 이전 버튼 숨기기 */
+  color: #000;
+}
+
+.react-calendar__tile {
+  color: #000;
+}
+
+.react-calendar__navigation__arrow {
+  color: forestgreen !important; /* 중요: 화살표 색 적용 */
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  color: #000;
+}
+
+.react-calendar__navigation__label {
+  color: #000 !important; /* 중요: 텍스트 색상 설정 */
+}
+
+.react-calendar__navigation__prev-button:focus,
+.react-calendar__navigation__next-button:focus {
+  outline: none; /* 버튼에 포커스 시 테두리 제거 */
+}
+
+.react-calendar__tile:disabled {
+  background-color: #e0e0e0; /* 비활성화된 날짜 배경색 */
+  color: #b0b0b0; /* 비활성화된 날짜 글자 색 */
+}
+
+.react-calendar__tile--active {
+  background-color: #9B8AFB;
+  color: #fff; /* 선택된 날짜 글자 색 */
+  border-radius: 50%; /* 원 모양으로 설정 */
+  width: 40px; /* 타일의 너비 */
+  height: 40px; /* 타일의 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px; /* 글자 크기 */
+  line-height: 40px; /* 글자가 세로로 중앙에 오도록 설정 */
+  padding: 0; /* 패딩을 0으로 설정하여 원 형태를 유지 */
+}
+
+/* 요일 순서 변경 */
+.react-calendar__month-view__weekdays__weekday {
+  color: #000; /* 기본 색상 설정 */
+}
+
+.react-calendar__month-view__weekdays__weekday:nth-child(1) { 
+  color: red; /* 일요일 빨간색 */
+}
+
+.react-calendar__month-view__weekdays__weekday:nth-child(7) { 
+  color: blue; /* 토요일 파란색 */
+}
+
+.react-calendar__navigation__label {
+  width: 5.5rem;
+  height: 1.375rem;
+  font-size: 16px;
+  border: none;
+  font-weight: 700;
+  background-color: #fff;
+  color: #000 !important;
+}
+
+.react-calendar__tile--active {
+  background-color: #9B8AFB;
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 40px;
+  padding: 0;
+}
