@@ -258,7 +258,12 @@ export const StudentSheetCheckText=styled.span`
 font-family: 'Pretendard';
 font-style: normal;
 font-weight: 700;
-font-size: 35px;
+font-size: 32px;
 line-height: 42px;
 color: #000000;
+position:relative;
+left:30px;
+top:20px;
 `
+
+  
