@@ -1,5 +1,5 @@
 'use client'
-
+//아직은 로직이 만들어지지 않았기 때문에 로직 분할 XXXXXXXXX
 import React, { useState, useEffect } from "react";
 import * as S from "../styles/CardContent";
 import axios from "axios";
@@ -36,7 +36,7 @@ function CardContent() {
     return (
         <>
             {H.length > 0 && (
-                <>
+                <>=
                     <S.Header>
                         <S.diseaseName>{H[0].Disease}</S.diseaseName>
                         <S.CardTitle>{H[0].Title}</S.CardTitle>
