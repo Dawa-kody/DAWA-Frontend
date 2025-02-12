@@ -1,7 +1,7 @@
 'use client';
-import '../styles/Calendar.css';
 import React, { useState, useCallback, useEffect } from 'react';
 import Calendar from 'react-calendar';
+import '../styles/Calendar.css'
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -24,8 +24,15 @@ const CalendarSelect = () => {
 
   return (
     <div>
-      {/* 언어를 "ko-KR"로 설정하여 한국어 날짜 표기 강제 적용 */}
-      <Calendar onChange={onChangeCalendar} value={calendarValue} locale="ko-KR" formatDay={(locale, date) => date.toLocaleString('en', { day: 'numeric' })}/>
+      <Calendar onChange={onChangeCalendar} 
+      value={calendarValue} 
+      locale="ko-KR" 
+      formatDay={(locale, date) => date.toLocaleString('en', { day: 'numeric' })} 
+      calendarType="gregory" 
+      view="month"
+      prev2Label={null}
+      next2Label={null}
+      />
     </div>
   );
 };
