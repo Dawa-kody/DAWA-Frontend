@@ -4,7 +4,7 @@ import React from 'react'
 import * as S from '../styles/sheet';
 
 import Nav from '../components/Nav';
-
+import Calendar from 'react-calendar';
 
 function Talbe(){
   return(
@@ -66,10 +66,13 @@ function Sheet() {
      
     </tbody>
       </S.TotalTable>
-      <S.CalenderWhite></S.CalenderWhite>
+      <S.CalenderWhite>
+        <Calendar/>
+      </S.CalenderWhite>
       <S.StudentSheetCheck>
         <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
       </S.StudentSheetCheck>
+    
     </>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useCallback, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import '../styles/Calendar.css'
+import '../styles/Calendar.css';
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -30,8 +30,9 @@ const CalendarSelect = () => {
       formatDay={(locale, date) => date.toLocaleString('en', { day: 'numeric' })} 
       calendarType="gregory" 
       view="month"
-      prev2Label={null}
-      next2Label={null}
+      prev2Label={null}y
+      next2Label={null} 
+      showNeighboringMonth={false}
       />
     </div>
   );
