@@ -1,9 +1,9 @@
   /* 전체 달력 스타일 */
   .react-calendar {
-    width: 350px;
+    width: 500px;
     max-width: 100%;
     background: #fff;
-    border: 1px solid #000000;
+    border: none;
     font-family: 'Arial', 'Helvetica', sans-serif;
     line-height: 1.125em;
     color: #000;
