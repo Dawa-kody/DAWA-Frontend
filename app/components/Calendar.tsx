@@ -1,9 +1,13 @@
 'use client';
 import React, { useState, useCallback, useEffect } from 'react';
-import Calendar from 'react-calendar';
+import dynamic from 'next/dynamic';
 import '../styles/Calendar.css';
+
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+// 서버 사이드 렌더링 방지
+const DynamicCalendar = dynamic(() => import('react-calendar'), { ssr: false });
 
 const CalendarSelect = () => {
   const [calendarValue, setCalendarValue] = useState<Value>(new Date());
@@ -18,26 +22,29 @@ const CalendarSelect = () => {
   }, []);
 
   if (!mounted) {
-    return null; // 서버에서 렌더링하지 않도록 처리
+    return null;
   }
-
 
   return (
     <div>
-      <Calendar onChange={onChangeCalendar} 
-      value={calendarValue} 
-      locale="ko-KR" 
-      formatDay={(locale, date) => date.toLocaleString('en', { day: 'numeric' })} 
-      calendarType="gregory" 
-      view="month"
-      prev2Label={null}y
-      next2Label={null} 
-      showNeighboringMonth={false}
+      <DynamicCalendar
+        onChange={onChangeCalendar}
+        value={calendarValue}
+        locale="ko-KR"
+        calendarType="gregory"
+        view="month"
+        prev2Label={null}
+        next2Label={null}
+        showNeighboringMonth={false}
+        formatMonthYear={(locale, date) =>
+          new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long' }).format(date)
+        }
+        formatDay={(locale, date) =>
+          new Intl.DateTimeFormat('ko-KR', { day: 'numeric' }).format(date)
+        }
       />
     </div>
   );
 };
 
 export default CalendarSelect;
-
-

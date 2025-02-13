@@ -267,3 +267,6 @@ top:20px;
 `
 
   
+export  const Date=styled.div`
+
+`
