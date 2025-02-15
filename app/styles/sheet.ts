@@ -278,7 +278,7 @@
 
   
 export  const Date=styled.td`
-weight:100px;
+width:100px;
 height:100px;
 color:#000;
 border: 1px solid #000;

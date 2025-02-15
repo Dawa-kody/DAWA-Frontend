@@ -7,7 +7,7 @@ import { useRouter, usePathname } from 'next/navigation';
 function Nav() {
   const router = useRouter();
   const pathname = usePathname(); // 현재 경로 가져오기
-  const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | null>(null);
+  const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | 'moonjin' | null>(null);
   const [MouseOver, setMouseOver] = useState(false);
 
   // 경로에 따라 activeMenu 설정
@@ -16,12 +16,14 @@ function Nav() {
       setActiveMenu('home');
     } else if (pathname === '/FirstAid') {
       setActiveMenu('dangerous');
+    } else if (pathname === '/Sheet') {
+      setActiveMenu('moonjin');
     } else {
       setActiveMenu(null);
     }
   }, [pathname]);
 
-  const shandleNavigation = (menuName: 'home' | 'dangerous', path: string) => {
+  const shandleNavigation = (menuName: 'home' | 'dangerous' | 'moonjin', path: string) => {
     setActiveMenu(menuName);
     router.push(path); // 페이지 이동
   };
@@ -40,6 +42,19 @@ function Nav() {
         <S.LogoText>다와</S.LogoText>
         <S.Logo src={'Logo.svg'} alt="로고" />
       </S.LogoHap>
+
+      <S.AdminText>선생님, 안녕하세요!</S.AdminText>
+
+      <S.MoonjinHap
+        onClick={() => shandleNavigation('moonjin', '/Sheet')}
+        Active={activeMenu === 'moonjin'}
+      >
+        <S.Moonjin
+          src={activeMenu === 'moonjin' ? 'moonjinPurple.svg' : 'moonjinWhite.svg'}
+          alt="문진표"
+        />
+        <S.MoonjinText active={activeMenu === 'moonjin'}>문진표 작성</S.MoonjinText>
+      </S.MoonjinHap>
 
       <S.HomeHap
         onClick={() => shandleNavigation('home', '/')}
