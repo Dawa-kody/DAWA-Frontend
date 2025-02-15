@@ -145,3 +145,45 @@ export const DangerousText = styled.span<{ active: boolean }>`
   line-height: 24px;
 `;
 
+export const MoonjinHap = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'Active', // '$active'를 DOM에 전달하지 않음
+})<{ Active: boolean }>`
+  cursor: pointer;
+  width: 210px;
+  height: 50px;
+  right: 690px;
+  background-color: ${(props) => (props.Active ? '#F2ECF8' : '#FFFFFF')};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 12px;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  position: fixed;
+  `;
+
+export const Moonjin = styled.img`
+width: 30px;
+height: 30px;
+`;
+
+export const MoonjinText = styled.span<{ active: boolean }>`
+color: ${(props) => (props.active ? '#6948ED' : '#DEDEDE')};
+top: 10px;
+font-family: Pretendard Variable;
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 24px;
+`;
+
+export const AdminText = styled.span`
+  color: #6938EF;
+  
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: 700;
+  right: 960px;
+  position: fixed;
+`
