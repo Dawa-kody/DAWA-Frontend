@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useRef } from "react";
 import * as S from "../styles/Dropdown";
 
@@ -5,7 +6,7 @@ interface DropdownProps {
   data: string[];
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
+const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
   const selectRef = useRef<HTMLDivElement>(null);
   const [currentValue, setCurrentValue] = useState<string>(data[0] || "초기값");
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -13,8 +14,8 @@ export const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
   // 드롭다운 값 변경 처리 함수
   const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = e.currentTarget.getAttribute("data-value") || "";
-    setCurrentValue(value);  // 클릭한 값을 currentValue로 설정
-    setShowOptions(false);  // 드롭다운 닫기
+    setCurrentValue(value); // 클릭한 값을 currentValue로 설정
+    setShowOptions(false); // 드롭다운 닫기
   };
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
 
   // 드롭다운 상자를 클릭하면 드롭다운 열리기
   const handleDropdownClick = () => {
-    setShowOptions((prev) => !prev);  // showOptions 상태 토글
+    setShowOptions((prev) => !prev); // showOptions 상태 토글
   };
 
   return (
@@ -55,3 +56,5 @@ export const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
     </S.SelectBox>
   );
 };
+
+export default Dropdown;
