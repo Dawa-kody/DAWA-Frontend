@@ -63,6 +63,17 @@
   height:100%; 
   `
 
+
+  export const TdText=styled.span`
+  color:#000;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  background-color:#fff;
+  `
+
+
   export const Shortinput=styled.input`
   width: 100%;
   height:50px;
@@ -128,147 +139,153 @@
   border-radius:10px;
   `
 
-export const StudentSheetSpan=styled.span`
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 700;
-font-size: 35px;
-line-height: 42px;
-color: #000000;
-position:absolute;
-top:30px;
-left:30px;
-`
+  export const StudentSheetSpan=styled.span`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 42px;
+  color: #000000;
+  position:absolute;
+  top:30px;
+  left:30px;
+  `
 
-export const TotalTable=styled.table`
-margin-left:20px;
-margin-top:240px;
-table-layout: fixed;
-`
+  export const TotalTable=styled.table`
+  margin-left:20px;
+  margin-top:240px;
+  table-layout: fixed;
+  `
 
-export const Total=styled.th`
-width:60px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const Total=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const Gender=styled.th`
-width:60px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const Gender=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const Respiratory=styled.th`
-width:70px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const Respiratory=styled.th`
+  width:70px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const Digestivesystem=styled.th`
-width:70px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const Digestivesystem=styled.th`
+  width:70px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const Circulatorysystem=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
-export const  Spirit=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const Circulatorysystem=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
+  export const  Spirit=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Skin=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Skin=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Urogenital=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Urogenital=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Teeth=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Teeth=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Ibinolaryngology=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Ibinolaryngology=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Ophthalmology=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
-export const  Infection=styled.th`
-width:80px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Ophthalmology=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
+  export const  Infection=styled.th`
+  width:80px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Gita=styled.th`
-width:60px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Gita=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const  Gue=styled.th`
-width:60px;
-color:#000;
-border: 1px solid #000;
-background-color:#F0EDFE;
-`
+  export const  Gue=styled.th`
+  width:60px;
+  color:#000;
+  border: 1px solid #000;
+  background-color:#F0EDFE;
+  `
 
-export const Font=styled.span`
-font-family: 'Inter';
-font-size: 12px;
-font-weight: 700;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-color: #000000;
-`
+  export const Font=styled.span`
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000000;
+  `
 
-export const StudentSheetCheckText=styled.span`
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 42px;
-color: #000000;
-position:relative;
-left:30px;
-top:20px;
-`
+  export const StudentSheetCheckText=styled.span`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+  color: #000000;
+  position:relative;
+  left:30px;
+  top:20px;
+  `
 
   
 export  const Date=styled.td`
 weight:100px;
 height:100px;
 color:#000;
+border: 1px solid #000;
+`
+
+export const TotalTd=styled.td`
+color:#000;
+background-color:#fff;
 border: 1px solid #000;
 `

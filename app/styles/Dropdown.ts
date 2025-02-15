@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-// 드롭다운 상자의 스타일을 정의
-export const SelectBox = styled.div`
+  export const SelectBox = styled.div`
   position: relative;
-  width: 80px;
-  height: 40px;
+  width: 70px;
+  height: 35px;
   padding: 10px;
   border-radius: 5px;
   background-color: #ffffff;
   align-self: center;
-  border: 1px solid #cccccc;
+  border: 1px solid #95979D;
   cursor: pointer;
   color:#000;
   position:relative;
@@ -21,20 +20,20 @@ export const SelectBox = styled.div`
     top: 4px;
     right: 5px;
     color: #000;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
 
   }
 `;
 
 // 드롭다운에 선택된 값을 표시할 라벨 스타일
-export const Label = styled.label`
-  font-size: 14px;
-  display: inline-block;
-`;
+  export const Label = styled.label`
+  font-size: 12px;
+  text-align:center;
+  `;
 
 // 드롭다운 옵션 리스트 스타일, show 값에 따라 표시 여부 결정
-export const SelectOptions = styled.ul<{ show: boolean }>`
+  export const SelectOptions = styled.ul<{ show: boolean }>`
   position: absolute;
   top: 38px;
   left: 0;
@@ -63,8 +62,8 @@ export const SelectOptions = styled.ul<{ show: boolean }>`
 `;
 
 // 각 드롭다운 옵션의 스타일
-export const Option = styled.li`
-  font-size: 14px;
+  export const Option = styled.li`
+  font-size: 12px;
   padding: 10px;
   cursor: pointer;
 
