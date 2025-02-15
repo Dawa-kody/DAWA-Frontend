@@ -3,12 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import * as S from '../styles/Nav';
 import { useRouter, usePathname } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode';
+
+interface DecodedToken {
+  role: string;
+}
 
 function Nav() {
   const router = useRouter();
-  const pathname = usePathname(); // 현재 경로 가져오기
+  const pathname = usePathname();
   const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | 'moonjin' | null>(null);
   const [MouseOver, setMouseOver] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // Admin 인지 아닌지 저장
 
   // 경로에 따라 activeMenu 설정
   useEffect(() => {
@@ -23,38 +29,53 @@ function Nav() {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode<DecodedToken>(token);
+        const userRole = decodedToken?.role || 'UNKNOWN';
+        console.log('유저 권한:', userRole);
+        setIsAdmin(userRole === 'ROLE_TEACHER');
+      } catch (error) {
+        console.error('토큰 에러:', error);
+        setIsAdmin(false);
+      }
+    } else {
+      console.error('토큰 값을 찾지 못했습니다.');
+    }
+  }, []);
+
   const shandleNavigation = (menuName: 'home' | 'dangerous' | 'moonjin', path: string) => {
     setActiveMenu(menuName);
-    router.push(path); // 페이지 이동
+    router.push(path);
   };
 
   const handlelogout = () => {
-    router.push("/Login")
-  }
+    router.push('/Login');
+  };
 
   const handlepw = () => {
-    router.push("/Password")
-  }
+    router.push('/Password');
+  };
 
   return (
     <S.Component>
-      <S.LogoHap>
-        <S.LogoText>다와</S.LogoText>
-        <S.Logo src={'Logo.svg'} alt="로고" />
-      </S.LogoHap>
+      {isAdmin && <S.AdminText>선생님, 안녕하세요!</S.AdminText>}
 
-      <S.AdminText>선생님, 안녕하세요!</S.AdminText>
-
-      <S.MoonjinHap
-        onClick={() => shandleNavigation('moonjin', '/Sheet')}
-        Active={activeMenu === 'moonjin'}
-      >
-        <S.Moonjin
-          src={activeMenu === 'moonjin' ? 'moonjinPurple.svg' : 'moonjinWhite.svg'}
-          alt="문진표"
-        />
-        <S.MoonjinText active={activeMenu === 'moonjin'}>문진표 작성</S.MoonjinText>
-      </S.MoonjinHap>
+      {isAdmin && (
+        <S.MoonjinHap
+          onClick={() => shandleNavigation('moonjin', '/Sheet')}
+          Active={activeMenu === 'moonjin'}
+        >
+          <S.Moonjin
+            src={activeMenu === 'moonjin' ? 'moonjinPurple.svg' : 'moonjinWhite.svg'}
+            alt="문진표"
+          />
+          <S.MoonjinText active={activeMenu === 'moonjin'}>문진표 작성</S.MoonjinText>
+        </S.MoonjinHap>
+      )}
 
       <S.HomeHap
         onClick={() => shandleNavigation('home', '/')}
@@ -72,16 +93,10 @@ function Nav() {
         Active={activeMenu === 'dangerous'}
       >
         <S.Dangerous
-          src={
-            activeMenu === 'dangerous'
-              ? 'ActivityPurple.svg'
-              : 'ActivityWhite.svg'
-          }
+          src={activeMenu === 'dangerous' ? 'ActivityPurple.svg' : 'ActivityWhite.svg'}
           alt="응급사항"
         />
-        <S.DangerousText active={activeMenu === 'dangerous'}>
-          응급처치
-        </S.DangerousText>
+        <S.DangerousText active={activeMenu === 'dangerous'}>응급처치</S.DangerousText>
       </S.DangerousHap>
 
       <S.Login
