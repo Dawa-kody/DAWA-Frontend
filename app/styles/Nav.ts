@@ -73,7 +73,7 @@ export const HomeHap = styled.div.withConfig({
   export const Login = styled.img`
     width: 60px;
     height: 60px;
-    position: fixed;
+    position: relative;
     right: 170px;
     cursor: pointer;
   `;
@@ -81,7 +81,7 @@ export const HomeHap = styled.div.withConfig({
   export const LoginHoverBox = styled.div`
   display: flex;
   flex-direction: column; 
-  position: fixed;
+  position: relative;
   top: 70px;          
   right: 140px;
   background-color: #fff; 
