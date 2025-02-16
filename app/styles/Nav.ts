@@ -51,7 +51,7 @@ export const HomeHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: fixed;
+  position: relative;
   `;
   
   export const Home = styled.img`
@@ -127,7 +127,7 @@ export const DangerousHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: fixed;
+  position: relative;
 `;
 
 export const Dangerous = styled.img`
@@ -160,7 +160,7 @@ export const MoonjinHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: fixed;
+  position: relative;
   `;
 
 export const Moonjin = styled.img`
@@ -185,5 +185,5 @@ export const AdminText = styled.span`
   font-size: 24px;
   font-weight: 700;
   right: 960px;
-  position: fixed;
+  position: relative;
 `
