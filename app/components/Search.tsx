@@ -1,24 +1,24 @@
 "use client";
-import * as S from "../styles/Search";
 import React, { useState } from "react";
+import * as S from "../styles/Search";
 
-function Monsters() {
-  // 직접 설정한 이름 목록
-  const [monstersData, setMonstersData] = useState([
-    { id: 1, name: "진건희", email: "jkh@example.com" ,class:"Name"},
-    { id: 2, name: "박서현", email: "psh@example.com" ,class:"Name"},
-    { id: 3, name: "이준건", email: "ljg@example.com" ,class:"Name"},
+function Search() {
+  const [StudnetNameData, setStudnetNameData] = useState([
+    { id: 1, name: "진건희",class:"Name"},
+    { id: 2, name: "박서현",class:"Name"},
+    { id: 3, name: "이준건",class:"Name"},
   ]);
 
-  const [searchMonster, setSearchMonster] = useState("");
+  const [searchName, setSearchName] = useState("");
 
-  const onChange = (e) => {
-    setSearchMonster(e.target.value);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchName(e.target.value);
   };
+  
 
   // 입력한 값과 일치하는 이름 필터링
-  const filterMonster = monstersData.filter((monsterinfo) =>
-    monsterinfo.name.includes(searchMonster)
+  const filterName = StudnetNameData.filter((monsterinfo) =>
+    monsterinfo.name.includes(searchName)
   );
 
   return (
@@ -27,13 +27,13 @@ function Monsters() {
         className="search"
         placeholder="Search"
         onChange={onChange}
-        value={searchMonster}
+        value={searchName}
+        src="Search.jpg"
       />
       <ul>
-        {filterMonster.map((monster) => (
-          <li className="monster" key={monster.id}>
-            <S.Name>{monster.name}</S.Name> 
-            <S.Name>{monster.email}</S.Name>
+        {filterName.map((name) => (
+          <li className="monster" key={name.id}>
+            <S.Name>{name.name}</S.Name> 
           </li>
         ))}
       </ul>
@@ -41,4 +41,4 @@ function Monsters() {
   );
 }
 
-export default Monsters;
+export default Search;
