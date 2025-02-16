@@ -121,12 +121,13 @@
 
   export const CalenderWhite=styled.div`
   width:450px;
-  height:280px;
+  height:320px;
   position:absolute;
   left:1070px;
   top:120px;
   background-color:#ffff;
   border-radius:10px;
+  display:flex;
   `
 
   export const StudentSheetCheck=styled.div`
@@ -134,7 +135,7 @@
   height:280px;
   position:absolute;
   left:1070px;
-  bottom:-5px;
+  top:450px;
   background-color:#ffff;
   border-radius:10px;
   `
@@ -277,15 +278,22 @@
   `
 
   
-export  const Date=styled.td`
-width:100px;
-height:100px;
-color:#000;
-border: 1px solid #000;
-`
+  export  const Date=styled.td`
+  width:100px;
+  height:100px;
+  color:#000;
+  border: 1px solid #000;
+  `
 
-export const TotalTd=styled.td`
-color:#000;
-background-color:#fff;
-border: 1px solid #000;
-`
+  export const TotalTd=styled.td`
+  color:#000;
+  background-color:#fff;
+  border: 1px solid #000;
+  `
+
+  export const StudnetSearch=styled.div`
+  width: 212px;
+  height: 48px;
+  background: #F0EDFE;
+  border-radius: 8px;
+  `

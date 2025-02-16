@@ -6,34 +6,19 @@ import * as S from "../styles/sheet";
 import Nav from "../components/Nav";
 import Calendar from "../components/Calendar";
 import Dropdown from '../components/Dropdown';
+import SickDropdown from '../components/SickDropdown';
+import Today from '../components/Today';
 
 function TableRow() {
   return (
     <tr>
-    
-
-      <S.Td>
-        <S.Shortinput type="text" defaultValue="" />
-      </S.Td>
-      <S.Td>
-        <S.Mediuminput2 type="text" defaultValue="" />
-      </S.Td>
-      <S.Td>
-        <S.Mediuminput2 type="text" defaultValue="" />
-      </S.Td>
-      <S.Td>
-        <S.Shortinput type="text" defaultValue="" />
-      </S.Td>
-      <S.Td>
-        <S.Mediuminput2 type="text" defaultValue="" />
-      </S.Td>
-      <S.Td>
-        <S.Textarea />
-      </S.Td>
-      <S.Td>
-        <S.Shortinput type="text" defaultValue="" />
-      </S.Td>
-
+      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+      <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+      <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+      <S.Td><SickDropdown data={["호흡기계","소화기계","순환기계","정신신경계","피부피하계","비뇨생식기계","구강치아계","이빈인후과계","안과계","감염병","기타"]} /></S.Td>
+      <S.Td><S.Textarea /></S.Td>
+      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
     </tr>
   );
 }
@@ -43,6 +28,7 @@ function Sheet() {
     <>
       <Nav />
       <S.Table>
+
         <thead>
           <tr>
             <S.NumberTh scope="col">연번</S.NumberTh>
@@ -127,10 +113,12 @@ function Sheet() {
   </tbody>
 </S.TotalTable>
       <S.CalenderWhite>
-        <Calendar />
+        <Today/>
+        <Calendar/>
       </S.CalenderWhite>
       <S.StudentSheetCheck>
         <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
+        <S.StudnetSearch></S.StudnetSearch>
       </S.StudentSheetCheck>
 
     </>

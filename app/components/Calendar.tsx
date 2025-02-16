@@ -39,9 +39,7 @@ const CalendarSelect = () => {
         formatMonthYear={(locale, date) =>
           new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long' }).format(date)
         }
-        formatDay={(locale, date) =>
-          new Intl.DateTimeFormat('ko-KR', { day: 'numeric' }).format(date)
-        }
+        formatDay={(locale, date) => date.getDate().toString()}
       />
     </div>
   );
