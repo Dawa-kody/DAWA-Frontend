@@ -5,7 +5,6 @@ import * as S from "../styles/sheet";
 
 import Nav from "../components/Nav";
 import Calendar from "../components/Calendar";
-import Dropdown from '../components/Dropdown';
 import SickDropdown from '../components/SickDropdown';
 import Today from '../components/Today';
 
@@ -69,7 +68,7 @@ function Sheet() {
     <tbody>
       <tr>
         <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText>
-          <Dropdown data={["2023", "2024", "2025"]} />
+       
         </S.TotalTd>
         <S.TotalTd>남</S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -93,8 +92,7 @@ function Sheet() {
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
       </tr>
     <tr>
-      <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText>
-          <Dropdown data={["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]} />
+      <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText>     
         </S.TotalTd>
         <S.TotalTd>남</S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -110,6 +108,37 @@ function Sheet() {
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
     </tr>
+    <tr>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+      </tr>
+      <tr>
+      <S.TotalTd rowSpan={2}><S.TdText>누계</S.TdText>     
+        </S.TotalTd>
+        <S.TotalTd>남</S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+    </tr>
+    <tr>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
+      </tr>
   </tbody>
 </S.TotalTable>
       <S.CalenderWhite>
@@ -118,7 +147,6 @@ function Sheet() {
       </S.CalenderWhite>
       <S.StudentSheetCheck>
         <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
-        <S.StudnetSearch></S.StudnetSearch>
       </S.StudentSheetCheck>
 
     </>

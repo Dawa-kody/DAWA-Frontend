@@ -1,47 +1,43 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import * as S from "../styles/Search";
+import React, { useState } from "react";
 
 function Monsters() {
-  const [monstersData, setMonstersData] = useState([]);
-  const [searchMonter, setSearchMonter] = useState("");
+  // 직접 설정한 이름 목록
+  const [monstersData, setMonstersData] = useState([
+    { id: 1, name: "진건희", email: "jkh@example.com" ,class:"Name"},
+    { id: 2, name: "박서현", email: "psh@example.com" ,class:"Name"},
+    { id: 3, name: "이준건", email: "ljg@example.com" ,class:"Name"},
+  ]);
+
+  const [searchMonster, setSearchMonster] = useState("");
 
   const onChange = (e) => {
-    setSearchMonter(e.target.value);
+    setSearchMonster(e.target.value);
   };
 
+  // 입력한 값과 일치하는 이름 필터링
   const filterMonster = monstersData.filter((monsterinfo) =>
-    monsterinfo.name.toLowerCase().includes(searchMonter.toLowerCase())
+    monsterinfo.name.includes(searchMonster)
   );
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setMonstersData(data));
-  }, []);
-
   return (
-    <div className="monsters">
-      <h1 className="title">Monsters</h1>
-      <input
+    <>
+      <S.Search
         className="search"
         placeholder="Search"
         onChange={onChange}
-        value={searchMonter}
+        value={searchMonster}
       />
       <ul>
-        {monstersData &&
-          filterMonster.map((monster) => (
-            <li className="monster" key={monster.id}>
-              <img
-                src={`https://robohash.org/${monster.id}?set=set2&size=180x180`}
-                alt={monster.name}
-              />
-              <p>{monster.name}</p>
-              <span>{monster.email}</span>
-            </li>
-          ))}
+        {filterMonster.map((monster) => (
+          <li className="monster" key={monster.id}>
+            <S.Name>{monster.name}</S.Name> 
+            <S.Name>{monster.email}</S.Name>
+          </li>
+        ))}
       </ul>
-    </div>
+    </>
   );
 }
 

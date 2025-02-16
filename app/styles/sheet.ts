@@ -60,7 +60,8 @@
   border: 1px solid #000;
   padding:0;
   position: relative; 
-  height:100%; 
+  height:100%;
+  background-color:#fff; 
   `
 
 
@@ -265,18 +266,7 @@
   color: #000000;
   `
 
-  export const StudentSheetCheckText=styled.span`
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 42px;
-  color: #000000;
-  position:relative;
-  left:30px;
-  top:20px;
-  `
-
+  
   
   export  const Date=styled.td`
   width:100px;
@@ -284,16 +274,30 @@
   color:#000;
   border: 1px solid #000;
   `
-
+  
   export const TotalTd=styled.td`
   color:#000;
   background-color:#fff;
   border: 1px solid #000;
   `
-
-  export const StudnetSearch=styled.div`
-  width: 212px;
-  height: 48px;
+  export const StudentSheetCheckText=styled.span`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 42px;
+  color: #000000;
+  position:relative;
+  left:30px;
+  top:20px;
+  `
+  
+  export const StudnetSearchBora=styled.div`
+  width: 160px;
+  height: 40px;
   background: #F0EDFE;
   border-radius: 8px;
+  position:absolute;
+  left:280px;
+  top:20px;
   `
