@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-export const LogoHap = styled.div``;
-
 export const Logo = styled.img`
-  position: relative; 
+  position: absolute; 
   width: 56px;
   height: 38px;
-  left: 110px;
+  left: 100px;
 `;
 
 export const LogoText = styled.span`
@@ -14,18 +12,18 @@ export const LogoText = styled.span`
   font-style: normal;
   font-weight: 700;
   font-size: 27px;
+
   line-height: 36px;
   color: #6938EF;
+  
   position: absolute;
-  top: 30px;
-  left: 185px;
+  left: 180px;
 `;
 
 export const Component = styled.div`
   width: 100%;
   height: 88px;
   background: #FFFFFF;
-  z-index: 1;  /* 수정된 z-index */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -51,7 +49,7 @@ export const HomeHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: relative;
+  position: absolute;
   `;
   
   export const Home = styled.img`
@@ -73,7 +71,7 @@ export const HomeHap = styled.div.withConfig({
   export const Login = styled.img`
     width: 60px;
     height: 60px;
-    position: relative;
+    position: absolute;
     right: 170px;
     cursor: pointer;
   `;
@@ -81,7 +79,7 @@ export const HomeHap = styled.div.withConfig({
   export const LoginHoverBox = styled.div`
   display: flex;
   flex-direction: column; 
-  position: relative;
+  position: absolute;
   top: 70px;          
   right: 140px;
   background-color: #fff; 
@@ -127,7 +125,7 @@ export const DangerousHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: relative;
+  position: absolute;
 `;
 
 export const Dangerous = styled.img`
@@ -160,7 +158,7 @@ export const MoonjinHap = styled.div.withConfig({
   align-items: center;
   text-align: center;
   gap: 25px;
-  position: relative;
+  position: absolute;
   `;
 
 export const Moonjin = styled.img`
@@ -185,5 +183,23 @@ export const AdminText = styled.span`
   font-size: 24px;
   font-weight: 700;
   right: 960px;
-  position: relative;
+  position: absolute;
+`
+
+export const NavContainer = styled.div`
+  width: 100%;
+  height: 88px;
+  z-index: 2000;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  top: 0px;
 `
