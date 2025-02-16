@@ -2,11 +2,11 @@ import styled from "styled-components";
 
   export const SelectBox = styled.div`
   position: relative;
-  width: 70px;
+  width: 100px;
   height: 35px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color: #fff;
   align-self: center;
   border: 1px solid #95979D;
   cursor: pointer;
@@ -33,9 +33,9 @@ import styled from "styled-components";
   `;
 
 // 드롭다운 옵션 리스트 스타일, show 값에 따라 표시 여부 결정
-export const SelectOptions = styled.ul<{ show: boolean }>`
+  export const SelectOptions = styled.ul<{ show: boolean }>`
   position: absolute;
-  bottom: 100%;
+  top: 38px;
   left: 0;
   width: 100%;
   max-height: 200px;
@@ -44,7 +44,6 @@ export const SelectOptions = styled.ul<{ show: boolean }>`
   border-radius: 5px;
   border: ${({ show }) => (show ? "1px solid #F2F2F2" : "none")};
   display: ${({ show }) => (show ? "block" : "none")};
-  z-index: 10;
 
   // 커스터마이징된 스크롤바
   ::-webkit-scrollbar {
@@ -61,6 +60,7 @@ export const SelectOptions = styled.ul<{ show: boolean }>`
     border-radius: 0px 3px 3px 0px;
   }
 `;
+
 // 각 드롭다운 옵션의 스타일
   export const Option = styled.li`
   font-size: 12px;
