@@ -4,8 +4,8 @@ import Search from "./components/Search";
 const HomePage: React.FC = () => {
   return(
     <>
-      {/*<Main />*/}
-      <Search/>
+      <Main />
+
     </>
   );
 };
