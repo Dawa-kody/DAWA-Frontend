@@ -2,11 +2,11 @@
 
 import React from "react";
 import * as S from "../styles/sheet";
-
 import Nav from "../components/Nav";
 import Calendar from "../components/Calendar";
 import SickDropdown from '../components/SickDropdown';
 import Today from '../components/Today';
+import Search from "../components/Search";
 
 function TableRow() {
   return (
@@ -146,6 +146,7 @@ function Sheet() {
         <Calendar/>
       </S.CalenderWhite>
       <S.StudentSheetCheck>
+        <Search/>
         <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
       </S.StudentSheetCheck>
 
