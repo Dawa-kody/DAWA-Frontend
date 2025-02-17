@@ -24,8 +24,8 @@ import styled from "styled-components";
 
   export const Table=styled.table`
   position:relative;
-  top:100px;
-  left:100px;
+  top:120px;
+  left:20px;
   `
 
   export const DateTh=styled.th`

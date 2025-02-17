@@ -9,7 +9,7 @@ export const Today=styled.span`
   color: #000000;
   display: flex;
   position: absolute;
-  top: 290px;
+  top: 295px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
