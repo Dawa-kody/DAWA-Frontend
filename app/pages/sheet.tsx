@@ -27,7 +27,6 @@ function Sheet() {
     <>
       <Nav />
       <S.Table>
-
         <thead>
           <tr>
             <S.NumberTh scope="col">연번</S.NumberTh>
