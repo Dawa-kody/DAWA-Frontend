@@ -18,13 +18,13 @@ function Search() {
   };
 
   // 입력한 값과 일치하는 이름 필터링
-  const filterName = StudnetNameData.filter((monsterinfo) =>
-    monsterinfo.name.includes(searchName)
+  const filterName = StudnetNameData.filter((Stundetinfo) =>
+    Stundetinfo.name.includes(searchName)
   );
 
   // 검색어가 입력되었을 때 테이블 표시
   React.useEffect(() => {
-    if (searchName && filterName.length > 0) {
+    if (searchName && filterName.length > 0) { 
       setsearchTable(true);
     } else {
       setsearchTable(false);
@@ -53,7 +53,7 @@ function Search() {
           </thead>
           <ul>
             {filterName.map((name) => (
-              <li className="monster" key={name.id}>
+              <li  key={name.id}>
                 <S.Name>{name.name}</S.Name>
               </li>
             ))}

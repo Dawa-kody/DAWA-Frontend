@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React,{useState} from "react";
 import * as S from "../styles/sheet";
 import Nav from "../components/Nav";
 import Calendar from "../components/Calendar";
@@ -8,21 +7,45 @@ import SickDropdown from '../components/SickDropdown';
 import Today from '../components/Today';
 import Search from "../components/Search";
 
-function TableRow() {
+function TableRow({ rowId, onEnter, onDelete }: { rowId: number; onEnter: () => void; onDelete: (id: number) => void }) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onEnter();
+    } else if (e.key === "Backspace" && (e.target as HTMLInputElement).value === "") {
+      onDelete(rowId);
+    }
+  };
+
   return (
     <tr>
-      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+      <S.Td>
+        <S.Shortinput type="text" defaultValue="" />
+      </S.Td>
       <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
       <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
       <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
-      <S.Td><SickDropdown data={["호흡기계","소화기계","순환기계","정신신경계","피부피하계","비뇨생식기계","구강치아계","이빈인후과계","안과계","감염병","기타"]} /></S.Td>
+      <S.Td>
+        <SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} />
+      </S.Td>
       <S.Td><S.Textarea /></S.Td>
-      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+      <S.Td>
+        <S.Shortinput type="text" defaultValue="" onKeyDown={handleKeyDown} />
+      </S.Td>
     </tr>
   );
 }
 
 function Sheet() {
+
+  const [rows, setRows] = useState([0]); // 행 개수 관리
+
+  const addRow = () => {
+    setRows((prev) => [...prev, prev.length]); // 새로운 행 추가
+  };
+  const deleteRow = (id: number) => {
+    setRows((prev) => prev.filter((rowId) => rowId !== id));
+  };
+
   return (
     <>
       <Nav />
@@ -41,7 +64,9 @@ function Sheet() {
           </tr>
         </thead>
         <tbody>
-          <TableRow />
+        {rows.map((rowId) => (
+            <TableRow key={rowId} rowId={rowId} onEnter={addRow} onDelete={deleteRow} />
+          ))}
         </tbody>
       </S.Table>
 
