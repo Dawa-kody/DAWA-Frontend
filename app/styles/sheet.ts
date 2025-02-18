@@ -34,6 +34,7 @@
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
+
   export const SickTh=styled.th`
   width:100px;
   color:#000;
@@ -54,7 +55,6 @@
   background-color:#F0EDFE;
   `
 
-
   export const Td=styled.td`
   color: #000;
   border: 1px solid #000;
@@ -64,16 +64,17 @@
   background-color:#fff; 
   `
 
-
   export const TdText=styled.span`
   color:#000;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   background-color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   `
-
 
   export const Shortinput=styled.input`
   width: 100%;
@@ -92,7 +93,7 @@
   outline: none;
   border: 0;
   box-sizing: border-box;
-    padding:0;
+  padding:0;
   `
 
   export const Textarea = styled.textarea`
@@ -279,6 +280,8 @@
   color:#000;
   background-color:#fff;
   border: 1px solid #000;
+  width:70px;
+  height:40px;
   `
   export const StudentSheetCheckText=styled.span`
   font-family: 'Pretendard';
@@ -300,4 +303,11 @@
   position:absolute;
   left:280px;
   top:20px;
+  `
+
+  export const Number=styled.span`
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   `

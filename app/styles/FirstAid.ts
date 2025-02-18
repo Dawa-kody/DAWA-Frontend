@@ -111,11 +111,10 @@ export const TabTitleBox = styled.div`
     font-family: Pretendard;
     font-size: 18px;
     font-weight: 300;
-
+    color:#000;
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-bottom: 0.1px solid black;
     border-right: 0.1px solid black;
 `
@@ -125,7 +124,7 @@ export const InputBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    color:#000;
     border-bottom: 0.1px solid black;
 `
 
@@ -133,7 +132,7 @@ export const InputBox = styled.div`
 export const Input = styled.input`
     width: 95%;
     height: 70%;
-
+    color:#000;
     border: 1px solid black;
 `
 
@@ -255,7 +254,7 @@ export const FontBox = styled.div`
 export const FontSpan = styled.span`
     position: relative;
     left: 20px;
-
+    color:#000;
     font-family: Pretendard;
     font-size: 13px;
     font-weight: 200;
@@ -274,7 +273,7 @@ export const SelectBox = styled.select`
     font-size: 10px;
     padding-left: 40px;
     border: 1px solid #ccc;
-
+    color:#000;
     appearance: none;
     background-color: #fff;
     cursor: pointer;
@@ -289,7 +288,7 @@ export const PreviewBox = styled.textarea<{ fontSize: string }>`
 
     border: 0.1px solid black;
     resize: none;
-
+    color:#000;
     font-size: ${(props) => props.fontSize || "16px"};
 `;
 

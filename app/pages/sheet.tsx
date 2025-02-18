@@ -7,7 +7,12 @@ import SickDropdown from '../components/SickDropdown';
 import Today from '../components/Today';
 import Search from "../components/Search";
 
-function TableRow({ rowId, onEnter, onDelete }: { rowId: number; onEnter: () => void; onDelete: (id: number) => void }) {
+function TableRow({ rowId, index, onEnter, onDelete }: { 
+  rowId: number; 
+  index: number; 
+  onEnter: () => void; 
+  onDelete: (id: number) => void 
+}) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       onEnter();
@@ -18,32 +23,32 @@ function TableRow({ rowId, onEnter, onDelete }: { rowId: number; onEnter: () => 
 
   return (
     <tr>
-      <S.Td>
-        <S.Shortinput type="text" defaultValue="" />
-      </S.Td>
-      <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
-      <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
-      <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
-      <S.Td>
-        <SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} />
-      </S.Td>
-      <S.Td><S.Textarea /></S.Td>
-      <S.Td>
-        <S.Shortinput type="text" defaultValue="" onKeyDown={handleKeyDown} />
-      </S.Td>
-    </tr>
-  );
+    <S.Td>
+      <S.Number>{index + 1}</S.Number>
+    </S.Td>
+    <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+    <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
+    <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
+    <S.Td>
+      <SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} />
+    </S.Td>
+    <S.Td><S.Textarea /></S.Td>
+    <S.Td>
+      <S.Shortinput type="text" defaultValue="" onKeyDown={handleKeyDown} />
+    </S.Td>
+  </tr>
+);
 }
 
 function Sheet() {
-
-  const [rows, setRows] = useState([0]); // 행 개수 관리
+  const [rows, setRows] = useState([{ id: 1 }]); // 첫 번째 행을 1로 시작
 
   const addRow = () => {
-    setRows((prev) => [...prev, prev.length]); // 새로운 행 추가
+    setRows((prev) => [...prev, { id: prev.length + 1 }]); // 행 추가 시 id 증가
   };
+
   const deleteRow = (id: number) => {
-    setRows((prev) => prev.filter((rowId) => rowId !== id));
+    setRows((prev) => prev.filter((row) => row.id !== id));
   };
 
   return (
@@ -57,16 +62,14 @@ function Sheet() {
             <S.NameTh scope="col">이름</S.NameTh>
             <S.GenderTh scope="col">성별</S.GenderTh>
             <S.SickTh scope="col">병명</S.SickTh>
-            <S.HandleTh as="th" scope="col">
-              처치
-            </S.HandleTh>
+            <S.HandleTh as="th" scope="col">처치</S.HandleTh>
             <S.TimeTh scope="col">시간</S.TimeTh>
           </tr>
         </thead>
         <tbody>
-        {rows.map((rowId) => (
-            <TableRow key={rowId} rowId={rowId} onEnter={addRow} onDelete={deleteRow} />
-          ))}
+        {rows.map((row, index) => (
+     <TableRow key={row.id} rowId={row.id} index={index} onEnter={addRow} onDelete={deleteRow} />
+))}
         </tbody>
       </S.Table>
 
@@ -91,10 +94,8 @@ function Sheet() {
     </thead>
     <tbody>
       <tr>
-        <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText>
-       
-        </S.TotalTd>
-        <S.TotalTd>남</S.TotalTd>
+        <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText></S.TotalTd>
+        <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -109,6 +110,7 @@ function Sheet() {
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
       </tr>
       <tr>
+        <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -118,7 +120,7 @@ function Sheet() {
     <tr>
       <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText>     
         </S.TotalTd>
-        <S.TotalTd>남</S.TotalTd>
+        <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -133,6 +135,7 @@ function Sheet() {
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
     </tr>
     <tr>
+        <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -142,7 +145,8 @@ function Sheet() {
       <tr>
       <S.TotalTd rowSpan={2}><S.TdText>누계</S.TdText>     
         </S.TotalTd>
-        <S.TotalTd>남</S.TotalTd>
+        <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
+  
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
@@ -157,6 +161,7 @@ function Sheet() {
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
     </tr>
     <tr>
+        <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
