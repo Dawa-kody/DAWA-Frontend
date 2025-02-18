@@ -122,9 +122,9 @@
 
   export const CalenderWhite=styled.div`
   width:450px;
-  height:320px;
+  height:330px;
   position:absolute;
-  left:1070px;
+  left:1090px;
   top:120px;
   background-color:#ffff;
   border-radius:10px;
@@ -135,8 +135,8 @@
   width:450px;
   height:280px;
   position:absolute;
-  left:1070px;
-  top:450px;
+  left:1090px;
+  top:460px;
   background-color:#ffff;
   border-radius:10px;
   `

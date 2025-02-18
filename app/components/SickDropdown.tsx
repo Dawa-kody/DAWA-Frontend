@@ -6,7 +6,7 @@ interface DropdownProps {
   data: string[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
+  const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
   const selectRef = useRef<HTMLDivElement>(null);
   const [currentValue, setCurrentValue] = useState<string>(data[0] || "초기값");
   const [showOptions, setShowOptions] = useState<boolean>(false);
