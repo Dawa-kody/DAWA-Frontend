@@ -319,3 +319,8 @@ export const SubmitButton = styled.button`
     background: #6948ED;
     border-radius: 5px;
 `
+
+export const SelectedThumbnail=styled.div`
+
+
+`
