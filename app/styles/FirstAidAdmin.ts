@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 /* 큰 컨테이너 */
-export const Container = styled.div`
+    export const Container = styled.div`
     width: 100vw;
     height: 100vh;
     
     display: flex;
     justify-content: center;
-`
+    `
 
 /* 선생님이 알려주시는 약, 질병 관련 꿀TIPS ~  : 페이지 소개문 */
-export const Title = styled.span`
+    export const Title = styled.span`
     position: absolute;
     width: 871px;
     height: 60px;
@@ -25,7 +25,7 @@ export const Title = styled.span`
     /* identical to box height */
 
     color: #000000;
-`
+    `
 
 /* 증상 키워드 필터 박스 틀 */
 export const FilterBoxContainter = styled.div`
@@ -233,7 +233,7 @@ export const Emoji = styled.img<{ selected?: boolean }>`
     height: 30px;
     cursor: pointer;
     position:relative;
-    left:20px;
+    left:120px;
     ${({ selected }) =>
         selected &&
         `
@@ -274,10 +274,8 @@ export const SelectBox = styled.select`
     width: 60px;
     height: 15px;
     left: 30px;
-
     display: flex;
     align-items: center;
-
     font-size: 10px;
     padding-left: 40px;
     border: 1px solid #ccc;
@@ -320,7 +318,11 @@ export const SubmitButton = styled.button`
     border-radius: 5px;
 `
 
-export const SelectedThumbnail=styled.div`
-
-
-`
+    export const SelectedThumbnail=styled.img`
+    width:100px;
+    height: 50px;
+    background-color:#6948ED;
+    border-radius:15px;
+    position:relative;
+    left:20px;
+    `

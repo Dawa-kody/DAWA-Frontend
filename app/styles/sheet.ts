@@ -311,3 +311,9 @@
   justify-content: center;
   text-align: center;
   `
+
+
+  export const Button=styled.div`
+  width:20px;
+  height:20px;
+  `
