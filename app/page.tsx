@@ -3,7 +3,7 @@ import Main from "./pages/Main";
 const HomePage: React.FC = () => {
   return(
     <>
-      <Main />
+    <Main/>
     </>
   );
 };

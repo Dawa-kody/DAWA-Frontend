@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Nav from "../components/Nav";
-import * as S from "../styles/FirstAid";
+import * as S from "../styles/FirstAidAdmin";
 import FilterTag from "../components/FilterTag";
 
 const FirstAidAdmin = () => {
@@ -13,7 +13,7 @@ const FirstAidAdmin = () => {
     const [content, setContent] = useState("");
     const [selectedThumbnail, setSelectedThumbnail] = useState<string>("");
     const [fontSize, setFontSize] = useState("16px");
-
+    const SelectedThumbnail = S.SelectedThumbnail;
     const handleFontSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setFontSize(event.target.value);
     };
@@ -81,12 +81,12 @@ const FirstAidAdmin = () => {
                     <S.AdminGridColumn>
                         <S.TabTitleBox>썸네일</S.TabTitleBox>
                         <S.SubnailDiv>
-                            {selectedThumbnail && <img src={selectedThumbnail} alt="선택한 썸네일" />}
+                        {selectedThumbnail && (<SelectedThumbnail src={selectedThumbnail} alt="선택한 썸네일" />)}
                             <S.EmojiBox>
-                                <S.Emoji src="/dizzyface.svg" onClick={() => handleThumbnailClick("/dizzyface.svg")} />
-                                <S.Emoji src="/cryingface.svg" onClick={() => handleThumbnailClick("/cryingface.svg")} />
-                                <S.Emoji src="/worriedface.svg" onClick={() => handleThumbnailClick("/worriedface.svg")} />
-                            </S.EmojiBox>
+                            <S.Emoji src="/dizzyface.svg" onClick={() => handleThumbnailClick("/dizzyface.svg")} selected={selectedThumbnail === "/dizzyface.svg"} />
+                            <S.Emoji src="/cryingface.svg" onClick={() => handleThumbnailClick("/cryingface.svg")}   selected={selectedThumbnail === "/cryingface.svg"}/>
+                            <S.Emoji src="/worriedface.svg" onClick={() => handleThumbnailClick("/worriedface.svg")} selected={selectedThumbnail === "/worriedface.svg"}/>
+                            </S.EmojiBox> 
                         </S.SubnailDiv>
                     </S.AdminGridColumn>
 

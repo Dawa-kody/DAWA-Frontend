@@ -65,6 +65,9 @@ function Sheet() {
             <S.HandleTh as="th" scope="col">처치</S.HandleTh>
             <S.TimeTh scope="col">시간</S.TimeTh>
           </tr>
+          <tr>
+            <S.Button>X</S.Button>
+          </tr>
         </thead>
         <tbody>
         {rows.map((row, index) => (
