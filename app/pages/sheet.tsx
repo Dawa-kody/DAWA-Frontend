@@ -11,45 +11,41 @@ function TableRow({ rowId, index, onEnter, onDelete }: {
   rowId: number; 
   index: number; 
   onEnter: () => void; 
-  onDelete: (id: number) => void 
-}) {
+  onDelete: (id: number) => void ;
+}) 
+{
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const inputValue = (e.target as HTMLInputElement).value;
+    
     if (e.key === "Enter") {
       onEnter();
-    } else if (e.key === "Backspace" && (e.target as HTMLInputElement).value === "") {
+    } else if (e.key === "Backspace" && inputValue.trim() === "") {
       onDelete(rowId);
     }
   };
 
   return (
     <tr>
-    <S.Td>
-      <S.Number>{index + 1}</S.Number>
-    </S.Td>
-    <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
-    <S.Td><S.Mediuminput2 type="text" defaultValue="" /></S.Td>
-    <S.Td><S.Shortinput type="text" defaultValue="" /></S.Td>
-    <S.Td>
-      <SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} />
-    </S.Td>
-    <S.Td><S.Textarea /></S.Td>
-    <S.Td>
-      <S.Shortinput type="text" defaultValue="" onKeyDown={handleKeyDown} />
-    </S.Td>
-  </tr>
-);
+      <S.Td><S.Number>{index + 1}</S.Number></S.Td>
+      <S.Td><S.ClassInput type="text"  /></S.Td>
+      <S.Td><S.NameInput type="text" /></S.Td>
+      <S.Td><S.GenderInput type="text"/></S.Td>
+      <S.Td><SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} /></S.Td>
+      <S.Td><S.Textarea /></S.Td>
+      <S.Td><S.TimeInput type="text" defaultValue="" onKeyDown={handleKeyDown} /></S.Td>
+    </tr>
+  );
 }
+function Sheet() {  
 
-function Sheet() {
   const [rows, setRows] = useState([{ id: 1 }]); // 첫 번째 행을 1로 시작
-
   const addRow = () => {
     setRows((prev) => [...prev, { id: prev.length + 1 }]); // 행 추가 시 id 증가
   };
-
   const deleteRow = (id: number) => {
     setRows((prev) => prev.filter((row) => row.id !== id));
   };
+  
 
   return (
     <>
@@ -65,38 +61,34 @@ function Sheet() {
             <S.HandleTh as="th" scope="col">처치</S.HandleTh>
             <S.TimeTh scope="col">시간</S.TimeTh>
           </tr>
-          <tr>
-            <S.Button>X</S.Button>
-          </tr>
         </thead>
         <tbody>
-        {rows.map((row, index) => (
-     <TableRow key={row.id} rowId={row.id} index={index} onEnter={addRow} onDelete={deleteRow} />
-))}
+          {rows.map((row, index) => (
+          <TableRow key={row.id} rowId={row.id} index={index} onEnter={addRow} onDelete={deleteRow} />))}
         </tbody>
       </S.Table>
 
-      <S.TotalTable>
-    <thead>
-      <tr>
-        <S.Total scope="col"><S.Font>종류</S.Font></S.Total>
-        <S.Gender scope="col"><S.Font>성별</S.Font></S.Gender>
-        <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
-        <S.Digestivesystem scope="col"><S.Font>소화기계</S.Font></S.Digestivesystem>
-        <S.Circulatorysystem scope="col"><S.Font>순환기계</S.Font></S.Circulatorysystem>
-        <S.Spirit scope="col"><S.Font>정신신경계</S.Font></S.Spirit>
-        <S.Skin scope="col"><S.Font>피부피하계</S.Font></S.Skin>
-        <S.Urogenital scope="col"><S.Font>비뇨생식기계</S.Font></S.Urogenital>
-        <S.Teeth scope="col"><S.Font>구강치아계</S.Font></S.Teeth>
-        <S.Ibinolaryngology scope="col"><S.Font>이비인후과계</S.Font></S.Ibinolaryngology>
-        <S.Ophthalmology scope="col"><S.Font>안과계</S.Font></S.Ophthalmology>
-        <S.Infection scope="col"><S.Font>감염병</S.Font></S.Infection>
-        <S.Gita scope="col"><S.Font>기타</S.Font></S.Gita>
-        <S.Gue scope="col"><S.Font>계</S.Font></S.Gue>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
+    <S.TotalTable>
+      <thead>
+        <tr>
+          <S.Total scope="col"><S.Font>종류</S.Font></S.Total>
+          <S.Gender scope="col"><S.Font>성별</S.Font></S.Gender>
+          <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
+          <S.Digestivesystem scope="col"><S.Font>소화기계</S.Font></S.Digestivesystem>
+          <S.Circulatorysystem scope="col"><S.Font>순환기계</S.Font></S.Circulatorysystem>
+          <S.Spirit scope="col"><S.Font>정신신경계</S.Font></S.Spirit>
+          <S.Skin scope="col"><S.Font>피부피하계</S.Font></S.Skin>
+          <S.Urogenital scope="col"><S.Font>비뇨생식기계</S.Font></S.Urogenital>
+          <S.Teeth scope="col"><S.Font>구강치아계</S.Font></S.Teeth>
+          <S.Ibinolaryngology scope="col"><S.Font>이비인후과계</S.Font></S.Ibinolaryngology>
+          <S.Ophthalmology scope="col"><S.Font>안과계</S.Font></S.Ophthalmology>
+          <S.Infection scope="col"><S.Font>감염병</S.Font></S.Infection>
+          <S.Gita scope="col"><S.Font>기타</S.Font></S.Gita>
+          <S.Gue scope="col"><S.Font>계</S.Font></S.Gue>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
         <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
         <S.TotalTd><S.TdText>0</S.TdText></S.TotalTd>
