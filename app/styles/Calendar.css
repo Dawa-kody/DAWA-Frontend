@@ -125,6 +125,7 @@
   .react-calendar__tile--active:nth-child(7n + 1) {
     background: #9B8AFB;
     color: #fff;
+    width: 10px;
   }
 
   .react-calendar__tile--active {
@@ -157,7 +158,7 @@
 
   /* 날짜 타일 기본 스타일 */
   .react-calendar__tile {
-    max-width: 100%;
+    max-width: 100px;
     padding: 10px 6.6667px;
     background: none;
     text-align: center;
@@ -180,8 +181,10 @@
 
   /* 오늘 날짜 스타일 */
   .react-calendar__tile--now {
+    width: 10px;
+    height: 40px;
     background: #9B8AFB;
-    border-radius: 40%;
+    border-radius: 90%;
     color: #fff;
   }
 
@@ -199,7 +202,7 @@
   /* 현재 선택된 날짜 스타일 */
   .react-calendar__tile--active {
     background: #9B8AFB;
-    border-radius: 40%;
+    border-radius: 80%;
     color: #fff;
   }
 
@@ -207,7 +210,7 @@
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
     background: #9B8AFB;
-    border-radius:40%;
+    border-radius:80%;
   }
 
   .react-calendar__navigation__label > span { 

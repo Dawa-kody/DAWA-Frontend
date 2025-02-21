@@ -335,3 +335,6 @@
   justify-content: center;
   text-align: center;
   `
+
+  export const Th=styled.th`
+  `
