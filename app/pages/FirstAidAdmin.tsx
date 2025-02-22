@@ -86,6 +86,10 @@ const FirstAidAdmin = () => {
                             <S.Emoji src="/dizzyface.svg" onClick={() => handleThumbnailClick("/dizzyface.svg")} selected={selectedThumbnail === "/dizzyface.svg"} />
                             <S.Emoji src="/cryingface.svg" onClick={() => handleThumbnailClick("/cryingface.svg")}   selected={selectedThumbnail === "/cryingface.svg"}/>
                             <S.Emoji src="/worriedface.svg" onClick={() => handleThumbnailClick("/worriedface.svg")} selected={selectedThumbnail === "/worriedface.svg"}/>
+                            <S.Emoji src="/happyface.svg" onClick={() => handleThumbnailClick("/happyface.svg")} selected={selectedThumbnail === "/happyface.svg"}/>
+                            <S.Emoji src="/inconcenientface.svg" onClick={() => handleThumbnailClick("/inconcenientface.svg")} selected={selectedThumbnail === "/inconcenientface.svg"}/>
+                            <S.Emoji src="/marskface.svg" onClick={() => handleThumbnailClick("/marskface.svg")} selected={selectedThumbnail === "/marskface.svg"}/>
+                            <S.Emoji src="/shockedface.svg" onClick={() => handleThumbnailClick("/shockedface.svg")} selected={selectedThumbnail === "/shockedface.svg"}/>
                             </S.EmojiBox> 
                         </S.SubnailDiv>
                     </S.AdminGridColumn>
@@ -96,11 +100,11 @@ const FirstAidAdmin = () => {
                             <S.FontBox>
                                 <S.FontSpan>글자 크기:</S.FontSpan>
                                 <S.SelectBox value={fontSize} onChange={handleFontSizeChange}>
-                                    <option value="12px">12</option>
-                                    <option value="14px">14</option>
-                                    <option value="16px">16</option>
-                                    <option value="18px">18</option>
-                                    <option value="20px">20</option>
+                                    <S.Option value="12px">12</S.Option>
+                                    <S.Option value="14px">14</S.Option>
+                                    <S.Option value="16px">16</S.Option>
+                                    <S.Option value="18px">18</S.Option>
+                                    <S.Option value="20px">20</S.Option>
                                 </S.SelectBox>
                             </S.FontBox>
                             <S.PreviewBox fontSize={fontSize} />

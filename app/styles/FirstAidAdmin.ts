@@ -219,7 +219,7 @@ export const ColumnLine = styled.div`
 /* 이모지 선택 박스 */
 export const EmojiBox = styled.div`
     position: relative;
-    width: 183px;
+    width: 383px;
     height: 47px;
     left: -20px;
 
@@ -264,7 +264,7 @@ export const FontSpan = styled.span`
     left: 20px;
     color:#000;
     font-family: Pretendard;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 200;
 `
 
@@ -319,10 +319,14 @@ export const SubmitButton = styled.button`
 `
 
     export const SelectedThumbnail=styled.img`
-    width:100px;
+    width:80px;
     height: 50px;
     background-color:#6948ED;
     border-radius:15px;
     position:relative;
     left:20px;
+    `
+
+    export const Option=styled.option`
+    font-size:14px;
     `
