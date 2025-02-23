@@ -149,7 +149,7 @@
   height:330px;
   position:absolute;
   left:1190px;
-  top:120px;
+  top:200px;
   background-color:#ffff;
   border-radius:10px;
   display:flex;
@@ -159,8 +159,8 @@
   width:450px;
   height:280px;
   position:absolute;
- left:1190px;
-  top:460px;
+  left:1190px;
+  top:540px;
   background-color:#ffff;
   border-radius:10px;
   `
@@ -337,4 +337,23 @@
   `
 
   export const Th=styled.th`
+  `
+
+  export const SaveButton=styled.button`
+  width:450px;
+  height:50px;
+  background-color:#6948ED;
+  position:relative;
+  top:-600px;
+  left:1190px;
+  border-radius:2px;
+  z-index:2;
+  `
+
+  export const SaveButtonText=styled.span`
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
   `
