@@ -44,13 +44,13 @@
 
     return (
       <tr>
-      <S.Td><S.Number>{index + 1}</S.Number></S.Td>
-      <S.Td><S.ClassInput name="class" value={values.class} onChange={handleChange} autoComplete="off"/></S.Td>
-      <S.Td><S.NameInput name="name" value={values.name} onChange={handleChange} autoComplete="off"/></S.Td>
-      <S.Td><S.GenderInput name="gender" value={values.gender} onChange={handleChange}autoComplete="off" /></S.Td>
-      <S.Td><SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} /></S.Td>
-      <S.Td><S.Textarea name="details" value={values.details} onChange={handleChange} autoComplete="off"/></S.Td>
-      <S.Td><S.TimeInput name="time" value={values.time} onKeyDown={handleKeyDown} onChange={handleChange} autoComplete="off"/></S.Td>
+        <S.Td><S.Number>{index + 1}</S.Number></S.Td>
+        <S.Td><S.ClassInput name="class" value={values.class} onChange={handleChange} autoComplete="off"/></S.Td>
+        <S.Td><S.NameInput name="name" value={values.name} onChange={handleChange} autoComplete="off"/></S.Td>
+        <S.Td><S.GenderInput name="gender" value={values.gender} onChange={handleChange}autoComplete="off" /></S.Td>
+        <S.Td><SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} /></S.Td>
+        <S.Td><S.Textarea name="details" value={values.details} onChange={handleChange} autoComplete="off"/></S.Td>
+        <S.Td><S.TimeInput name="time" value={values.time} onKeyDown={handleKeyDown} onChange={handleChange} autoComplete="off"/></S.Td>
       </tr>
     );
   }
@@ -143,9 +143,10 @@
             </tr>
           </tbody>
         </S.TotalTable>
+        <S.SaveButton><S.SaveButtonText>저장하기</S.SaveButtonText></S.SaveButton>
         <S.CalenderWhite>
-          <Today/>
           <Calendar/>
+          <Today/>
         </S.CalenderWhite>
         <S.StudentSheetCheck>
           <Search/>
