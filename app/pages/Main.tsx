@@ -32,7 +32,7 @@
     const [token, setToken] = useState<string | null>(null);
 
     const [MToggle, SetMToggle] = useState(false);
-    const [WToggle, SetWToggle] = useState(false);  
+    const [WToggle, SetWToggle] = useState(false);
     const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
     const [BActive, setBActive] = useState(true); // 침대 현황 상태
     
@@ -421,13 +421,13 @@
               </S.BedDiv>
             </S.Container>
           </>
-        ) : (
+        ) : ( //여기가 어드민 2중 하나나
           <>
             <S.Container>
             <Nav />
               <S.TeacherSection>
                 <S.TeacherIconDiv>
-                  <S.TeacherIcon src={"/people.svg"} />
+                  <S.TeacherIcon src={"/people.svg"} />;;
                 </S.TeacherIconDiv>
 
                 {TActive ? (
