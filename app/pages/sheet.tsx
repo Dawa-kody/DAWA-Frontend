@@ -1,10 +1,9 @@
-'use client';
 import React, { useState, useEffect, useCallback } from "react";
 import * as S from "../styles/sheet";
 import Nav from "../components/Nav";
 import Calendar from "../components/Calendar";
-import SickDropdown from '../components/SickDropdown';
-import Today from '../components/Today';
+import SickDropdown from "../components/SickDropdown";
+import Today from "../components/Today";
 import Search from "../components/Search";
 import axios from "axios";
 
@@ -21,7 +20,7 @@ interface RowData {
   id: number;
   class: string;
   name: string;
-  gender: string;
+  gender: "" | "남성" | "여성";
   time: string;
   details: string;
   sickCategory: string;
@@ -57,61 +56,127 @@ function TableRow({ row, index, onEnter, onDelete, onChange, onSickChange }: Tab
 function Sheet() {
   const [rows, setRows] = useState<RowData[]>([{ id: 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [categoryCounts, setCategoryCounts] = useState<Record<string, number>>({
-    호흡기계: 0,
-    소화기계: 0,
-    순환기계: 0,
-    정신신경계: 0,
-    피부피하계: 0,
-    비뇨생식기계: 0,
-    구강치아계: 0,
-    이빈인후과계: 0,
-    안과계: 0,
-    감염병: 0,
-    기타: 0,
+  const [categoryCountsByDate, setCategoryCountsByDate] = useState<{
+    [date: string]: {
+      남성: Record<string, number>;
+      여성: Record<string, number>;
+    };
+  }>({});
+  const [categoryCounts, setCategoryCounts] = useState<{
+    남성: Record<string, number>;
+    여성: Record<string, number>;
+  }>({
+    남성: {
+      호흡기계: 0,
+      소화기계: 0,
+      순환기계: 0,
+      정신신경계: 0,
+      피부피하계: 0,
+      비뇨생식기계: 0,
+      구강치아계: 0,
+      이빈인후과계: 0,
+      안과계: 0,
+      감염병: 0,
+      기타: 0,
+    },
+    여성: {
+      호흡기계: 0,
+      소화기계: 0,
+      순환기계: 0,
+      정신신경계: 0,
+      피부피하계: 0,
+      비뇨생식기계: 0,
+      구강치아계: 0,
+      이빈인후과계: 0,
+      안과계: 0,
+      감염병: 0,
+      기타: 0,
+    },
   });
 
-  const [data, setData] = useState<any>(null);
-
   useEffect(() => {
-    const fetchData = async () => {
-      if (selectedDate) {
+    if (selectedDate) {
+      const fetchData = async () => {
         try {
           const response = await axios.get(`http://your-api.com/data?date=${selectedDate}`);
           setRows(response.data);
-          console.log("get 데이터 성공", response.data);
+          resetCategoryCounts();
         } catch (error) {
           console.error("get 데이터 로드 실패:", error);
         }
-      }
-    };
-    fetchData();
+      };
+      fetchData();
+    }
   }, [selectedDate]);
 
-  const addRow = () => {
-    setRows((prev) => [...prev, { id: prev.length + 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }]);
+  const resetCategoryCounts = () => {
+    setCategoryCounts({
+      남성: {
+        호흡기계: 0,
+        소화기계: 0,
+        순환기계: 0,
+        정신신경계: 0,
+        피부피하계: 0,
+        비뇨생식기계: 0,
+        구강치아계: 0,
+        이빈인후과계: 0,
+        안과계: 0,
+        감염병: 0,
+        기타: 0,
+      },
+      여성: {
+        호흡기계: 0,
+        소화기계: 0,
+        순환기계: 0,
+        정신신경계: 0,
+        피부피하계: 0,
+        비뇨생식기계: 0,
+        구강치아계: 0,
+        이빈인후과계: 0,
+        안과계: 0,
+        감염병: 0,
+        기타: 0,
+      },
+    });
   };
 
-  const deleteRow = (id: number) => {
-    setRows((prev) => prev.filter((row) => row.id !== id));
-  };
+  const updateCategoryCounts = (sickCategory: string, gender: "남성" | "여성", date: string) => {
+    setCategoryCounts((prevCounts) => {
+      const newCounts = { ...prevCounts };
+      newCounts[gender][sickCategory] += 1;
 
-  const updateRow = (id: number, field: string, value: string) => {
-    setRows((prev) => prev.map(row => row.id === id ? { ...row, [field]: value } : row));
-  };
+      // 날짜별 카운트 업데이트
+      setCategoryCountsByDate((prevDateCounts) => ({
+        ...prevDateCounts,
+        [date]: {
+          ...prevDateCounts[date],
+          [gender]: {
+            ...prevDateCounts[date]?.[gender],
+            [sickCategory]: (prevDateCounts[date]?.[gender]?.[sickCategory] || 0) + 1,
+          },
+        },
+      }));
 
-  const updateCategoryCounts = (sickCategory: string) => {
-    setCategoryCounts((prevCounts) => ({
-      ...prevCounts,
-      [sickCategory]: prevCounts[sickCategory] + 1,
-    }));
+      return newCounts;
+    });
   };
 
   const handleSickChange = (id: number, sickCategory: string) => {
-    setRows((prev) => prev.map(row => row.id === id ? { ...row, sickCategory } : row));
-    updateCategoryCounts(sickCategory);
+    const date = selectedDate || new Date().toISOString().split('T')[0]; // 선택된 날짜가 없으면 오늘 날짜로
+    setRows((prev) =>
+      prev.map((row) =>
+        row.id === id ? { ...row, sickCategory } : row
+      )
+    );
+  
+    const gender = rows.find(row => row.id === id)?.gender; // 성별을 찾기
+  
+    // 성별이 빈 문자열이 아닌 경우에만 카운트를 업데이트
+    if (gender) {
+      updateCategoryCounts(sickCategory, gender, date);
+    }
   };
-
+  
   const handleSave = async () => {
     try {
       const response = await axios.post("http://your-api.com/data", rows);
@@ -123,14 +188,7 @@ function Sheet() {
   };
 
   const handleDateSelect = useCallback(async (date: string) => {
-    setSelectedDate(date); // 선택된 날짜를 상태에 저장
-    try {
-      const response = await axios.get(`http://your-api.com/data?date=${date}`);
-      setRows(response.data); // 가져온 데이터를 상태에 저장
-      console.log("get데이터 로드 성공:", response.data);
-    } catch (error) {
-      console.error("get데이터 로드 실패:", error);
-    }
+    setSelectedDate(date);
   }, []);
 
   return (
@@ -154,10 +212,10 @@ function Sheet() {
               key={row.id}
               row={row}
               index={index}
-              onEnter={addRow}
-              onDelete={deleteRow}
-              onChange={updateRow}
-              onSickChange={handleSickChange} // onSickChange 전달
+              onEnter={() => setRows([...rows, { id: rows.length + 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }])}
+              onDelete={(id) => setRows(rows.filter(row => row.id !== id))}
+              onChange={(id, field, value) => setRows(rows.map(row => row.id === id ? { ...row, [field]: value } : row))}
+              onSickChange={handleSickChange}
             />
           ))}
         </tbody>
@@ -166,8 +224,9 @@ function Sheet() {
       <S.TotalTable>
         <thead>
           <tr>
-            <S.Total scope="col"><S.Font>종류</S.Font></S.Total>
+          <S.Total scope="col"><S.Font>종류</S.Font></S.Total>
             <S.Gender scope="col"><S.Font>성별</S.Font></S.Gender>
+            <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
             <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
             <S.Digestivesystem scope="col"><S.Font>소화기계</S.Font></S.Digestivesystem>
             <S.Circulatorysystem scope="col"><S.Font>순환기계</S.Font></S.Circulatorysystem>
@@ -184,31 +243,34 @@ function Sheet() {
         </thead>
         <tbody>
           <tr>
-          <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText></S.TotalTd>
-          <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
+            <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText></S.TotalTd>
+            <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
           <tr>
             <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
           <tr>
-            <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText>     
-              </S.TotalTd>
-              <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
-
+            <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText></S.TotalTd>
+            <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
           <tr>
             <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
           <tr>
             <S.TotalTd rowSpan={2}><S.TdText>누계</S.TdText></S.TotalTd>
             <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
           <tr>
             <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
+            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
           </tr>
         </tbody>
       </S.TotalTable>
-
 
       <S.SaveButton onClick={handleSave}>
         <S.SaveButtonText>저장하기</S.SaveButtonText>

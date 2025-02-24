@@ -205,6 +205,12 @@
   background-color:#F0EDFE;
   `
 
+  export const RespiratoryCount=styled.td`
+  background-color:#fff;
+  border: 1px solid #000;
+
+  `
+
   export const Digestivesystem=styled.th`
   width:70px;
   color:#000;
@@ -213,7 +219,7 @@
   `
 
   export const Circulatorysystem=styled.th`
-  width:90px;
+  width:80px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -254,27 +260,27 @@
   `
 
   export const  Ophthalmology=styled.th`
-  width:90px;
+  width:70px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
   export const  Infection=styled.th`
-  width:80px;
+  width:70px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
 
   export const  Gita=styled.th`
-  width:60px;
+  width:65px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
 
   export const  Gue=styled.th`
-  width:50px;
+  width:52px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -342,6 +348,7 @@
   export const SaveButton=styled.button`
   width:450px;
   height:50px;
+  border 
   background-color:#6948ED;
   position:absolute;
   left:1190px;

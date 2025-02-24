@@ -4,22 +4,22 @@ import * as S from "../styles/SickDropdown";
 
 interface DropdownProps {
   data: string[];
+  onChange: (sickCategory: string) => void; // onChange 속성 추가
 }
 
-  const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
+const Dropdown: React.FC<DropdownProps> = ({ data = [], onChange }) => {
   const selectRef = useRef<HTMLDivElement>(null);
   const [currentValue, setCurrentValue] = useState<string>(data[0] || "초기값");
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  // 드롭다운 값 변경 처리 함수
   const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = e.currentTarget.getAttribute("data-value") || "";
-    setCurrentValue(value); // 클릭한 값을 currentValue로 설정
-    setShowOptions(false); // 드롭다운 닫기
+    setCurrentValue(value);
+    onChange(value); // onChange 호출
+    setShowOptions(false);
   };
 
   useEffect(() => {
-    // Dropdown 바깥쪽 클릭 시 옵션 닫기
     function handleClickOutside(event: MouseEvent) {
       if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
         setShowOptions(false);
@@ -32,9 +32,8 @@ interface DropdownProps {
     };
   }, []);
 
-  // 드롭다운 상자를 클릭하면 드롭다운 열리기
   const handleDropdownClick = () => {
-    setShowOptions((prev) => !prev); // showOptions 상태 토글
+    setShowOptions((prev) => !prev);
   };
 
   return (
@@ -58,3 +57,4 @@ interface DropdownProps {
 };
 
 export default Dropdown;
+
