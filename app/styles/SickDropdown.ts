@@ -44,7 +44,7 @@ background-color: #fefefe;
 border-radius: 5px;
 border: ${({ show }) => (show ? "1px solid #F2F2F2" : "none")};
 display: ${({ show }) => (show ? "block" : "none")};
-
+z-index:3;
 // 커스터마이징된 스크롤바
 ::-webkit-scrollbar {
   width: 4px;

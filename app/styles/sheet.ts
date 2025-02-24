@@ -179,7 +179,7 @@
 
   export const TotalTable=styled.table`
   margin-left:20px;
-  margin-top:240px;
+  margin-top:200px;
   table-layout: fixed;
   `
 
@@ -343,9 +343,9 @@
   width:450px;
   height:50px;
   background-color:#6948ED;
-  position:relative;
-  top:-600px;
+  position:absolute;
   left:1190px;
+  top:130px;  
   border-radius:2px;
   z-index:2;
   `
