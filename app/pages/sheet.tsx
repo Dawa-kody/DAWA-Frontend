@@ -5,7 +5,7 @@ import Calendar from "../components/Calendar";
 import SickDropdown from "../components/SickDropdown";
 import Today from "../components/Today";
 import Search from "../components/Search";
-import CountDate from "../components/CountDate"; // CountDate 컴포넌트 임포트
+import CountDate from "../components/CountDate"; 
 import axios from "axios";
 
 // 각 행의 필요한 속성
@@ -93,12 +93,6 @@ function Sheet() {
     );
 
     const gender = rows.find(row => row.id === id)?.gender; // 성별을 찾기
-
-    // 성별이 빈 문자열이 아닌 경우에만 카운트를 업데이트
-    if (gender) {
-      // 카운트 업데이트 로직을 추가
-      // updateCategoryCounts(sickCategory, gender, date); // 이 부분은 CountDate 컴포넌트에 포함
-    }
   };
 
   const handleSave = async () => {
@@ -140,13 +134,11 @@ function Sheet() {
               onDelete={(id) => setRows(rows.filter(row => row.id !== id))}
               onChange={(id, field, value) => setRows(rows.map(row => row.id === id ? { ...row, [field]: value } : row))}
               onSickChange={handleSickChange}
-            />
-          ))}
+            />))}
         </tbody>
       </S.Table>
-
-      <CountDate categoryCounts={categoryCounts} /> {/* CountDate 컴포넌트 추가 */}
-
+      <CountDate categoryCounts={categoryCounts} />
+      
       <S.SaveButton onClick={handleSave}>
         <S.SaveButtonText>저장하기</S.SaveButtonText>
       </S.SaveButton>

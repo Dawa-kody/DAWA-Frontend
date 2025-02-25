@@ -365,3 +365,8 @@
   line-height: 24px;
   color:#ffff;
   `
+
+  export const Scope=styled.div`
+  
+  
+  `
