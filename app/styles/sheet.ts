@@ -348,12 +348,12 @@
   export const SaveButton=styled.button`
   width:450px;
   height:50px;
-  border 
+  border-radius:20px; 
   background-color:#6948ED;
   position:absolute;
   left:1190px;
   top:130px;  
-  border-radius:2px;
+  border-radius:5px;
   z-index:2;
   `
 
@@ -363,4 +363,5 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  color:#ffff;
   `

@@ -5,8 +5,10 @@ import Calendar from "../components/Calendar";
 import SickDropdown from "../components/SickDropdown";
 import Today from "../components/Today";
 import Search from "../components/Search";
+import CountDate from "../components/CountDate"; // CountDate 컴포넌트 임포트
 import axios from "axios";
 
+// 각 행의 필요한 속성
 interface TableRowProps {
   row: RowData;
   index: number;
@@ -16,6 +18,7 @@ interface TableRowProps {
   onSickChange: (id: number, sickCategory: string) => void;
 }
 
+// 각 행의 데이터 구조 정의
 interface RowData {
   id: number;
   class: string;
@@ -27,16 +30,16 @@ interface RowData {
 }
 
 function TableRow({ row, index, onEnter, onDelete, onChange, onSickChange }: TableRowProps) {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+  const handleKeyDown = (e: React.KeyboardEvent) => { 
+    if (e.key === "Enter") { // 줄 추가
       onEnter();
     }
-    if (e.key === "Backspace" && row.time.trim() === "") {
+    if (e.key === "Backspace" && row.time.trim() === "") { // 줄 삭제
       onDelete(row.id);
     }
   };
 
-  const handleSickChange = (sickCategory: string) => {
+  const handleSickChange = (sickCategory: string) => { // 병명 드롭다운 onChange
     onSickChange(row.id, sickCategory);
   };
 
@@ -54,112 +57,32 @@ function TableRow({ row, index, onEnter, onDelete, onChange, onSickChange }: Tab
 }
 
 function Sheet() {
-  const [rows, setRows] = useState<RowData[]>([{ id: 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }]);
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [categoryCountsByDate, setCategoryCountsByDate] = useState<{
-    [date: string]: {
-      남성: Record<string, number>;
-      여성: Record<string, number>;
-    };
-  }>({});
-  const [categoryCounts, setCategoryCounts] = useState<{
-    남성: Record<string, number>;
-    여성: Record<string, number>;
+  const [rows, setRows] = useState<RowData[]>([{ id: 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }]); // 행 데이터
+  const [selectedDate, setSelectedDate] = useState<string | null>(null); // 선택된 날짜
+  const [categoryCounts, setCategoryCounts] = useState<{ 
+    일계: { 남성: Record<string, number>; 여성: Record<string, number>; };
+    월계: { 남성: Record<string, number>; 여성: Record<string, number>; };
+    누계: { 남성: Record<string, number>; 여성: Record<string, number>; };
   }>({
-    남성: {
-      호흡기계: 0,
-      소화기계: 0,
-      순환기계: 0,
-      정신신경계: 0,
-      피부피하계: 0,
-      비뇨생식기계: 0,
-      구강치아계: 0,
-      이빈인후과계: 0,
-      안과계: 0,
-      감염병: 0,
-      기타: 0,
-    },
-    여성: {
-      호흡기계: 0,
-      소화기계: 0,
-      순환기계: 0,
-      정신신경계: 0,
-      피부피하계: 0,
-      비뇨생식기계: 0,
-      구강치아계: 0,
-      이빈인후과계: 0,
-      안과계: 0,
-      감염병: 0,
-      기타: 0,
-    },
+    일계: { 남성: {}, 여성: {} },
+    월계: { 남성: {}, 여성: {} },
+    누계: { 남성: {}, 여성: {} },
   });
 
+  // 선택된 날짜 선정 후 get 받아오기
   useEffect(() => {
     if (selectedDate) {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`http://your-api.com/data?date=${selectedDate}`);
-          setRows(response.data);
-          resetCategoryCounts();
+          const response = await axios.get(`${selectedDate}`);
+          setRows(response.data); // 요청한 데이터로 행 상태 업데이트
         } catch (error) {
           console.error("get 데이터 로드 실패:", error);
         }
       };
-      fetchData();
+      fetchData(); // 데이터 요청 함수 호출
     }
-  }, [selectedDate]);
-
-  const resetCategoryCounts = () => {
-    setCategoryCounts({
-      남성: {
-        호흡기계: 0,
-        소화기계: 0,
-        순환기계: 0,
-        정신신경계: 0,
-        피부피하계: 0,
-        비뇨생식기계: 0,
-        구강치아계: 0,
-        이빈인후과계: 0,
-        안과계: 0,
-        감염병: 0,
-        기타: 0,
-      },
-      여성: {
-        호흡기계: 0,
-        소화기계: 0,
-        순환기계: 0,
-        정신신경계: 0,
-        피부피하계: 0,
-        비뇨생식기계: 0,
-        구강치아계: 0,
-        이빈인후과계: 0,
-        안과계: 0,
-        감염병: 0,
-        기타: 0,
-      },
-    });
-  };
-
-  const updateCategoryCounts = (sickCategory: string, gender: "남성" | "여성", date: string) => {
-    setCategoryCounts((prevCounts) => {
-      const newCounts = { ...prevCounts };
-      newCounts[gender][sickCategory] += 1;
-
-      // 날짜별 카운트 업데이트
-      setCategoryCountsByDate((prevDateCounts) => ({
-        ...prevDateCounts,
-        [date]: {
-          ...prevDateCounts[date],
-          [gender]: {
-            ...prevDateCounts[date]?.[gender],
-            [sickCategory]: (prevDateCounts[date]?.[gender]?.[sickCategory] || 0) + 1,
-          },
-        },
-      }));
-
-      return newCounts;
-    });
-  };
+  }, [selectedDate]); // selectedDate가 변경될 때마다 실행
 
   const handleSickChange = (id: number, sickCategory: string) => {
     const date = selectedDate || new Date().toISOString().split('T')[0]; // 선택된 날짜가 없으면 오늘 날짜로
@@ -168,15 +91,16 @@ function Sheet() {
         row.id === id ? { ...row, sickCategory } : row
       )
     );
-  
+
     const gender = rows.find(row => row.id === id)?.gender; // 성별을 찾기
-  
+
     // 성별이 빈 문자열이 아닌 경우에만 카운트를 업데이트
     if (gender) {
-      updateCategoryCounts(sickCategory, gender, date);
+      // 카운트 업데이트 로직을 추가
+      // updateCategoryCounts(sickCategory, gender, date); // 이 부분은 CountDate 컴포넌트에 포함
     }
   };
-  
+
   const handleSave = async () => {
     try {
       const response = await axios.post("http://your-api.com/data", rows);
@@ -221,66 +145,15 @@ function Sheet() {
         </tbody>
       </S.Table>
 
-      <S.TotalTable>
-        <thead>
-          <tr>
-          <S.Total scope="col"><S.Font>종류</S.Font></S.Total>
-            <S.Gender scope="col"><S.Font>성별</S.Font></S.Gender>
-            <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
-            <S.Respiratory scope="col"><S.Font>호흡기계</S.Font></S.Respiratory>
-            <S.Digestivesystem scope="col"><S.Font>소화기계</S.Font></S.Digestivesystem>
-            <S.Circulatorysystem scope="col"><S.Font>순환기계</S.Font></S.Circulatorysystem>
-            <S.Spirit scope="col"><S.Font>정신신경계</S.Font></S.Spirit>
-            <S.Skin scope="col"><S.Font>피부피하계</S.Font></S.Skin>
-            <S.Urogenital scope="col"><S.Font>비뇨생식기계</S.Font></S.Urogenital>
-            <S.Teeth scope="col"><S.Font>구강치아계</S.Font></S.Teeth>
-            <S.Ibinolaryngology scope="col"><S.Font>이비인후과계</S.Font></S.Ibinolaryngology>
-            <S.Ophthalmology scope="col"><S.Font>안과계</S.Font></S.Ophthalmology>
-            <S.Infection scope="col"><S.Font>감염병</S.Font></S.Infection>
-            <S.Gita scope="col"><S.Font>기타</S.Font></S.Gita>
-            <S.Gue scope="col"><S.Font>계</S.Font></S.Gue>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <S.TotalTd rowSpan={2}><S.TdText>일계</S.TdText></S.TotalTd>
-            <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-          <tr>
-            <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-          <tr>
-            <S.TotalTd rowSpan={2}><S.TdText>월계</S.TdText></S.TotalTd>
-            <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-          <tr>
-            <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-          <tr>
-            <S.TotalTd rowSpan={2}><S.TdText>누계</S.TdText></S.TotalTd>
-            <S.TotalTd><S.TdText>남</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.남성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-          <tr>
-            <S.TotalTd><S.TdText>여</S.TdText></S.TotalTd>
-            <S.RespiratoryCount><S.TdText>{categoryCounts.여성.호흡기계}</S.TdText></S.RespiratoryCount>
-          </tr>
-        </tbody>
-      </S.TotalTable>
+      <CountDate categoryCounts={categoryCounts} /> {/* CountDate 컴포넌트 추가 */}
 
       <S.SaveButton onClick={handleSave}>
         <S.SaveButtonText>저장하기</S.SaveButtonText>
       </S.SaveButton>
-
       <S.CalenderWhite>
         <Calendar onDateSelect={handleDateSelect} />
         <Today />
       </S.CalenderWhite>
-
       <S.StudentSheetCheck>
         <Search />
         <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
