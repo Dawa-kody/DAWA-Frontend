@@ -75,26 +75,51 @@ function Sheet() {
       const fetchData = async () => {
         try {
           const response = await axios.get(`${selectedDate}`);
-          setRows(response.data); // 요청한 데이터로 행 상태 업데이트
+          setRows(response.data);
         } catch (error) {
           console.error("get 데이터 로드 실패:", error);
         }
       };
-      fetchData(); // 데이터 요청 함수 호출
+      fetchData(); 
     }
-  }, [selectedDate]); // selectedDate가 변경될 때마다 실행
-
+  }, [selectedDate]);
   const handleSickChange = (id: number, sickCategory: string) => {
     const date = selectedDate || new Date().toISOString().split('T')[0]; // 선택된 날짜가 없으면 오늘 날짜로
-    setRows((prev) =>
-      prev.map((row) =>
-        row.id === id ? { ...row, sickCategory } : row
-      )
+    const updatedRows = rows.map((row) =>
+      row.id === id ? { ...row, sickCategory } : row
     );
-
-    const gender = rows.find(row => row.id === id)?.gender; // 성별을 찾기
+    setRows(updatedRows);
+  
+    const gender = updatedRows.find(row => row.id === id)?.gender; // 성별을 찾기
+  
+    // 병명 카운트 업데이트
+    setCategoryCounts(prevCounts => {
+      const newCounts = { ...prevCounts };
+      
+      // 성별에 따라 카운트 객체 선택
+      const genderKey = gender === "남성" ? "남성" : "여성";
+  
+      // 병명 카운트 업데이트
+      if (!newCounts.일계[genderKey][sickCategory]) {
+        newCounts.일계[genderKey][sickCategory] = 0;
+      }
+      newCounts.일계[genderKey][sickCategory] += 1;
+  
+      // 월계 및 누계도 비슷하게 업데이트할 수 있습니다.
+      if (!newCounts.월계[genderKey][sickCategory]) {
+        newCounts.월계[genderKey][sickCategory] = 0;
+      }
+      newCounts.월계[genderKey][sickCategory] += 1;
+  
+      if (!newCounts.누계[genderKey][sickCategory]) {
+        newCounts.누계[genderKey][sickCategory] = 0;
+      }
+      newCounts.누계[genderKey][sickCategory] += 1;
+  
+      return newCounts;
+    });
   };
-
+  
   const handleSave = async () => {
     try {
       const response = await axios.post("http://your-api.com/data", rows);

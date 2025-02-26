@@ -11,9 +11,9 @@ interface CategoryCounts {
   누계: GenderCounts;
 }
 
-interface GenderCounts {
+interface GenderCounts { //성별 카운트
   남성: {
-    호흡기계?: number; // ?를 추가하여 선택적 속성으로 만듭니다.
+    호흡기계?: number; 
     소화기계?: number;
     순환기계?: number;
     정신신경계?: number;
@@ -42,7 +42,7 @@ interface GenderCounts {
   };
 }
 
-const GenderCategoryRow = ({ label, counts }: { label: string; counts: GenderCounts }) => (
+const GenderCategoryRow = ({ label, counts }: { label: string; counts: GenderCounts }) => ( //보여주는 거
   <>
     <tr>
       <S.TotalTd rowSpan={2}><S.TdText>{label}</S.TdText></S.TotalTd>

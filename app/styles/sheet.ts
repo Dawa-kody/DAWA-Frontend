@@ -199,7 +199,7 @@
   `
 
   export const Respiratory=styled.th`
-  width:70px;
+  width:80px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -219,7 +219,7 @@
   `
 
   export const Circulatorysystem=styled.th`
-  width:80px;
+  width:85px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -239,7 +239,7 @@
   `
 
   export const  Urogenital=styled.th`
-  width:90px;
+  width:95px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -253,7 +253,7 @@
   `
 
   export const  Ibinolaryngology=styled.th`
-  width:90px;
+  width:95px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -266,21 +266,21 @@
   background-color:#F0EDFE;
   `
   export const  Infection=styled.th`
-  width:70px;
+  width:75px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
 
   export const  Gita=styled.th`
-  width:65px;
+  width:73px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
   `
 
   export const  Gue=styled.th`
-  width:52px;
+  width:60px;
   color:#000;
   border: 1px solid #000;
   background-color:#F0EDFE;
@@ -310,7 +310,7 @@
   color:#000;
   background-color:#fff;
   border: 1px solid #000;
-  width:70px;
+  width:80px;
   height:40px;
   `
   export const StudentSheetCheckText=styled.span`
