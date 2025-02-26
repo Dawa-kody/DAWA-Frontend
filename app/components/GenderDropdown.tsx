@@ -1,25 +1,27 @@
 'use client';
 import React, { useState, useEffect, useRef } from "react";
-import * as S from "../styles/Dropdown";
+import * as S from "../styles/GenderDropdown";
 
 interface DropdownProps {
   data: string[];
+  onChange: (gender: "남성" | "여성") => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
+const Dropdown: React.FC<DropdownProps> = ({ data = [], onChange }) => {
   const selectRef = useRef<HTMLDivElement>(null);
-  const [currentValue, setCurrentValue] = useState<string>(data[0] || "초기값");
+  const [currentValue, setCurrentValue] = useState<"남성" | "여성" | "">(data[0] as "남성" | "여성" || "");
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  // 드롭다운 값 변경 처리 함수
   const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLLIElement>) => {
-    const value = e.currentTarget.getAttribute("data-value") || "";
-    setCurrentValue(value); // 클릭한 값을 currentValue로 설정
-    setShowOptions(false); // 드롭다운 닫기
+    const value = e.currentTarget.getAttribute("data-value") as "남성" | "여성" || "";
+    setCurrentValue(value);
+    if (value === "남성" || value === "여성") {
+      onChange(value);
+    }
+    setShowOptions(false);
   };
 
   useEffect(() => {
-    // Dropdown 바깥쪽 클릭 시 옵션 닫기
     function handleClickOutside(event: MouseEvent) {
       if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
         setShowOptions(false);
@@ -32,14 +34,13 @@ const Dropdown: React.FC<DropdownProps> = ({ data = [] }) => {
     };
   }, []);
 
-  // 드롭다운 상자를 클릭하면 드롭다운 열리기
   const handleDropdownClick = () => {
-    setShowOptions((prev) => !prev); // showOptions 상태 토글
+    setShowOptions((prev) => !prev);
   };
 
   return (
     <S.SelectBox onClick={handleDropdownClick} ref={selectRef}>
-      <S.Label>{currentValue}</S.Label>
+      <S.Label>{currentValue || "초기값"}</S.Label>
       <S.SelectOptions show={showOptions}>
         {data.length > 0 ? (
           data.map((item, index) => (
