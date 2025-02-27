@@ -37,11 +37,12 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
     if (onDateSelect) {
       onDateSelect(date.toISOString().split('T')[0]); // 날짜를 'YYYY-MM-DD' 형식으로 전달
     }
-  };
+    setCalendarValue(date); 
 
   if (!mounted) {
     return null;
   }
+}
 
   return (
     <>

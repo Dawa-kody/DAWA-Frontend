@@ -3,7 +3,7 @@ import * as S from "../styles/sheet";
 import Nav from "../components/Nav"; //nav
 import Calendar from "../components/Calendar"; //캘런더
 import SickDropdown from "../components/SickDropdown"; //병명 드롭다운 
-import GenderDropdown from "../components/GenderDropdown";
+import GenderDropdown from "../components/GenderDropdown"; //성별 드롭다운
 import Today from "../components/Today"; //오늘 날짜 
 import Search from "../components/Search"; //검색기능
 import CountDate from "../components/CountDate"; //날짜 선정
@@ -37,13 +37,10 @@ interface CategoryCounts {
   누계: GenderCounts;
 }
 
-
-
 interface GenderCounts {
   남성: Record<string, number>;
   여성: Record<string, number>;
 }
-
 
 function TableRow({ row, index, onEnter, onDelete, onChange, onSickChange, onGenderChange }: TableRowProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => { 
@@ -138,9 +135,7 @@ function Sheet() {
     updateCategoryCounts();
   };
 
-
-  
-  const handleSave = async () => {
+  const handleSave = async () => { //post
     try {
       const response = await axios.post("http://your-api.com/data", rows);
       console.log("POST 데이터 저장 성공:", response.data);
@@ -151,9 +146,15 @@ function Sheet() {
   };
 
   const handleDateSelect = useCallback(async (date: string) => {
-    setSelectedDate(date);
+    setSelectedDate(date); // 선택된 날짜를 상태에 저장
+    
+    try {
+      const response = await axios.get(`http://your-api.com/data?date=${date}`);
+      setRows(response.data); 
+    } catch (error) {
+      console.error("데이터 가져오기 실패:", error);
+    }
   }, []);
-
   return (
     <>
       <Nav />
@@ -188,7 +189,7 @@ function Sheet() {
         <S.SaveButtonText>저장하기</S.SaveButtonText>
       </S.SaveButton>
       <S.CalenderWhite>
-        <Calendar onDateSelect={handleDateSelect} />
+      <Calendar onDateSelect={handleDateSelect} />
         <Today />
       </S.CalenderWhite>
       <S.StudentSheetCheck>
