@@ -1,75 +1,93 @@
 import React, { useState, useEffect } from "react";
-import * as S from "../styles/Search";
-import axios from "axios";
+import * as S from "../styles/Search"; // 스타일 컴포넌트 import
+import axios from "axios"; // axios import
 
-
+// 학생 데이터 타입 정의
 interface Student {
-  id: number;
-  name: string;
+  id: number; 
+  name: string; 
+}
+// 학생 기록 데이터 타입 정의
+interface StudentRecord {
+  date: string; 
+  classId: number; 
+  sickCategory: string; 
+  treatment: string; 
 }
 
-
 function Search() {
-  const [studentNameData, setStudentNameData] = useState<Student[]>([]);
-  const [searchName, setSearchName] = useState("");
-  const [searchTable, setSearchTable] = useState(false);
+  const [studentNameData, setStudentNameData] = useState<Student[]>([]); // 학생 이름 데이터 저장
+  const [searchName, setSearchName] = useState(""); // 검색어 저장
+  const [searchTable, setSearchTable] = useState(false); // 검색 결과 표시 여부
+  const [studentRecords, setStudentRecords] = useState<StudentRecord[]>([]); // 선택된 학생의 기록 저장
 
+  // 검색어 변경 시 호출되는 함수
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchName(e.target.value);
+    setSearchName(e.target.value); // 입력값 업데이트
   };
 
-  // API에서 학생 데이터 가져오기
+  // 학생 데이터 가져오기
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/students");
-        setStudentNameData(response.data);
+        const response = await axios.get("http://localhost:5000/api/students"); 
+        setStudentNameData(response.data); 
       } catch (error) {
-        console.error("table 데이터 가져오기 실패", error);
+        console.error("학생 데이터 가져오기 실패", error); 
       }
     };
 
-    fetchStudentData();
+    fetchStudentData(); 
   }, []);
 
-  // 입력한 값과 일치하는 이름 필터링
+  // 학생 이름 검색 필터
   const filterName = studentNameData.filter((studentInfo) =>
-    studentInfo.name.includes(searchName)
+    studentInfo.name.includes(searchName) // 검색어 포함 여부 확인
   );
 
-  // 검색어가 입력되었을 때 테이블 표시
+  // 검색어 및 필터링된 이름 변경 시 검색 결과 표시 여부 업데이트
   useEffect(() => {
     setSearchTable(searchName.length > 0 && filterName.length > 0);
   }, [searchName, filterName]);
 
+  // 학생 이름 클릭 시 상세 기록 가져오기
+  const handleStudentClick = async (name: string) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/students/${name}`); 
+      setStudentRecords(response.data);
+    } catch (error) {
+      console.error("학생 상세 정보 가져오기 실패", error); 
+    }
+  };
 
   return (
     <>
       <S.Search
         className="search"
         placeholder="Search"
-        onChange={onChange}
-        value={searchName}
+        onChange={onChange} 
+        value={searchName} 
       />
-      
       {searchTable && (
-        <S.Table>
-          <thead>
-            <tr>
-              <S.DateTh scope="col">날짜</S.DateTh>
-              <S.ClassTh scope="col">학번</S.ClassTh>
-              <S.SickTh scope="col">병명</S.SickTh>
-              <S.HandleTh as="th" scope="col">처치</S.HandleTh>
-            </tr>
-          </thead>
-          <ul>
-            {filterName.map((name) => (
-              <li key={name.id}>
-                <S.Name>{name.name}</S.Name>
-              </li>
-            ))}
-          </ul>
-        </S.Table>
+        <S.CardContainer>
+          {filterName.map((student) => (
+            <S.StudentCard key={student.id} onClick={() => handleStudentClick(student.name)}>
+              <S.StudentName>{student.name}</S.StudentName>
+            </S.StudentCard>
+          ))}
+        </S.CardContainer>
+      )}
+
+      {studentRecords.length > 0 && (
+        <S.DetailsContainer>
+          {studentRecords.map((record, index) => (
+            <S.RecordCard key={index}>
+              <S.RecordDate>최근 문진 날짜: {record.date}</S.RecordDate>
+              <S.RecordClassId>{record.classId} {record.sickCategory}</S.RecordClassId>
+              <S.RecordTreatment>처치: {record.treatment}</S.RecordTreatment>
+            </S.RecordCard>
+          ))}
+        </S.DetailsContainer>
       )}
     </>
   );
