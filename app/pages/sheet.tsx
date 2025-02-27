@@ -37,6 +37,8 @@ interface CategoryCounts {
   누계: GenderCounts;
 }
 
+
+
 interface GenderCounts {
   남성: Record<string, number>;
   여성: Record<string, number>;
