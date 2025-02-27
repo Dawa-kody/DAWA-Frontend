@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import * as S from "../styles/sheet";
 
@@ -11,9 +12,9 @@ interface CategoryCounts {
   누계: GenderCounts;
 }
 
-interface GenderCounts {
+interface GenderCounts { //성별 카운트
   남성: {
-    호흡기계?: number; // ?를 추가하여 선택적 속성으로 만듭니다.
+    호흡기계?: number; 
     소화기계?: number;
     순환기계?: number;
     정신신경계?: number;
@@ -77,99 +78,6 @@ const GenderCategoryRow = ({ label, counts }: { label: string; counts: GenderCou
     </tr>
   </>
 );
-
-const categoryCounts: CategoryCounts = {
-  일계: {
-    남성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-    여성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-  },
-  월계: {
-    남성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-    여성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-  },
-  누계: {
-    남성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-    여성: {
-      호흡기계: undefined,
-      소화기계: undefined,
-      순환기계: undefined,
-      정신신경계: undefined,
-      피부피하계: undefined,
-      비뇨생식기계: undefined,
-      구강치아계: undefined,
-      이비인후과계: undefined,
-      안과계: undefined,
-      감염병: undefined,
-      상담: undefined,
-      기타: undefined,
-    },
-  },
-};
 
 const CountDate: React.FC<CountDateProps> = ({ categoryCounts }) => {
   return (
