@@ -135,7 +135,7 @@ function Sheet() {
     updateCategoryCounts();
   };
 
-  const handleSave = async () => { //post
+  const handleSave = async () => { //저장하기 눌렀을때 post
     try {
       const response = await axios.post("http://your-api.com/data", rows);
       console.log("POST 데이터 저장 성공:", response.data);
@@ -146,7 +146,7 @@ function Sheet() {
   };
 
   const handleDateSelect = useCallback(async (date: string) => {
-    setSelectedDate(date); // 선택된 날짜를 상태에 저장
+    setSelectedDate(date); //날짜 눌렀을떄 그 날짜에 데이터 가져옴
     
     try {
       const response = await axios.get(`http://your-api.com/data?date=${date}`);
