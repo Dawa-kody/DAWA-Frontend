@@ -14,7 +14,7 @@ interface CalendarProps {
 const DynamicCalendar = dynamic(() => import('react-calendar'), { ssr: false });
 
 const getTileClassName = ({ date }: { date: Date }) => {
-  const day = date.getDay(); // 0: 일요일, 6: 토요일
+  const day = date.getDay();
 
   if (day === 0) return 'sunday'; // 일요일 (빨강)
   if (day === 6) return 'saturday'; // 토요일 (파랑)
