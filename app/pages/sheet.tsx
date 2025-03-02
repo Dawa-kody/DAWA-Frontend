@@ -22,13 +22,13 @@ interface TableRowProps {
 
 // 각 행의 데이터 구조 정의
 interface RowData {
-  id: number;
-  class: string;
-  name: string;
+  serialNumber : number;
+  schoolNumber: string;
+  userName: string;
   gender: "" | "남성" | "여성";
   time: string;
-  details: string;
-  sickCategory: string;
+  content: string;
+  disease: string;
 }
 
 interface CategoryCounts {
@@ -48,33 +48,33 @@ function TableRow({ row, index, onEnter, onDelete, onChange, onSickChange, onGen
       onEnter();
     }
     if (e.key === "Backspace" && row.time.trim() === "") { // 줄 삭제
-      onDelete(row.id);
+      onDelete(row.serialNumber );
     }
   };
 
   const handleSickChange = (sickCategory: string) => { // 병명 드롭다운 onChange
-    onSickChange(row.id, sickCategory);
+    onSickChange(row.serialNumber , sickCategory);
   };
 
   const handleGenderChange = (gender: "남성" | "여성") => { // 성별 드롭다운 onChange
-    onGenderChange(row.id, gender);
+    onGenderChange(row.serialNumber , gender);
   };
 
   return (
     <tr>
       <S.Td><S.Number>{index + 1}</S.Number></S.Td>
-      <S.Td><S.ClassInput name="class" value={row.class} onChange={(e) => onChange(row.id, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><S.NameInput name="name" value={row.name} onChange={(e) => onChange(row.id, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><GenderDropdown data={["남성", "여성"]} onChange={handleGenderChange}></GenderDropdown></S.Td>
+      <S.Td><S.ClassInput name="class" value={row.schoolNumber} onChange={(e) => onChange(row.serialNumber , e.target.name, e.target.value)} autoComplete="off" /></S.Td>
+      <S.Td><S.NameInput name="name" value={row.userName} onChange={(e) => onChange(row.serialNumber , e.target.name, e.target.value)} autoComplete="off" /></S.Td>
+      <S.Td><GenderDropdown data={["남성", "여성"]} onChange={handleGenderChange} value={row.gender} /></S.Td>
       <S.Td><SickDropdown data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} onChange={handleSickChange} /></S.Td>
-      <S.Td><S.Textarea name="details" value={row.details} onChange={(e) => onChange(row.id, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><S.TimeInput name="time" value={row.time} onKeyDown={handleKeyDown} onChange={(e) => onChange(row.id, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
+      <S.Td><S.Textarea name="details" value={row.content} onChange={(e) => onChange(row.serialNumber , e.target.name, e.target.value)} autoComplete="off" /></S.Td>
+      <S.Td><S.TimeInput name="time" value={row.time} onKeyDown={handleKeyDown} onChange={(e) => onChange(row.serialNumber , e.target.name, e.target.value)} autoComplete="off" /></S.Td>
     </tr>
   );
 }
 
 function Sheet() {
-  const [rows, setRows] = useState<RowData[]>([{ id: 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }]);
+  const [rows, setRows] = useState<RowData[]>([{ serialNumber : 1, schoolNumber: "", userName: "", gender: "", time: "", content: "", disease: "" }]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts>({
     일계: { 남성: {}, 여성: {} },
@@ -89,14 +89,14 @@ function Sheet() {
     };
   
     rows.forEach(row => {
-      const { gender, sickCategory, time } = row;
+      const { gender, disease, time } = row;
   
       // 일계 업데이트
       if (gender) {
-        if (!newCounts.일계[gender][sickCategory]) {
-          newCounts.일계[gender][sickCategory] = 0;
+        if (!newCounts.일계[gender][disease]) {
+          newCounts.일계[gender][disease] = 0;
         }
-        newCounts.일계[gender][sickCategory]++;
+        newCounts.일계[gender][disease]++;
   
         // 월계 업데이트
         if (time) {
@@ -108,10 +108,10 @@ function Sheet() {
         }
   
         // 누계 업데이트
-        if (!newCounts.누계[gender][sickCategory]) {
-          newCounts.누계[gender][sickCategory] = 0;
+        if (!newCounts.누계[gender][disease]) {
+          newCounts.누계[gender][disease] = 0;
         }
-        newCounts.누계[gender][sickCategory]++;
+        newCounts.누계[gender][disease]++;
       }
     }); 
   
@@ -122,7 +122,7 @@ function Sheet() {
 
   const handleGenderChange = (id: number, gender: "남성" | "여성") => {
     const updatedRows = rows.map((row) =>
-      row.id === id ? { ...row, gender } : row
+      row.serialNumber  === id ? { ...row, gender } : row
     );
     setRows(updatedRows);
     updateCategoryCounts();
@@ -130,7 +130,7 @@ function Sheet() {
 
   const handleSickChange = (id: number, sickCategory: string) => { //변명이 변경되면 업데이트
     const updatedRows = rows.map((row) =>
-      row.id === id ? { ...row, sickCategory } : row
+      row.serialNumber  === id ? { ...row, sickCategory } : row
     );
     setRows(updatedRows);
     updateCategoryCounts();
@@ -145,20 +145,22 @@ function Sheet() {
       console.error("POST 데이터 저장 실패:", error);
     }
   };
-
   const handleDateSelect = useCallback(async (date: string) => {
-    setSelectedDate(date); //날짜 눌렀을떄 그 날짜에 데이터 가져옴
-    
+    setSelectedDate(date);
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
-        params: { date } 
-      });
-      setRows(response.data);
-      console.log("get 데이터 가져오기 성공"); 
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
+            params: { date }
+        });
+        // 응답 데이터가 배열인지 확인
+        if (Array.isArray(response.data)) {
+            setRows(response.data);
+        } else {
+            console.error("응답 데이터가 배열이 아닙니다:", response.data);
+        }
     } catch (error) {
-      console.error("get데이터 가져오기 실패:", error);
+        console.error("get 데이터 가져오기 실패:", error);
     }
-  }, []);
+}, []);
   return (
     <>
       <Nav />
@@ -177,12 +179,12 @@ function Sheet() {
         <tbody>
           {rows.map((row, index) => (
             <TableRow
-              key={row.id}
+              key={row.serialNumber }
               row={row}
               index={index}
-              onEnter={() => setRows([...rows, { id: rows.length + 1, class: "", name: "", gender: "", time: "", details: "", sickCategory: "" }])}
-              onDelete={(id) => setRows(rows.filter(row => row.id !== id))}
-              onChange={(id, field, value) => setRows(rows.map(row => row.id === id ? { ...row, [field]: value } : row))}
+              onEnter={() => setRows([...rows, { serialNumber : rows.length + 1, schoolNumber: "", userName: "", gender: "", time: "", content: "", disease: "" }])}
+              onDelete={(id) => setRows(rows.filter(row => row.serialNumber  !== id))}
+              onChange={(id, field, value) => setRows(rows.map(row => row.serialNumber  === id ? { ...row, [field]: value } : row))}
               onSickChange={handleSickChange}
               onGenderChange={handleGenderChange}
             />))}

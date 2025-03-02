@@ -5,7 +5,9 @@ import * as S from "../styles/GenderDropdown";
 interface DropdownProps {
   data: string[];
   onChange: (gender: "남성" | "여성") => void;
+  value: "" | "남성" | "여성";
 }
+
 
 const Dropdown: React.FC<DropdownProps> = ({ data = [], onChange }) => {
   const selectRef = useRef<HTMLDivElement>(null);

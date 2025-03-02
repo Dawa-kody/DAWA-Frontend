@@ -41,9 +41,11 @@ function Search() {
   }, []);
 
   // 학생 이름 검색 필터
-  const filterName = studentNameData.filter((studentInfo) =>
-    studentInfo.name.includes(searchName) // 검색어 포함 여부 확인
-  );
+  const filterName = Array.isArray(studentNameData) ? 
+  studentNameData.filter((studentInfo) =>
+    typeof studentInfo.name === 'string' && studentInfo.name.includes(searchName)
+  ) : [];
+
 
   // 검색어 및 필터링된 이름 변경 시 검색 결과 표시 여부 업데이트
   useEffect(() => {
