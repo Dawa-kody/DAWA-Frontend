@@ -30,7 +30,7 @@ function Search() {
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/students"); 
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/search`);
         setStudentNameData(response.data); 
       } catch (error) {
         console.error("학생 데이터 가져오기 실패", error); 

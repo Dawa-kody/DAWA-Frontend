@@ -89,35 +89,36 @@ function Sheet() {
     };
   
     rows.forEach(row => {
-      const { gender, sickCategory,time } = row;
+      const { gender, sickCategory, time } = row;
   
-     // 일계 업데이트
-    if (gender) {
-      if (!newCounts.일계[gender][sickCategory]) {
-        newCounts.일계[gender][sickCategory] = 0;
-      }
-      newCounts.일계[gender][sickCategory]++;
-
-      // 월계 업데이트
-      if (time) {
-        const month = new Date(time).toLocaleString('default', { month: 'long' }); // 예: "January"
-        if (!newCounts.월계[gender][month]) {
-          newCounts.월계[gender][month] = 0;
+      // 일계 업데이트
+      if (gender) {
+        if (!newCounts.일계[gender][sickCategory]) {
+          newCounts.일계[gender][sickCategory] = 0;
         }
-        newCounts.월계[gender][month]++;
+        newCounts.일계[gender][sickCategory]++;
+  
+        // 월계 업데이트
+        if (time) {
+          const month = new Date(time).toLocaleString('default', { month: 'long' }); // 예: "January"
+          if (!newCounts.월계[gender][month]) {
+            newCounts.월계[gender][month] = 0;
+          }
+          newCounts.월계[gender][month]++;
+        }
+  
+        // 누계 업데이트
+        if (!newCounts.누계[gender][sickCategory]) {
+          newCounts.누계[gender][sickCategory] = 0;
+        }
+        newCounts.누계[gender][sickCategory]++;
       }
-
-      // 누계 업데이트
-      if (!newCounts.누계[gender][sickCategory]) {
-        newCounts.누계[gender][sickCategory] = 0;
-      }
-      newCounts.누계[gender][sickCategory]++;
-    }
-  });
-
-  setCategoryCounts(newCounts);
-  console.log("Updated Counts:", newCounts);
-};
+    }); 
+  
+    setCategoryCounts(newCounts); 
+    console.log("Updated Counts:", newCounts);
+  };
+  
 
   const handleGenderChange = (id: number, gender: "남성" | "여성") => {
     const updatedRows = rows.map((row) =>
@@ -134,10 +135,10 @@ function Sheet() {
     setRows(updatedRows);
     updateCategoryCounts();
   };
-
-  const handleSave = async () => { //저장하기 눌렀을때 post
+  const handleSave = async () => { // 저장하기 눌렀을 때 POST
     try {
-      const response = await axios.post("http://your-api.com/data", rows);
+      // rows 데이터가 필요하므로 이를 추가합니다.
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/write`, rows);
       console.log("POST 데이터 저장 성공:", response.data);
       alert("저장되었습니다");
     } catch (error) {
@@ -149,10 +150,13 @@ function Sheet() {
     setSelectedDate(date); //날짜 눌렀을떄 그 날짜에 데이터 가져옴
     
     try {
-      const response = await axios.get(`http://your-api.com/data?date=${date}`);
-      setRows(response.data); 
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
+        params: { date } 
+      });
+      setRows(response.data);
+      console.log("get 데이터 가져오기 성공"); 
     } catch (error) {
-      console.error("데이터 가져오기 실패:", error);
+      console.error("get데이터 가져오기 실패:", error);
     }
   }, []);
   return (
