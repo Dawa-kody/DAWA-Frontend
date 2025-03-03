@@ -67,6 +67,9 @@
   background-color:#fff; 
   `
 
+  export const span=styled.div`
+  color:#000;
+  `
   export const TdText=styled.span`
   color:#000;
   font-family: 'Inter';
@@ -366,9 +369,6 @@
   color:#ffff;
   `
 
-  export const Scope=styled.div`
-  
-  
-  `
-
-  
+export const  td=styled.td`
+color:#000;
+`
