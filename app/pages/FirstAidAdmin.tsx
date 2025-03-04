@@ -23,22 +23,34 @@ const FirstAidAdmin = () => {
     };
 
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        const tagArray = tag.split(",").map((name) => ({ name }));
+
+        const emojiMap: Record<string, string> = {
+            "/dizzyface.svg": "emoji_1",
+            "/cryingface.svg": "emoji_2",
+            "/worriedface.svg": "emoji_3",
+            "/happyface.svg": "emoji_4",
+            "/inconcenientface.svg": "emoji_5",
+            "/marskface.svg": "emoji_6",
+            "/shockedface.svg": "emoji_7",
+        }; 
+
         e.preventDefault();
         const dto = {
             title,
             disease,
-            tags: tag,
-            subnail: selectedThumbnail,
+            tags: tagArray,
+            emoji: emojiMap[selectedThumbnail] || "emoji_default",
             content,
             font: fontSize,
         };
 
         try {
-            const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/firstaid`,
-                dto,
-                {
-                    headers: { "Content-Type": "application/json" },
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/firstaid`, dto, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "ngrok-skip-browser-warning": "69420",
+                    },
                     withCredentials: true,
                 }
             );
@@ -73,7 +85,7 @@ const FirstAidAdmin = () => {
                             <S.AdminFilterBoxContainter>
                                 <S.AdminKeywordTitle>태그를 선택해주세요.</S.AdminKeywordTitle>
                                 <S.AdminLine />
-                                <FilterTag />
+                                <FilterTag onSelectTags={(selectedTags) => setTag(selectedTags.join(","))} />
                             </S.AdminFilterBoxContainter>
                         </S.AdminFilterContainer>
                     </S.AdminGridColumn>

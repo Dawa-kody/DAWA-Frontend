@@ -1,102 +1,120 @@
-'use client'
-//아직은 로직이 만들어지지 않았기 때문에 로직 분할 XXXXXXXXX
+'use client';
+
 import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import * as S from "../styles/CardContent";
 import axios from "axios";
 
-interface Information {
-    Title: string;
-    Tag: string;
-    Disease: string;
-    DContent: string;
-    STitle: string;
-    SContent: string;
+interface Tag {
+    name: string;
+}
+
+interface RelatedFirstAid {
+    title: string;
+    tags: Tag[];
+    firstAidId: number;
+}
+
+interface CardContent {
+    title: string;
+    emoji: string;
+    tags: Tag[];
+    firstAidId: number;
+    description: string;
+    content: string;
+    relatedFirstAids?: RelatedFirstAid[];
 }
 
 function CardContent() {
-    const [H, setH] = useState<Information[]>([]); // H는 배열로 초기화됨
+    const { id } = useParams(); // URL에서 id 가져오기
+    const [data, setData] = useState<CardContent | null>(null);
+
+    console.log("현재 id:", id); // id가 정상적으로 가져와지는지 확인
+
 
     useEffect(() => {
         async function fetchCardData() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/무언가`);
-                // 응답 데이터가 배열인지 확인 후 상태를 설정
-                if (Array.isArray(response.data)) {
-                    setH(response.data);
+                const response = await axios.get(
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/firstaid/${id}`,
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "ngrok-skip-browser-warning": "69420",
+                        },
+                    }
+                );
+    
+                console.log("API 응답 데이터:", response.data); // 데이터 확인용 로그
+                
+                if (response.data) {
+                    setData(response.data);
                 } else {
-                    console.error("응답 데이터가 배열이 아닙니다.");
+                    console.error("데이터가 올바르지 않습니다.");
                 }
             } catch (error) {
-                console.error("병명 데이터를 불러오는 중 에러 발생:", error);
+                console.error("데이터를 불러오는 중 에러 발생:", error);
             }
         }
+    
         fetchCardData();
-    }, []);
+    }, [id]); // id가 변경될 때마다 요청
+    
+
+    if (!data) return null;
 
     return (
         <>
-            {H.length > 0 && (
-                <>=
-                    <S.Header>
-                        <S.diseaseName>{H[0].Disease}</S.diseaseName>
-                        <S.CardTitle>{H[0].Title}</S.CardTitle>
+            <S.Header>
+                <S.CardTitle>{data.title || "제목 없음"}</S.CardTitle>
 
-                        <S.TagBox>
-                            <S.diseaseTag>{`#${H[0].Tag}`}</S.diseaseTag>
-                            <S.diseaseTag>{`#${H[0].Tag}`}</S.diseaseTag>
-                        </S.TagBox>
+                <S.TagBox>
+                    {data.tags?.length ? (
+                        data.tags.map((tag, index) => (
+                            <S.diseaseTag key={index}>{`#${tag.name}`}</S.diseaseTag>
+                        ))
+                    ) : (
+                        <S.diseaseTag>#기본태그</S.diseaseTag>
+                    )}
+                </S.TagBox>
 
-                        <S.screen>
-                            <S.emoji src={"/Headache.svg"} />
-                        </S.screen>
-                    </S.Header>
+                <S.screen>
+                    <S.emoji src={data.emoji || "/default.svg"} alt="응급처치 이모지" />
+                </S.screen>
+            </S.Header>
 
-                    <S.ContentBox>
-                        <S.DiseaseBox>
-                            <S.DiseaseTitle>{H[0].Title}</S.DiseaseTitle>
-                            <S.DiseaseContent
-                                cols={30}
-                                rows={11}
-                                disabled
-                            >
-                                {H[0].DContent}
-                            </S.DiseaseContent>
-                        </S.DiseaseBox>
+            <S.ContentBox>
+                <S.DiseaseBox>
+                    <S.DiseaseContent cols={30} rows={11} disabled>
+                        {data.content || "설명 없음"}
+                    </S.DiseaseContent>
+                </S.DiseaseBox>
 
-                        <S.SolutionBox>
-                            <S.SolutionTitle>{H[0].STitle}</S.SolutionTitle>
-                            <S.SolutionContent
-                                cols={30}
-                                rows={11}
-                                disabled
-                            >
-                                {H[0].SContent}
-                            </S.SolutionContent>
-                        </S.SolutionBox>
+                <S.Ment>그래도 만약 머리가 깨질 듯이 아프다면 해야 할 것은? {'->'} 보건실 방문</S.Ment>
+            </S.ContentBox>
 
-                        <S.Ment>그래도 만약 머리가 깨질 듯이 아프다면 해야할건? {'->'} 보건실 방문</S.Ment>
-                    </S.ContentBox>
+            <S.SimilarData>
+                <S.SimilarTitle>비슷하지만 다른 증상</S.SimilarTitle>
+                <S.DataLine />
+                {data.relatedFirstAids && data.relatedFirstAids.length > 0 ? (
+                    data.relatedFirstAids.map((item, index) => (
+                        <S.DatasBox className={index === 0 ? 'first-box' : 'other-box'} key={item.firstAidId}>
+                            <S.DataTitle>{item.title || "비슷한 증상"}</S.DataTitle>
+                            <S.DataTagBox>
+                                {item.tags.map((tag, tagIndex) => (
+                                    <S.DataTag key={tagIndex}>{`#${tag.name}`}</S.DataTag>
+                                ))}
+                            </S.DataTagBox>
+                            <S.BottomLine />
+                        </S.DatasBox>
+                    ))
+                ) : (
+                    <S.DatasBox>
+                        <S.DataTitle>관련된 응급처치 정보가 없습니다.</S.DataTitle>
+                    </S.DatasBox>
+                )}
+            </S.SimilarData>
 
-                    <S.SimilarData>
-                        <S.SimilarTitle>비슷하지만 다른 증상</S.SimilarTitle>
-                        <S.DataLine />
-
-                        {/* H가 배열일 때만 map 호출 */}
-                        {Array.isArray(H) && H.length > 0 && (
-                            H.map((item, index) => (
-                                <S.DatasBox className={index === 0 ? 'first-box' : 'other-box'} key={index}>
-                                    <S.DataTitle>비슷하지만 다른 증상이라면?</S.DataTitle>
-                                    <S.DataTagBox>
-                                        <S.DataTag>{`#${item.Tag}`}</S.DataTag>
-                                        <S.DataTag>{`#${item.Tag}`}</S.DataTag>
-                                    </S.DataTagBox>
-                                    <S.BottomLine />
-                                </S.DatasBox>
-                            ))
-                        )}
-                    </S.SimilarData>
-                </>
-            )}
         </>
     );
 }
