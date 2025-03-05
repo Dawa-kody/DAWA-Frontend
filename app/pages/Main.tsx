@@ -422,6 +422,7 @@ function Main() {
           </S.Container>
         </>
       ) : (
+    /*여기서 부터 일반 로직 */
         <>
           <S.Container>
           <Nav />
