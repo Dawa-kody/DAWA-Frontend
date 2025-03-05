@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import * as S from "../styles/CardContent";
 import axios from "axios";
+import Nav from "@/components/Nav";
 
 interface Tag {
     name: string;
@@ -19,6 +20,7 @@ interface CardContent {
     title: string;
     emoji: string;
     tags: Tag[];
+    diseaseName: string;
     firstAidId: number;
     description: string;
     content: string;
@@ -65,7 +67,9 @@ function CardContent() {
 
     return (
         <>
+            <Nav />
             <S.Header>
+                <S.diseaseName>{data.diseaseName || "증상 없음"}</S.diseaseName>
                 <S.CardTitle>{data.title || "제목 없음"}</S.CardTitle>
 
                 <S.TagBox>
@@ -85,8 +89,8 @@ function CardContent() {
 
             <S.ContentBox>
                 <S.DiseaseBox>
-                    <S.DiseaseContent cols={30} rows={11} disabled>
-                        {data.content || "설명 없음"}
+                    <S.DiseaseContent disabled>
+                        {data.content || "내용 없음"}
                     </S.DiseaseContent>
                 </S.DiseaseBox>
 

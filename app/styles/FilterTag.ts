@@ -18,25 +18,22 @@ export const FilterTagBox = styled.div<{ Active: boolean }>`
     gap: 12px;
 
     transition: height 0.3s ease-in-out;
+
+    .Admin & {
+        position: absolute;
+        width: 1515px;
+        height: ${({ Active }) => (Active ? "auto" : "45px")};
+        left: 136px;
+        top: 97px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: ${({ Active }) => (Active ? "wrap" : "nowrap")};
+        gap: 12px;
+
+        transition: height 0.3s ease-in-out;
+    }
 `;
-
-/* 필터 틀 */
-// export const FilterTag = styled.div`
-//     position: relative;
-//     height: 34px;
-//     left: 25px;
-//     top: 8px;
-
-//     display: inline-block;
-//     padding: 5px 15px 0px 15px;
-//     justify-content: center;
-//     align-items: center;
-    
-//     font-family: Pretendard;
-
-//     background: #F2F4F7;
-//     border-radius: 16.8889px;
-// `
 
 /* 새로운 필터 틀 */
 export const FilterTag = styled.div<FilterTagProps>`
@@ -52,7 +49,7 @@ export const FilterTag = styled.div<FilterTagProps>`
 
     font-family: Pretendard;
 
-    background: ${({ isSelected }) => (isSelected ? "#007bff" : "#F2F4F7")};
+    background: ${({ isSelected }) => (isSelected ? "#6948ED" : "#F2F4F7")};
     color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#333")};
     border-radius: 16.8889px;
 
@@ -60,6 +57,31 @@ export const FilterTag = styled.div<FilterTagProps>`
     
     &:hover {
         background: ${({ isSelected }) => (isSelected ? "#0056b3" : "#ccc")};
+    }
+
+    .Admin & {
+        position: relative;
+        height: 28px;
+        left: 25px;
+        top: 10px;
+
+        display: inline-block;
+        padding: 5px 15px 0px 15px;
+        justify-content: center;
+        align-items: center;
+
+        font-family: Pretendard;
+        font-size: 12px;
+
+        background: ${({ isSelected }) => (isSelected ? "#6948ED" : "#F2F4F7")};
+        color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#333")};
+        border-radius: 16.8889px;
+
+        transition: background 0.3s ease, color 0.3s ease;
+        
+        &:hover {
+            background: ${({ isSelected }) => (isSelected ? "#6948ED" : "#ccc")};
+        }
     }
 `;
 

@@ -51,7 +51,7 @@ function Nav() {
             Active={activeMenu === 'moonjin'}
           >
             <S.Moonjin
-              src={activeMenu === 'moonjin' ? 'moonjinPurple.svg' : 'moonjinWhite.svg'}
+              src={activeMenu === 'moonjin' ? '/moonjinPurple.svg' : '/moonjinWhite.svg'}
               alt="문진표"
             />
             <S.MoonjinText active={activeMenu === 'moonjin'}>문진표 작성</S.MoonjinText>

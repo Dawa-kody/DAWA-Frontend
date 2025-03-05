@@ -44,7 +44,7 @@ const Card: React.FC<CardProps> = ({ selectedTags, cardDataList }) => {
                     <S.Screen>
                         <S.Emoji src={card.emoji} alt="emoji" />
                     </S.Screen>
-                    <S.CardTitle>{truncateText(`#${card.title}`)}</S.CardTitle>
+                    <S.CardTitle>{truncateText(`${card.title}`)}</S.CardTitle>
                     <S.CardTagBox>
                         {card.tags.map((tag, idx) => (
                             <S.CardTag key={idx}>{`#${tag.name}`}</S.CardTag>

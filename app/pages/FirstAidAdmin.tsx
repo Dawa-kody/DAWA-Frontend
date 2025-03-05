@@ -5,15 +5,18 @@ import axios from "axios";
 import Nav from "../components/Nav";
 import * as S from "../styles/FirstAidAdmin";
 import FilterTag from "../components/FilterTag";
+import { useRouter } from "next/navigation";
 
 const FirstAidAdmin = () => {
     const [title, setTitle] = useState("");
-    const [disease, setDisease] = useState("");
+    const [diseaseName, setDiseaseName] = useState("");
     const [tag, setTag] = useState("");
     const [content, setContent] = useState("");
     const [selectedThumbnail, setSelectedThumbnail] = useState<string>("");
     const [fontSize, setFontSize] = useState("16px");
     const SelectedThumbnail = S.SelectedThumbnail;
+    const router = useRouter();
+
     const handleFontSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setFontSize(event.target.value);
     };
@@ -38,7 +41,7 @@ const FirstAidAdmin = () => {
         e.preventDefault();
         const dto = {
             title,
-            disease,
+            diseaseName,
             tags: tagArray,
             emoji: emojiMap[selectedThumbnail] || "emoji_default",
             content,
@@ -55,6 +58,7 @@ const FirstAidAdmin = () => {
                 }
             );
             console.log("응답 성공:", response.data);
+            router.push("/");
         } catch (error) {
             console.error("제출 실패:", error);
         }
@@ -75,14 +79,14 @@ const FirstAidAdmin = () => {
                     <S.AdminGridColumn>
                         <S.TabTitleBox>병명</S.TabTitleBox>
                         <S.InputBox>
-                            <S.Input value={disease} onChange={(e) => setDisease(e.target.value)} />
+                            <S.Input value={diseaseName} onChange={(e) => setDiseaseName(e.target.value)} />
                         </S.InputBox>
                     </S.AdminGridColumn>
 
                     <S.AdminGridColumn>
                         <S.TabTitleBox>태그</S.TabTitleBox>
                         <S.AdminFilterContainer>
-                            <S.AdminFilterBoxContainter>
+                            <S.AdminFilterBoxContainter className="Admin">
                                 <S.AdminKeywordTitle>태그를 선택해주세요.</S.AdminKeywordTitle>
                                 <S.AdminLine />
                                 <FilterTag onSelectTags={(selectedTags) => setTag(selectedTags.join(","))} />
@@ -119,7 +123,7 @@ const FirstAidAdmin = () => {
                                     <S.Option value="20px">20</S.Option>
                                 </S.SelectBox>
                             </S.FontBox>
-                            <S.PreviewBox fontSize={fontSize} />
+                            <S.PreviewBox maxLength={1000} value={content} onChange={(e) => setContent(e.target.value)} fontSize={fontSize} />
                         </S.TextConatiner>
                     </S.AdminGridColumn>
                 </S.AdminTextBox>
