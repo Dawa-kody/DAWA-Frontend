@@ -40,7 +40,7 @@ function Nav() {
   return (
     <S.Component>
         <S.NavContainer>
-        <S.Logo src="Logo.svg" />
+        <S.Logo src="/Logo.svg" />
         <S.LogoText>다와</S.LogoText>
 
         {isAdmin && <S.AdminText>선생님, 안녕하세요!</S.AdminText>}
@@ -63,7 +63,7 @@ function Nav() {
           Active={activeMenu === 'home'}
         >
           <S.Home
-            src={activeMenu === 'home' ? 'HomePurple.svg' : 'HomeWhite.svg'}
+            src={activeMenu === 'home' ? '/HomePurple.svg' : '/HomeWhite.svg'}
             alt="홈"
           />
           <S.HomeText active={activeMenu === 'home'}>대시보드</S.HomeText>
@@ -74,7 +74,7 @@ function Nav() {
           Active={activeMenu === 'dangerous'}
         >
           <S.Dangerous
-            src={activeMenu === 'dangerous' ? 'ActivityPurple.svg' : 'ActivityWhite.svg'}
+            src={activeMenu === 'dangerous' ? '/ActivityPurple.svg' : '/ActivityWhite.svg'}
             alt="응급사항"
           />
           <S.DangerousText active={activeMenu === 'dangerous'}>응급처치</S.DangerousText>
