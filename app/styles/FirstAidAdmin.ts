@@ -158,6 +158,7 @@ export const AdminFilterBoxContainter = styled.div`
 export const AdminKeywordTitle = styled.span`
     position: relative;
     left: 27px;
+    top: -10px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -175,7 +176,7 @@ export const AdminLine = styled.div`
     position: relative;
     width: 765px;
     height: 0px;
-    top: -3px;
+    top: -11px;
     left: 26px;
     
     transform: scaleY(0.5);

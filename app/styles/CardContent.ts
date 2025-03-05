@@ -111,8 +111,12 @@ export const ContentBox = styled.div`
 /* 병과 관련된 내용을 묶는 Box */
 export const DiseaseBox = styled.div`
     position: relative;
+    width: 85%;
+    height: 85%;
     left: 70px;
     top: 40px;
+
+    background-color: white;
 
     display: flex;
     flex-direction: column;
@@ -131,7 +135,9 @@ export const DiseaseTitle = styled.span`
 export const DiseaseContent = styled.textarea`
     position: relative;
     width: 650px;
-    height: auto;
+    height: 400px;
+
+    background-color: white;
 
     font-family: Pretendard;
     font-size: 14px;
@@ -178,7 +184,7 @@ export const SolutionContent = styled.textarea`
 export const Ment = styled.span`
     position: relative;
     left: 66px;
-    bottom: 40px;
+    bottom: -30px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -192,26 +198,25 @@ export const Ment = styled.span`
 
 /* 추천 필터링 박스 div */
 export const SimilarData = styled.div`
-    position: absolute;
     width: 300px;
-    height: auto;
-    left: 1210px;
-    top: 138px;
+    height: auto; /* 자동 높이 적용 */
+    margin-left: 1210px;
+    margin-top: 51px;
 
-    display: inline-block;
-    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 
     background: #FFFFFF;
     border-radius: 21.7252px;
-`
+
+    padding-bottom: 50px;
+`;
 
 /* 비슷하지만 다른 증상 */
 export const SimilarTitle = styled.span`
-    position: absolute;
-    width: 182px;
-    height: 26px;
-    left: 30px;
-    top: 28px;
+    margin-left: 30px;
+    margin-top: 28px;
 
     font-family: Pretendard;
     font-style: normal;
@@ -220,70 +225,59 @@ export const SimilarTitle = styled.span`
     line-height: 26px;
 
     color: #000000;
-`
+`;
 
 /* 비슷하지만 다른 증상 글과 데이터들의 구분선 */
 export const DataLine = styled.div`
-    position: absolute;
     width: 238.98px;
     height: 0px;
-    left: 30px;
-    top: 62px;
+    margin-left: 30px;
+    margin-top: 10px;
 
     border: 1.08626px solid #E4E7EC;
-`
+`;
 
 /* 데이터를 나열할 틀 */
 export const DatasBox = styled.div`
-    position: relative;
-    left: 30px;
-    margin-top: 80px;
-
+    margin-left: 30px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-
-    margin-top: var(--box-margin, 20px); /* 기본 간격 */
+    gap: -10px;
+    margin-top: 20px; /* 기본 간격 */
 
     &:first-child {
-        --box-margin: 80px; /* 첫 번째 박스만 간격 변경 */
+        margin-top: 80px; /* 첫 번째 박스만 간격 조정 */
     }
-`
+`;
 
 /*데이터의 제목 */
 export const DataTitle = styled.span`
     font-family: Pretendard;
     font-size: 18px;
     font-weight: 500;
-`
+`;
 
 /* 태그 모음 */
 export const DataTagBox = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
-`
+`;
 
 /*적용된 태그 */
 export const DataTag = styled.span`
-    position: relative;
-    
     font-family: Pretendard;
     font-size: 14px;
     font-weight: 300;
 
     color: #6948ED;
-`
+`;
 
 /* 하단 구분선 */
 export const BottomLine = styled.div`
-    position: relative;
     width: 210px;
     height: 0px;
-    top: 11px;
+    margin-top: 11px;
 
     border: 1px solid #E4E7EC;
-`
-
-
-    
+`;
