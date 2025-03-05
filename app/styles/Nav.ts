@@ -126,6 +126,7 @@ export const DangerousHap = styled.div.withConfig({
   text-align: center;
   gap: 25px;
   position: absolute;
+  z-index: 1010;
 `;
 
 export const Dangerous = styled.img`
@@ -184,12 +185,13 @@ export const AdminText = styled.span`
   font-weight: 700;
   right: 960px;
   position: absolute;
+  z-index: 900;
 `
 
 export const NavContainer = styled.div`
   width: 100%;
   height: 88px;
-  z-index: 2000;
+  z-index: 1000;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -200,6 +202,6 @@ export const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  position: absolute;
+  position: relative;
   top: 0px;
 `

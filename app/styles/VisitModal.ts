@@ -25,7 +25,7 @@ export const background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
 `;
 
 export const modaltitle = styled.span`
