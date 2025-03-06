@@ -1,10 +1,8 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import * as S from "../styles/sheet";
 import SickDropdown from "../components/SickDropdown"; //병명 드롭다운 
 import GenderDropdown from "../components/GenderDropdown"; //성별 드롭다운
-import { useRouter } from "next/router";
-
 
 interface TableRowProps {
   row: RowData;
@@ -17,7 +15,7 @@ interface TableRowProps {
 }
 
 interface RowData {
-  serialNumber : number;
+  serialNumber: number;
   schoolNumber: string;
   userName: string;
   gender: "" | "남성" | "여성";
@@ -26,16 +24,7 @@ interface RowData {
   disease: string;
 }
 
-
 function TableRow({ row, index, rows, onEnter, onDelete, onChange, onSickChange, onGenderChange }: TableRowProps & { rows: RowData[] }) {
-  const [userName, setuserName] = useState('');
-  const [serialNumber, setserialNumber] = useState('');
-  const [schoolNumber, setschoolNumber] = useState('');
-  const [disease, setdisease] = useState('');
-  const [content, setcontent] = useState('');
-  const [time, settime] = useState('');
-  const [gender, setgender] = useState('');
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") { // 줄 추가
       onEnter();
@@ -56,24 +45,64 @@ function TableRow({ row, index, rows, onEnter, onDelete, onChange, onSickChange,
   };
 
   const handleSickChange = (sickCategory: string) => { // 병명 드롭다운 onChange
-    onSickChange(row.serialNumber , sickCategory);
+    onSickChange(row.serialNumber, sickCategory);
   };
 
   const handleGenderChange = (gender: "남성" | "여성") => { // 성별 드롭다운 onChange
-    onGenderChange(row.serialNumber , gender);
+    onGenderChange(row.serialNumber, gender);
   };
 
-
-  
   return (
     <tr>
-      <S.Td><S.Number>{index + 1} </S.Number></S.Td>
-      <S.Td><S.ClassInput value={row.schoolNumber} onChange={(e) => onChange(row.serialNumber, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><S.NameInput value={row.userName} onChange={(e) => onChange(row.serialNumber, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><GenderDropdown data={["남성", "여성"]} onChange={handleGenderChange} value={row.gender} /></S.Td>
-      <S.Td><SickDropdown  data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]} onChange={handleSickChange} /></S.Td>
-      <S.Td><S.Textarea value={row.content} onChange={(e) => onChange(row.serialNumber, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
-      <S.Td><S.TimeInput value={row.time} onKeyDown={handleKeyDown} onChange={(e) => onChange(row.serialNumber, e.target.name, e.target.value)} autoComplete="off" /></S.Td>
+      <S.Td>
+        <S.Number>{index + 1}</S.Number>
+      </S.Td>
+      <S.Td>
+        <S.ClassInput
+          name="schoolNumber"
+          value={row.schoolNumber}
+          onChange={(e) => onChange(row.serialNumber, "schoolNumber", e.target.value)}
+          autoComplete="off"
+        />
+      </S.Td>
+      <S.Td>
+        <S.NameInput
+          name="userName"
+          value={row.userName}
+          onChange={(e) => onChange(row.serialNumber, "userName", e.target.value)}
+          autoComplete="off"
+        />
+      </S.Td>
+      <S.Td>
+        <GenderDropdown
+          data={["남성", "여성"]}
+          onChange={handleGenderChange}
+          value={row.gender}
+        />
+      </S.Td>
+      <S.Td>
+        <SickDropdown
+          data={["호흡기계", "소화기계", "순환기계", "정신신경계", "피부피하계", "비뇨생식기계", "구강치아계", "이빈인후과계", "안과계", "감염병", "기타"]}
+          onChange={handleSickChange}
+        />
+      </S.Td>
+      <S.Td>
+        <S.Textarea
+          name="content"
+          value={row.content}
+          onChange={(e) => onChange(row.serialNumber, "content", e.target.value)}
+          autoComplete="off"
+        />
+      </S.Td>
+      <S.Td>
+        <S.TimeInput
+          name="time"
+          value={row.time}
+          onKeyDown={handleKeyDown}
+          onChange={(e) => onChange(row.serialNumber, "time", e.target.value)}
+          autoComplete="off"
+        />
+      </S.Td>
     </tr>
   );
 }

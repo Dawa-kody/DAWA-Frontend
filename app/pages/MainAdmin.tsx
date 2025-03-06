@@ -29,15 +29,15 @@ function MainAdmin() {
         bed1: true,
         bed2: true,
       }); // 침대 상태 관리
-
-      const toggleBed = async (gender: "M" | "W") => {
+    
+    const toggleBed = async (gender: "M" | "W") => {
         if (!Admin) {
-          console.error("권한이 없습니다.");
-          return;
+        console.error("권한이 없습니다.");
+        return;
         }
     
         try {
-          // 침대 상태 토글 후 서버로 POST 요청
+        // 침대 상태 토글 후 서버로 POST 요청
           const newBedStatus = { ...bedStatus };
           if (gender === "M") {
             newBedStatus.bed1 = !bedStatus.bed1;
@@ -59,15 +59,16 @@ function MainAdmin() {
           return;
         }
         SetMToggle((prevMToggle) => !prevMToggle); // 이전 상태를 반영하여 업데이트
-      }
-      
-      function WToggleing() {
+    }
+    
+    function WToggleing() {
         if (!Admin) {
           console.error("권한이 없습니다.");
           return;
         }
         SetWToggle((prevWToggle) => !prevWToggle); // 이전 상태를 반영하여 업데이트
       }
+      
     return(
         <>
         <S.Container>
