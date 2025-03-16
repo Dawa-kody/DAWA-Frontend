@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
     width: 100vw;
@@ -542,7 +542,86 @@ export const WomanToggleCircle = styled.div<{ Active : boolean }>`
     order: 0;
     flex-grow: 0;
 
-    transition: all 0.7s ease-in-out;
+    transition: all 5s ease-in-out;
     transform:${({ Active }) => (Active ? "translateX(0px)" : "translateX(-14px)")};
     
+`
+
+export const RentActiveBtn = styled.div`
+    width: 210px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    
+    border-radius: 6px;
+    background-color: #D9D6FE;
+`
+
+export const RentActiveBtnContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    top: 15px;
+    right: 20px;
+`
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
+
+export const requestbar = styled.div`
+    width: 80%;
+    height: 100%;
+    background-color: #D9D6FE;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    
+    animation: ${slideIn} 0.4s ease-in-out;
+
+    &.closing {
+        animation: ${slideOut} 0.4s ease-in-out forwards;
+    }
+`
+
+export const requestbarbtn = styled.img`
+    width: 26px;
+    height: 26px;
+
+    position: absolute;
+    top: 15px;
+    right: 15px;
+`
+
+export const requestTitle = styled.span`
+    font-family: Pretendard;
+    font-size: 26px;
+    font-weight: 700;
+
+    position: relative;
+    left: 25px;
+    top: 20px;
 `
