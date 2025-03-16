@@ -3,20 +3,13 @@
 import React, { useState, useEffect } from "react";
 import * as S from "../styles/Main";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 
 import Nav from "../components/Nav";
-import VisitModal from "../components/VisitModal";
-import RentModal from "../components/RentModal";
 import VisitDataAdmin from "../components/VisitDataAdmin";
 import RentDataAdmin from "../components/RentDataAdmin";
 import { VisitAdminDatas } from "../components/VisitDataAdmin";
 import { RentAdminDatas } from "../components/RentDataAdmin";
-
-interface DecodedToken {
-    role: string;
-    nexp?: number;
-}
+import RequestRentData from "@/components/RequestRentData";
 
 function MainAdmin() {
     const [visitModalOpen, setVisitModalOpen] = useState(false);
@@ -26,7 +19,8 @@ function MainAdmin() {
     
     const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
     const [BActive, setBActive] = useState(true); // 침대 현황 상태
-    
+    const [requestBarOpen, setRequestBarOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
 
     const [visitAdminDataList, setVisitAdminDataList] = useState<VisitAdminDatas[]>([]);
     const [rentAdminDataList, setRentAdminDataList] = useState<RentAdminDatas[]>([]);
@@ -35,26 +29,27 @@ function MainAdmin() {
         bed2: true,
     });
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const storedToken = localStorage.getItem("access");
-            if (storedToken) {
-                setToken(storedToken);
-                }
-            }
-  }, []);
 
-  useEffect(() => {
-    if (token) {
-      try {
-        const decodedToken = jwtDecode<DecodedToken>(token);
-        setAdmin(decodedToken.role === "ROLE_TEACHER");
-      } catch (error) {
-        console.error("토큰 에러:", error);
-        setAdmin(false);
+    useEffect(() => {
+      const access = window.localStorage.getItem("access"); // 문자열 키 사용
+      setToken(access);
+    }, []); // useEffect
+
+    useEffect(() => {
+      const storedRole = window.localStorage.getItem("role"); // 문자열 키 사용
+      if (storedRole === "ROLE_TEACHER") {
+        setAdmin(true);
       }
-    }
-  }, [token]);
+    }, []); // useEffect
+    
+
+    const closeRequestBar = () => {
+      setIsClosing(true); // 닫힘 애니메이션 실행
+      setTimeout(() => {
+          setRequestBarOpen(false); // 애니메이션 후 제거
+          setIsClosing(false);
+      }, 400); // 애니메이션 지속 시간 (0.4초)
+    };
 
   useEffect(() => {
     async function fetchVisitAdminData() {
@@ -62,8 +57,11 @@ function MainAdmin() {
         const response = await axios.get<VisitAdminDatas[]>(
           `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit/allRecord`,
           {
-            headers: { Authorization: `Bearer ${token}` },
-            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'ngrok-skip-browser-warning': '69420',
+              withCredentials: true,
+          },
           }
         );
         setVisitAdminDataList(response.data);
@@ -78,10 +76,11 @@ function MainAdmin() {
     async function fetchAdminRentData() {
       try {
         const response = await axios.get<RentAdminDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/allRental`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/allRental`, {
+            headers: { Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': '69420',
             withCredentials: true,
+          },
           }
         );
         setRentAdminDataList(response.data);
@@ -134,14 +133,28 @@ function MainAdmin() {
             <S.RentTitle>학생들의 가장 최근 대여</S.RentTitle>
 
             {rentAdminDataList.length === 0 && (
-                <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
+              <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
             )}
 
             <S.RentDataCards>
                 {rentAdminDataList.map(({ id, ...rent }) => (
-                <RentDataAdmin key={id} {...rent} />
+                  <RentDataAdmin key={id} {...rent} />
                 ))}
             </S.RentDataCards>
+            <S.RentActiveBtnContainer>
+                <S.RentActiveBtn>대여 기록 추가하기</S.RentActiveBtn>
+                <S.RentActiveBtn onClick={() => setRequestBarOpen(true)}>
+                    대여 신청 확인하기
+                </S.RentActiveBtn>
+            </S.RentActiveBtnContainer>
+
+            {requestBarOpen && (
+                <S.requestbar className={isClosing ? "closing" : ""}>
+                    <S.requestbarbtn src="./X.svg" onClick={closeRequestBar} />
+                    <S.requestTitle>학생들의 대여 신청</S.requestTitle>
+                    <RequestRentData />
+                </S.requestbar>
+            )}
         </S.RentDiv>
 
         <S.VisitDiv>
