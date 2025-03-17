@@ -179,7 +179,7 @@ function Main() {
             ))}
           </S.VisitDataCards>
         </S.VisitDiv>
-        
+
         <S.BedDiv>
           <S.BedTitle>침대 사용 여부</S.BedTitle>
           <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
@@ -192,7 +192,7 @@ function Main() {
             {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
           </S.BedWomenNonActiveDiv>
         </S.BedDiv>
-        
+
       </S.Container>
     </>
   );
