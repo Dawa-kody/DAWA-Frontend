@@ -9,11 +9,10 @@ import VisitDataAdmin from "../components/VisitDataAdmin";
 import RentDataAdmin from "../components/RentDataAdmin";
 import { VisitAdminDatas } from "../components/VisitDataAdmin";
 import { RentAdminDatas } from "../components/RentDataAdmin";
+import { RequestRentDatas } from "@/components/RequestRentData";
 import RequestRentData from "@/components/RequestRentData";
 
 function MainAdmin() {
-    const [visitModalOpen, setVisitModalOpen] = useState(false);
-    const [rentModalOpen, setRentModalOpen] = useState(false);
     const [Admin, setAdmin] = useState(false);
     const [token, setToken] = useState<string | null>(null);
     
@@ -22,6 +21,7 @@ function MainAdmin() {
     const [requestBarOpen, setRequestBarOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
+    const [RequestRentDataList, setRequestRentDataList] = useState<RequestRentDatas[]>([]);
     const [visitAdminDataList, setVisitAdminDataList] = useState<VisitAdminDatas[]>([]);
     const [rentAdminDataList, setRentAdminDataList] = useState<RentAdminDatas[]>([]);
     const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
@@ -91,6 +91,33 @@ function MainAdmin() {
     fetchAdminRentData();
   }, [token]);
 
+  useEffect(() => {
+    async function fetchAdminRequestRentData() {
+      try {
+        const response = await axios.get<RequestRentDatas[]>(
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept`, {
+            headers: { Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': '69420',
+            withCredentials: true,
+          },
+          }
+        );
+        setRequestRentDataList(response.data);
+
+        if (response.status === 200){
+          
+        }
+      } catch (error) {
+        console.error("모든 대여 신청 데이터를 불러오는 중 에러 발생:", error);
+      }
+    }
+    fetchAdminRequestRentData();
+  }, [token]);
+
+  const handleRemoveRequest = (rentalId: string) => {
+    setRequestRentDataList((prevList) => prevList.filter((item) => item.rentalId !== rentalId));
+  };
+
   const toggleBed = async (gender: "M" | "W") => {
     if (!Admin) {
       console.error("권한이 없습니다.");
@@ -152,7 +179,16 @@ function MainAdmin() {
                 <S.requestbar className={isClosing ? "closing" : ""}>
                     <S.requestbarbtn src="./X.svg" onClick={closeRequestBar} />
                     <S.requestTitle>학생들의 대여 신청</S.requestTitle>
-                    <RequestRentData />
+                    <S.RequestRentDataCards>
+                    {RequestRentDataList.map(({ rentalId, ...rentData }) => (
+                      <RequestRentData
+                        key={rentalId}
+                        rentalId={rentalId}
+                        {...rentData}
+                        onRemove={handleRemoveRequest}
+                      />
+                    ))}
+                    </S.RequestRentDataCards>
                 </S.requestbar>
             )}
         </S.RentDiv>

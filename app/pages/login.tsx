@@ -46,7 +46,14 @@ function Login(){
                 localStorage.setItem("role", role);
 
                 setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
-                router.push("/");
+                
+                if(role === "ROLE_TEACHER"){
+                    router.push("/MainAdmin");
+                }
+
+                else{
+                    router.push("/");
+                }
             }
         } catch (error) {
             console.log("로그인 실패:", error);

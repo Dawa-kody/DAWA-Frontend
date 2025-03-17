@@ -625,3 +625,26 @@ export const requestTitle = styled.span`
     left: 25px;
     top: 20px;
 `
+
+export const RequestRentDataCards = styled.div`
+  position: relative;
+  max-width: 1260px;
+  left: 35px;
+  top: 50px;
+
+  display: grid;
+  grid-auto-columns: 178px;
+  grid-auto-flow: column;
+
+  overflow-x: scroll;  /* 수평 스크롤만 적용 */
+  overflow-y: hidden;  /* 수직 스크롤을 숨김 */
+
+  &::-webkit-scrollbar {
+    height: 8px; /* 가로 스크롤 높이 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+  }
+`;
