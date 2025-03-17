@@ -91,6 +91,27 @@ function MainAdmin() {
     fetchAdminRentData();
   }, [token]);
 
+  useEffect(() => {
+    async function fetchBedStatus() {
+        try {
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'ngrok-skip-browser-warning': '69420',
+                        withCredentials: true,
+                    },
+                }
+            );
+            setBedStatus(response.data);
+        } catch (error) {
+            console.error("침대 상태를 불러오는 중 에러 발생:", error);
+        }
+    }
+    fetchBedStatus();
+  }, [token]);
+
   const toggleBed = async (gender: "M" | "W") => {
     if (!Admin) {
       console.error("권한이 없습니다.");
@@ -99,10 +120,17 @@ function MainAdmin() {
     try {
       const newBedStatus = { ...bedStatus, [gender === "M" ? "bed1" : "bed2"]: !bedStatus[gender === "M" ? "bed1" : "bed2"] };
       setBedStatus(newBedStatus);
-      await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`, newBedStatus, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-      });
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
+        newBedStatus,
+        {
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': '69420',
+            withCredentials: true 
+          },
+        }
+      );
     } catch (error) {
       console.error("침대 상태를 업데이트하는 중 에러 발생:", error);
     }
@@ -172,40 +200,40 @@ function MainAdmin() {
         </S.VisitDiv>
 
         <S.BedDiv>
-        <S.BedTitle>침대 사용 여부</S.BedTitle>
-        {BActive ? (
-            <>
-            <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                </S.AdminBedMenNonActiveDiv>
+            <S.BedTitle>침대 사용 여부</S.BedTitle>
+            {Admin ? (
+                <>
+                    <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
+                        <S.BedIcon src={"/Bed.svg"} />
+                        {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                    </S.AdminBedMenNonActiveDiv>
 
-            <S.ManToggleContainer onClick={() => toggleBed("M")}>
-                <S.ManToggleCircle Active={bedStatus.bed1} />
-            </S.ManToggleContainer>
+                    <S.ManToggleContainer onClick={() => toggleBed("M")}>
+                        <S.ManToggleCircle Active={bedStatus.bed1} />
+                    </S.ManToggleContainer>
 
-            <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.AdminBedWomenNonActiveDiv>
+                    <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
+                        <S.BedIcon src={"/Bed.svg"} />
+                        {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                    </S.AdminBedWomenNonActiveDiv>
 
-            <S.WomanToggleContainer onClick={() => toggleBed("W")}>
-                <S.WomanToggleCircle Active={bedStatus.bed2} />
-            </S.WomanToggleContainer>
-            </>
-        ) : (
-            <>
-            <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.BedMenNonActiveDiv>
+                    <S.WomanToggleContainer onClick={() => toggleBed("W")}>
+                        <S.WomanToggleCircle Active={bedStatus.bed2} />
+                    </S.WomanToggleContainer>
+                </>
+            ) : (
+                <>
+                    <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
+                        <S.BedIcon src={"/Bed.svg"} />
+                        {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                    </S.BedMenNonActiveDiv>
 
-            <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.BedWomenNonActiveDiv>
-            </>
-        )}
+                    <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
+                        <S.BedIcon src={"/Bed.svg"} />
+                        {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                    </S.BedWomenNonActiveDiv>
+                </>
+            )}
         </S.BedDiv>
     </S.Container>
     </>
