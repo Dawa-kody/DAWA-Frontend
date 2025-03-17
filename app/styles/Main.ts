@@ -181,10 +181,67 @@ export const RentNonActiveSpan = styled.span`
   line-height: 29px;
   color: #98A2B3;
 
-  /* 스크롤되지 않도록 하기 위해 상위 요소에서 위치 조정 */
   position: absolute;
   left: 500px;
   top: 140px;
+`;
+
+export const RentActiveBtnContainer = styled.div`
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  right: 34px;
+  top: 29px;
+`;
+
+export const RentActiveBtn = styled.button`
+  padding: 8px 16px;
+  background: #6948ED;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #5636c9;
+  }
+`;
+
+export const requestbar = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  transition: transform 0.4s ease-in-out;
+
+  &.closing {
+    transform: translateX(100%);
+  }
+`;
+
+export const requestbarbtn = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+`;
+
+export const requestTitle = styled.h2`
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  margin-top: 40px;
 `;
 
 /* 방문기록 */
@@ -547,33 +604,6 @@ export const WomanToggleCircle = styled.div<{ Active : boolean }>`
     
 `
 
-export const RentActiveBtn = styled.div`
-    width: 210px;
-    height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 600;
-    
-    border-radius: 6px;
-    background-color: #D9D6FE;
-`
-
-export const RentActiveBtnContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    position: absolute;
-    top: 15px;
-    right: 20px;
-`
-
 const slideIn = keyframes`
   from {
     transform: translateX(100%);
@@ -591,37 +621,3 @@ const slideOut = keyframes`
     transform: translateX(100%);
   }
 `;
-
-export const requestbar = styled.div`
-    width: 80%;
-    height: 100%;
-    background-color: #D9D6FE;
-    border-radius: 10px;
-    position: absolute;
-    right: 0px;
-    
-    animation: ${slideIn} 0.4s ease-in-out;
-
-    &.closing {
-        animation: ${slideOut} 0.4s ease-in-out forwards;
-    }
-`
-
-export const requestbarbtn = styled.img`
-    width: 26px;
-    height: 26px;
-
-    position: absolute;
-    top: 15px;
-    right: 15px;
-`
-
-export const requestTitle = styled.span`
-    font-family: Pretendard;
-    font-size: 26px;
-    font-weight: 700;
-
-    position: relative;
-    left: 25px;
-    top: 20px;
-`
