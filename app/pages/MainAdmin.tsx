@@ -201,39 +201,24 @@ function MainAdmin() {
 
         <S.BedDiv>
             <S.BedTitle>침대 사용 여부</S.BedTitle>
-            {Admin ? (
-                <>
-                    <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
-                        <S.BedIcon src={"/Bed.svg"} />
-                        {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                    </S.AdminBedMenNonActiveDiv>
+                   <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
+                       <S.BedIcon src={"/Bed.svg"} />
+                       {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                   </S.AdminBedMenNonActiveDiv>
 
-                    <S.ManToggleContainer onClick={() => toggleBed("M")}>
-                        <S.ManToggleCircle Active={bedStatus.bed1} />
-                    </S.ManToggleContainer>
+                   <S.ManToggleContainer onClick={() => toggleBed("M")}>
+                       <S.ManToggleCircle Active={bedStatus.bed1} />
+                   </S.ManToggleContainer>
 
-                    <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
-                        <S.BedIcon src={"/Bed.svg"} />
-                        {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                    </S.AdminBedWomenNonActiveDiv>
+                   <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
+                       <S.BedIcon src={"/Bed.svg"} />
+                       {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+                   </S.AdminBedWomenNonActiveDiv>
 
-                    <S.WomanToggleContainer onClick={() => toggleBed("W")}>
-                        <S.WomanToggleCircle Active={bedStatus.bed2} />
-                    </S.WomanToggleContainer>
-                </>
-            ) : (
-                <>
-                    <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
-                        <S.BedIcon src={"/Bed.svg"} />
-                        {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                    </S.BedMenNonActiveDiv>
-
-                    <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
-                        <S.BedIcon src={"/Bed.svg"} />
-                        {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                    </S.BedWomenNonActiveDiv>
-                </>
-            )}
+                  <S.WomanToggleContainer onClick={() => toggleBed("W")}>
+                      <S.WomanToggleCircle Active={bedStatus.bed2} />
+                  </S.WomanToggleContainer>
+            ) 
         </S.BedDiv>
     </S.Container>
     </>
