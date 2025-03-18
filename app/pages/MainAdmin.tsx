@@ -7,6 +7,7 @@ import axios from "axios";
 import Nav from "../components/Nav";
 import VisitDataAdmin from "../components/VisitDataAdmin";
 import RentDataAdmin from "../components/RentDataAdmin";
+import RentModal from "@/components/RentModalAdmin";
 import { VisitAdminDatas } from "../components/VisitDataAdmin";
 import { RentAdminDatas } from "../components/RentDataAdmin";
 import { RequestRentDatas } from "@/components/RequestRentData";
@@ -15,6 +16,8 @@ import RequestRentData from "@/components/RequestRentData";
 function MainAdmin() {
     const [Admin, setAdmin] = useState(false);
     const [token, setToken] = useState<string | null>(null);
+
+    const [rentModalOpen, setRentModalOpen] = useState(false);
     
     const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
     const [BActive, setBActive] = useState(true); // 침대 현황 상태
@@ -118,6 +121,10 @@ function MainAdmin() {
     setRequestRentDataList((prevList) => prevList.filter((item) => item.rentalId !== rentalId));
   };
 
+  function rentModalClick() {
+    setRentModalOpen(true);
+  }
+
   useEffect(() => {
     async function fetchBedStatus() {
         try {
@@ -165,6 +172,10 @@ function MainAdmin() {
 
   return (
     <>
+    {rentModalOpen && (
+      <RentModal onClose={() => setRentModalOpen(false)} />
+    )}
+
     <S.Container>
         <Nav />
         <S.TeacherSection>
@@ -197,7 +208,7 @@ function MainAdmin() {
                 ))}
             </S.RentDataCards>
             <S.RentActiveBtnContainer>
-                <S.RentActiveBtn>대여 기록 추가하기</S.RentActiveBtn>
+                <S.RentActiveBtn onClick={rentModalClick}>대여 기록 추가하기</S.RentActiveBtn>
                 <S.RentActiveBtn onClick={() => setRequestBarOpen(true)}>
                     대여 신청 확인하기
                 </S.RentActiveBtn>
@@ -206,7 +217,7 @@ function MainAdmin() {
             {requestBarOpen && (
                 <S.requestbar className={isClosing ? "closing" : ""}>
                     <S.requestbarbtn src="./X.svg" onClick={closeRequestBar} />
-                    <S.requestTitle>학생들의 대여 신청</S.requestTitle>
+                    <S.requestTitle onClick={() => setRentModalOpen(true)}>학생들의 대여 신청</S.requestTitle>
                     <S.RequestRentDataCards>
                     {RequestRentDataList.map(({ rentalId, ...rentData }) => (
                       <RequestRentData

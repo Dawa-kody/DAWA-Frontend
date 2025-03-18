@@ -5,20 +5,24 @@ export interface RentDatas {
     id: number;
     count: string;
     formattedDate: string;
+    accepted: boolean;
     rental: string;
     rentaled: boolean;
 }
 
-function RentData({ count, formattedDate, rental, rentaled }: Omit<RentDatas, "id">) {
+function RentData({ count, formattedDate, rental, rentaled, accepted }: Omit<RentDatas, "id">) {
     return (
         <S.Container>
             <S.ItemName>{rental}</S.ItemName>
             <S.Line />
-            {rentaled ? (
-                <S.ReturnTrue>반납완료</S.ReturnTrue>
-            ) : (
+            {!accepted && !rentaled ? (
+                <S.Accept>신청중</S.Accept>
+            ) : accepted && !rentaled ? (
                 <S.ReturnFalse>미반납</S.ReturnFalse>
+            ) : (
+                <S.ReturnTrue>반납완료</S.ReturnTrue>
             )}
+
             <S.ListDiv>
                 <S.NumberTitle>개수</S.NumberTitle>
                 <S.DateTitle>날짜</S.DateTitle>
