@@ -203,9 +203,9 @@ function MainAdmin() {
             )}
 
             <S.RentDataCards>
-                {rentAdminDataList.map(({ id, ...rent }) => (
-                  <RentDataAdmin key={id} {...rent} />
-                ))}
+            {rentAdminDataList.map(({ rentalId, ...rent }) => (
+                <RentDataAdmin key={rentalId} rentalId={rentalId} {...rent} />
+            ))}
             </S.RentDataCards>
             <S.RentActiveBtnContainer>
                 <S.RentActiveBtn onClick={rentModalClick}>대여 기록 추가하기</S.RentActiveBtn>

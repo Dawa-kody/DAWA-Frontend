@@ -184,3 +184,23 @@ export const StudentName = styled.span`
 
     color: #000000;
 `
+
+export const Switch = styled.div`
+    position: absolute;
+    width: 66px;
+    height: 26px;
+    top: 100px;
+    right: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 700;
+    
+    border-radius: 5px;
+    border: 1px solid #E4E7EC;
+    background-color: #F2F4F7;
+`
