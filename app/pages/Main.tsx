@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "../styles/Main";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
 
 import Nav from "../components/Nav";
 import VisitModal from "../components/VisitModal";
@@ -20,7 +20,9 @@ interface DecodedToken {
   exp?: number; // 만료 시간 (선택적)
 }
 
+
 function Main() {
+  const router = useRouter();
   const [visitModalOpen, setVisitModalOpen] = useState(false);
   const [rentModalOpen, setRentModalOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
@@ -34,6 +36,13 @@ function Main() {
     bed1: true,
     bed2: true,
   }); // 침대 상태 관리
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if(role === "ROLE_TEACHER") {
+      router.push("/MainAdmin");
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
