@@ -151,3 +151,19 @@ export const ReturnTrue = styled.span`
 
     color: #95979D;
 `
+
+export const Accept = styled.span`
+    position: absolute;
+    width: 56px;
+    height: 19px;
+    left: 102px;
+    top: 16px;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #6948ED;
+`

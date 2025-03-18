@@ -66,8 +66,9 @@ export const student = styled.span`
 
 export const acceptBtn = styled.div`
     position: absolute;
-    width: 100%;
+    width: 50%;
     height: 30px;
+    right: 0px;
     bottom: 0px;
 
     display: flex;
@@ -80,6 +81,25 @@ export const acceptBtn = styled.div`
 
     color: white;
     background-color: #6948ED;
-    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+`
+
+export const denyBtn = styled.div`
+    position: absolute;
+    width: 50%;
+    height: 30px;
+    left: 0px;
+    bottom: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #98A2B3;
+    background-color: #F2F4F7;
+    border-bottom-left-radius: 10px;
 `
