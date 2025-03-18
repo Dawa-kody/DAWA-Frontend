@@ -163,7 +163,7 @@
   height:280px;
   position:absolute;
   left:1190px;
-  top:540px;
+  top:600px;
   background-color:#ffff;
   border-radius:10px;
   `

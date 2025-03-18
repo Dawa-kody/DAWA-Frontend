@@ -1,8 +1,7 @@
   import React, { useState, useEffect, useCallback } from "react";
   import * as S from "../styles/sheet";
   import Nav from "../components/Nav"; //nav
-  import Calendar from "../components/Calendar"; //캘런더
-  import Today from "../components/Today"; //오늘 날짜 
+  import Calendar from "../components/Calendar"; //캘린더
   import Search from "../components/Search"; //검색기능
   import CountDate from "../components/CountDate"; //날짜 선정
   import TableRow from "../components/TableRow"; //태이블로우
@@ -204,9 +203,9 @@ function Sheet() {
 
         {/** */}
         <S.CalenderWhite>
-          <Calendar onDateSelect={handleDateSelect} />
-          <Today />
+          <Calendar/>
         </S.CalenderWhite>
+
         <S.StudentSheetCheck>
           <Search />
           <S.StudentSheetCheckText>학생 문진 기록 확인</S.StudentSheetCheckText>
