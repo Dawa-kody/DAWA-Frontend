@@ -4,7 +4,7 @@ import { ko } from "date-fns/locale";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date()); // 📌 처음 상태에서 오늘 날짜 선택
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
   const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
@@ -13,11 +13,9 @@ const Calendar = () => {
     const startDate = startOfMonth(currentMonth);
     const endDate = endOfMonth(currentMonth);
     const startDayIndex = getDay(startDate);
-    const totalDays = endDate.getDate();
   
     let days = [];
   
-    // 📌 전달 날짜 (이번 달 시작 요일 전에 표시)
     const prevMonthEndDate = subDays(startDate, startDayIndex);
     for (let i = 0; i < startDayIndex; i++) {
       const prevDate = addDays(prevMonthEndDate, i);
@@ -28,21 +26,26 @@ const Calendar = () => {
       );
     }
   
-    // 📌 이번 달 날짜 추가
     let day = startDate;
     while (day <= endDate) {
-      const isSelected = selectedDate && isSameDay(day, selectedDate);
-      const isCurrentDay = isToday(day); // 📌 오늘 날짜 확인
-      
+      const currentDay = new Date(day);
+      const isSelected = selectedDate && isSameDay(currentDay, selectedDate);
+      const isCurrentDay = isToday(currentDay);
+  
+      const dayOfWeek = getDay(currentDay);
+      const textColor =
+        dayOfWeek === 0 ? "text-red-500" : dayOfWeek === 6 ? "text-blue-500" : "text-gray-600";
+  
       days.push(
-        <div key={day.toString()} className="w-12 h-10 flex items-center justify-center">
+        <div key={day.toString()} className={`w-12 h-10 flex items-center justify-center ${textColor}`}>
           <div
             className={`w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-sm
-              ${isCurrentDay ? "bg-blue-500 text-white" : ""}
-              ${isSelected ? "bg-purple-500 text-white" : "hover:bg-gray-200"}`}
-            onClick={() => setSelectedDate(day)}
+              ${isSelected ? "bg-purple-500 text-white" : ""}
+              ${isCurrentDay && !isSelected ? "bg-blue-500 text-white" : ""}
+              ${!isSelected && !isCurrentDay ? "hover:bg-gray-200" : ""}`}
+            onClick={() => setSelectedDate(currentDay)}
           >
-            {format(day, "d")}
+            {format(currentDay, "d")}
           </div>
         </div>
       );
@@ -51,36 +54,41 @@ const Calendar = () => {
     }
   
     return days;
-  };  
+  };
+  
 
   return (
-    <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={prevMonth}>&lt;</button>
-        <h2 className="text-lg font-bold">{format(currentMonth, "yyyy년 MM월", { locale: ko })}</h2>
-        <button onClick={nextMonth}>&gt;</button>
-      </div>
-      
-      {/* 📌 요일 부분을 flex로 감싸고 가운데 정렬 */}
-      <div className="grid grid-cols-7 gap-y-0.5 text-center">
-        {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
-          <div
-            key={index}
-            className={`w-12 flex justify-center font-medium ${day === "일" ? "text-red-500" : day === "토" ? "text-blue-500" : "text-gray-600"}`}
-          >
-            {day}
-          </div>
-        ))}
-        
-        {/* 날짜들 출력 */}
-        {renderDays()}
-      </div>
+    <div className="w-[450px] h-[330px] absolute left-[1190px] top-[200px] bg-white rounded-[10px] flex">
+      <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-4">
+          <button className="px-16" onClick={prevMonth}>&lt;</button>
+          <h2 className="text-lg font-bold">{format(currentMonth, "yyyy년 MM월", { locale: ko })}</h2>
+          <button className="px-16" onClick={nextMonth}>&gt;</button>
+        </div>
 
-      {selectedDate && (
-        <p className="mt-2 text-center font-semibold">
-          선택한 날짜: {format(selectedDate, "yyyy년 MM월 dd일", { locale: ko })}
-        </p>
-      )}
+        <div className="grid grid-cols-7 gap-y-0.5 text-center border-b pb-2">
+          {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
+            <div
+              key={index}
+              className={`w-12 flex justify-center font-medium ${
+                day === "일" ? "text-red-500" : day === "토" ? "text-blue-500" : "text-gray-600"
+              }`}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-7 gap-y-0.5 text-center">
+          {renderDays()}
+        </div>
+
+        {selectedDate && (
+          <p className="mt-2 text-center font-semibold">
+            {format(selectedDate, "yyyy년 MM월 dd일", { locale: ko })}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

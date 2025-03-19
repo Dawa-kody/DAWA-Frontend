@@ -518,7 +518,7 @@ export const ManToggleCircle = styled.div<{ Active : boolean }>`
     order: 0;
     flex-grow: 0;
 
-    transition: all 0.7s ease-in-out;
+    transition: all 0.2s ease-in-out;
     transform:${({ Active }) => (Active ? "translateX(0px)" : "translateX(-14px)")};
     
 `
@@ -542,7 +542,7 @@ export const WomanToggleCircle = styled.div<{ Active : boolean }>`
     order: 0;
     flex-grow: 0;
 
-    transition: all 0.7s ease-in-out;
+    transition: all 0.2s ease-in-out;
     transform:${({ Active }) => (Active ? "translateX(0px)" : "translateX(-14px)")};
     
 `
