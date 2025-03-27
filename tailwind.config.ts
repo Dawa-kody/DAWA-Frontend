@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        tableheader: "#F0EDFE",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
