@@ -17,8 +17,8 @@ const Calendar = () => {
     let days = [];
   
     const prevMonthEndDate = subDays(startDate, startDayIndex);
-    for (let i = 0; i < startDayIndex; i++) {
-      const prevDate = addDays(prevMonthEndDate, i);
+      for (let i = 0; i < startDayIndex; i++) {
+        const prevDate = addDays(prevMonthEndDate, i);
       days.push(
         <div key={`prev-${i}`} className="w-12 h-10 flex items-center justify-center text-gray-400">
           {format(prevDate, "d")}

@@ -27,6 +27,7 @@ function RequestRentData({ rentalId, count, rental, schoolNumber, name, onRemove
   }, []);
 
   const requestSubmit = async () => {
+
     try {
       await axios.put(
         `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept/${rentalId}`,

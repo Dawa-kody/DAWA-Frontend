@@ -6,7 +6,6 @@ function Sheet() {
     return (
         <>
         <Nav />
-        {/*메인 바디 */}
         <div className=" p-10">
             <SubSheet />
         </div>
