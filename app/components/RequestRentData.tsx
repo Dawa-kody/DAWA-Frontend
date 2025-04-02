@@ -26,35 +26,11 @@ function RequestRentData({ rentalId, count, rental, schoolNumber, name, onRemove
     }
   }, []);
 
-  const requestSubmit = async () => {
-
+  const handleRequest = async (accepted: boolean) => {
     try {
       await axios.put(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept/${rentalId}`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept/${rentalId}?accepted=${accepted}`,
         {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "ngrok-skip-browser-warning": "69420",
-            withCredentials: true,
-          },
-        }
-      );
-
-      onRemove(rentalId);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("Axios 오류:", error.response?.data || error.message);
-      } else {
-        console.error("알 수 없는 오류:", error);
-      }
-    }
-  };
-
-  const requestDelete = async () => {
-    try {
-      await axios.delete(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalCancel/${rentalId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -63,7 +39,6 @@ function RequestRentData({ rentalId, count, rental, schoolNumber, name, onRemove
           withCredentials: true,
         }
       );
-
       onRemove(rentalId);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -81,11 +56,10 @@ function RequestRentData({ rentalId, count, rental, schoolNumber, name, onRemove
       <S.line />
       <S.requester>신청인</S.requester>
       <S.student>{schoolNumber} {name}</S.student>
-      <S.denyBtn onClick={requestDelete}>거절</S.denyBtn>
-      <S.acceptBtn onClick={requestSubmit}>수락</S.acceptBtn>
+      <S.denyBtn onClick={() => handleRequest(false)}>거절</S.denyBtn>
+      <S.acceptBtn onClick={() => handleRequest(true)}>수락</S.acceptBtn>
     </S.RequestRentDataContainer>
   );
 }
-
 
 export default RequestRentData;
