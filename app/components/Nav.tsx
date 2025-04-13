@@ -11,6 +11,7 @@ function Nav() {
   const { isAdmin } = useAuth();
   const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | 'moonjin' | null>(null);
   const [MouseOver, setMouseOver] = useState(false);
+  const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting'>('home');
 
   useEffect(() => {
     if (pathname === '/') {
@@ -23,10 +24,21 @@ function Nav() {
       setActiveMenu(null);
     }
   }, [pathname]);
+
+  const handleIconClick = (icon: 'home' | 'folder' | 'setting') => {
+    setActiveIcon(icon);
   
-  const shandleNavigation = (menuName: 'home' | 'dangerous' | 'moonjin', path: string) => {
-    setActiveMenu(menuName);
-    router.push(path);
+    switch (icon) {
+      case 'home':
+        router.push('/');
+        break;
+      case 'folder':
+        router.push('/Sheet');
+        break;
+      case 'setting':
+        router.push('/FirstAid');
+        break;
+    }
   };
 
   const handlelogout = () => {
@@ -43,42 +55,27 @@ function Nav() {
         <S.Logo src="/Logo.svg" />
         <S.LogoText>다와</S.LogoText>
 
-        {isAdmin && <S.AdminText>선생님, 안녕하세요!</S.AdminText>}
-
         {isAdmin && (
-          <S.MoonjinHap
-            onClick={() => shandleNavigation('moonjin', '/Sheet')}
-            Active={activeMenu === 'moonjin'}
-          >
-            <S.Moonjin
-              src={activeMenu === 'moonjin' ? '/moonjinPurple.svg' : '/moonjinWhite.svg'}
-              alt="문진표"
+          <S.IconContainer>
+          <S.HomeWrapper onClick={() => handleIconClick('home')}>
+            <S.HomeIcon
+              src={activeIcon === 'home' ? '/ClickedHome.svg' : '/UnclickedHome.svg'}
             />
-            <S.MoonjinText active={activeMenu === 'moonjin'}>문진표 작성</S.MoonjinText>
-          </S.MoonjinHap>
+          </S.HomeWrapper>
+        
+          <S.FolderWrapper onClick={() => handleIconClick('folder')}>
+            <S.FolderIcon
+              src={activeIcon === 'folder' ? '/ClickedFolder.svg' : '/UnclikedFolder.svg'}
+            />
+          </S.FolderWrapper>
+        
+          <S.SettingWrapper onClick={() => handleIconClick('setting')}>
+            <S.SettingIcon
+              src={activeIcon === 'setting' ? '/ClickedSetting.svg' : '/UnclikedSetting.svg'}
+            />
+            </S.SettingWrapper>
+          </S.IconContainer>
         )}
-
-        <S.HomeHap
-          onClick={() => shandleNavigation('home', '/')}
-          Active={activeMenu === 'home'}
-        >
-          <S.Home
-            src={activeMenu === 'home' ? '/HomePurple.svg' : '/HomeWhite.svg'}
-            alt="홈"
-          />
-          <S.HomeText active={activeMenu === 'home'}>대시보드</S.HomeText>
-        </S.HomeHap>
-
-        <S.DangerousHap
-          onClick={() => shandleNavigation('dangerous', '/FirstAid')}
-          Active={activeMenu === 'dangerous'}
-        >
-          <S.Dangerous
-            src={activeMenu === 'dangerous' ? '/ActivityPurple.svg' : '/ActivityWhite.svg'}
-            alt="응급사항"
-          />
-          <S.DangerousText active={activeMenu === 'dangerous'}>응급처치</S.DangerousText>
-        </S.DangerousHap>
 
         <S.Login
           onMouseLeave={() => setMouseOver(false)}
@@ -86,6 +83,7 @@ function Nav() {
           src={'/PersonPurple.svg'}
           alt="프로필"
         />
+
         {MouseOver && (
           <S.LoginHoverBox
             onMouseLeave={() => setMouseOver(false)}
@@ -97,6 +95,7 @@ function Nav() {
             </S.TextContainer>
           </S.LoginHoverBox>
         )}
+        
         </S.NavContainer>
     </S.Component>
   );
