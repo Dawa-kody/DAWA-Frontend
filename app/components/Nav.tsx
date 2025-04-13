@@ -3,31 +3,33 @@
 import React, { useState, useEffect } from 'react';
 import * as S from '../styles/Nav';
 import { useRouter, usePathname } from 'next/navigation';
-import { useAuth } from '../components/AuthContext';
 
 function Nav() {
   const router = useRouter();
   const pathname = usePathname();
-  const { isAdmin } = useAuth();
   const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | 'moonjin' | null>(null);
   const [MouseOver, setMouseOver] = useState(false);
   const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting'>('home');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (pathname === '/') {
-      setActiveMenu('home');
-    } else if (pathname === '/FirstAid') {
-      setActiveMenu('dangerous');
+      setActiveIcon('home');
     } else if (pathname === '/Sheet') {
-      setActiveMenu('moonjin');
-    } else {
-      setActiveMenu(null);
+      setActiveIcon('folder');
+    } else if (pathname === '/Management') {
+      setActiveIcon('setting');
     }
   }, [pathname]);
 
+  useEffect(() => {
+      const role = localStorage.getItem("role");
+      if(role === "ROLE_TEACHER") {
+        setIsAdmin(true);
+      }
+    }, []);
+
   const handleIconClick = (icon: 'home' | 'folder' | 'setting') => {
-    setActiveIcon(icon);
-  
     switch (icon) {
       case 'home':
         router.push('/');
@@ -36,7 +38,7 @@ function Nav() {
         router.push('/Sheet');
         break;
       case 'setting':
-        router.push('/FirstAid');
+        router.push('/Management');
         break;
     }
   };
