@@ -7,7 +7,6 @@ import { useRouter, usePathname } from 'next/navigation';
 function Nav() {
   const router = useRouter();
   const pathname = usePathname();
-  const [activeMenu, setActiveMenu] = useState<'home' | 'dangerous' | 'moonjin' | null>(null);
   const [MouseOver, setMouseOver] = useState(false);
   const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting'>('home');
   const [isAdmin, setIsAdmin] = useState(false);
