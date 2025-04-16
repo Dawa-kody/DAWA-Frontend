@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { 
   format, addMonths, subMonths, startOfMonth, endOfMonth, 
   addDays, isToday, isSameDay, getDay, subDays 
 } from "date-fns";
-import { ko } from "date-fns/locale";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -16,21 +15,42 @@ const Calendar = () => {
 
   const fetchDateData = async (date: Date) => {
     try {
-      const formattedDate = format(date, "yyyy-MM-dd");
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
+      const yearMonthDayParam = format(date, "yyyy.MM.dd");
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date?yearMonthDay=${yearMonthDayParam}`,{
         headers: {
-          "ngrok-skip-browser-warning": "69420",
+          "ngrok-skip-browser-warning": "true",
         },
-        withCredentials: true,
-        params: { date: formattedDate },
-      });
-
+      }
+        
+      );
+  
       console.log("API 응답:", response.data);
       setData(response.data);
     } catch (error) {
       console.error("API 요청 오류:", error);
     }
   };
+
+  const fetchInitialData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+          },
+        }
+      );
+      console.log("초기 API 응답:", response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error("초기 API 요청 오류:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchInitialData();
+  }, []);  
 
   const handleDateClick = (date: Date) => {
     setSelectedDate(date);
