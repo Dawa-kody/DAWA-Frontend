@@ -12,6 +12,65 @@ function BackupModal({ onClose }: Modalprops){
     const [date, setDate] = useState("");
     const [isChecked, setIsChecked] = useState(false);
 
+    const handleSubmit = async () => {
+        try {
+            if (!isChecked) {
+                if (!date) {
+                    alert("날짜를 선택해주세요.");
+                    return;
+                }
+
+                const response = await axios.get(
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`,
+                    {
+                        responseType: 'blob', // 바이너리 응답으로 받기
+                        headers: {
+                            'ngrok-skip-browser-warning': '69420',
+                        }
+                    }
+                );
+
+                // 브라우저에서 파일 다운로드 처리
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+
+                // 파일 이름은 백엔드에서 header로 내려주거나 직접 지정
+                link.setAttribute('download', 'downloaded_excel.xlsx');
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            }
+
+            else {
+                const Date = date.split("-").slice(1).join(".");
+                const response = await axios.post(
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`, { date: Date },
+                    {
+                        responseType: 'blob',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'ngrok-skip-browser-warning': '69420',
+                        }
+                    }
+                );
+
+                // 브라우저에서 파일 다운로드 처리
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+
+                // 파일 이름은 백엔드에서 header로 내려주거나 직접 지정
+                link.setAttribute('download', 'downloaded_excel.xlsx');
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            }
+        } catch (error) {
+            console.error("에러 발생:", error);
+        }
+    };  
+
     return(
         <S.background
             ref={modalBackground}
@@ -61,29 +120,7 @@ function BackupModal({ onClose }: Modalprops){
                             </>
                         )}
                         <S.Submit
-                            onClick={async () => {
-                                try {
-                                    if (isChecked) {
-                                        // 날짜 입력이 없는 경우 방어 처리
-                                        if (!date) {
-                                            alert("날짜를 선택해주세요.");
-                                            return;
-                                        }
-
-                                        // 체크박스 체크된 경우: 날짜와 함께 요청
-                                        await axios.post("/api/backup-by-date", {
-                                            date: date
-                                        });
-                                        alert("날짜 기반 백업 완료!");
-                                    } else {
-                                        // 체크 안 된 경우: 기본 요청
-                                        await axios.post("/api/backup-full");
-                                        alert("전체 백업 완료!");
-                                    }
-                                } catch (error) {
-                                    alert("에러 발생: " + (error as any).message);
-                                }
-                            }}
+                            onClick={handleSubmit}
                         >
                             불러오기
                         </S.Submit>
