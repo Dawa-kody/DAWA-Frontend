@@ -7,8 +7,8 @@ interface DrugModalProps {
   initialData?: {
     id?: number; // 수정 시 ID 필요
     name: string;
-    category: string;
-    quantity: string;
+    type: string;
+    count: number;
   };
 }
 
@@ -68,8 +68,8 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
   useEffect(() => {
     if (initialData) {
       setName(initialData.name);
-      setCategory(initialData.category);
-      setQuantity(initialData.quantity?.replace('개', '') || '');
+      setCategory(initialData.type);
+      setQuantity(initialData.count !== undefined ? `${initialData.count}개` : '');
     }
   }, [initialData]);
 
@@ -118,10 +118,9 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="정제">정제</option>
-          <option value="캡슐">캡슐</option>
-          <option value="시럽">시럽</option>
-          <option value="연고">연고</option>
+          <option value="일반약">일반약</option>
+          <option value="감기약">감기약</option>
+          <option value="진통제">진통제</option>
         </Select>
         <Input
           placeholder="용량"

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import MedicineTable from '@/components/MediList';
 import DrugModal from '@/components/MediModal';
-import ConfirmModal from '@/components/ConfirmModal';
 import Nav from '@/components/Nav';
 
 interface Medicine {
@@ -16,7 +15,6 @@ interface Medicine {
 
 export default function DrugManagementPage() {
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [editData, setEditData] = useState<Medicine | null>(null);
 
   return (
@@ -24,7 +22,6 @@ export default function DrugManagementPage() {
       <Nav />
       <MedicineTable
         onAdd={() => setIsAddOpen(true)}
-        onDelete={() => setIsDeleteOpen(true)}
         onEdit={(data) => setEditData(data)}
       />
       {isAddOpen && <DrugModal onClose={() => setIsAddOpen(false)} />}
@@ -34,7 +31,6 @@ export default function DrugManagementPage() {
           onClose={() => setEditData(null)}
         />
       )}
-      {isDeleteOpen && <ConfirmModal onClose={() => setIsDeleteOpen(false)} />}
     </>
   );
 }
