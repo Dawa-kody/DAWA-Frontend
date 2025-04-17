@@ -19,7 +19,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Count = styled.input`
+export const Count = styled.div`
 width: 3.75rem;
 outline: none;
 text-align: center;
@@ -38,7 +38,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Class = styled.input`
+export const Class = styled.div`
 width: 6.25rem;
 outline: none;
 text-align: center;
@@ -57,7 +57,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Name = styled.input`
+export const Name = styled.div`
 width: 6.25rem;
 outline: none;
 text-align: center;
@@ -76,7 +76,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Gender = styled.input`
+export const Gender = styled.div`
 width: 5rem;
 outline: none;
 text-align: center;
@@ -95,7 +95,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Division = styled.input`
+export const Division = styled.div`
 width: 7.5rem;
 outline: none;
 text-align: center;
@@ -114,7 +114,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Symptom = styled.input`
+export const Symptom = styled.div`
 width: 8.75rem;
 outline: none;
 text-align: center;
@@ -133,7 +133,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Handle = styled.input`
+export const Handle = styled.div`
 width: 7.5rem;
 outline: none;
 text-align: center;
@@ -152,7 +152,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Guesu = styled.input`
+export const Guesu = styled.div`
 width: 4.37rem;
 outline: none;
 text-align: center;
@@ -171,7 +171,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Medicine1 = styled.input`
+export const Medicine1 = styled.div`
 width: 6.25rem;
 outline: none;
 text-align: center;
@@ -190,7 +190,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Guesu1 = styled.input`
+export const Guesu1 = styled.div`
 width: 5rem;
 outline: none;
 text-align: center;
@@ -209,7 +209,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Medicine2 = styled.input`
+export const Medicine2 = styled.div`
 width: 6.25rem;
 outline: none;
 text-align: center;
@@ -228,7 +228,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Guesu2 = styled.input`
+export const Guesu2 = styled.div`
 width: 7.5rem;
 outline: none;
 text-align: center;
@@ -247,7 +247,7 @@ border: 1px solid black;
 user-select: none;
 `;
 
-export const Bingo = styled.input`
+export const Bingo = styled.div`
 width: 14.37rem;
 outline: none;
 text-align: center;
