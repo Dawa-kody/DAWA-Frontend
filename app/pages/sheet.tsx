@@ -12,28 +12,29 @@ function Sheet() {
 
     function saveModalClick() {
         setSaveModalOpen(true);
-      }
+    } 
 
     return (
         <>
-        <Nav />
-        <div className=" p-10">
-            <MainSheet />
-            <SubSheet />
-        </div>
-        <StudentLog />
-        <Calendar />
-        <div className='z-30'>
-        <S.Wrapper>
-                <S.saveBtn>저장하기</S.saveBtn>
-                <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
-        </S.Wrapper>
-
-        </div>
-
-        {saveModalOpen && (
-            <BackupModal onClose={() => setSaveModalOpen(false)} />
-        )}
+            <Nav />
+            {/*시트 부분 */}
+            <div className=' flex pt-[3.5rem] pl-[2.06rem] pr-[2.44rem] pb-[3.88rem]'>
+                <div className=" flex flex-col justify-between w-[80rem] h-[53.9rem]">
+                    <MainSheet />
+                    <SubSheet />
+                </div>
+                <div className=' flex flex-col'>
+                    <StudentLog />
+                    <Calendar />
+                    <S.Wrapper>
+                        <S.saveBtn>저장하기</S.saveBtn>
+                        <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
+                    </S.Wrapper>
+                    {saveModalOpen && (
+                        <BackupModal onClose={() => setSaveModalOpen(false)} />
+                    )}
+                </div>
+            </div>
         </>
     );
 }
