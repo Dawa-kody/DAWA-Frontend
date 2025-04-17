@@ -16,17 +16,17 @@ const Calendar = () => {
   const fetchDateData = async (date: Date) => {
     try {
       const yearMonthDayParam = format(date, "yyyy.MM.dd");
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date?yearMonthDay=${yearMonthDayParam}`,{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date?yearMonthDay=${yearMonthDayParam}`, {
         headers: {
-          "ngrok-skip-browser-warning": "true",
+          'ngrok-skip-browser-warning': '69420',
         },
       }
-        
-      );
-  
+    );
       console.log("API 응답:", response.data);
-      setData(response.data);
-    } catch (error) {
+      setData(response.data)
+    }
+    
+    catch (error) {
       console.error("API 요청 오류:", error);
     }
   };

@@ -1,6 +1,28 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import * as S from "../styles/Mainsheet";
+
+interface SheetData {
+  serialNumber: number;
+  userName: string;
+  schoolNumber: string;
+  gender: string;
+  division: string;
+  disease: string;
+  treatment: string;
+  quantity: number;
+  medication1: string;
+  quantity1: number;
+  medication2: string;
+  quantity2: number;
+  notes: string;
+}
+
+interface SheetResponse {
+  questionnaires: SheetData[];
+  groupedStatistics?: any; // 필요에 따라 타입 구체화 가능
+}
 
 function Td(props: { onEnter: () => void; onSpace: () => void }) {
   function handleKey(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -19,26 +41,49 @@ return(
 }
 
 function MainSheet() {
-  const [rows, setRows] = useState<number[][]>([[...Array(13)].map(function(_, i) { return i; })]);
-  const [count, setCount] = useState(0);
+  const [data, setData] = useState<SheetResponse | null>(null);
+  const divisionMap: { [key: string]: string } = {
+    RESPIRATORY_SYSTEM: "호흡기계",
+    DIGESTIVE_SYSTEM: "소화기계",
+    CIRCULATORY_SYSTEM: "순환기계",
+    NERVOUS_SYSTEM: "정신신경계",
+    MUSCULOSKELETAL_SYSTEM: "근골격계",
+    INTEGUMENTARY_SYSTEM: "피부피하계",
+    UROGENITAL_SYSTEM: "비뇨생식기계",
+    DENTAL_SYSTEM: "구강치아계",
+    OTORHINOLARYNGOLOGY: "이비인후과계",
+    OPHTHALMOLOGY_SYSTEM: "안과계",
+    INFECTIOUS_DISEASE: "감염병",
+    MENTAL_COUNSELING: "상담",
+    OTHER: "기타",
+  };
+  
+  const genderMap: { [key: string]: string } = {
+    MAN: "남성",
+    WOMAN: "여성",
+  };
 
-  function addRow() { //줄추가
-    setRows(function(prevRows) {
-      return [...prevRows, [...Array(13)].map(function(_, i) { return i; })];
-      setCount((prevCount) => prevCount + 1);
-    });
-  }
-
-  function removeRow(index: number) { //줄삭제
-    setRows(function(prevRows) {
-      return prevRows.filter(function(_, rowIndex) {
-        return rowIndex !== index;
-      });
-    });
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get<SheetResponse>(
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
+            headers: {
+              'ngrok-skip-browser-warning': '69420',
+            }
+          }
+        );
+        console.log("초기 API 응답:", res.data);
+        setData(res.data);
+      } catch (err) {
+        console.error("데이터 불러오기 오류:", err);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   return (
-
     <S.Table>
       <thead>
         <tr>
@@ -58,22 +103,31 @@ function MainSheet() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-        <S.Td><S.Count></S.Count></S.Td>
-        <S.Td><S.Class></S.Class></S.Td>
-        <S.Td><S.Name></S.Name></S.Td>
-        <S.Td><S.Gender></S.Gender></S.Td>
-        <S.Td><S.Division></S.Division></S.Td>
-        <S.Td><S.Symptom></S.Symptom></S.Td>
-        <S.Td><S.Handle></S.Handle></S.Td>
-        <S.Td><S.Guesu></S.Guesu></S.Td>
-        <S.Td><S.Medicine1></S.Medicine1></S.Td>
-        <S.Td><S.Guesu1></S.Guesu1></S.Td>
-        <S.Td><S.Medicine2></S.Medicine2></S.Td>
-        <S.Td><S.Guesu2></S.Guesu2></S.Td>
-        <S.Td><S.Bingo></S.Bingo></S.Td>
-        </tr>
-        
+        {data?.questionnaires?.length ? (
+          data.questionnaires.map((item, idx) => (
+            <tr key={item.serialNumber}>
+              <S.Td><S.Count>{idx + 1}</S.Count></S.Td>
+              <S.Td><S.Class />{item.userName}</S.Td>
+              <S.Td><S.Name/>{item.schoolNumber}</S.Td>
+              <S.Td><S.Gender />{genderMap[item.gender] || item.gender}</S.Td>
+              <S.Td><S.Division />{divisionMap[item.division] || item.division}</S.Td>
+              <S.Td><S.Symptom />{item.disease}</S.Td>
+              <S.Td><S.Handle />{item.treatment}</S.Td>
+              <S.Td><S.Guesu />{item.quantity}</S.Td>
+              <S.Td><S.Medicine1 />{item.medication1}</S.Td>
+              <S.Td><S.Guesu1 />{item.quantity1}</S.Td>
+              <S.Td><S.Medicine2 />{item.medication2}</S.Td>
+              <S.Td><S.Guesu2 />{item.quantity2}</S.Td>
+              <S.Td><S.Bingo />{item.notes}</S.Td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={13} className="p-4 text-center">
+              로딩 중이거나 데이터가 없습니다.
+            </td>
+          </tr>
+        )}
       </tbody>
     </S.Table>
   );
