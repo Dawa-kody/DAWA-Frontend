@@ -47,7 +47,7 @@ function BackupModal({ onClose }: Modalprops){
                 const response = await axios.post(
                     `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`, { date: Date },
                     {
-                        responseType: 'blob',
+                        responseType: 'blob', // 바이너리 응답으로 받기
                         headers: {
                             'Content-Type': 'application/json',
                             'ngrok-skip-browser-warning': '69420',

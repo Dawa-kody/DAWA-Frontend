@@ -70,8 +70,10 @@ const Td = styled.td`
 `;
 
 const ActionTd = styled.td`
+  display: flex;
+  flex-direction: row;
   text-align: right;
-  padding: 16px;
+  padding-top: 18px;
   border-top: 1px solid #f0f0f0;
 
   svg {
@@ -107,7 +109,6 @@ const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
       })
       .then((res) => {
         const data = res.data;
-        console.log('✅ 받은 데이터:', data);
         if (Array.isArray(data)) {
           setMedicines(data);
         } else {
@@ -128,7 +129,6 @@ const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
     if (!confirmDelete) return;
   
     try {
-      // id를 경로 변수로 보내기
       await axios.delete(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/medicine/delete/${id}`, {
         headers: {
           'Content-Type': 'application/json',
