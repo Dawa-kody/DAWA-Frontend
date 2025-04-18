@@ -1,67 +1,23 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { 
-  format, addMonths, subMonths, startOfMonth, endOfMonth, 
-  addDays, isToday, isSameDay, getDay, subDays 
-} from "date-fns";
+import { useState, useEffect } from 'react';
+import { useCalendarStore } from '@/store/useCalendarStore';
+import { format, addMonths, subMonths, startOfMonth, endOfMonth, addDays, isToday, isSameDay, getDay, subDays } from 'date-fns';
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [data, setData] = useState<any>(null);
+  const { selectedDate, setSelectedDate, fetchDailyData } = useCalendarStore();
 
   const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
   const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
 
-  const fetchDateData = async (date: Date) => {
-    try {
-      const yearMonthDayParam = format(date, "yyyy.MM.dd");
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date?yearMonthDay=${yearMonthDayParam}`, {
-        headers: {
-          'ngrok-skip-browser-warning': '69420',
-        },
-      }
-    );
-      console.log("API 응답:", response.data);
-      setData(response.data)
-    }
-    
-    catch (error) {
-      console.error("API 요청 오류:", error);
-    }
-  };
-
-  const fetchInitialData = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-          },
-        }
-      );
-      console.log("초기 API 응답:", response.data);
-      setData(response.data);
-    } catch (error) {
-      console.error("초기 API 요청 오류:", error);
-    }
-  };
-  
-  useEffect(() => {
-    fetchInitialData();
-  }, []);  
-
   const handleDateClick = (date: Date) => {
     setSelectedDate(date);
-    fetchDateData(date);
+    fetchDailyData(date);
   };
 
   const renderDays = () => {
     const startDate = startOfMonth(currentMonth);
     const endDate = endOfMonth(currentMonth);
     const startDayIndex = getDay(startDate);
-
     let days = [];
 
     const prevMonthEndDate = subDays(startDate, startDayIndex);
@@ -81,8 +37,7 @@ const Calendar = () => {
       const isCurrentDay = isToday(currentDay);
       const dayOfWeek = getDay(currentDay);
 
-      const textColor =
-        dayOfWeek === 0 ? "text-red-500" : dayOfWeek === 6 ? "text-blue-500" : "text-gray-600";
+      const textColor = dayOfWeek === 0 ? "text-red-500" : dayOfWeek === 6 ? "text-blue-500" : "text-gray-600";
 
       days.push(
         <div key={day.toString()} className={`w-12 h-10 flex items-center justify-center ${textColor}`}>
@@ -104,6 +59,11 @@ const Calendar = () => {
     return days;
   };
 
+  useEffect(() => {
+    const { initialize } = useCalendarStore.getState();
+    initialize();
+  }, []);
+
   return (
     <div className="w-[450px] h-[330px] absolute left-[1190px] top-[200px] bg-white rounded-[10px] flex">
       <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
@@ -117,9 +77,7 @@ const Calendar = () => {
           {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
             <div
               key={index}
-              className={`w-12 flex justify-center font-medium ${
-                day === "일" ? "text-red-500" : day === "토" ? "text-blue-500" : "text-gray-600"
-              }`}
+              className={`w-12 flex justify-center font-medium ${day === "일" ? "text-red-500" : day === "토" ? "text-blue-500" : "text-gray-600"}`}
             >
               {day}
             </div>
