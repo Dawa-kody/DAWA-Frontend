@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import * as S from "../styles/CardContent";
 import axios from "axios";
-import Nav from "@/components/Nav";
+import Nav from "@/organisms/Nav";
 
 interface Tag {
     name: string;
