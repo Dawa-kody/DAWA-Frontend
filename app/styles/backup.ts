@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    width: 450px;
-
+    width: 34rem;
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    justify-content: space-between;
+    margin-top: 1.12rem;
 `
 
 export const saveBtn = styled.button`

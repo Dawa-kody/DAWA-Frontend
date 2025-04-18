@@ -65,7 +65,7 @@ const Calendar = () => {
   }, []);
 
   return (
-    <div className="w-[450px] h-[330px] absolute left-[1190px] top-[200px] bg-white rounded-[10px] flex">
+    <div className="w-[34rem] h-[20rem] bg-white rounded-[0.625rem] flex">
       <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
           <button className="px-16" onClick={prevMonth}>&lt;</button>

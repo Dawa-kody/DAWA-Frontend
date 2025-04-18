@@ -23,16 +23,18 @@ function Sheet() {
                     <MainSheet />
                     <SubSheet />
                 </div>
-                <div className=' flex flex-col'>
-                    <StudentLog />
+                <div className=' flex flex-col gap-[2.5rem] ml-[1.5rem]'>
                     <Calendar />
-                    <S.Wrapper>
-                        <S.saveBtn>저장하기</S.saveBtn>
-                        <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
-                    </S.Wrapper>
-                    {saveModalOpen && (
-                        <BackupModal onClose={() => setSaveModalOpen(false)} />
-                    )}
+                    <div className=' mt-[2.5rem]'>
+                        <StudentLog />  
+                        <S.Wrapper>
+                            <S.saveBtn>저장하기</S.saveBtn>
+                            <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
+                        </S.Wrapper>
+                        {saveModalOpen && (
+                            <BackupModal onClose={() => setSaveModalOpen(false)} />
+                        )}
+                    </div>
                 </div>
             </div>
         </>
