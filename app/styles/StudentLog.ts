@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-  background-color: #f5f6fa;
+  background-color: white;
   padding: 24px;
   border-radius: 24px;
-  width: 450px;
+  width: 34rem
+  height: 25rem;
   margin: 0 auto;
 `;
 
