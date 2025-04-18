@@ -1,37 +1,26 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useCalendarStore } from "@/store/useCalendarStore";
 
-// 카테고리 리스트
 const categories = [
   "호흡기계", "소화기계", "순환기계", "정신신경계", "근골격계", "피부피하계",
   "비뇨생식기계", "구강치아계", "이비인후과계", "안과계", "감염병", "상담", "기타", "계"
-];
+] as const;
 
 function SubSheet() {
-  const [data, setData] = useState<any>(null);
+  const statistics = useCalendarStore((state) => state.statistics);
 
-  useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/date`, {
-      headers: {
-        "Content-Type": "application/json",
-        'ngrok-skip-browser-warning': '69420',
-      }
-    })
-      .then((res) => {
-        console.log("전체 응답 데이터:", res.data);
-        setData(res.data.groupedStatistics);
-      })
-      .catch((err) => console.error("데이터 로딩 오류:", err));
-  }, []);
+  const renderCategoryRow = (
+    type: "일계" | "월계" | "누계",
+    gender: "남" | "여"
+  ) => {
+    
+  const rowData = statistics[type][gender];
 
-  // 카테고리별 데이터를 출력하는 함수
-  const renderCategoryRow = (type: string, gender: "남" | "여") => {
-    const rowData = data?.[type]?.[gender] || {};
-    return (
-      <>
-        <td className="border border-gray-300 p-2 bg-white">{gender}</td>
-        {categories.map((category, idx) => (
-          <td key={idx} className="border border-gray-300 p-2 bg-white">
+  return (
+    <>
+      <td className="border border-gray-300 p-2 bg-white">{gender}</td>
+        {categories.map((category) => (
+          <td key={category} className="border border-gray-300 p-2 bg-white">
             {rowData[category] ?? 0}
           </td>
         ))}
@@ -46,21 +35,33 @@ function SubSheet() {
           <tr className="bg-tableheader">
             <th className="border border-gray-300 p-2">종류</th>
             <th className="border border-gray-300 p-2">성별</th>
-            {categories.map((category, idx) => (
-              <th key={idx} className="border border-gray-300 p-2">{category}</th>
+            {categories.map((category) => (
+              <th key={category} className="border border-gray-300 p-2">
+                {category}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {["일계", "월계", "누계"].map((type, idx) => (
-            <React.Fragment key={idx}>
-              <tr>
-                <td className="border border-gray-300 p-2 bg-white" rowSpan={2}>{type}</td>
-                {renderCategoryRow(type, "남")}
-              </tr>
-              <tr>{renderCategoryRow(type, "여")}</tr>
-            </React.Fragment>
-          ))}
+          {statistics ? (
+            (["일계", "월계", "누계"] as const).map((type) => (
+              <React.Fragment key={type}>
+                <tr>
+                  <td className="border border-gray-300 p-2 bg-white" rowSpan={2}>
+                    {type}
+                  </td>
+                  {renderCategoryRow(type, "남")}
+                </tr>
+                <tr>{renderCategoryRow(type, "여")}</tr>
+              </React.Fragment>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={16} className="p-4 text-center">
+                데이터 로딩 중...
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
