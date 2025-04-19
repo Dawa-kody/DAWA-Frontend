@@ -5,14 +5,14 @@ import * as S from "../styles/Main";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-import Nav from "../components/Nav";
-import VisitModal from "../components/VisitModal";
-import RentModal from "../components/RentModal";
-import VisitData from "../components/VisitData";
-import RentData from "../components/RentData";
+import Nav from "../organisms/Nav";
+import VisitModal from "../organisms/VisitModal";
+import RentModal from "../organisms/RentModal";
+import VisitData from "../molecules/VisitData";
+import RentData from "../molecules/RentData";
 
-import { VisitDatas } from "../components/VisitData";
-import { RentDatas } from "../components/RentData";
+import { VisitDatas } from "../molecules/VisitData";
+import { RentDatas } from "../molecules/RentData";
 
 // JWT 디코딩 결과를 위한 타입 정의
 interface DecodedToken {

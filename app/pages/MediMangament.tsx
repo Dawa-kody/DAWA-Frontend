@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import MedicineTable from '@/components/MediList';
-import DrugModal from '@/components/MediModal';
-import Nav from '@/components/Nav';
+import MedicineTable from '@/organisms/MediList';
+import DrugModal from '@/organisms/MediModal';
+import Nav from '@/organisms/Nav';
 
 interface Medicine {
   id: number;

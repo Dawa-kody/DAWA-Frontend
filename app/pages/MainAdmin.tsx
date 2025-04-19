@@ -4,14 +4,14 @@ import React, { useState, useEffect } from "react";
 import * as S from "../styles/Main";
 import axios from "axios";
 
-import Nav from "../components/Nav";
-import VisitDataAdmin from "../components/VisitDataAdmin";
-import RentDataAdmin from "../components/RentDataAdmin";
-import RentModal from "@/components/RentModalAdmin";
-import { VisitAdminDatas } from "../components/VisitDataAdmin";
-import { RentAdminDatas } from "../components/RentDataAdmin";
-import { RequestRentDatas } from "@/components/RequestRentData";
-import RequestRentData from "@/components/RequestRentData";
+import Nav from "../organisms/Nav";
+import VisitDataAdmin from "../molecules/VisitDataAdmin";
+import RentDataAdmin from "../molecules/RentDataAdmin";
+import RentModal from "@/organisms/RentModalAdmin";
+import { VisitAdminDatas } from "../molecules/VisitDataAdmin";
+import { RentAdminDatas } from "../molecules/RentDataAdmin";
+import { RequestRentDatas } from "@/molecules/RequestRentData";
+import RequestRentData from "@/molecules/RequestRentData";
 
 function MainAdmin() {
     const [Admin, setAdmin] = useState(false);

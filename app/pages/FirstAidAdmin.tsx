@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import Nav from "../components/Nav";
+import Nav from "../organisms/Nav";
 import * as S from "../styles/FirstAidAdmin";
-import FilterTag from "../components/FilterTag";
+import FilterTag from "../molecules/FilterTag";
 import { useRouter } from "next/navigation";
 
 const FirstAidAdmin = () => {

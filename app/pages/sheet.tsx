@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Nav from '../components/Nav';
-import SubSheet from '../components/subSheet';
-import StudentLog from '@/components/StudentLog';
-import BackupModal from '@/components/BackupModal';
-import MainSheet from '@/components/Mainsheet';
-import Calendar from '@/components/Calendar';
+import Nav from '../organisms/Nav';
+import SubSheet from '../organisms/subSheet';
+import StudentLog from '@/organisms/StudentLog';
+import BackupModal from '@/organisms/BackupModal';
+import MainSheet from '@/organisms/Mainsheet';
+import Calendar from '@/organisms/Calendar';
 import * as S from "../styles/backup"
 
 function Sheet() {

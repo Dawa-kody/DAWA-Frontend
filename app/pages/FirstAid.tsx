@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
-import Nav from '../components/Nav';
+import Nav from '../organisms/Nav';
 import * as S from '../styles/FirstAid';
-import FilterTag from '../components/FilterTag';
-import Card from '../components/Card';
+import FilterTag from '../molecules/FilterTag';
+import Card from '../molecules/Card';
 import FirstAidAdmin from './FirstAidAdmin';
 
 interface DecodedToken {

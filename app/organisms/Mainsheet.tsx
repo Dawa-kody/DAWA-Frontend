@@ -1,7 +1,6 @@
 'use client';
 
 import { useCalendarStore } from '@/store/useCalendarStore';
-import { useEffect } from 'react';
 import * as S from '../styles/Mainsheet';
 
 const divisionMap: { [key: string]: string } = {
