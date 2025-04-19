@@ -6,7 +6,7 @@ import BackupModal from '@/organisms/BackupModal';
 import MainSheet from '@/organisms/Mainsheet';
 import Calendar from '@/organisms/Calendar';
 import * as S from "../styles/backup"
-import Mainsheet from "../components/Mainsheet";
+
 
 function Sheet() {
     const [saveModalOpen, setSaveModalOpen] = useState(false);
