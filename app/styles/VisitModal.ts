@@ -25,7 +25,7 @@ export const background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
+    z-index: 3000;
 `;
 
 export const modaltitle = styled.span`
@@ -46,12 +46,16 @@ export const modaltitle = styled.span`
 
 export const modalinput = styled.textarea`
     background-color: #F2F4F7;
-    color: #98A2B3;
+    color: black;
     width: 608px;
     height: 216px;
     border-radius: 8px;
     padding: 20px;
     resize: none;
+
+    &::placeholder {
+        color: #98A2B3;
+    }
 `
 
 export const submitbutton = styled.button`
