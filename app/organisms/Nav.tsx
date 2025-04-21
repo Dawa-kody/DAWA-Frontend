@@ -50,11 +50,15 @@ function Nav() {
     router.push('/Password');
   };
 
+  const gotohome = () => {
+    router.push('/');
+  }
+
   return (
     <S.Component>
         <S.NavContainer>
-        <S.Logo src="/Logo.svg" />
-        <S.LogoText>다와</S.LogoText>
+        <S.Logo src="/Logo.svg" onClick={gotohome} />
+        <S.LogoText onClick={gotohome}>다와</S.LogoText>
 
         {isAdmin && (
           <S.IconContainer>
