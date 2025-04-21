@@ -24,7 +24,7 @@ export const background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 3000;
 `;
 
 /* 보건실 물품 대여하기 : 모달 제목*/

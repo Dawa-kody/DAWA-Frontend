@@ -15,11 +15,6 @@ function BackupModal({ onClose }: Modalprops){
     const handleSubmit = async () => {
         try {
             if (!isChecked) {
-                if (!date) {
-                    alert("날짜를 선택해주세요.");
-                    return;
-                }
-
                 const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`,
                     {
