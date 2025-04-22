@@ -15,7 +15,6 @@ function Writepage() {
   const [Dosage1, setDosage1] = useState('');
   const [Guesu1, setGuesu1] = useState('');
   const [Bigo, setBigo] = useState('');
-  const [giveMedicine, setGiveMedicine] = useState(false);
   const [GenderManColor,setGenderManColor]=useState(false);
   const [GenderWomanColor,setGenderWomanColor]=useState(false);
   const [Dosage2, setDosage2] = useState('');
@@ -38,36 +37,52 @@ function Writepage() {
     setGender('여성');
   };
   
+  const divisionMap: { [key: string]: string } = {
+    RESPIRATORY_SYSTEM: '호흡기계',
+    DIGESTIVE_SYSTEM: '소화기계',
+    CIRCULATORY_SYSTEM: '순환기계',
+    NERVOUS_SYSTEM: '정신신경계',
+    MUSCULOSKELETAL_SYSTEM: '근골격계',
+    INTEGUMENTARY_SYSTEM: '피부피하계',
+    UROGENITAL_SYSTEM: '비뇨생식기계',
+    DENTAL_SYSTEM: '구강치아계',
+    OTORHINOLARYNGOLOGY: '이비인후과계',
+    OPHTHALMOLOGY_SYSTEM: '안과계',
+    INFECTIOUS_DISEASE: '감염병',
+    MENTAL_COUNSELING: '상담',
+    OTHER: '기타',
+  };
+  
   const categoryOptions: { [key: string]: string[] } = {
-    소화기계: ['훼스탈플러스', '베나치오액', '닥터베아제','스멕타','알마겔',
+    DIGESTIVE_SYSTEM: ['훼스탈플러스', '베나치오액', '닥터베아제','스멕타','알마겔',
       '부스코판','핫백적용','안정요법','병원의뢰','상담','대증요법','주의사항 교육',
       '병원검징권위','상담','관찰','메디락에스','훼스탈','알마겔',
       '멕시롱','까스명수','스타빅현탁액'
     ],
-    호흡기계: ['모드콜S/타세놀콜드', '모드코S','콜대원기침','타이레놀500',
+    RESPIRATORY_SYSTEM: ['모드콜S/타세놀콜드', '모드코S','콜대원기침','타이레놀500',
       '덱시피드','스트렙실','씨즈날/쎄로테정','쌍화천','안정요법',
       '병원의뢰','베타딘인후스프레이','KF마스크배부','1회용마스크지급','대증요법',
       '주의사항교육','상담','관찰','등교중지','이지엔6','신속항원검사','인펙신/쎄파렉신','리놀/미놀',
     ],
-    근골격계: ['파스적용','냉적용','지지대적용','냉적용/지지대','파스/지지대',
+    MUSCULOSKELETAL_SYSTEM: ['파스적용','냉적용','지지대적용','냉적용/지지대','파스/지지대',
       '타이레놀','덱시피드','병원검진권유','안정요법','병원의뢰','주의사항교육','상담','관찰',
     ],
-    피부피하계:['드레싱','버물리','안정요법','병원의뢰','상담','주의사항교육','냉적용','관찰',
+    INTEGUMENTARY_SYSTEM:['드레싱','버물리','안정요법','병원의뢰','상담','주의사항교육','냉적용','관찰',
       '마로이신','씨즈날/쎄로테정',
     ],
-    비뇨생식기계: ['타이레놀500','덱시피드','핫백적용','생리대','안정요법','병원의뢰','상담','주의사항교육','관찰','이지엔6',
+    ROGENITAL_SYSTEM: ['타이레놀500','덱시피드','핫백적용','생리대','안정요법','병원의뢰','상담','주의사항교육','관찰','이지엔6',
     ],
-    구강치아계:['바크로비','유고오라케어','구강세척액','냉적용','타이레놀500','병원의뢰','상담','덱시피드','주의사항교육',
+    DENTAL_SYSTEM:['바크로비','유고오라케어','구강세척액','냉적용','타이레놀500','병원의뢰','상담','덱시피드','주의사항교육',
       '바셀린적용','관찰','베타딘인후스프레이','알보칠','아시클로버','오라메디','마로이신','냉적용',
     ],
-    이비인후과계:['스트렙실','씨즈날/쎄로테정','덱스피드','타이레놀500','주의사항교육',
+    OTORHINOLARYNGOLOGY:['스트렙실','씨즈날/쎄로테정','덱스피드','타이레놀500','주의사항교육',
       '미지근한 물','냉적용','타이레놀500','병원의뢰','상담','구강가글','병원검진권유','쌍화천',
       '마로이신','지혈','리놀/미놀','인펙신/쎄파렉신', 
        ],
-    안과계:['안과계','인공눈물','알러콘액','마로이신','신도톱점안액','냉적용',
+       OPHTHALMOLOGY_SYSTEM:['안과계','인공눈물','알러콘액','마로이신','신도톱점안액','냉적용',
       '안정요법','병원검진권유','상담','병원의뢰','주의사항교육','관찰','신도톱점안액','안대적용',
        ],
-    기타:['타이레놀500','모드콜S/타세놀콜드', '모드코S','화콜C콜드','콜대원기침','리놀/미놀','씨즈날/쎄로테정',
+       OTHER:['타이레놀500','모드콜S/타세놀콜드', '모드코S','화콜C콜드','콜대원기침','리놀/미놀','씨즈날/쎄로테정',
       '스트렙실','마로이신','인펙신/쎄파렉신','훼스탈','부스코판','스타빅현탁액','메디락에스','알마겔','멕시롱',
       '덱시피드','쌍화천','이지엔6','까스명수','감염병 예방물품','드레싱용품','파스류','바셀린','알러콘','인공눈물',
       '알보칠','버물리','마데카솔','신도톱점안액','KF마스크배부','일회용마스크','안정요법','병원검진권유','상담','관찰',
@@ -135,14 +150,14 @@ function Writepage() {
         <S.DivisionText>구분</S.DivisionText>
         <S.DivisionSelect value={Division} onChange={(e) => setDivision(e.target.value)} required>
             <option value="" disabled hidden>구분을 선택하세요</option>
-            <option value="소화기계">소화기계</option>
-            <option value="호흡기계">호흡기계</option>
-            <option value="근골격계">근골격계</option>
-            <option value="피부피하계">피부피하계</option>
-            <option value="구강치아계">구강치아계</option>
-            <option value="이비인후과계">이비인후과계</option>
-            <option value="안과계">안과계</option>
-            <option value="기타">기타</option>
+            <option value="DIGESTIVE_SYSTEM">소화기계</option>
+            <option value="RESPIRATORY_SYSTEM">호흡기계</option>
+            <option value="MUSCULOSKELETAL_SYSTEM">근골격계</option>
+            <option value="INTEGUMENTARY_SYSTEM">피부피하계</option>
+            <option value="DENTAL_SYSTEM">구강치아계</option>
+            <option value="OTORHINOLARYNGOLOGY">이비인후과계</option>
+            <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
+            <option value="OTHER">기타</option>
         </S.DivisionSelect>
         <S.ClassText>학번</S.ClassText>
         <S.ClassInput value={Class} onChange={(e) => setClass(e.target.value)} placeholder='학번 입력'></S.ClassInput>
