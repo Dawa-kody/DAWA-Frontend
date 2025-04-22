@@ -148,12 +148,12 @@ function Main() {
       )}
 
       <Nav />
-      <div id="Container" className="w-full h-full flex flex-col overflow-hidden pt-[3.44rem] pl-[2.1875rem] pr-[2.1875rem] pb-[3.81rem]">
+      <div id="Container" className="w-full h-full flex flex-col overflow-hidden pt-[2.44rem] pl-[2.1875rem] pr-[2.1875rem]">
         <div id="topdiv" className="flex w-full h-full gap-[2rem]">
           <div>
-            <div className=" w-[23.4375rem] h-[7.1875rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[6.56rem]">
-              <div className=" w-[4.75rem] h-[4.75rem] bg-dawapurple rounded-[0.3125rem] flex justify-center items-center">
-                <img className=" w-[3rem] h-[3rem]" src={"/people.svg"} />
+            <div className=" w-[22.4375rem] h-[6.1875rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[4.56rem]">
+              <div className=" w-[4rem] h-[4rem] bg-dawapurple rounded-[0.3125rem] flex justify-center items-center">
+                <img className=" w-[2.5rem] h-[2.5rem]" src={"/people.svg"} />
               </div>
               {TActive ? (
                 <span className="text-[1.5625rem] font-[700] text-dawapurple">선생님 출근중</span>
@@ -161,14 +161,15 @@ function Main() {
                 <span className="text-[1.625rem] font-[700] text-[#98A2B3]">선생님 부재중</span>
               )}
             </div>
-            <div className=" w-[23.4375rem] h-[12.375rem] flex gap-4 mt-[1.69rem] flex-row">
+            <div className=" w-[22.4375rem] h-[10.375rem] flex gap-4 mt-[1.69rem] flex-row">
               <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
                 onClick={visitModalClick}>방문기록 작성</div>
               <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
                 onClick={rentModalClick}>물품 대여</div>
             </div>
+
           </div>
-          <div className="w-[90.25rem] h-[21.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+          <div className="w-[90.25rem] h-[20.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
             {/* 제목: 왼쪽 상단 */}
             <div className="text-left">
               <span className="font-[700] text-[2rem] text-black">대여기록</span>
@@ -182,12 +183,17 @@ function Main() {
                 </span>
               </div>
             )}
+            <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem]">
+              {rentDataList.map(({ id, ...visit }) => (
+                <RentData key={id} {...visit} />
+              ))}
+            </div>
           </div>
 
         </div>
 
         <div className="w-full mt-[2.38rem] flex gap-[2rem]">
-          <div className="w-[90.25rem] h-[30.375rem] flex  gap-[2rem] pl-[2.38rem] pt-[2.06rem] bg-white rounded-[0.625rem] relative">
+          <div className="w-[90.25rem] h-[23.375rem] flex  gap-[2rem] pl-[2.38rem] pt-[2.06rem] bg-white rounded-[0.625rem] relative">
             <div className="text-left">
               <span className="text-[2.1875rem] font-[700] text-black">방문기록</span>
             </div>
@@ -197,25 +203,25 @@ function Main() {
                 <span className="text-[1.5rem] font-[700] text-[#98A2B3]">방문한 기록이 존재하지 않습니다.</span>
               </div>
             )}
-            <div className="w-[18.66331rem] h-[18rem] flex">
+            <div className="w-[18.66331rem] h-[18rem] flex flex-row gap-[1.5rem]">
               {visitDataList.map(({ id, ...visit }) => (
                 <VisitData key={id} {...visit} />
               ))}
             </div>
           </div>
 
-          <div className="w-[23.4375rem] h-[30.3125rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
-            <div className="w-full pt-[2.06rem]">
+          <div className="w-[23.4375rem] h-[23.375rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
+            <div className="w-full pt-[1.06rem]">
               <span className="text-black font-[700] text-[1.875rem]">침대 현황</span>
             </div>
 
-            <div className={`w-[20rem] h-[8.75rem] rounded-[0.9375rem] mt-[2.25rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
-              <img className="w-[9.5rem] h-[4.75rem]" src={"/Bed.svg"} />
+            <div className={`w-[20rem] h-[7.75rem] rounded-[0.9375rem] mt-[1rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
+              <img className="w-[9.5rem] h-[3.75rem]" src={"/Bed.svg"} />
               {bedStatus.bed1 ? <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span> : <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>}
             </div>
 
-            <div className={`w-[20rem] h-[8.75rem] rounded-[0.9375rem] mt-[1.87rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
-              <img className="w-[9.5rem] h-[4.75rem]" src={"/Bed.svg"} />
+            <div className={`w-[20rem] h-[7.75rem] rounded-[0.9375rem] mt-[1.87rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
+              <img className="w-[9.5rem] h-[3.75rem]" src={"/Bed.svg"} />
               {bedStatus.bed2 ? <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span> : <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>}
             </div>
           </div>
