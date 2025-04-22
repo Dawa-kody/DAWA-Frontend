@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        dawapurple: "#6948ED",
         tableheader: "#F0EDFE",
         background: "var(--background)",
         foreground: "var(--foreground)",

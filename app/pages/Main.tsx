@@ -29,7 +29,7 @@ function Main() {
 
   const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
   const [BActive, setBActive] = useState(true); // 침대 현황 상태
-  
+
   const [visitDataList, setVisitDataList] = useState<VisitDatas[]>([]); // 방문 기록 데이터
   const [rentDataList, setRentDataList] = useState<RentDatas[]>([]); // 대여 기록 데이터
   const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
@@ -39,7 +39,7 @@ function Main() {
 
   useEffect(() => {
     const role = localStorage.getItem("role");
-    if(role === "ROLE_TEACHER") {
+    if (role === "ROLE_TEACHER") {
       router.push("/MainAdmin");
     }
   }, []);
@@ -147,62 +147,80 @@ function Main() {
         <RentModal onClose={() => setRentModalOpen(false)} />
       )}
 
-      <S.Container>
-        <Nav />
-        <S.TeacherSection>
-          <S.TeacherIconDiv>
-            <S.TeacherIcon src={"/people.svg"} />
-          </S.TeacherIconDiv>
-          {TActive ? (
-            <S.TeacherState Active={true}>선생님 출근중</S.TeacherState>
-          ) : (
-            <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
-          )}
-        </S.TeacherSection>
+      <Nav />
+      <div id="Container" className="w-full h-full flex flex-col overflow-hidden pt-[3.44rem] pl-[2.1875rem] pr-[2.1875rem] pb-[3.81rem]">
+        <div id="topdiv" className="flex w-full h-full gap-[2rem]">
+          <div>
+            <div className=" w-[23.4375rem] h-[7.1875rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[6.56rem]">
+              <div className=" w-[4.75rem] h-[4.75rem] bg-dawapurple rounded-[0.3125rem] flex justify-center items-center">
+                <img className=" w-[3rem] h-[3rem]" src={"/people.svg"} />
+              </div>
+              {TActive ? (
+                <span className="text-[1.5625rem] font-[700] text-dawapurple">선생님 출근중</span>
+              ) : (
+                <span className="text-[1.625rem] font-[700] text-[#98A2B3]">선생님 부재중</span>
+              )}
+            </div>
+            <div className=" w-[23.4375rem] h-[12.375rem] flex gap-4 mt-[1.69rem] flex-row">
+              <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
+                onClick={visitModalClick}>방문기록 작성</div>
+              <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
+                onClick={rentModalClick}>물품 대여</div>
+            </div>
+          </div>
+          <div className="w-[90.25rem] h-[21.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+            {/* 제목: 왼쪽 상단 */}
+            <div className="text-left">
+              <span className="font-[700] text-[2rem] text-black">대여기록</span>
+            </div>
 
-        <S.WriteBox>
-          <S.WriteCard onClick={visitModalClick}>방문기록 작성</S.WriteCard>
-          <S.WriteCard onClick={rentModalClick}>물품 대여</S.WriteCard>
-        </S.WriteBox>
+            {/* 렌트 기록이 없는 경우 */}
+            {rentDataList.length === 0 && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
+                  대여한 기록이 존재하지 않습니다.
+                </span>
+              </div>
+            )}
+          </div>
 
-        <S.RentDiv>
-          <S.RentTitle>대여기록</S.RentTitle>
-          {rentDataList.length === 0 && (
-            <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
-          )}
-          <S.RentDataCards>
-            {rentDataList.map(({ id, ...rent }) => (
-              <RentData key={id} {...rent} />
-            ))}
-          </S.RentDataCards>
-        </S.RentDiv>
+        </div>
 
-        <S.VisitDiv>
-          <S.VisitTitle>방문기록</S.VisitTitle>
-          {visitDataList.length === 0 && (
-            <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
-          )}
-          <S.VisitDataCards>
-            {visitDataList.map(({ id, ...visit }) => (
-              <VisitData key={id} {...visit} />
-            ))}
-          </S.VisitDataCards>
-        </S.VisitDiv>
+        <div className="w-full mt-[2.38rem] flex gap-[2rem]">
+          <div className="w-[90.25rem] h-[30.375rem] flex  gap-[2rem] pl-[2.38rem] pt-[2.06rem] bg-white rounded-[0.625rem] relative">
+            <div className="text-left">
+              <span className="text-[2.1875rem] font-[700] text-black">방문기록</span>
+            </div>
+            {/* 방문 기록이 없는 경우 */}
+            {visitDataList.length === 0 && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <span className="text-[1.5rem] font-[700] text-[#98A2B3]">방문한 기록이 존재하지 않습니다.</span>
+              </div>
+            )}
+            <S.VisitDataCards>
+              {visitDataList.map(({ id, ...visit }) => (
+                <VisitData key={id} {...visit} />
+              ))}
+            </S.VisitDataCards>
+          </div>
 
-        <S.BedDiv>
-          <S.BedTitle>침대 사용 여부</S.BedTitle>
-          <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
-            <S.BedIcon src={"/Bed.svg"} />
-            {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-          </S.BedMenNonActiveDiv>
+          <div className="w-[23.4375rem] h-[30.3125rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
+            <div className="w-full pt-[2.06rem]">
+              <span className="text-black font-[700] text-[1.875rem]">침대 현황</span>
+            </div>
 
-          <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
-            <S.BedIcon src={"/Bed.svg"} />
-            {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-          </S.BedWomenNonActiveDiv>
-        </S.BedDiv>
-        
-      </S.Container>
+            <div className={`w-[20rem] h-[8.75rem] rounded-[0.7865rem] mt-[2.25rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
+              <img className="w-[9.5rem] h-[4.75rem]" src={"/Bed.svg"} />
+              {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+            </div>
+
+            <div className={`w-[20rem] h-[8.75rem] rounded-[0.9375rem] mt-[1.87rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
+              <S.BedIcon src={"/Bed.svg"} />
+              {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
