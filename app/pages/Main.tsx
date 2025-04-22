@@ -197,11 +197,11 @@ function Main() {
                 <span className="text-[1.5rem] font-[700] text-[#98A2B3]">방문한 기록이 존재하지 않습니다.</span>
               </div>
             )}
-            <S.VisitDataCards>
+            <div className="w-[18.66331rem] h-[18rem] flex">
               {visitDataList.map(({ id, ...visit }) => (
                 <VisitData key={id} {...visit} />
               ))}
-            </S.VisitDataCards>
+            </div>
           </div>
 
           <div className="w-[23.4375rem] h-[30.3125rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
@@ -209,14 +209,14 @@ function Main() {
               <span className="text-black font-[700] text-[1.875rem]">침대 현황</span>
             </div>
 
-            <div className={`w-[20rem] h-[8.75rem] rounded-[0.7865rem] mt-[2.25rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
+            <div className={`w-[20rem] h-[8.75rem] rounded-[0.9375rem] mt-[2.25rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
               <img className="w-[9.5rem] h-[4.75rem]" src={"/Bed.svg"} />
-              {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+              {bedStatus.bed1 ? <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span> : <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>}
             </div>
 
             <div className={`w-[20rem] h-[8.75rem] rounded-[0.9375rem] mt-[1.87rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
-              <S.BedIcon src={"/Bed.svg"} />
-              {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
+              <img className="w-[9.5rem] h-[4.75rem]" src={"/Bed.svg"} />
+              {bedStatus.bed2 ? <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span> : <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>}
             </div>
           </div>
         </div>

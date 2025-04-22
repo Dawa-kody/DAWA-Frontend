@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as S from "../styles/login"
 import { useRouter } from "next/navigation";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';;
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';import { Division } from "@/styles/Mainsheet";
+;
 
 function Login(){
     const router = useRouter();
@@ -34,6 +35,7 @@ function Login(){
             const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/signin`, dto, {
                 headers: {
                     "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "69240",
                 },
                 withCredentials: true,
             });
@@ -81,8 +83,8 @@ function Login(){
       };
 
     return(
-        <S.Container>
-            <S.LeftSection>
+        <div className=" flex h-full w-full">
+            <div className=" flex flex-1 flex-direction-col justify-center items-center bg-white">
                 <S.HelloText>반가워요!</S.HelloText>
                 <S.SubText>다와가 처음이라면?</S.SubText>
                 <S.GoSignup onClick={GoSignup}>회원가입하기</S.GoSignup>
@@ -117,13 +119,13 @@ function Login(){
                         <S.NextButton onClick={handleSubmit}>확인</S.NextButton>
                     </S.ButtonDiv>
                 </S.Inputs>
-            </S.LeftSection>
+            </div>
 
             <S.RightSection>
                 <S.GradientOverlay />
                 <S.Img src={"/mokoko.png"} />
             </S.RightSection>
-        </S.Container>
+        </div>
     );
 }
 
