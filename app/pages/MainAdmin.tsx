@@ -172,120 +172,149 @@ function MainAdmin() {
 
   return (
     <>
-    {rentModalOpen && (
-      <RentModal onClose={() => setRentModalOpen(false)} />
-    )}
+      <Nav />
+      <div
+        id="Container"
+        className="w-full h-full flex flex-col overflow-hidden pt-[2.44rem] pl-[2.1875rem] pr-[2.1875rem]"
+      >
+        <div id="topdiv" className="flex flex-row w-full h-full gap-[2rem]">
+          <div id="topPosition" className="flex flex-row gap-[1rem]">
+            <div className="flex flex-col">
+              {/* 선생님 현황 */}
+              <div className="w-[22.4375rem] h-[6.1875rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[4.56rem]">
+                <div className="w-[4rem] h-[4rem] bg-dawapurple rounded-[0.3125rem] flex justify-center items-center">
+                  <img className="w-[2.5rem] h-[2.5rem]" src={"/people.svg"} />
+                </div>
+                {TActive ? (
+                  <span className="text-[1.5625rem] font-[700] text-dawapurple">선생님 출근중</span>
+                ) : (
+                  <span className="text-[1.625rem] font-[700] text-[#98A2B3]">선생님 부재중</span>
+                )}
+              </div>
 
-    <S.Container>
-        <Nav />
-        <S.TeacherSection>
-            <S.TeacherIconDiv>
-                <S.TeacherIcon src={"/people.svg"} />
-            </S.TeacherIconDiv>
+              {/* 문진표 작성 */}
+              <div className="w-[22.4375rem] h-[10.375rem] flex gap-4 mt-[1.69rem] flex-col">
+                <div className="w-full h-full bg-white rounded-[8px] flex-col flex">
+                  <p className="font-[pretendard] font-bold text-[2rem] pt-[1rem] pl-[1.2rem]">문진표 작성</p>
+                  <div className="w-full h-full flex flex-col items-center relative top-[40px]">
+                    <button className="w-[20.5rem] h-[2.8125rem] bg-dawapurple text-white font-[pretendard] rounded-[0.63rem]">
+                      문진표 작성
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            {TActive ? (
-                <S.TeacherState Active={true}>선생님 출근중</S.TeacherState>
-            ) : (
-                <S.TeacherState Active={false}>선생님 부재중</S.TeacherState>
-            )}
-        </S.TeacherSection>
+            <div className="w-[80rem] h-[18.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+              {/* 제목: 왼쪽 상단 */}
+              <div className="text-left">
+                <span className="font-[700] text-[2rem] text-black">대여기록</span>
+              </div>
 
-        <S.WriteListContainer>
-            <S.WriteTitle>문진표 작성</S.WriteTitle>
-            <S.WriteButton>문진표 작성</S.WriteButton>
-        </S.WriteListContainer>
+              {/* 렌트 기록이 없는 경우 */}
+              {rentAdminDataList.length === 0 && (
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
+                    대여한 기록이 존재하지 않습니다.
+                  </span>
+                </div>
+              )}
 
-        <S.RentDiv>
-            <S.RentTitle>학생들의 가장 최근 대여</S.RentTitle>
-
-            {rentAdminDataList.length === 0 && (
-              <S.RentNonActiveSpan>대여한 기록이 존재하지 않습니다.</S.RentNonActiveSpan>
-            )}
-
-            <S.RentDataCards>
-            {rentAdminDataList.map(({ rentalId, ...rent }) => (
-                <RentDataAdmin key={rentalId} rentalId={rentalId} {...rent} />
-            ))}
-            </S.RentDataCards>
-            <S.RentActiveBtnContainer>
-                <S.RentActiveBtn onClick={rentModalClick}>대여 기록 추가하기</S.RentActiveBtn>
-                <S.RentActiveBtn onClick={() => setRequestBarOpen(true)}>
-                    대여 신청 확인하기
-                </S.RentActiveBtn>
-            </S.RentActiveBtnContainer>
-
-            {requestBarOpen && (
-                <S.requestbar className={isClosing ? "closing" : ""}>
-                    <S.requestbarbtn src="./X.svg" onClick={closeRequestBar} />
-                    <S.requestTitle onClick={() => setRentModalOpen(true)}>학생들의 대여 신청</S.requestTitle>
-                    <S.RequestRentDataCards>
-                    {RequestRentDataList.map(({ rentalId, ...rentData }) => (
-                      <RequestRentData
-                        key={rentalId}
-                        rentalId={rentalId}
-                        {...rentData}
-                        onRemove={handleRemoveRequest}
-                      />
+              {/* 카드 항목들 */}
+              <div className="w-full h-[18rem] flex flex-row flex-wrap gap-[0.625rem] mt-[1rem]">
+                {rentAdminDataList.map(({ rentalId, ...rent }) => (
+                  <RentDataAdmin key={rentalId} rentalId={rentalId} {...rent} />
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    </S.RequestRentDataCards>
-                </S.requestbar>
-            )}
-        </S.RentDiv>
+        <div className="w-full mt-[2.38rem] flex gap-[2rem]">
+          <div className="w-[78.25rem] h-[26.375rem] bg-white rounded-[0.625rem] pl-[2.38rem] pt-[2.06rem] relative flex flex-col gap-[2rem]">
+            {/* 방문기록 타이틀 */}
+            <div className="text-left">
+              <span className="text-[2.1875rem] font-[700] text-black whitespace-nowrap">방문기록</span>
+            </div>
 
-        <S.VisitDiv>
-            <S.VisitTitle>학생들의 가장 최근 방문기록</S.VisitTitle>
-            
+            {/* 방문 기록이 없는 경우 */}
             {visitAdminDataList.length === 0 && (
-                <S.VisitNonActiveSpan>방문한 기록이 존재하지 않습니다.</S.VisitNonActiveSpan>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <span className="text-[1.5rem] font-[700] text-[#98A2B3]">
+                  방문한 기록이 존재하지 않습니다.
+                </span>
+              </div>
             )}
-            
-            <S.VisitDataCards>
-                {visitAdminDataList.map(({ id, ...visit }) => (
+
+            {/* 방문 기록 카드 리스트 (가로 스크롤) */}
+            <div className="w-full h-[18rem] flex flex-row gap-[1.5rem] overflow-x-auto pr-[2.38rem]">
+              {visitAdminDataList.map(({ id, ...visit }) => (
                 <VisitDataAdmin key={id} {...visit} />
-                ))}
-            </S.VisitDataCards>
-        </S.VisitDiv>
+              ))}
+            </div>
+          </div>
 
-        <S.BedDiv>
-        <S.BedTitle>침대 사용 여부</S.BedTitle>
-        {BActive ? (
-            <>
-            <S.AdminBedMenNonActiveDiv Active={bedStatus.bed1}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-                </S.AdminBedMenNonActiveDiv>
+          <div className="w-[23.4375rem] h-[26.375rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
+            <div className="w-full pt-[1.06rem]">
+              <span className="text-black font-[700] text-[1.875rem]">침대 현황</span>
+            </div>
 
-            <S.ManToggleContainer onClick={() => toggleBed("M")}>
-                <S.ManToggleCircle Active={bedStatus.bed1} />
-            </S.ManToggleContainer>
+            {/* 1번 침대 + 토글 */}
+            <div className="flex flex-col items-center mt-[1rem]">
+              <div
+                className={`w-[20rem] h-[7.75rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
+                  bedStatus.bed1 ? "bg-[#7CD4FD]" : "bg-[#F2F4F7]"
+                }`}
+              >
+                <img className="w-[9.5rem] h-[3.75rem]" src={"/Bed.svg"} alt="Bed Icon" />
+                <span className="text-[1.25rem] font-bold text-white">
+                  {bedStatus.bed1 ? "침대 사용 가능" : "침대 사용 중"}
+                </span>
+              </div>
 
-            <S.AdminBedWomenNonActiveDiv Active={bedStatus.bed2}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.AdminBedWomenNonActiveDiv>
+              {/* 1번 토글 */}
+              <div
+                className="mt-[0.5rem] ml-[17rem] cursor-pointer w-[2.5rem] h-[1.25rem] rounded-full bg-gray-300 relative"
+                onClick={() => toggleBed("M")}
+              >
+                <div
+                  className={`w-[1.125rem] h-[1.125rem] rounded-full bg-white absolute top-[0.0625rem] transition-all duration-300 ${
+                    bedStatus.bed1 ? "translate-x-[1.25rem]" : "translate-x-0"
+                  }`}
+                />
+              </div>
+            </div>
 
-            <S.WomanToggleContainer onClick={() => toggleBed("W")}>
-                <S.WomanToggleCircle Active={bedStatus.bed2} />
-            </S.WomanToggleContainer>
-            </>
-        ) : (
-            <>
-            <S.BedMenNonActiveDiv Active={bedStatus.bed1}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed1 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.BedMenNonActiveDiv>
+            {/* 2번 침대 + 토글 */}
+            <div className="flex flex-col items-center mt-[1rem]">
+              <div
+                className={`w-[20rem] h-[7.75rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
+                  bedStatus.bed2 ? "bg-[#FEA3B4]" : "bg-[#F2F4F7]"
+                }`}
+              >
+                <img className="w-[9.5rem] h-[3.75rem]" src={"/Bed.svg"} alt="Bed Icon" />
+                <span className="text-[1.25rem] font-bold text-white">
+                  {bedStatus.bed2 ? "침대 사용 가능" : "침대 사용 중"}
+                </span>
+              </div>
 
-            <S.BedWomenNonActiveDiv Active={bedStatus.bed2}>
-                <S.BedIcon src={"/Bed.svg"} />
-                {bedStatus.bed2 ? <S.BedIsFree>침대 사용 가능</S.BedIsFree> : <S.BedIsFree>침대 사용 중</S.BedIsFree>}
-            </S.BedWomenNonActiveDiv>
-            </>
-        )}
-        </S.BedDiv>
-    </S.Container>
+              {/* 2번 토글 */}
+              <div
+                className="mt-[0.5rem] ml-[17rem] cursor-pointer w-[2.5rem] h-[1.25rem] rounded-full bg-gray-300 relative"
+                onClick={() => toggleBed("W")}
+              >
+                <div
+                  className={`w-[1.125rem] h-[1.125rem] rounded-full bg-white absolute top-[0.0625rem] transition-all duration-300 ${
+                    bedStatus.bed2 ? "translate-x-[1.25rem]" : "translate-x-0"
+                  }`}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
-)
+  )
 }
 
 export default MainAdmin
