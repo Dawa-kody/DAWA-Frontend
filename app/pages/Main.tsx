@@ -161,34 +161,35 @@ function Main() {
                 <span className="text-[1.625rem] font-[700] text-[#98A2B3]">선생님 부재중</span>
               )}
             </div>
+
             <div className=" w-[22.4375rem] h-[10.375rem] flex gap-4 mt-[1.69rem] flex-row">
               <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
                 onClick={visitModalClick}>방문기록 작성</div>
               <div className=" w-[11.1875rem] h-[12.375rem] flex items-center justify-center text-white bg-dawapurple rounded-[0.58988rem] text-[1.5rem] font-[700]"
                 onClick={rentModalClick}>물품 대여</div>
             </div>
-
           </div>
-          <div className="w-[90.25rem] h-[20.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
-            {/* 제목: 왼쪽 상단 */}
-            <div className="text-left">
-              <span className="font-[700] text-[2rem] text-black">대여기록</span>
-            </div>
-
-            {/* 렌트 기록이 없는 경우 */}
-            {rentDataList.length === 0 && (
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
-                  대여한 기록이 존재하지 않습니다.
-                </span>
+          
+            <div className="w-[90.25rem] h-[20.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+              {/* 제목: 왼쪽 상단 */}
+              <div className="text-left">
+                <span className="font-[700] text-[2rem] text-black">대여기록</span>
               </div>
-            )}
-            <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem]">
-              {rentDataList.map(({ id, ...visit }) => (
-                <RentData key={id} {...visit} />
-              ))}
+
+              {/* 렌트 기록이 없는 경우 */}
+              {rentDataList.length === 0 && (
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
+                    대여한 기록이 존재하지 않습니다.
+                  </span>
+                </div>
+              )}
+              <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem]">
+                {rentDataList.map(({ id, ...visit }) => (
+                  <RentData key={id} {...visit} />
+                ))}
+              </div>
             </div>
-          </div>
 
         </div>
 
