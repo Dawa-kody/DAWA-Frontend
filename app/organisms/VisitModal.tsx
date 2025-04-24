@@ -27,7 +27,7 @@ function VisitModal({ onClose }: Modalprops) {
         useEffect(() => {
           // 클라이언트 사이드에서만 localStorage에 접근
           if (typeof window !== "undefined") {
-            const storedToken = localStorage.getItem('access');
+            const storedToken = localStorage.getItem('accessToken');
             if (storedToken) {
               setToken(storedToken); // 값이 존재하면 상태 업데이트
             }

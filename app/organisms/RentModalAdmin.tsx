@@ -63,7 +63,7 @@ function RentModal({ onClose }: Modalprops) {
 
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const token = localStorage.getItem("access");
+        const token = localStorage.getItem("accessToken");
 
         // 선택된 아이템 필터링
         const selectedItems = cards.filter((card) => card.selected);

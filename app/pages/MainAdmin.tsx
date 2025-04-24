@@ -41,7 +41,7 @@ function MainAdmin() {
 
 
     useEffect(() => {
-      const access = window.localStorage.getItem("access"); // 문자열 키 사용
+      const access = window.localStorage.getItem("accessToken"); // 문자열 키 사용
       setToken(access);
     }, []); // useEffect
 

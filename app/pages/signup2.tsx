@@ -46,7 +46,7 @@ function Signup2(){
 
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/signup`, dto, {
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signup`, dto, {
                     headers: {
                         "Content-Type": "application/json",
                     },
