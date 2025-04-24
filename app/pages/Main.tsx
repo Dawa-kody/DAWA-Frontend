@@ -186,7 +186,7 @@ function Main() {
                   </span>
                 </div>
               )}
-              <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem]">
+              <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem] overflow-scroll scrollbar-hide">
                 {rentDataList.map(({ id, ...visit }) => (
                   <RentData key={id} {...visit} />
                 ))}
