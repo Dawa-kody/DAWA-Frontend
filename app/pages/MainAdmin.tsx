@@ -118,17 +118,14 @@ function MainAdmin() {
         console.error("모든 대여 신청 데이터를 불러오는 중 에러 발생:", error);
       }
     }
-    // Fetch data initially
     fetchAdminRentData();
     fetchAdminRequestRentData();
 
-    // Set up interval to refetch data every 5 seconds
     const intervalId = setInterval(() => {
       fetchAdminRentData();
       fetchAdminRequestRentData();
-    }, 5000); // Adjust the interval as needed (e.g., 5000 for 5 seconds)
+    }, 5000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, [token, setRentAdminDataList, setRequestRentDataList]);
 
