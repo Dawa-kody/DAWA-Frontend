@@ -46,7 +46,7 @@ function Main() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem('access');
+      const storedToken = localStorage.getItem('accessToken');
       if (storedToken) {
         setToken(storedToken);
       }

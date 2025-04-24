@@ -15,7 +15,7 @@ function RequestRentData({ rentalId, count, rental, schoolNumber, name, onRemove
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const access = window.localStorage.getItem("access");
+    const access = window.localStorage.getItem("accessToken");
     setToken(access);
   }, []);
 

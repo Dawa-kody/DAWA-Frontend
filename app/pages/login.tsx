@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as S from "../styles/login"
 import { useRouter } from "next/navigation";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';import { Division } from "@/styles/Mainsheet";
-;
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 function Login(){
     const router = useRouter();
@@ -32,7 +31,7 @@ function Login(){
         };
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/signin`, dto, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signin`, dto, {
                 headers: {
                     "Content-Type": "application/json",
                     "ngrok-skip-browser-warning": "69240",
@@ -41,13 +40,13 @@ function Login(){
             });
 
             if (response.status === 200) {
-                const { access, refresh, role } = response.data;
+                const { accessToken, refreshToken, role } = response.data;
 
-                localStorage.setItem("access", access);
-                localStorage.setItem("refresh", refresh)
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken)
                 localStorage.setItem("role", role);
 
-                setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+                setTimeout(() => onSilentRefresh(accessToken), JWT_EXPIRY_TIME - 60000);
                 router.push("/");
             }
         } catch (error) {
@@ -56,26 +55,27 @@ function Login(){
     };
 
     // 토큰 갱신
-    const onSilentRefresh = async (access: string) => {
+    const onSilentRefresh = async (accessToken: string) => {
         try {
           const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}`,
-            { access: access },
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/reissue`,
+            { accessToken: accessToken },
             {
               headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`,
               },
               withCredentials: true,
             }
           );
     
           if (response.status === 200) {
-            const { access, refresh } = response.data;
+            const { accessToken, refreshToken } = response.data;
     
-            localStorage.setItem("access", JSON.stringify(access));
-            localStorage.setItem("refresh", JSON.stringify(refresh));
+            localStorage.setItem("accessToken", JSON.stringify(accessToken));
+            localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
     
-            setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+            setTimeout(() => onSilentRefresh(accessToken), JWT_EXPIRY_TIME - 60000);
           }
         } catch (error: any) {
           console.error("Error while refreshing token:", error);
