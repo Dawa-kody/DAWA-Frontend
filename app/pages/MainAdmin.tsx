@@ -208,7 +208,7 @@ function MainAdmin() {
             <div className="w-[80rem] h-[18.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
               {/* 제목: 왼쪽 상단 */}
               <div className="text-left">
-                <span className="font-[700] text-[2rem] text-black">대여기록</span>
+                <span className="font-[700] text-[2rem] text-black">학생들의 가장 최근 대여</span>
               </div>
 
               {/* 렌트 기록이 없는 경우 */}
@@ -226,6 +226,55 @@ function MainAdmin() {
                   <RentDataAdmin key={rentalId} rentalId={rentalId} {...rent} />
                 ))}
               </div>
+
+              <div className="absolute top-[15px] right-[20px] flex items-center justify-center gap-[10px]">
+                <div
+                  className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
+                  onClick={rentModalClick}
+                >
+                  대여 기록 추가하기
+                </div>
+                <div
+                  className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
+                  onClick={() => setRequestBarOpen(true)}
+                >
+                  대여 신청 확인하기
+                </div>
+              </div>
+
+              {requestBarOpen && (
+                <div
+                  className={`
+                    absolute mt-[-2rem] right-0 w-[80%] h-full bg-[#D9D6FE] rounded-[10px]
+                    ${isClosing ? 'animate-slideOut' : 'animate-slideIn'}
+                  `}
+                >
+                  <img
+                    src="./X.svg"
+                    className="w-[26px] h-[26px] absolute top-[15px] right-[15px] cursor-pointer"
+                    onClick={closeRequestBar}
+                  />
+                  <span
+                    className="font-pretendard font-bold text-[26px] relative top-[20px] left-[25px] cursor-pointer"
+                    onClick={() => setRentModalOpen(true)}
+                  >
+                    학생들의 대여 신청
+                  </span>
+
+                  <div
+                    className="relative max-w-[1260px] top-[50px] left-[35px] grid grid-flow-col auto-cols-[178px] overflow-scroll scrollbar-hide"
+                  >
+                    {RequestRentDataList.map(({ rentalId, ...rentData }) => (
+                      <RequestRentData
+                        key={rentalId}
+                        rentalId={rentalId}
+                        {...rentData}
+                        onRemove={handleRemoveRequest}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -234,7 +283,7 @@ function MainAdmin() {
           <div className="w-[78.25rem] h-[26.375rem] bg-white rounded-[0.625rem] pl-[2.38rem] pt-[2.06rem] relative flex flex-col gap-[2rem]">
             {/* 방문기록 타이틀 */}
             <div className="text-left">
-              <span className="text-[2.1875rem] font-[700] text-black whitespace-nowrap">방문기록</span>
+              <span className="text-[2.1875rem] font-[700] text-black whitespace-nowrap">학생들의 가장 최근 방문기록</span>
             </div>
 
             {/* 방문 기록이 없는 경우 */}
