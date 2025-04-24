@@ -21,7 +21,8 @@ function MainAdmin() {
 
     const [rentModalOpen, setRentModalOpen] = useState(false);
 
-    const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태...     const [BActive, setBActive] = useState(true); // 침대 현황 상태
+    const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태...
+    const [BActive, setBActive] = useState(true); // 침대 현황 상태
     const [requestBarOpen, setRequestBarOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
