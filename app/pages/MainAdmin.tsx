@@ -172,6 +172,10 @@ function MainAdmin() {
 
   return (
     <>
+      {rentModalOpen && (
+        <RentModal onClose={() => setRentModalOpen(false)} />
+      )}
+
       <Nav />
       <div
         id="Container"
@@ -228,12 +232,12 @@ function MainAdmin() {
               </div>
 
               <div className="absolute top-[15px] right-[20px] flex items-center justify-center gap-[10px]">
-                <div
-                  className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
-                  onClick={rentModalClick}
-                >
-                  대여 기록 추가하기
-                </div>
+              <div
+                className="w-[210px] h-[46px] flex items-center justify-center font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
+                onClick={rentModalClick}
+              >
+                대여 기록 추가하기
+              </div>
                 <div
                   className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
                   onClick={() => setRequestBarOpen(true)}
@@ -256,7 +260,6 @@ function MainAdmin() {
                   />
                   <span
                     className="font-pretendard font-bold text-[26px] relative top-[20px] left-[25px] cursor-pointer"
-                    onClick={() => setRentModalOpen(true)}
                   >
                     학생들의 대여 신청
                   </span>
@@ -296,7 +299,7 @@ function MainAdmin() {
             )}
 
             {/* 방문 기록 카드 리스트 (가로 스크롤) */}
-            <div className="w-full h-[18rem] flex flex-row gap-[1.5rem] overflow-x-auto pr-[2.38rem]">
+            <div className="w-full h-[18rem] flex flex-row gap-[1.5rem] overflow-scroll scrollbar-hide pr-[2.38rem]">
               {visitAdminDataList.map(({ id, ...visit }) => (
                 <VisitDataAdmin key={id} {...visit} />
               ))}
