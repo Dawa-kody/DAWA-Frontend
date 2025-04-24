@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "../styles/Main";
 import axios from "axios";
+import { useStore } from "@/store/useRentDataStore";
 import { useRouter } from "next/navigation";
 
 import Nav from "../organisms/Nav";
@@ -30,8 +31,7 @@ function Main() {
   const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
   const [BActive, setBActive] = useState(true); // 침대 현황 상태
 
-  const [visitDataList, setVisitDataList] = useState<VisitDatas[]>([]); // 방문 기록 데이터
-  const [rentDataList, setRentDataList] = useState<RentDatas[]>([]); // 대여 기록 데이터
+  const { rentDataList, setRentDataList, visitDataList, setVisitDataList } = useStore();
   const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
     bed1: true,
     bed2: true,
@@ -94,9 +94,6 @@ function Main() {
             },
           }
         );
-
-        console.log(response.data);
-
         if (Array.isArray(response.data)) {
           setRentDataList(response.data);
         } else {
@@ -106,8 +103,13 @@ function Main() {
         console.error("대여 기록 데이터를 불러오는 중 에러 발생:", error);
       }
     }
-    fetchRentData();
-  }, [token]);
+  
+    fetchRentData(); // 최초 1회
+  
+    const intervalId = setInterval(fetchRentData, 5000); // 5초마다 갱신
+  
+    return () => clearInterval(intervalId); // 언마운트 시 인터벌 제거
+  }, [token, setRentDataList]);
 
   useEffect(() => {
     async function fetchBedStatus() {
