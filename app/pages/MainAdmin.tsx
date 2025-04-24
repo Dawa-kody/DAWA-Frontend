@@ -241,7 +241,7 @@ function MainAdmin() {
               )}
 
               {/* 카드 항목들 */}
-              <div className="w-full h-[18rem] flex flex-row flex-wrap gap-[0.625rem] mt-[1rem]">
+              <div className="w-full h-[18rem] flex flex-row flex-wrap gap-[0.625rem] mt-[1rem] overflow-scroll scrollbar-hide">
                 {rentAdminDataList.map(({ rentalId, ...rent }) => (
                   <RentDataAdmin key={rentalId} rentalId={rentalId} {...rent} />
                 ))}
