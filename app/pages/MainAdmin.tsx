@@ -1,8 +1,10 @@
+// app/pages/mainAdmin.tsx
 'use client';
 
 import React, { useState, useEffect } from "react";
 import * as S from "../styles/Main";
 import axios from "axios";
+import { useStore } from "@/store/useRentDataStore"; // 경로는 알맞게 조정
 
 import Nav from "../organisms/Nav";
 import VisitDataAdmin from "../molecules/VisitDataAdmin";
@@ -18,19 +20,23 @@ function MainAdmin() {
     const [token, setToken] = useState<string | null>(null);
 
     const [rentModalOpen, setRentModalOpen] = useState(false);
-    
-    const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
-    const [BActive, setBActive] = useState(true); // 침대 현황 상태
+
+    const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태...     const [BActive, setBActive] = useState(true); // 침대 현황 상태
     const [requestBarOpen, setRequestBarOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-
-    const [RequestRentDataList, setRequestRentDataList] = useState<RequestRentDatas[]>([]);
-    const [visitAdminDataList, setVisitAdminDataList] = useState<VisitAdminDatas[]>([]);
-    const [rentAdminDataList, setRentAdminDataList] = useState<RentAdminDatas[]>([]);
     const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
         bed1: true,
         bed2: true,
     });
+
+    const {
+      rentAdminDataList,
+      setRentAdminDataList,
+      visitAdminDataList,
+      setVisitAdminDataList,
+      requestRentDataList,
+      setRequestRentDataList,
+    } = useStore();
 
 
     useEffect(() => {
@@ -44,7 +50,7 @@ function MainAdmin() {
         setAdmin(true);
       }
     }, []); // useEffect
-    
+
 
     const closeRequestBar = () => {
       setIsClosing(true); // 닫힘 애니메이션 실행
@@ -91,10 +97,7 @@ function MainAdmin() {
         console.error("모든 대여 기록 데이터를 불러오는 중 에러 발생:", error);
       }
     }
-    fetchAdminRentData();
-  }, [token]);
 
-  useEffect(() => {
     async function fetchAdminRequestRentData() {
       try {
         const response = await axios.get<RequestRentDatas[]>(
@@ -108,17 +111,30 @@ function MainAdmin() {
         setRequestRentDataList(response.data);
 
         if (response.status === 200){
-          
+
         }
       } catch (error) {
         console.error("모든 대여 신청 데이터를 불러오는 중 에러 발생:", error);
       }
     }
+    // Fetch data initially
+    fetchAdminRentData();
     fetchAdminRequestRentData();
-  }, [token]);
+
+    // Set up interval to refetch data every 5 seconds
+    const intervalId = setInterval(() => {
+      fetchAdminRentData();
+      fetchAdminRequestRentData();
+    }, 5000); // Adjust the interval as needed (e.g., 5000 for 5 seconds)
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, [token, setRentAdminDataList, setRequestRentDataList]);
 
   const handleRemoveRequest = (rentalId: string) => {
-    setRequestRentDataList((prevList) => prevList.filter((item) => item.rentalId !== rentalId));
+    setRequestRentDataList(
+      requestRentDataList.filter((item) => item.rentalId !== rentalId)
+    );
   };
 
   function rentModalClick() {
@@ -158,10 +174,10 @@ function MainAdmin() {
         `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
         newBedStatus,
         {
-          headers: { 
+          headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': '69420',
-            withCredentials: true 
+            withCredentials: true
           },
         }
       );
@@ -267,7 +283,7 @@ function MainAdmin() {
                   <div
                     className="relative max-w-[1260px] top-[50px] left-[35px] grid grid-flow-col auto-cols-[178px] overflow-scroll scrollbar-hide"
                   >
-                    {RequestRentDataList.map(({ rentalId, ...rentData }) => (
+                    {requestRentDataList.map(({ rentalId, ...rentData }) => (
                       <RequestRentData
                         key={rentalId}
                         rentalId={rentalId}
