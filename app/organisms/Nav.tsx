@@ -8,27 +8,36 @@ function Nav() {
   const router = useRouter();
   const pathname = usePathname();
   const [MouseOver, setMouseOver] = useState(false);
-  const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting'>('home');
+  const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting' |'graduation'>('home');
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (pathname === '/') {
       setActiveIcon('home');
-    } else if (pathname === '/Sheet') {
+    } 
+    
+    else if (pathname === '/Sheet') {
       setActiveIcon('folder');
-    } else if (pathname === '/Management') {
+    }
+    
+    else if (pathname === '/Management') {
       setActiveIcon('setting');
     }
+    
+    else if (pathname === '/Student') {
+      setActiveIcon('graduation');
+    }
+    
   }, [pathname]);
 
   useEffect(() => {
-      const role = localStorage.getItem("role");
-      if(role === "ROLE_TEACHER") {
-        setIsAdmin(true);
-      }
-    }, []);
+    const role = localStorage.getItem("role");
+    if(role === "ROLE_TEACHER") {
+      setIsAdmin(true);
+    }
+  }, []);
 
-  const handleIconClick = (icon: 'home' | 'folder' | 'setting') => {
+  const handleIconClick = (icon: 'home' | 'folder' | 'setting' | 'graduation') => {
     switch (icon) {
       case 'home':
         router.push('/');
@@ -38,6 +47,9 @@ function Nav() {
         break;
       case 'setting':
         router.push('/Management');
+        break;
+      case 'graduation':
+        router.push('/Student');
         break;
     }
   };
@@ -62,23 +74,29 @@ function Nav() {
 
         {isAdmin && (
           <S.IconContainer>
-          <S.HomeWrapper onClick={() => handleIconClick('home')}>
-            <S.HomeIcon
-              src={activeIcon === 'home' ? '/ClickedHome.svg' : '/UnclickedHome.svg'}
-            />
-          </S.HomeWrapper>
+            <S.HomeWrapper onClick={() => handleIconClick('home')}>
+              <S.HomeIcon
+                src={activeIcon === 'home' ? '/ClickedHome.svg' : '/UnclickedHome.svg'}
+              />
+            </S.HomeWrapper>
         
-          <S.FolderWrapper onClick={() => handleIconClick('folder')}>
-            <S.FolderIcon
-              src={activeIcon === 'folder' ? '/ClickedFolder.svg' : '/UnclikedFolder.svg'}
-            />
-          </S.FolderWrapper>
+            <S.FolderWrapper onClick={() => handleIconClick('folder')}>
+              <S.FolderIcon
+                src={activeIcon === 'folder' ? '/ClickedFolder.svg' : '/UnclikedFolder.svg'}
+              />
+            </S.FolderWrapper>
         
-          <S.SettingWrapper onClick={() => handleIconClick('setting')}>
-            <S.SettingIcon
-              src={activeIcon === 'setting' ? '/ClickedSetting.svg' : '/UnclikedSetting.svg'}
-            />
+            <S.SettingWrapper onClick={() => handleIconClick('setting')}>
+              <S.SettingIcon
+                src={activeIcon === 'setting' ? '/ClickedSetting.svg' : '/UnclikedSetting.svg'}
+              />
             </S.SettingWrapper>
+
+            <S.GradiWrapper onClick={() => handleIconClick('graduation')}>
+              <S.GradiIcon
+                src={activeIcon === 'graduation' ? '/ClickedGradi.svg' : '/UnclickedGradi.svg'}
+              />
+            </S.GradiWrapper>
           </S.IconContainer>
         )}
 

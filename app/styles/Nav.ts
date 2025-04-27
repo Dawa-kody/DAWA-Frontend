@@ -98,6 +98,21 @@ export const SettingIcon = styled.img`
   height: 37px;
 `;
 
+export const GradiWrapper = styled.div`
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const GradiIcon = styled.img`
+  width: 37px;
+  height: 37px;
+`
+
 export const Login = styled.img`
   width: 60px;
   height: 60px;
