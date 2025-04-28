@@ -10,8 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dawapurple: "#6948ED",
-        tableheader: "#F0EDFE",
+        primaryPurple: "#6948ED",
+        subPurple: "#D9D6FE",
+        slategray: "#F2F4F7",
+        badColor: "#D23B3B",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
