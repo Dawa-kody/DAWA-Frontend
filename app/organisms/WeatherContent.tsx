@@ -167,7 +167,7 @@ function WeatherContent() {
                 <div className="w-full flex flex-row gap-[1rem] items-center">
                     <img src="/PlusMessage.svg" className="w-[1.6rem] h-[1.6rem]" />
                     <span className="text-[1.25rem] font-[pretendard]">
-                        {warnings || "적당한 옷 입으쇼"}
+                        {warnings || "건강 항상 조심하세요"}
                     </span>
                 </div>
             </button>
