@@ -351,7 +351,7 @@ export const Dosage1Text = styled.span`
   user-select: none;
 `
 
-export const Dosage1Select = styled.select`
+export const HandleSelect = styled.select`
   width: 20rem; /* 320px */
   height: 2.5rem; /* 40px */
   position: relative;
