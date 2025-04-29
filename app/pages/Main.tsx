@@ -11,18 +11,19 @@ import RentData from "../molecules/RentData";
 
 import { RentDatas } from "../molecules/RentData";
 import NoticeModal from "@/organisms/NoticeModal";
+import { list } from "postcss";
 
 // JWT 디코딩 결과를 위한 타입 정의
-interface DecodedToken {
+interface DecodedsToken {
   role: string; 
   exp?: number; 
 }
 
 interface noticeDTO {
+  id: number;
   title: string;
   content: string;
-  writer: string;
-  updatedAt: string;
+  yearMonthDay: string[];
 }
 
 function Main() {
@@ -40,7 +41,7 @@ function Main() {
   });
 
   const [noticeList, setNoticeList] = useState<noticeDTO[]>([]);
-  const [selectedNotice, setSelectedNotice] = useState<noticeDTO | null>(null);
+  const [selectedNotice, setSelectedNotice] = useState(false);
 
   useEffect(() => {
     const role = localStorage.getItem("role");
@@ -148,8 +149,7 @@ function Main() {
         <NoticeModal
           title={selectedNotice.title}
           content={selectedNotice.content}
-          writer={selectedNotice.writer}
-          updatedAt={selectedNotice.updatedAt}
+          yearMonthDay={selectedNotice.yearMonthDay}
           onClose={() => setSelectedNotice(null)}
         />
       )}
@@ -175,7 +175,7 @@ function Main() {
             </div>
 
             {/* 물품 대여 버튼 */}
-            <div className="w-full h-[8rem] bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center">
+            <div className="w-full h-[6rem] bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center">
               <span className="text-[1.5rem] text-white font-[700]" onClick={rentModalClick}>
                 물품 대여
               </span>
@@ -187,16 +187,17 @@ function Main() {
             <div className="w-full pl-[1rem] pt-[0.75rem]">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
             </div>
-            <div id="noticeroll" className="w-full h-[8rem] overflow-y-auto px-4 py-2">
+            <div id="noticeroll" className="w-full h-[8rem] overflow-y-auto scrollbar-hide px-4 py-2"> 
               {noticeList.length === 0 ? (
                 <span className="text-[#98A2B3]">공지사항이 없습니다.</span>
               ) : (
                 noticeList.map((notice, idx) => (
-                  <button key={idx} className="w-full text-left mb-2 p-2 rounded hover:bg-gray-100 transition" onClick={() => setSelectedNotice(notice)}>
-                    <div className="font-bold text-[1rem]">{notice.title}</div>
-                    <div className="text-[0.8rem] text-gray-400">
-                      {notice.writer} | {new Date(notice.updatedAt).toLocaleDateString()}
-                    </div>
+                  <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(true)}>
+                    <div id="noticeTitle" className="font-bold text-black text-[1rem]">{notice.title}</div>
+                    <div className=" flex gap-[2rem]">
+                        <span className="text-noticeText text-[0.75rem]">보건선생님</span>
+                        <span className="text-noticeText text-[0.75rem]">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
+                      </div>
                   </button>
                 ))
               )}
@@ -230,20 +231,6 @@ function Main() {
               ))}
             </div>
           </div>
-              {/* 렌트 기록이 없는 경우 */}
-              {rentDataList.length === 0 && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
-                    대여한 기록이 존재하지 않습니다.
-                  </span>
-                </div>
-              )}
-              <div className="w-full h-[18rem] flex gap-[1rem] mt-[1rem] overflow-scroll scrollbar-hide">
-                {rentDataList.map(({ id, ...visit }) => (
-                  <RentData key={id} {...visit} />
-                ))}
-              </div>
-            </div>
 
           {/* 침대 현황 */}
           <div className="w-[22rem] h-[20.25rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">

@@ -14,6 +14,8 @@ const config: Config = {
         subPurple: "#D9D6FE",
         slategray: "#F2F4F7",
         badColor: "#D23B3B",
+        noticeGray: "#F2F4F7",
+        noticeText: "#95979D",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
