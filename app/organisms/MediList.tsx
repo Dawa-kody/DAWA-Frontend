@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FaTrashAlt, FaPen } from 'react-icons/fa';
 import axios from 'axios';
+import useMedicalStore from '@/store/useMedicalStore';
 
 interface Medicine {
   id: number;
@@ -97,32 +98,7 @@ const ActionTd = styled.td`
 `;
 
 const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
-  const [medicines, setMedicines] = useState<Medicine[]>([]);
-
-  const fetchMedicines = () => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/medicine/get`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': '69420',
-        },
-      })
-      .then((res) => {
-        const data = res.data;
-        if (Array.isArray(data)) {
-          setMedicines(data);
-        } else {
-          console.error('🚨 예상과 다르게 배열이 아님:', data);
-        }
-      })
-      .catch((err) => {
-        console.error('약 정보를 불러오는 데 실패했습니다.', err);
-      });
-  };
-
-  useEffect(() => {
-    fetchMedicines();
-  }, []);
+  const { medicines, fetchMedicines } = useMedicalStore();
 
   const handleDelete = async (id: number, name: string) => {
     const confirmDelete = confirm(`정말로 "${name}" 약을 삭제하시겠습니까?`);
@@ -136,12 +112,17 @@ const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
         },
       });
   
-      setMedicines((prev) => prev.filter((med) => med.id !== id));
+      // 삭제 후 자동으로 최신 데이터 가져옴
+      fetchMedicines();
       console.log(`🗑️ ${name} 삭제 성공`);
     } catch (error) {
       console.error(`❌ ${name} 삭제 실패`, error);
     }
-  };  
+  }; 
+
+  React.useEffect(() => {
+    fetchMedicines();
+  }, [fetchMedicines]);
 
   return (
     <Container>
