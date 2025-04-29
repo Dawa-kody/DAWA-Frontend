@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import useMedicalStore from '@/store/useMedicalStore';
 
 interface DrugModalProps {
   onClose: () => void;
@@ -64,14 +65,7 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('정제');
   const [quantity, setQuantity] = useState('');
-
-  useEffect(() => {
-    if (initialData) {
-      setName(initialData.name);
-      setCategory(initialData.type);
-      setQuantity(initialData.count !== undefined ? `${initialData.count}개` : '');
-    }
-  }, [initialData]);
+  const { addMedicine, updateMedicine } = useMedicalStore();
 
   const handleSubmit = async () => {
     if (!name || !category || !quantity) {
@@ -79,32 +73,37 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
       return;
     }
   
-    const newData = {
-      medicineName: name,
-      medicineType: category,
-      medicineCount: quantity,
-    };
+    const parsedQuantity = parseInt(quantity);
+    if (isNaN(parsedQuantity)) {
+      alert('유효한 수량을 입력해주세요.');
+      return;
+    }
   
     try {
       if (initialData) {
-        // PUT: 수정 (medicineId 포함)
-        await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/medicine/update`, {
-          medicineId: initialData.id,
-          ...newData,
+        // 수정 로직
+        if (!initialData?.id) throw new Error('Invalid ID');
+        await updateMedicine({
+          id: initialData.id, // ✅ number
+          name,
+          type: category,
+          count: parsedQuantity,
+          body_system: null
         });
-        console.log('수정 완료:', { medicineId: initialData.id, ...newData });
       } else {
-        // POST: 등록
-        await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/medicine/insert`, newData);
-        console.log('등록 완료:', newData);
+        // 생성 로직 (ID 없이 전송)
+        await addMedicine({
+          name,
+          type: category,
+          count: parsedQuantity,
+          body_system: null
+        });
       }
       onClose();
     } catch (error) {
-      console.error('에러 발생:', error);
-      alert('요청 중 문제가 발생했습니다.');
+      alert('처리 중 오류가 발생했습니다');
     }
-  };
-  
+  };  
 
   return (
     <Overlay>
