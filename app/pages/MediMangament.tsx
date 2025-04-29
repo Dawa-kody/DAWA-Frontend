@@ -20,17 +20,19 @@ export default function DrugManagementPage() {
   return (
     <>
       <Nav />
-      <MedicineTable
-        onAdd={() => setIsAddOpen(true)}
-        onEdit={(data) => setEditData(data)}
-      />
-      {isAddOpen && <DrugModal onClose={() => setIsAddOpen(false)} />}
-      {editData && (
-        <DrugModal
-          initialData={editData}
-          onClose={() => setEditData(null)}
+      <div className='w-full h-full overflow-scroll scrollbar-hide'>
+        <MedicineTable
+          onAdd={() => setIsAddOpen(true)}
+          onEdit={(data) => setEditData(data)}
         />
-      )}
+        {isAddOpen && <DrugModal onClose={() => setIsAddOpen(false)} />}
+        {editData && (
+          <DrugModal
+            initialData={editData}
+            onClose={() => setEditData(null)}
+          />
+        )}
+      </div>
     </>
   );
 }

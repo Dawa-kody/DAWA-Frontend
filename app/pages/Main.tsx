@@ -230,6 +230,20 @@ function Main() {
               ))}
             </div>
           </div>
+              {/* 렌트 기록이 없는 경우 */}
+              {rentDataList.length === 0 && (
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
+                    대여한 기록이 존재하지 않습니다.
+                  </span>
+                </div>
+              )}
+              <div className="w-full h-[18rem] flex gap-[1rem] mt-[1rem] overflow-scroll scrollbar-hide">
+                {rentDataList.map(({ id, ...visit }) => (
+                  <RentData key={id} {...visit} />
+                ))}
+              </div>
+            </div>
 
           {/* 침대 현황 */}
           <div className="w-[22rem] h-[20.25rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
