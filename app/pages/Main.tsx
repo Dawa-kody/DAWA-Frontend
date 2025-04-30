@@ -12,7 +12,6 @@ import noticeModal from "../organisms/NoticeModal";
 
 import { RentDatas } from "../molecules/RentData";
 import NoticeModal from "@/organisms/NoticeModal";
-import { list } from "postcss";
 
 // JWT 디코딩 결과를 위한 타입 정의
 interface DecodedsToken {
@@ -23,7 +22,6 @@ interface DecodedsToken {
 interface noticeDTO {
   id: number;
   title: string;
-  content: string;
   yearMonthDay: string;
 }
 
@@ -73,8 +71,24 @@ function Main() {
             },
           }
         );
+  
         if (Array.isArray(response.data)) {
           setNoticeList(response.data);
+  
+          const firstNoticeId = response.data[0]?.id; // 첫 번째 공지사항의 id
+          if (firstNoticeId) {
+            const detailRes = await axios.get<noticeDTO>(
+              `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${firstNoticeId}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  'ngrok-skip-browser-warning': '69420',
+                  withCredentials: true,
+                },
+              }
+            );
+            console.log("상세 공지사항:", detailRes.data);
+          }
         } else {
           setNoticeList([]);
         }
@@ -82,11 +96,12 @@ function Main() {
         console.error("공지사항 데이터를 불러오는 중 에러 발생:", error);
       }
     }
-
+  
     if (token) {
       fetchNotice();
     }
   }, [token]);
+  
 
   useEffect(() => {
     async function fetchRentData() {
@@ -148,9 +163,7 @@ function Main() {
 
       {selectedNotice && (
         <NoticeModal
-          noticeTitle={selectedNotice.title}
-          noticeContent={selectedNotice.content}
-          noticeDate={selectedNotice.yearMonthDay}
+          id={selectedNotice.id}
           onClose={() => setSelectedNotice(null)}
         />
       )}
