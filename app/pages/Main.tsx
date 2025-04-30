@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Nav from "../organisms/Nav";
 import RentModal from "../organisms/RentModal";
 import RentData from "../molecules/RentData";
+import noticeModal from "../organisms/NoticeModal";
 
 import { RentDatas } from "../molecules/RentData";
 import NoticeModal from "@/organisms/NoticeModal";
@@ -23,7 +24,7 @@ interface noticeDTO {
   id: number;
   title: string;
   content: string;
-  yearMonthDay: string[];
+  yearMonthDay: string;
 }
 
 function Main() {
@@ -41,7 +42,7 @@ function Main() {
   });
 
   const [noticeList, setNoticeList] = useState<noticeDTO[]>([]);
-  const [selectedNotice, setSelectedNotice] = useState(false);
+  const [selectedNotice, setSelectedNotice] = useState<noticeDTO | null>(null);
 
   useEffect(() => {
     const role = localStorage.getItem("role");
@@ -147,9 +148,9 @@ function Main() {
 
       {selectedNotice && (
         <NoticeModal
-          title={selectedNotice.title}
-          content={selectedNotice.content}
-          yearMonthDay={selectedNotice.yearMonthDay}
+          noticeTitle={selectedNotice.title}
+          noticeContent={selectedNotice.content}
+          noticeDate={selectedNotice.yearMonthDay}
           onClose={() => setSelectedNotice(null)}
         />
       )}
@@ -192,7 +193,7 @@ function Main() {
                 <span className="text-[#98A2B3]">공지사항이 없습니다.</span>
               ) : (
                 noticeList.map((notice, idx) => (
-                  <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(true)}>
+                  <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(notice)}>
                     <div id="noticeTitle" className="font-bold text-black text-[1rem]">{notice.title}</div>
                     <div className=" flex gap-[2rem]">
                         <span className="text-noticeText text-[0.75rem]">보건선생님</span>
