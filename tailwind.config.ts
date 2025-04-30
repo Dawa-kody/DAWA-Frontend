@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import scrollbarHide from 'tailwind-scrollbar-hide'
+import NoticeModal from "@/organisms/NoticeModal";
 
 const config: Config = {
   content: [
@@ -14,6 +15,9 @@ const config: Config = {
         subPurple: "#D9D6FE",
         slategray: "#F2F4F7",
         badColor: "#D23B3B",
+        noticeGray: "#F2F4F7",
+        noticeText: "#95979D",
+        NoticeModal: "#98A2B3",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
