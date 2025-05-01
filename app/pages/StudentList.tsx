@@ -34,7 +34,9 @@ function buildGenderMap(
 async function parseStudentSheet(
   sheet: XLSX.WorkSheet,
   grade: number,
-  genderMap: Map<string, "MAN" | "WOMAN">
+  genderMap: Map<string, "MAN" | "WOMAN">,
+  emailSet: Set<string>,
+  errorLog: string[]
 ): Promise<UserType[]> {
   const studentData: UserType[] = [];
   const admissionYear = getAdmissionYearSuffix(grade);
@@ -52,14 +54,23 @@ async function parseStudentSheet(
       const key = `${name}:${schoolNumber}`;
       const gender = genderMap.get(key) || "MAN";
 
+      const email = `s${admissionYear}${String((classNum - 1) * 18 + studentNum).padStart(3, "0")}@gsm.hs.kr`;
+
+      if (emailSet.has(email)) {
+        errorLog.push(`중복된 이메일: ${email}`);
+        continue;
+      }
+      emailSet.add(email);
+
       studentData.push({
         name,
         gender,
         schoolNumber,
-        email: `s${admissionYear}${String((classNum - 1) * 18 + studentNum).padStart(3, "0")}@gsm.hs.kr`,
+        email,
       });
     }
   }
+
   return studentData;
 }
 
@@ -106,10 +117,13 @@ function StudentList() {
         { sheetName: "3학년", grade: 3 },
       ];
 
+      const emailSet = new Set<string>();
+      const errorLog: string[] = [];
+
       const allStudentData = await Promise.all(
         grades.map(async ({ sheetName, grade }) => {
           const sheet = workbook.Sheets[sheetName];
-          return sheet ? await parseStudentSheet(sheet, grade, genderMap) : [];
+          return sheet ? await parseStudentSheet(sheet, grade, genderMap, emailSet, errorLog) : [];
         })
       );
 
@@ -120,7 +134,9 @@ function StudentList() {
 
       alert("업로드 성공!");
       fetchUserList();
-    } catch (error) {
+    }
+    
+    catch (error) {
       console.error("업로드 실패:", error);
       alert("업로드 실패!");
     }
