@@ -2,20 +2,28 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import * as S from "../styles/Main";
 import axios from "axios";
 import { useStore } from "@/store/useRentDataStore"; // 경로는 알맞게 조정
+import { useRouter } from "next/navigation";
 
 import Nav from "../organisms/Nav";
-import VisitDataAdmin from "../molecules/VisitDataAdmin";
 import RentDataAdmin from "../molecules/RentDataAdmin";
 import RentModal from "@/organisms/RentModalAdmin";
 import { VisitAdminDatas } from "../molecules/VisitDataAdmin";
 import { RentAdminDatas } from "../molecules/RentDataAdmin";
 import { RequestRentDatas } from "@/molecules/RequestRentData";
 import RequestRentData from "@/molecules/RequestRentData";
+import NoticeModal from "@/organisms/NoticeModal";
+import NoticeWrite from "@/organisms/noticeWrite";
+
+interface noticeDTO {
+  id: number;
+  title: string;
+  yearMonthDay: string;
+}
 
 function MainAdmin() {
+    const router = useRouter();
     const [Admin, setAdmin] = useState(false);
     const [token, setToken] = useState<string | null>(null);
 
@@ -29,11 +37,14 @@ function MainAdmin() {
         bed1: true,
         bed2: true,
     });
+    
+    const [noticeList, setNoticeList] = useState<noticeDTO[]>([]);
+    const [selectedNotice, setSelectedNotice] = useState<noticeDTO | null>(null);
+    const [writeNotice, setWriteNotice] = useState<boolean>(false);
 
     const {
       rentAdminDataList,
       setRentAdminDataList,
-      visitAdminDataList,
       setVisitAdminDataList,
       requestRentDataList,
       setRequestRentDataList,
@@ -60,6 +71,58 @@ function MainAdmin() {
           setIsClosing(false);
       }, 400); // 애니메이션 지속 시간 (0.4초)
     };
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const storedToken = localStorage.getItem('accessToken');
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      }
+    }, []);
+  
+    useEffect(() => {
+      async function fetchNotice() {
+        try {
+          const response = await axios.get<noticeDTO[]>(
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'ngrok-skip-browser-warning': '69420',
+                withCredentials: true,
+              },
+            }
+          );
+    
+          if (Array.isArray(response.data)) {
+            setNoticeList(response.data);
+    
+            const firstNoticeId = response.data[0]?.id; // 첫 번째 공지사항의 id
+            if (firstNoticeId) {
+              const detailRes = await axios.get<noticeDTO>(
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${firstNoticeId}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': '69420',
+                    withCredentials: true,
+                  },
+                }
+              );
+              console.log("상세 공지사항:", detailRes.data);
+            }
+          } else {
+            setNoticeList([]);
+          }
+        } catch (error) {
+          console.error("공지사항 데이터를 불러오는 중 에러 발생:", error);
+        }
+      }
+    
+      if (token) {
+        fetchNotice();
+      }
+    }, [token]);
 
   useEffect(() => {
     async function fetchVisitAdminData() {
@@ -156,7 +219,7 @@ function MainAdmin() {
         } catch (error) {
             console.error("침대 상태를 불러오는 중 에러 발생:", error);
         }
-    }
+    };
     fetchBedStatus();
   }, [token]);
 
@@ -182,12 +245,29 @@ function MainAdmin() {
     } catch (error) {
       console.error("침대 상태를 업데이트하는 중 에러 발생:", error);
     }
-  };
+  }
 
   return (
     <>
-      {rentModalOpen && (
-        <RentModal onClose={() => setRentModalOpen(false)} />
+      {rentModalOpen === true && (
+        <>
+          <RentModal onClose={()=> setRentModalOpen(false)} />
+        </>
+      )}
+
+      {selectedNotice !== null && (
+        <>
+          <NoticeModal
+            id={selectedNotice.id}
+            onClose={() => setSelectedNotice(null)}
+          />
+        </>
+      )}
+      
+      {writeNotice && (
+        <>
+          <NoticeWrite onClose={() => setWriteNotice(false)}/>
+        </>
       )}
 
       <Nav />
@@ -215,10 +295,32 @@ function MainAdmin() {
             </div>
           </div>
           {/* 공지사항 */}
+          <div id="notice" className="w-[45rem] ml-[1rem] flex flex-col bg-white">
+            <div id="title" className="w-full pl-[1rem] pr-[1rem] pt-[0.75rem] flex flex-row justify-between ">
+              <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
+              <button className="w-[10rem] h-[2.5rem] bg-subPurple text-black font-[500] text-[1rem] rounded-[0.3125rem]" onClick={() => setWriteNotice(true)}>공지사항 작성</button>
+            </div> 
+            <div id="noticeroll" className="w-full h-[8rem] overflow-y-auto scrollbar-hide px-4 py-2"> 
+              {noticeList.length === 0 ? (
+                <span className="text-[#98A2B3]">공지사항이 없습니다.</span>
+              ) : (
+                noticeList.map((notice, idx) => (
+                  <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(notice)}>
+                    <div id="noticeTitle" className="font-bold text-black text-[1rem]">{notice.title}</div>
+                    <div className=" flex gap-[2rem]">
+                        <span className="text-noticeText text-[0.75rem]">보건선생님</span>
+                        <span className="text-noticeText text-[0.75rem]">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
+                      </div>
+                  </button>
+                ))
+              )}
+            </div>
+            </div>
+          </div>
           {/* 캘린더*/}
         </div> {/* top div 끝나는 지점 */}
 
-        <div id="contentDiv" className="w-full flex flex-row gap-[2rem]">
+        <div id="contentDiv" className="w-full flex flex-row gap-[2rem] mt-[2rem] pl-[2rem] pr-[2rem]">
 
           <div className="w-[90rem] h-[21rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
 
@@ -226,7 +328,7 @@ function MainAdmin() {
             <div className="text-left">
               <span className="font-[700] text-[2rem] text-black">학생들의 가장 최근 대여</span>
             </div>
-            {/* 렌트 기록이 없는 경우 */}
+
             {rentAdminDataList.length === 0 && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
@@ -319,8 +421,7 @@ function MainAdmin() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> {/* contentDiv 끝나는 지점 */}
     </>
   )
 }
