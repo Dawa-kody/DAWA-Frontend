@@ -214,6 +214,8 @@ function MainAdmin() {
               </span>
             </div>
           </div>
+          {/* 공지사항 */}
+          {/* 캘린더*/}
         </div> {/* top div 끝나는 지점 */}
 
         <div id="contentDiv" className="w-full flex flex-row gap-[2rem]">
