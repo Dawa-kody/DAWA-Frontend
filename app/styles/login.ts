@@ -252,7 +252,6 @@ export const IconWrapper = styled.div<{ $showPassword: boolean }>`
   position: absolute;
   cursor: pointer;
   color: #6948ED;
-  /* 조건부 스타일 */
-  margin-top: ${({ $showPassword }) => ($showPassword ? "42px" : "40px")};
-  margin-left: ${({ $showPassword }) => ($showPassword ? "480px" : "420px")};
+  top:460px;
+  left:560px;
 `;

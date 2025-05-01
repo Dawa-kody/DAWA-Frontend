@@ -322,12 +322,12 @@ export const NextbuttonText=styled.span<{isActive:boolean}>`
 `
 
 export const IconWrapper = styled.div`
+  left:440px;
+  top:13px;
   position: absolute;
-  margin-top: -42px;
-  margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
-`;
+  `;
 
 export const IconWrapper2 = styled.div`
   position: absolute;
@@ -335,6 +335,7 @@ export const IconWrapper2 = styled.div`
   margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
+  z-index:1;
 `;
 
 export const ReportMessage = styled.span`

@@ -12,6 +12,7 @@ function Signup1() {
   const [PasswordValue, SetPasswordValue] = useState("");
   const [PasswordReValue, SetPasswordReValue] = useState("");
   const [timerKey, setTimerKey] = useState(0);
+  const [showNewPasswordRe, setShowNewPasswordRe] = useState(false);
 
   const [isCodeSent, setIsCodeSent] = useState(false); // 인증번호 발송 여부
   const [isCodeVerified, setIsCodeVerified] = useState(false); // 인증번호 검증 성공 여부
@@ -174,9 +175,9 @@ function Signup1() {
               onChange={handlePasswordChange}
               required
             />
-            <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-            </S.IconWrapper>
+           <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
+           {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+           </S.IconWrapper>
             <S.InputGroup>
               <S.InputLabel>비밀번호 확인</S.InputLabel>
               <S.PaaswordCheckInput
@@ -186,9 +187,9 @@ function Signup1() {
                 onChange={handlePasswordReChange}
                 required
               />
-              <S.IconWrapper onClick={() => setShowPasswordRe(!showPasswordRe)}>
-                {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-              </S.IconWrapper>
+              <S.IconWrapper2 onClick={() => setShowPasswordRe(!showPasswordRe)}>
+                {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}  
+              </S.IconWrapper2>
             </S.InputGroup>
           </S.Password>
           

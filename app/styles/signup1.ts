@@ -123,7 +123,6 @@ export const Title = styled.span`
 `
 
 export const InputGroup = styled.div`
-
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -427,9 +426,18 @@ user-select: none;
 `
 
 export const IconWrapper = styled.div`
-    position: absolute;
-    margin-top: 48px;
-    margin-left: 500px;
-    cursor: pointer;
-    color: #6948ED;
+  position: absolute;
+  cursor: pointer;
+  color: #6948ED;
+  top:50px;
+  left:430px;
+
+`;
+
+export const IconWrapper2 = styled.div`
+  position: absolute;
+   top:160px;
+  left:430px; 
+  cursor: pointer;
+  color: #6948ED;
 `;
