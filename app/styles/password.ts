@@ -1,9 +1,23 @@
 import styled from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+
+
+
+export const GlobalStyle = createGlobalStyle`
+  html, body, #__next {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+`;
+
 
 export const Container = styled.div`
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  height: 1000px;
+  width: 100vw;
+  overflow: auto; 
 `;
 
 export const LeftSection = styled.div`
@@ -43,7 +57,7 @@ export const Img = styled.img`
 export const Title = styled.span`
     position: absolute;
     left: 124px;
-    top: 225px;
+    top: 125px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -58,7 +72,15 @@ export const InputGroup = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
+`
+export const PasswordGroup = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position:relative;
+    top:5px;
 `
 
 export const InputLabel = styled.label`
@@ -70,12 +92,23 @@ export const InputLabel = styled.label`
 
     color: #000000;
 `
+export const EmailText=styled.span`
+color: #98A2B3;
+font-family: Pretendard;
+font-size: 1.2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+position:absolute;
+left:515px;
+top:270px;
+`
 
 export const StyledInput = styled.input`
     width: 100%;
     height: 53px;
-    top: 461px;
-
+    top: 361px;
+    color:#000000;
     background: #F2F4F7;
     border-radius: 8px;
 
@@ -85,43 +118,162 @@ export const StyledInput = styled.input`
     &::placeholder{
         color: #95979D;
     }
+    outline:none;   
 `
+
+export const FormEmailInput = styled.input`
+  width:200px;
+  height: 48px;
+  border: none;
+  border-radius: 8px 0 8px 0;
+  background: transparent;
+  padding-left: 20px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #000;
+  &::placeholder {
+    color: #95979D;
+  }
+  outline: none;
+  background-color:#F2F4F7;
+`
+
 
 export const FormStyledInput = styled.input`
-    width: 100%;
-    height: 53px;
-    top: 461px;
-
-    background: #F2F4F7;
-    border-radius: 8px 0px 0px 8px;
-
+    width:360px;
+    height: 45px;
+    background: #F2F4F4;
+    border-radius: 8px;
     padding-left: 20px;
     font-family: 'Pretendard';
+    font-size: 16px;
 
-    &::placeholder{
+    &::placeholder {
         color: #95979D;
     }
+    outline: none;
+    color: #000000;
 `
+export const AccessText =styled.span`
 
+color:#6948ED;
+
+`
+export const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const ErrorMessage = styled.div`
+  color: #D23B3B;
+  font-size: 13px;
+  margin-top: 4px;
+`;
+
+export const TimerInfo = styled.div`
+  margin-top: 8px;
+`;
+
+export const PasswordInputWrapper = styled.div`
+  position: relative;
+`;
+
+
+export const FlexRowWide = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+
+export const RedTimerText = styled.span`
+  color:#6948ED;
+  font-weight: 500;
+  font-size: 16px;
+`;
 export const EmailInput = styled.div`
-    width: 100%;
-    display: inline-flex;
-    flex-direction: row;
+      width:355px;
+    height:51px;
+    position:relative;
+    top:4px;
+    background: #F2F4F4;
+    border-radius: 8px;
+    padding-left: 20px;
+    font-family: 'Pretendard';
+    font-size: 16px;
+    &::placeholder {
+        color: #95979D;
+    }
+    outline: none;
+    color: #000000;
 `
 
 export const EmailInputButton = styled.button`
-    width: 25%;
+  width: 140px;
+  height: 48px;
+  border: none;
+  background: #7C5AF6;
+  color: #fff;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  &:hover {
+    background: #6948ED;
+  }
+  `
+  export const AuthRow = styled.div`
+  display: flex;
+  width: 100%;
+  background: #F2F4F7;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+export const Button=styled.button`
+    width: 8rem;
+    height: 3rem;
     border-radius: 0px 8px 8px 0px;
     display: flex;
+    position:absolute;
+    left:500px;
+    top:354.30px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
     background-color: #6948ED;
     color: white;
 
+
     font-family: 'Pretendard';
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+
+`
+
+
+export const EmailCheckButton=styled.button`
+    width: 8rem;
+    height: 3.3125rem;
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    position:relative;
+    left:-0.3rem;
+    top: -0.2rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #6948ED;
+    color: white;
+
+
+    font-family: 'Pretendard';
+    font-weight: 500;
     font-size: 18px;
     align-items: center;
     justify-content: center;
@@ -135,52 +287,55 @@ export const Inputs = styled.div`
     height: 10vh;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -22vh;
+    margin-top: -68vh;
 `
 
-export const ButtonGap = styled.div`
-    height: 8vh;
-`
 
 export const ButtonDiv = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top:14px;
 `
 
-export const NextButton = styled.div`
-    width: 98px;
+export const NextButton = styled.div<{isActive:boolean}>`
+    width: 78px;
     height: 43px;
-    border-radius: 10px;
+    border-radius: 6px;
     margin-left: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 
-    background-color: #6948ED;
-    color: white;
+    background-color: ${({ isActive }) => (isActive ? '#6948ED' : '#E4E7EC')};
+
+`
+
+export const NextbuttonText=styled.span<{isActive:boolean}>`
+    color: ${({isActive})=>(isActive?"#ffffff":"#98A2B3")};
 
     font-family: 'Pretendard';
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 15px;
     align-items: center;
     justify-content: center;
 `
 
 export const IconWrapper = styled.div`
+  left:440px;
+  top:13px;
+  position: absolute;
+  cursor: pointer;
+  color: #6948ED;
+  `;
+
+export const IconWrapper2 = styled.div`
   position: absolute;
   margin-top: 42px;
   margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
-`;
-
-export const IconWrapper2 = styled.div`
-  position: absolute;
-  margin-top: 102px;
-  margin-left: 500px;
-  cursor: pointer;
-  color: #6948ED;
+  z-index:1;
 `;
 
 export const ReportMessage = styled.span`
