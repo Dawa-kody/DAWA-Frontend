@@ -1,5 +1,24 @@
 import styled from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
+export const GlobalStyle = createGlobalStyle`
+  html, body, #__next {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  body {
+    overflow: hidden;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+`;
 
 export const LeftSection = styled.div`
     flex: 1;
@@ -37,8 +56,8 @@ export const Img = styled.img`
 
 export const HelloText = styled.span`
  position: absolute;
-    left: 105px;
-    top: 174px;
+    left: 106px;
+    top: 114px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -52,7 +71,7 @@ export const HelloText = styled.span`
 export const SubText = styled.span`
     position: absolute;
     left: 105px;
-    top: 218px;
+    top: 168px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -66,7 +85,7 @@ export const SubText = styled.span`
 export const GoSignup = styled.span`
     position: absolute;
     left: 245px;
-    top: 218.5px;
+    top: 168px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -79,14 +98,14 @@ export const GoSignup = styled.span`
 `
 
 export const Title = styled.span`
-    position: absolute;
+    position: absolute; 
     left: 124px;
-    top: 300px;
+    top: 240px;
 
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 35px;
     line-height: 48px;
 
     color: #000000;
@@ -109,21 +128,82 @@ export const InputLabel = styled.label`
     color: #000000;
 `
 
-export const StyledInput = styled.input`
-    width: 100%;
-    height: 53px;
-    top: 461px;
+export const EmailText=styled.span`
+color: #98A2B3;
+font-family: Pretendard;
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+position:absolute;
+left:508px;
+top:363px;
+`
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+`;
 
+export const PasswordMessage=styled.span`
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+`
+
+export const EmailInput = styled.input`
+    
+    width: 22rem;
+    height: 53px;
+    position:relative;
+   
     background: #F2F4F7;
     border-radius: 8px;
 
     padding-left: 20px;
     font-family: 'Pretendard';
+    outline:none;
 
     &::placeholder{
         color: #95979D;
     }
+    color:#000000;
 `
+
+
+export const PasswordInput = styled.input`
+    width: 28.6875rem;
+    height: 53px;
+    top: 461px;
+
+    
+    background: #F2F4F7;
+    border-radius: 8px;
+
+    padding-left: 20px;
+    font-family: 'Pretendard';
+    outline:none;
+
+    &::placeholder{
+        color: #95979D;
+    }
+    color:#000000;
+`
+
+export const MissingpasswordText = styled.span`
+color: #6948ED;
+font-family: Pretendard;
+font-size: 1rem;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+position:relative;
+left:20.6rem;
+
+bottom:-1.4rem;
+cursor:pointer;
+`
+
 
 export const Inputs = styled.div`
     display: flex;
@@ -133,7 +213,7 @@ export const Inputs = styled.div`
     height: 10vh;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -4vh;
+    margin-top: 1vh;
 `
 
 export const ButtonDiv = styled.div`
@@ -142,30 +222,37 @@ export const ButtonDiv = styled.div`
     margin-top: 24px;
 `
 
-export const NextButton = styled.button`
-    width: 98px;
-    height: 43px;
-    border-radius: 10px;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+export const NextButton = styled.button<{ isActive: boolean }>`
+width: 5.8rem;
+height: 3.0rem;
+display: flex;  
+border-radius: 10px;
+margin-left: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: ${({ isActive }) => (isActive ? "pointer" : "default")};
+background-color: ${({ isActive }) => (isActive ? "#6948ED" : "#E4E7EC")};
+color: white;
+position:relative;
+bottom:-0.8rem;
+outline:none;
+`;
 
-    background-color: #6948ED;
-    color: white;
-
-    font-family: 'Pretendard';
-    font-weight: 600;
-    font-size: 18px;
-    align-items: center;
-    justify-content: center;
+export const NextButtonText = styled.span<{ isActive: boolean }>`
+color: ${({ isActive }) => (isActive ? '#ffffff' : '#98A2B3')};
+font-family: "Pretendard Variable";
+font-size: 1rem;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
 `
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.div<{ $showPassword: boolean }>`
   position: absolute;
-  margin-top: 42px;
-  margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
+  /* 조건부 스타일 */
+  margin-top: ${({ $showPassword }) => ($showPassword ? "42px" : "40px")};
+  margin-left: ${({ $showPassword }) => ($showPassword ? "480px" : "420px")};
 `;

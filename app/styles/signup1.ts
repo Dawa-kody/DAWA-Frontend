@@ -1,10 +1,35 @@
 import styled from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  html, body, #__next {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 스크롤바 숨기기 - Chrome, Safari, Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  /* 스크롤바 숨기기 - IE, Edge */
+  body, #__next {
+    -ms-overflow-style: none;
+  }
+  /* 스크롤바 숨기기 - Firefox */
+  body, #__next {
+    scrollbar-width: none;
+  }
+`;
+
 
 export const Container = styled.div`
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  height: 1000px;
+  width: 100vw;
+  overflow: auto; /* 스크롤 가능, 스크롤바는 숨김 */
 `;
+
 
 export const LeftSection = styled.div`
     flex: 1;
@@ -43,12 +68,12 @@ export const Img = styled.img`
 export const HelloText = styled.span`
  position: absolute;
     left: 105px;
-    top: 174px;
+    top: 74px;
 
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 34px;
     line-height: 48px;
 
     color: #000000;
@@ -57,7 +82,7 @@ export const HelloText = styled.span`
 export const SubText = styled.span`
     position: absolute;
     left: 105px;
-    top: 218px;
+    top: 115px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -71,7 +96,7 @@ export const SubText = styled.span`
 export const GoLogin = styled.span`
     position: absolute;
     left: 251px;
-    top: 218.5px;
+    top: 115px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -86,7 +111,7 @@ export const GoLogin = styled.span`
 export const Title = styled.span`
     position: absolute;
     left: 124px;
-    top: 285px;
+    top: 160px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -98,10 +123,10 @@ export const Title = styled.span`
 `
 
 export const InputGroup = styled.div`
-    width: 100%;
+
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 5px;
 `
 
 export const InputLabel = styled.label`
@@ -111,13 +136,70 @@ export const InputLabel = styled.label`
     font-size: 16px;
     line-height: 21px;
 
+    color: #000000; 
+`
+
+export const EmailAcess = styled.label`
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+
+    color: #000000;
+    position:relative;
+    top:14px;
+`
+export const EmailText=styled.span`
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+
+    color: #000000;
+    position:relative;
+    top:20px;
+`
+
+export const EmailTextE=styled.span`
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #98A2B3;
+    position:relative;
+    top:-23px;
+    left:370px;
+`
+
+
+export const EmailInput = styled.input`
+    width:355px;
+    height:51px;
+    position:relative;
+    top:20px;
+    background: #F2F4F4;
+    border-radius: 8px;
+    padding-left: 20px;
+    font-family: 'Pretendard';
+    font-size: 16px;
+    &::placeholder {
+        color: #95979D;
+    }
+    outline: none;
     color: #000000;
 `
 
 export const StyledInput = styled.input`
     width: 100%;
     height: 53px;
-    top: 461px;
+    position:relative;
+    top: 171px;
 
     background: #F2F4F7;
     border-radius: 8px;
@@ -128,7 +210,135 @@ export const StyledInput = styled.input`
     &::placeholder{
         color: #95979D;
     }
+    outline:none;
+    color:#000000;
 `
+
+export const PaaswordInput = styled.input`
+    width: 100%;
+    height: 53px;
+    position:relative;
+    top: -8px;
+
+    background: #F2F4F7;
+    border-radius: 8px;
+
+    padding-left: 20px;
+    font-family: 'Pretendard';
+
+    &::placeholder{
+        color: #95979D;
+    }
+    outline:none;
+    color:#000000;
+`
+
+export const PaaswordCheckInput = styled.input`
+    width: 100%;
+    height: 53px;
+    position:relative;
+    top: 3px;
+
+    background: #F2F4F7;
+    border-radius: 8px;
+
+    padding-left: 20px;
+    font-family: 'Pretendard';
+
+    &::placeholder{
+        color: #95979D;
+    }
+    outline:none;
+    color:#000000;
+`
+
+
+export const FormEmailInput = styled.input`
+    width: 22rem;
+    height: 53px;
+    position:relative;  
+    top: 12px;
+    color:#000000;
+    background: #F2F4F7;
+    border-radius: 8px 0 0 8px;
+
+
+    padding-left: 20px;
+    font-family: 'Pretendard';
+
+    &::placeholder{
+        color: #95979D;
+    }
+    outline:none;
+`
+
+export const EmailInputButton = styled.button`
+    width: 8rem;
+    height: 3.34rem;
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    position:absolute;
+    left:490px;
+    top: 380px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #6948ED;
+    color: white;
+
+
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+`
+export const Div=styled.div`
+color: '#6948ED';
+marginTop: '8px';
+fontSize: '14px;
+display: 'flex';
+alignItems: 'center;
+gap: '8px'
+`
+export const Password=styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  top: 30px; 
+
+`
+
+export const ErrorMessage = styled.div`
+   color: #ff3b30;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-family: 'Pretendard', sans-serif;
+`;
+
+export const Text=styled.span`
+  color: #6948ED;
+  position: static;
+  z-index: 10;
+  position:relative;
+  top:53px;
+`
+
+
+export const EmailSentInfo = styled.div`
+  color: #6948ED;
+  margin-top: -40px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left:10px;
+  
+`;
+
 
 export const Inputs = styled.div`
     display: flex;
@@ -138,7 +348,7 @@ export const Inputs = styled.div`
     height: 10vh;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -8vh;
+    margin-top: -70vh;
 `
 
 export const Count1page = styled.div`
@@ -169,7 +379,7 @@ export const ButtonDiv = styled.div`
     flex-direction: column;
 `
 
-export const NextButton = styled.div`
+export const NextButton = styled.button<{ isActive: boolean }>`
     width: 98px;
     height: 43px;
     border-radius: 10px;
@@ -177,21 +387,48 @@ export const NextButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-
-    background-color: #6948ED;
+    cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
+    background-color: ${({ isActive }) => (isActive ? '#6948ED' : '#CCCCCC')};
     color: white;
-
+    outline: none;
     font-family: 'Pretendard';
     font-weight: 600;
     font-size: 18px;
     align-items: center;
     justify-content: center;
+    border: none;
+    transition: background-color 0.2s;
+`;
+
+export const BeforeButton=styled.button`
+width: 85px;
+height: 43px;
+border-radius: 10px;
+position:relative;
+top:-50px;
+left:10px;
+cursor: pointer;
+
+
+background-color: #F2F4F7;
+color: black;
+outline:none;
+font-family: 'Pretendard';
+font-weight: 700;
+font-size: 16px;
+align-items: center;
+justify-content: center;
+
+-ms-user-select: none;
+-moz-user-select: -moz-none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+user-select: none;
 `
 
 export const IconWrapper = styled.div`
     position: absolute;
-    margin-top: 42px;
+    margin-top: 48px;
     margin-left: 500px;
     cursor: pointer;
     color: #6948ED;

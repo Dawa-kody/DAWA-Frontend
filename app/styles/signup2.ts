@@ -43,7 +43,7 @@ export const Img = styled.img`
 export const HelloText = styled.span`
  position: absolute;
     left: 105px;
-    top: 174px;
+    top: 124px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -57,7 +57,7 @@ export const HelloText = styled.span`
 export const SubText = styled.span`
     position: absolute;
     left: 105px;
-    top: 218px;
+    top: 175px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -71,7 +71,7 @@ export const SubText = styled.span`
 export const GoLogin = styled.span`
     position: absolute;
     left: 251px;
-    top: 218.5px;
+    top: 175px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -86,7 +86,7 @@ export const GoLogin = styled.span`
 export const Title = styled.span`
     position: absolute;
     left: 124px;
-    top: 285px;
+    top: 225px;
 
     font-family: 'Pretendard';
     font-style: normal;
@@ -128,6 +128,8 @@ export const StyledInput = styled.input`
     &::placeholder{
         color: #95979D;
     }
+    outline:none;
+    color:#000000;
 `
 export const ButtonGroup = styled.div`
     width: 100%;
@@ -154,12 +156,19 @@ export const MenButton = styled.div<{ isSelected: boolean }>`
     align-items: center;
     cursor: pointer;
 
-    font-family: 'Pretendard';
-    font-weight: 500;
 
     background: ${(props) => (props.isSelected ? "#E4E7EC" : "#F2F4F7")};
     border-radius: 8px;
 `
+export const MenButtonText=styled.span`
+  color: #000;
+font-family: "Pretendard Variable";
+font-size: 1.125rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+`
+
 
 export const WomenButton = styled.div<{ isSelected: boolean }>`
     width: 45%;
@@ -175,6 +184,15 @@ export const WomenButton = styled.div<{ isSelected: boolean }>`
     background: ${(props) => (props.isSelected ? "#E4E7EC" : "#F2F4F7")};
     border-radius: 8px;
 `
+export const WomenButtonText=styled.span`
+  color: #000;
+font-family: "Pretendard Variable";
+font-size: 1.125rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+`
+
 
 export const Inputs = styled.div`
     display: flex;
