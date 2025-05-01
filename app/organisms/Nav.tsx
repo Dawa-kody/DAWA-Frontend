@@ -9,7 +9,7 @@ function Nav() {
   const pathname = usePathname();
   const [MouseOver, setMouseOver] = useState(false);
   const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting' |'graduation'>('home');
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState("학생");
 
   useEffect(() => {
     if (pathname === '/') {
@@ -33,7 +33,7 @@ function Nav() {
   useEffect(() => {
     const role = localStorage.getItem("role");
     if(role === "ROLE_TEACHER") {
-      setIsAdmin(true);
+      setIsAdmin("선생님");
     }
   }, []);
 
@@ -72,7 +72,7 @@ function Nav() {
         <S.Logo src="/Logo.svg" onClick={gotohome} />
         <S.LogoText onClick={gotohome}>다와</S.LogoText>
 
-        {isAdmin && (
+        {isAdmin === "선생님" && (
           <S.IconContainer>
             <S.HomeWrapper onClick={() => handleIconClick('home')}>
               <S.HomeIcon
@@ -98,6 +98,10 @@ function Nav() {
               />
             </S.GradiWrapper>
           </S.IconContainer>
+        )}
+
+        {isAdmin === "학생" && (
+          <img className='w-[37.05px] h-[37.05px] absolute right-[320px] cursor-pointer' src='/Mail.svg' />
         )}
 
         <S.Login
