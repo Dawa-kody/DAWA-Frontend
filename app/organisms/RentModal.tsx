@@ -1,133 +1,192 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "../styles/RentModal";
 import { useRef } from "react";
 import axios from "axios";
 
 interface Modalprops {
-    onClose: () => void;
+  onClose: () => void;
 }
 
 interface CardState {
-    name: string;
-    count: number;
-    selected: boolean;
+  name: string;
+  count: number;
+  selected: boolean;
 }
 
 function RentModal({ onClose }: Modalprops) {
-    const modalBackground = useRef<HTMLDivElement>(null);
+  const modalBackground = useRef<HTMLDivElement>(null);
 
-    const [cards, setCards] = useState<CardState[]>([
-        { name: "아이스팩", count: 0, selected: false },
-        { name: "핫팩", count: 0, selected: false },
-        { name: "부목", count: 0, selected: false },
-        { name: "찜질팩", count: 0, selected: false },
-    ]);
+  const [cards, setCards] = useState<CardState[]>([
+    { name: "아이스팩", count: 0, selected: false },
+    { name: "핫팩", count: 0, selected: false },
+    { name: "부목", count: 0, selected: false },
+    { name: "찜질팩", count: 0, selected: false },
+  ]);
 
-    const handleCardClick = (index: number)     => {
-        setCards((prev) =>
-            prev.map((card, i) =>
-                i === index
-                    ? {
-                          ...card,
-                          selected: !card.selected,
-                          count: !card.selected ? 1 : 0,
-                      }
-                    : card
-            )
-        );
-    };
-
-    const handleIncrement = (index: number) => {
-        setCards((prev) =>
-            prev.map((card, i) =>
-                i === index ? { ...card, count: card.count + 1, selected: true } : card
-            )
-        );
-    };
-
-    const handleDecrement = (index: number) => {
-        setCards((prev) =>
-            prev.map((card, i) =>
-                i === index
-                    ? {
-                          ...card,
-                          count: Math.max(card.count - 1, 0),
-                          selected: card.count - 1 > 0,
-                      }
-                    : card
-            )
-        );
-    };
-
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        const token = localStorage.getItem("accessToken");
-    
-        // 선택된 아이템 필터링
-        const selectedItems = cards.filter((card) => card.selected);
-    
-        try {
-            for (const item of selectedItems) {
-                // 각 아이템별로 요청 전송
-                await axios.post(
-                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
-                    {
-                        rental: item.name,
-                        count: item.count,
-                    },
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`,
-                        },
-                        withCredentials: true,
-                    }
-                );
+  const handleCardClick = (index: number) => {
+    setCards((prev) =>
+      prev.map((card, i) =>
+        i === index
+          ? {
+              ...card,
+              selected: !card.selected,
+              count: !card.selected ? 1 : 0,
             }
-            console.log("대여물품 기록 작성 성공");
-        } catch (error) {
-            console.error("대여물품 기록 작성 실패:", error);
-        }
-    
-        onClose();
-    };    
-    
-
-    return (
-        <S.background
-            ref={modalBackground}
-            onClick={(e) => {
-                if (e.target === modalBackground.current) {
-                    onClose();
-                }
-            }}
-        >
-            <S.ModalContainer>
-                <S.Title>보건실 물품 대여하기</S.Title>
-                <S.SubTitle>대여할 물품을 선택해주세요.</S.SubTitle>
-
-                <S.CardsDiv>
-                    {cards.map((card, index) => (
-                        <S.RentCard
-                            key={card.name}
-                            Click={card.selected}
-                            onClick={() => handleCardClick(index)}
-                        >
-                            <div>{card.name}</div>
-                            <S.ControlButtons>
-                                <button onClick={(e) => { e.stopPropagation(); handleDecrement(index); }}>-</button>
-                                <span>{card.count}</span>
-                                <button onClick={(e) => { e.stopPropagation(); handleIncrement(index); }}>+</button>
-                            </S.ControlButtons>
-                        </S.RentCard>
-                    ))}
-                </S.CardsDiv>
-
-                <S.submitbutton onClick={handleSubmit}>확인</S.submitbutton>
-                <S.canclebutton onClick={onClose}>취소</S.canclebutton>
-            </S.ModalContainer>
-        </S.background>
+          : card
+      )
     );
+  };
+
+  const handleIncrement = (index: number) => {
+    setCards((prev) =>
+      prev.map((card, i) =>
+        i === index ? { ...card, count: card.count + 1, selected: true } : card
+      )
+    );
+  };
+
+  const handleDecrement = (index: number) => {
+    setCards((prev) =>
+      prev.map((card, i) =>
+        i === index
+          ? {
+              ...card,
+              count: Math.max(card.count - 1, 0),
+              selected: card.count - 1 > 0,
+            }
+          : card
+      )
+    );
+  };
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const token = localStorage.getItem("accessToken");
+
+    // 선택된 아이템 필터링
+    const selectedItems = cards.filter((card) => card.selected);
+
+    try {
+      for (const item of selectedItems) {
+        // 각 아이템별로 요청 전송
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
+          {
+            rental: item.name,
+            count: item.count,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        );
+      }
+
+      // /mail로 알림 전송
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail`,
+        {
+          message: "학생이 대여를 신청했습니다.",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      console.log("대여물품 기록 작성 및 알림 전송 성공");
+
+      // SSE 연결 시작
+      listenForTeacherResponse();
+    } catch (error) {
+      console.error("대여물품 기록 작성 또는 알림 전송 실패:", error);
+    }
+  };
+
+  const listenForTeacherResponse = () => {
+    const eventSource = new EventSource(
+      `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail/sse`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("선생님 응답:", data);
+
+      if (data.status === "accepted") {
+        alert("대여가 승인되었습니다.");
+      } else if (data.status === "rejected") {
+        alert("대여가 거절되었습니다.");
+      }
+
+      // SSE 연결 종료
+      eventSource.close();
+      onClose();
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("SSE 연결 오류:", error);
+      eventSource.close();
+    };
+  };
+
+  return (
+    <S.background
+      ref={modalBackground}
+      onClick={(e) => {
+        if (e.target === modalBackground.current) {
+          onClose();
+        }
+      }}
+    >
+      <S.ModalContainer>
+        <S.Title>보건실 물품 대여하기</S.Title>
+        <S.SubTitle>대여할 물품을 선택해주세요.</S.SubTitle>
+
+        <S.CardsDiv>
+          {cards.map((card, index) => (
+            <S.RentCard
+              key={card.name}
+              Click={card.selected}
+              onClick={() => handleCardClick(index)}
+            >
+              <div>{card.name}</div>
+              <S.ControlButtons>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDecrement(index);
+                  }}
+                >
+                  -
+                </button>
+                <span>{card.count}</span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleIncrement(index);
+                  }}
+                >
+                  +
+                </button>
+              </S.ControlButtons>
+            </S.RentCard>
+          ))}
+        </S.CardsDiv>
+
+        <S.submitbutton onClick={handleSubmit}>확인</S.submitbutton>
+        <S.canclebutton onClick={onClose}>취소</S.canclebutton>
+      </S.ModalContainer>
+    </S.background>
+  );
 }
 
 export default RentModal;
