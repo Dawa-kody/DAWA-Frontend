@@ -140,7 +140,7 @@ function Main() {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              'ngrok-skip-browser-warning': '69420',
+              'ngrok-skip-browser-warrening': '69420',
               withCredentials: true,
             },
           }
@@ -239,7 +239,7 @@ function Main() {
             )}
 
             {/* 렌트 기록 리스트 */}
-            <div className="w-[18.66331rem] h-[18rem] flex mt-[1rem] overflow-scroll scrollbar-hide">
+            <div className="w-full h-[18rem] flex mt-[1rem] overflow-x-scroll scrollbar-hide">
               {rentDataList.map(({ id, ...visit }) => (
                 <RentData key={id} {...visit} />
               ))}
