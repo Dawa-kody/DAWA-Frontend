@@ -12,19 +12,19 @@ function Signup1() {
   const [PasswordValue, SetPasswordValue] = useState("");
   const [PasswordReValue, SetPasswordReValue] = useState("");
   const [timerKey, setTimerKey] = useState(0);
-  const [showNewPasswordRe, setShowNewPasswordRe] = useState(false);
 
-  const [isCodeSent, setIsCodeSent] = useState(false); // 인증번호 발송 여부
-  const [isCodeVerified, setIsCodeVerified] = useState(false); // 인증번호 검증 성공 여부
-  const [codeError, setCodeError] = useState(""); // 인증번호 오류 메시지
+  const [isCodeSent, setIsCodeSent] = useState(false);
+  const [isCodeVerified, setIsCodeVerified] = useState(false);
+  const [codeError, setCodeError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const router = useRouter();
 
-  // 인증번호 타이머 컴포넌트
   interface AuthTimerProps {
     initialTime?: number;
     onExpire?: () => void;
   }
+
   const AuthTimer: React.FC<AuthTimerProps> = ({ initialTime = 180, onExpire }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime);
 
@@ -48,7 +48,6 @@ function Signup1() {
     return <span>{formatTime(timeLeft)}</span>;
   };
 
-  // 인증번호 요청
   const handleEmailSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
@@ -66,7 +65,6 @@ function Signup1() {
     }
   };
 
-  // 인증번호 검증
   const handleCodeVerify = async () => {
     try {
       await axios.post(
@@ -81,10 +79,19 @@ function Signup1() {
     }
   };
 
-  // 이메일, 비밀번호, 인증번호 입력 핸들러
   function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
-    SetEmailValue(e.target.value);
+    const value = e.target.value;
+    SetEmailValue(value);
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (!emailRegex.test(value)) {
+      setEmailError("이메일 형식으로 입력해주세요");
+    } else {
+      setEmailError("");
+    }
   }
+
   function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
     SetPasswordValue(e.target.value);
   }
@@ -102,7 +109,6 @@ function Signup1() {
     router.back();
   }
 
-  // 다음 페이지(비밀번호 일치 확인)
   function GoNextPage() {
     if (PasswordValue !== PasswordReValue) {
       alert("비밀번호가 일치하지 않습니다.");
@@ -121,7 +127,6 @@ function Signup1() {
         <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
         <S.Title>회원가입</S.Title>
         <S.Inputs>
-          {/* 이메일 입력 */}
           <S.InputGroup>
             <S.EmailText>이메일</S.EmailText>
             <S.EmailInput
@@ -131,10 +136,9 @@ function Signup1() {
               onChange={handleEmailChange}
               required
             />
-            <S.EmailTextE> @gsm.hs.kr </S.EmailTextE>
+            <S.EmailTextE>@gsm.hs.kr</S.EmailTextE>
           </S.InputGroup>
 
-          {/* 인증번호 입력/확인 */}
           <S.InputGroup>
             <S.EmailAcess>이메일 인증</S.EmailAcess>
             <S.FormEmailInput
@@ -145,16 +149,21 @@ function Signup1() {
               required
               disabled={!isCodeSent || isCodeVerified}
             />
-            {/* 에러 메시지를 입력창 바로 아래, 버튼 위에 표시 */}
             {codeError && (
               <S.ErrorMessage>{codeError}</S.ErrorMessage>
             )}
             {!isCodeSent ? (
-              <S.EmailInputButton onClick={handleEmailSubmit}>  인증번호 요청</S.EmailInputButton>
+              <S.EmailInputButton onClick={handleEmailSubmit}>
+                인증번호 요청
+              </S.EmailInputButton>
             ) : !isCodeVerified ? (
-              <S.EmailInputButton onClick={handleCodeVerify}>  인증번호 확인</S.EmailInputButton>
+              <S.EmailInputButton onClick={handleCodeVerify}>
+                인증번호 확인
+              </S.EmailInputButton>
             ) : (
-              <span style={{ color: "#6948ED", marginLeft: "-5px", marginTop:"20px" }}>인증 완료</span>
+              <span style={{ color: "#6948ED", marginLeft: "-5px", marginTop: "20px" }}>
+                인증 완료
+              </span>
             )}
             {isCodeSent && !isCodeVerified && (
               <S.EmailSentInfo>
@@ -164,8 +173,7 @@ function Signup1() {
               </S.EmailSentInfo>
             )}
           </S.InputGroup>
-          
-          {/* 비밀번호 입력란은 항상 보이게 */}
+
           <S.Password>
             <S.InputLabel>비밀번호</S.InputLabel>
             <S.PaaswordInput
@@ -175,9 +183,9 @@ function Signup1() {
               onChange={handlePasswordChange}
               required
             />
-           <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
-           {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-           </S.IconWrapper>
+            <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+            </S.IconWrapper>
             <S.InputGroup>
               <S.InputLabel>비밀번호 확인</S.InputLabel>
               <S.PaaswordCheckInput
@@ -188,16 +196,16 @@ function Signup1() {
                 required
               />
               <S.IconWrapper2 onClick={() => setShowPasswordRe(!showPasswordRe)}>
-                {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}  
+                {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
               </S.IconWrapper2>
             </S.InputGroup>
           </S.Password>
-          
+
           <S.Pages>
             <S.Count1page />
             <S.Count2page />
           </S.Pages>
-        
+
           <S.ButtonDiv>
             <S.NextButton
               isActive={EmailValue.trim() !== "" && isCodeVerified}
