@@ -249,9 +249,9 @@ function Password() {
           onChange={(e: ChangeEvent<HTMLInputElement>) => setNewRePwValue(e.target.value)}
           required
         />
-        <S.IconWrapper onClick={() => setShowNewPasswordRe((prev) => !prev)}>
+        <S.IconWrapper2 onClick={() => setShowNewPasswordRe((prev) => !prev)}>
           {showNewPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-        </S.IconWrapper>
+        </S.IconWrapper2>
       </S.PasswordInputWrapper>
     </S.PasswordGroup>          
                     <S.ButtonDiv>

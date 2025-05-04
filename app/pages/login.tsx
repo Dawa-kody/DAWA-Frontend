@@ -4,7 +4,7 @@ import * as S from "../styles/login";
 import { useRouter } from "next/navigation";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-const JWT_EXPIRY_TIME = 24 * 3600 * 1000; // 24시간
+const JWT_EXPIRY_TIME = 24 * 3600 * 1000; 
 
 function Login() {
     const router = useRouter();
@@ -57,7 +57,7 @@ function Login() {
             setEmailError("영문, 숫자, ., -, _만 입력할 수 있습니다.");
             return;
         }
-        setEmailError(""); // 에러 초기화
+        setEmailError("");
 
         const fullEmail = `${EmailValue}@gsm.hs.kr`;
         const dto = {

@@ -1,128 +1,165 @@
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
-
-
 export const GlobalStyle = createGlobalStyle`
   html, body, #__next {
     height: 100%;
     margin: 0;
     padding: 0;
   }
-
 `;
-
 
 export const Container = styled.div`
   display: flex;
   height: 1000px;
   width: 100vw;
-  overflow: auto; 
+  overflow: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export const LeftSection = styled.div`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: #FFFFFF;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #FFFFFF;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: 20px;
+  }
 `;
 
 export const RightSection = styled.div`
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+  }
 `;
 
 export const GradientOverlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%);
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%);
+  z-index: 1;
 `;
 
 export const Img = styled.img`
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+
+  @media (max-width: 768px) {
     height: 100%;
-    object-fit: cover;
-    position: relative;
-`
+    object-fit: contain;
+  }
+`;
 
 export const Title = styled.span`
-    position: absolute;
-    left: 124px;
-    top: 125px;
+  position: absolute;
+  left: 124px;
+  top: 125px;
 
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 48px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 48px;
+  color: #000000;
 
-    color: #000000;
-`
+  @media (max-width: 768px) {
+    position: static;
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+`;
 
 export const InputGroup = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export const PasswordGroup = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    position:relative;
-    top:5px;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  top: 5px;
+`;
 
 export const InputLabel = styled.label`
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 21px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+`;
 
-    color: #000000;
-`
-export const EmailText=styled.span`
-color: #98A2B3;
-font-family: Pretendard;
-font-size: 1.2rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-position:absolute;
-left:515px;
-top:270px;
-`
+export const EmailText = styled.span`
+  color: #98A2B3;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  left: 515px;
+  top: 270px;
+
+  @media (max-width: 768px) {
+    position: static;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    text-align: center;
+  }
+`;
 
 export const StyledInput = styled.input`
-    width: 100%;
-    height: 53px;
-    top: 361px;
-    color:#000000;
-    background: #F2F4F7;
-    border-radius: 8px;
+  width: 100%;
+  height: 53px;
+  top: 361px;
+  color: #000000;
+  background: #F2F4F7;
+  border-radius: 8px;
+  padding-left: 20px;
+  font-family: 'Pretendard';
 
-    padding-left: 20px;
-    font-family: 'Pretendard';
+  &::placeholder {
+    color: #95979D;
+  }
+  outline: none;
 
-    &::placeholder{
-        color: #95979D;
-    }
-    outline:none;   
-`
+  @media (max-width: 768px) {
+    top: 0;
+    height: 45px;
+    padding-left: 12px;
+  }
+`;
 
 export const FormEmailInput = styled.input`
-  width:200px;
+  width: 200px;
   height: 48px;
   border: none;
   border-radius: 8px 0 8px 0;
@@ -131,34 +168,50 @@ export const FormEmailInput = styled.input`
   font-family: 'Pretendard', sans-serif;
   font-size: 16px;
   color: #000;
+
   &::placeholder {
     color: #95979D;
   }
   outline: none;
-  background-color:#F2F4F7;
-`
+  background-color: #F2F4F7;
 
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 8px;
+    padding-left: 12px;
+  }
+`;
 
 export const FormStyledInput = styled.input`
-    width:360px;
-    height: 45px;
-    background: #F2F4F4;
-    border-radius: 8px;
-    padding-left: 20px;
-    font-family: 'Pretendard';
-    font-size: 16px;
+  width: 360px;
+  height: 45px;
+  background: #F2F4F4;
+  border-radius: 8px;
+  padding-left: 20px;
+  font-family: 'Pretendard';
+  font-size: 16px;
 
-    &::placeholder {
-        color: #95979D;
-    }
-    outline: none;
-    color: #000000;
-`
-export const AccessText =styled.span`
+  &::placeholder {
+    color: #95979D;
+  }
+  outline: none;
+  color: #000000;
 
-color:#6948ED;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 12px;
+    height: 40px;
+  }
+`;
 
-`
+export const AccessText = styled.span`
+  color: #6948ED;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
 export const FlexRow = styled.div`
   display: flex;
   align-items: center;
@@ -179,35 +232,45 @@ export const PasswordInputWrapper = styled.div`
   position: relative;
 `;
 
-
 export const FlexRowWide = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
 `;
 
-
 export const RedTimerText = styled.span`
-  color:#6948ED;
+  color: #6948ED;
   font-weight: 500;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
+
 export const EmailInput = styled.div`
-      width:355px;
-    height:51px;
-    position:relative;
-    top:4px;
-    background: #F2F4F4;
-    border-radius: 8px;
-    padding-left: 20px;
-    font-family: 'Pretendard';
-    font-size: 16px;
-    &::placeholder {
-        color: #95979D;
-    }
-    outline: none;
-    color: #000000;
-`
+  width: 355px;
+  height: 51px;
+  position: relative;
+  top: 4px;
+  background: #F2F4F4;
+  border-radius: 8px;
+  padding-left: 20px;
+  font-family: 'Pretendard';
+  font-size: 16px;
+
+  &::placeholder {
+    color: #95979D;
+  }
+  outline: none;
+  color: #000000;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 12px;
+    height: 45px;
+  }
+`;
 
 export const EmailInputButton = styled.button`
   width: 140px;
@@ -221,113 +284,145 @@ export const EmailInputButton = styled.button`
   border-radius: 0 8px 8px 0;
   cursor: pointer;
   transition: background 0.2s;
+
   &:hover {
     background: #6948ED;
   }
-  `
-  export const AuthRow = styled.div`
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+`;
+
+export const AuthRow = styled.div`
   display: flex;
   width: 100%;
   background: #F2F4F7;
   border-radius: 8px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-export const Button=styled.button`
-    width: 8rem;
-    height: 3rem;
-    border-radius: 0px 8px 8px 0px;
-    display: flex;
-    position:absolute;
-    left:500px;
-    top:354.30px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: #6948ED;
-    color: white;
+export const Button = styled.button`
+  width: 8rem;
+  height: 3rem;
+  border-radius: 0px 8px 8px 0px;
+  display: flex;
+  position: absolute;
+  left: 500px;
+  top: 354.3px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #6948ED;
+  color: white;
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-size: 18px;
 
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+    top: auto;
+    left: auto;
+  }
+`;
 
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 18px;
-    align-items: center;
-    justify-content: center;
+export const EmailCheckButton = styled.button`
+  width: 8rem;
+  height: 3.3125rem;
+  border-radius: 0px 8px 8px 0px;
+  display: flex;
+  position: relative;
+  left: -0.3rem;
+  top: -0.2rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #6948ED;
+  color: white;
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-size: 18px;
 
-`
-
-
-export const EmailCheckButton=styled.button`
-    width: 8rem;
-    height: 3.3125rem;
-    border-radius: 0px 8px 8px 0px;
-    display: flex;
-    position:relative;
-    left:-0.3rem;
-    top: -0.2rem;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: #6948ED;
-    color: white;
-
-
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 18px;
-    align-items: center;
-    justify-content: center;
-`
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+    left: auto;
+    top: auto;
+  }
+`;
 
 export const Inputs = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    width: 63%;
-    height: 10vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -68vh;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 63%;
+  height: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -68vh;
 
+  @media (max-width: 768px) {
+    width: 90%;
+    margin-top: 20px;
+    height: auto;
+  }
+`;
 
 export const ButtonDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top:14px;
-`
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+`;
 
-export const NextButton = styled.div<{isActive:boolean}>`
-    width: 78px;
-    height: 43px;
-    border-radius: 6px;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+export const NextButton = styled.div<{ isActive: boolean }>`
+  width: 78px;
+  height: 43px;
+  border-radius: 6px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'default')};
+  background-color: ${({ isActive }) => (isActive ? '#6948ED' : '#E4E7EC')};
 
-    background-color: ${({ isActive }) => (isActive ? '#6948ED' : '#E4E7EC')};
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
-`
-
-export const NextbuttonText=styled.span<{isActive:boolean}>`
-    color: ${({isActive})=>(isActive?"#ffffff":"#98A2B3")};
-
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 15px;
-    align-items: center;
-    justify-content: center;
-`
+export const NextbuttonText = styled.span<{ isActive: boolean }>`
+  color: ${({ isActive }) => (isActive ? "#ffffff" : "#98A2B3")};
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const IconWrapper = styled.div`
-  left:440px;
-  top:13px;
+  left: 440px;
+  top: 13px;
   position: absolute;
   cursor: pointer;
   color: #6948ED;
-  `;
+
+  @media (max-width: 768px) {
+    position: static;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+`;
 
 export const IconWrapper2 = styled.div`
   position: absolute;
@@ -335,11 +430,23 @@ export const IconWrapper2 = styled.div`
   margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
-  z-index:1;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    position: static;
+    margin: 10px 0 0 0;
+  }
 `;
 
 export const ReportMessage = styled.span`
-    color: #D23B3B;
-    font-family: Pretendard;
-    margin-left: 210px;
-`
+  color: #D23B3B;
+  font-family: Pretendard;
+  margin-left: 210px;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
+`;
