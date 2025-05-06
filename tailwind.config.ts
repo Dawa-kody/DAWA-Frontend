@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 import scrollbarHide from 'tailwind-scrollbar-hide'
-import NoticeModal from "@/organisms/NoticeModal";
 
 const config: Config = {
   content: [
@@ -13,11 +12,12 @@ const config: Config = {
       colors: {
         primaryPurple: "#6948ED",
         subPurple: "#D9D6FE",
-        slategray: "#F2F4F7",
-        badColor: "#D23B3B",
-        noticeGray: "#F2F4F7",
-        noticeText: "#95979D",
-        NoticeModal: "#98A2B3",
+        badColor: "#D23B3B", //실패 했을 때 사용하는 붉은 경고 색
+        "slate-gray": "#F2F4F7", //옅은 회색
+        "deep-gray": "#95979D", //짙은 회색
+        Deactivation: "#98A2B3", //설명 글자 & 비활성화된 글자 색
+        Inaccessible: "#E4E7EC", //접근 불가 색
+        "text-black": "#000000", //감은색
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
