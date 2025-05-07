@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import * as S from '../styles/Nav';
 import axios from 'axios';
 import { useRouter, usePathname } from 'next/navigation';
-import { headers } from 'next/headers';
 
 interface mailDTO {
   content: string;
@@ -68,37 +66,38 @@ function Nav() {
   const gotohome = () => router.push('/');
 
   return (
-    <S.Component>
-      <S.NavContainer>
-        <S.Logo src="/Logo.svg" onClick={gotohome} />
-        <S.LogoText onClick={gotohome}>다와</S.LogoText>
+    <div className='w-full h-[10vh] bg-white user-select-none flex justify-between items-center pl-[10vw] pr-[10vw]'>
+      <div className='flex items-center cursor-pointer' onClick={gotohome}>
+        <img className='w-[3.5rem] h-[2.2rem] mb-[0.5rem]' src="/Logo.svg"/>
+        <span className=' font-pretendard font-[700] text-[1.6rem] text-primaryPurple ml-[1vw]'>다와</span>
+      </div>
 
         {isAdmin === '선생님' && (
-          <S.IconContainer>
-            <S.HomeWrapper onClick={() => handleIconClick('home')}>
-              <S.HomeIcon src={activeIcon === 'home' ? '/ClickedHome.svg' : '/UnclickedHome.svg'} />
-            </S.HomeWrapper>
-            <S.FolderWrapper onClick={() => handleIconClick('folder')}>
-              <S.FolderIcon src={activeIcon === 'folder' ? '/ClickedFolder.svg' : '/UnclikedFolder.svg'} />
-            </S.FolderWrapper>
-            <S.SettingWrapper onClick={() => handleIconClick('setting')}>
-              <S.SettingIcon src={activeIcon === 'setting' ? '/ClickedSetting.svg' : '/UnclikedSetting.svg'} />
-            </S.SettingWrapper>
-            <S.GradiWrapper onClick={() => handleIconClick('graduation')}>
-              <S.GradiIcon src={activeIcon === 'graduation' ? '/ClickedGradi.svg' : '/UnclickedGradi.svg'} />
-            </S.GradiWrapper>
-          </S.IconContainer>
+          <div className='w-[36rem] h-[4rem] flex items-center gap-[2.5rem]'>
+            <div className='w-[4rem] h-full cursor-pointer flex justify-center items-center' onClick={() => handleIconClick('home')}>
+              <img className='w-[2.2rem] h-[2.2rem]' src={activeIcon === 'home' ? '/ClickedHome.svg' : '/UnclickedHome.svg'} />
+            </div>
+            <div className='w-[4rem] h-full cursor-pointer flex justify-center items-center' onClick={() => handleIconClick('folder')}>
+              <img className='w-[2.2rem] h-[2.2rem]' src={activeIcon === 'folder' ? '/ClickedFolder.svg' : '/UnclikedFolder.svg'} />
+            </div>
+            <div className='w-[4rem] h-full cursor-pointer flex justify-center items-center' onClick={() => handleIconClick('setting')}>
+              <img className='w-[2.2rem] h-[2.2rem]' src={activeIcon === 'setting' ? '/ClickedSetting.svg' : '/UnclikedSetting.svg'} />
+            </div>
+            <div className='w-[4rem] h-full cursor-pointer flex justify-center items-center' onClick={() => handleIconClick('graduation')}>
+              <img className='w-[2.2rem] h-[2.2rem]' src={activeIcon === 'graduation' ? '/ClickedGradi.svg' : '/UnclickedGradi.svg'} />
+            </div>
+          </div>
         )}
 
         {isAdmin === '학생' && (
           <>
             <img
-            className="w-[37.05px] h-[40px] absolute right-[320px] cursor-pointer" src={mailList.length === 0 ? '/Mail.svg' : '/mailPoint.svg'}
+            className="w-[2.3rem] h-[2.5rem] absolute right-[10vw] sm:right-[20vw] cursor-pointer" src={mailList.length === 0 ? '/Mail.svg' : '/mailPoint.svg'}
             onClick={() => setMailOver((prev) => !prev)}/>
             {MailOver && (
-              <div id="MailContainer" className={`w-[28rem] h-[20rem] scrollbar-hide ${
+              <div id="MailContainer" className={`w-[90vw] max-w-[28rem] min-w-[16rem] scrollbar-hide ${
               mailList.length >= 8 ? 'max-h-[30rem] overflow-y-auto scrollbar-hide' : 'min-h-[6rem]'
-                } bg-white absolute right-[120px] top-[60px] z-[3000] shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-[0.5rem] flex flex-col`}>
+                } bg-white absolute right-[6vw] top-[4rem] z-[3000] shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-[0.5rem] flex flex-col`}>
                 <div id="MailTop" className="w-full pl-[0.9rem] pt-[0.8rem] pr-[0.9rem]">
                   <span className="text-black text-[0.9rem] font-[700] font-pretendard">알림함</span>
                   <div id="mailscroll" className={`w-full ${
@@ -121,19 +120,18 @@ function Nav() {
           </>
         )}
 
-        <S.Login onMouseLeave={() => setMouseOver(false)} onMouseEnter={() => setMouseOver(true)} src={'/PersonPurple.svg'} alt="프로필"/>
+        <img className='w-[3.5rem] h-[3.5rem] absolute right-[8vw] cursor-pointer' onMouseLeave={() => setMouseOver(false)} onMouseEnter={() => setMouseOver(true)} src={'/PersonPurple.svg'} alt="프로필"/>
         {MouseOver && (
-          <S.LoginHoverBox
+          <div className='flex flex-col items-center gap-[0.5rem] absolute top-[70px] right-[5vw] z-[10] bg-white border-[1px] border-[#e0e0e0] rounded-[8px] shadow-md p-[2rem]'
             onMouseLeave={() => setMouseOver(false)}
             onMouseEnter={() => setMouseOver(true)}>
-            <S.TextContainer>
-              <S.Text onClick={handlelogout}>로그아웃</S.Text>
-              <S.Text onClick={handlepw}>비밀번호 변경</S.Text>
-            </S.TextContainer>
-          </S.LoginHoverBox>
+            <div className='flex flex-col items-center gap-[0.5rem]'>
+              <span className='font-[400] text-[1rem] text-black cursor-pointer' onClick={handlelogout}>로그아웃</span>
+              <span className='font-[400] text-[1rem] text-black cursor-pointer' onClick={handlepw}>비밀번호 변경</span>
+            </div>
+          </div>
         )}
-      </S.NavContainer>
-    </S.Component>
+    </div>
   );
 }
 
