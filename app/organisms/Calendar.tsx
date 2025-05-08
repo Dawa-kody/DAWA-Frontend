@@ -65,15 +65,15 @@ const Calendar = () => {
   }, []);
 
   return (
-    <div className="w-[34rem] h-[20rem] bg-white rounded-[0.625rem] flex">
-      <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
+    <div className="w-full h-[60vh] text-black bg-white rounded-[10px] flex">
+      <div className="w-full h-full p-4 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
           <button className="px-16" onClick={prevMonth}>&lt;</button>
           <h2 className="text-lg font-bold">{format(currentMonth, "yyyy년 MM월")}</h2>
           <button className="px-16" onClick={nextMonth}>&gt;</button>
         </div>
 
-        <div className="grid grid-cols-7 gap-y-0.5 text-center border-b pb-2">
+        <div className="grid grid-cols-7 gap-y-0.5 text-center text-[0.75rem] border-b pb-2">
           {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
             <div
               key={index}

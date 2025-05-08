@@ -28,52 +28,52 @@ function MainSheet() {
   const questionnaires = useCalendarStore((state) => state.questionnaires);
 
   return (
-    <S.Table>
-      <thead>
-        <tr>
-          <S.CountTh scope="col">연번</S.CountTh>
-          <S.ClassTh scope="col">학년반</S.ClassTh>
-          <S.NameTh scope="col">이름</S.NameTh>
-          <S.GenderTh scope="col">성별</S.GenderTh>
-          <S.DivisionTh scope="col">구분</S.DivisionTh>
-          <S.SymptomTh as="th" scope="col">증상</S.SymptomTh>
-          <S.HandleTh scope="col">처치상황</S.HandleTh>
-          <S.GuesuTh scope="col">수량</S.GuesuTh>
-          <S.Medicine1Th scope="col">투약1</S.Medicine1Th>
-          <S.Guesu1Th scope="col">수량 1</S.Guesu1Th>
-          <S.Medicine2Th scope="col">투약 2</S.Medicine2Th>
-          <S.Guesu2Th scope="col">수량 2</S.Guesu2Th>
-          <S.BigoTh scope="col">비고</S.BigoTh>
-        </tr>
-      </thead>
-      <tbody>
-        {questionnaires.length ? (
-          questionnaires.map((item, idx) => (
-            <tr key={item.serialNumber}>
-              <S.Td><S.Count>{idx + 1}</S.Count></S.Td>
-              <S.Td><S.Class />{item.userName}</S.Td>
-              <S.Td><S.Name />{item.schoolNumber}</S.Td>
-              <S.Td><S.Gender />{genderMap[item.gender] || item.gender}</S.Td>
-              <S.Td><S.Division />{divisionMap[item.division] || item.division}</S.Td>
-              <S.Td><S.Symptom />{item.disease}</S.Td>
-              <S.Td><S.Handle />{item.treatment}</S.Td>
-              <S.Td><S.Guesu />{item.quantity}</S.Td>
-              <S.Td><S.Medicine1 />{item.medication1}</S.Td>
-              <S.Td><S.Guesu1 />{item.quantity1}</S.Td>
-              <S.Td><S.Medicine2 />{item.medication2}</S.Td>
-              <S.Td><S.Guesu2 />{item.quantity2}</S.Td>
-              <S.Td><S.Bingo />{item.notes}</S.Td>
-            </tr>
-          ))
-        ) : (
+    <S.TableWrapper>
+      <S.Table>
+        <thead>
           <tr>
-            <td colSpan={13} className="p-4 text-center">
-              로딩 중이거나 데이터가 없습니다.
-            </td>
+            <S.Th scope="col">연번</S.Th>
+            <S.Th scope="col">학년반</S.Th>
+            <S.Th scope="col">이름</S.Th>
+            <S.Th scope="col">성별</S.Th>
+            <S.Th scope="col">구분</S.Th>
+            <S.Th scope="col">증상</S.Th>
+            <S.Th scope="col">처치상황</S.Th>
+            <S.Th scope="col">수량</S.Th>
+            <S.Th scope="col">투약1</S.Th>
+            <S.Th scope="col">수량 1</S.Th>
+            <S.Th scope="col">투약 2</S.Th>
+            <S.Th scope="col">수량 2</S.Th>
+            <S.Th scope="col">비고</S.Th>
           </tr>
-        )}
-      </tbody>
-    </S.Table>
+        </thead>
+        <tbody>
+          {questionnaires.length ? (
+            questionnaires.map((item, idx) => (
+              <tr key={item.serialNumber}>
+                <S.Td><S.Cell>{idx + 1}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.userName}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.schoolNumber}</S.Cell></S.Td>
+                <S.Td><S.Cell>{genderMap[item.gender] || item.gender}</S.Cell></S.Td>
+                <S.Td><S.Cell>{divisionMap[item.division] || item.division}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.disease}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.treatment}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.quantity}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.medication1}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.quantity1}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.medication2}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.quantity2}</S.Cell></S.Td>
+                <S.Td><S.Cell>{item.notes}</S.Cell></S.Td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <S.Td colSpan={13}>로딩 중이거나 데이터가 없습니다.</S.Td>
+            </tr>
+          )}
+        </tbody>
+      </S.Table>
+    </S.TableWrapper>
   );
 }
 

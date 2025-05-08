@@ -19,23 +19,23 @@ function Sheet() {
         <>
             <Nav />
             {/*시트 부분 */}
-            <div className=' flex pt-[3.5rem] pl-[2.06rem] pr-[2.44rem] pb-[3.88rem]'>
-                <div className=" flex flex-col justify-between w-[80rem] h-[53.9rem]">
+            <div className='w-full h-[90vh] flex pt-[5vh] pl-[2.06rem] pr-[2.44rem] pb-[5vh] gap-[1.5rem]'>
+                <div className=" w-[65vw] flex flex-col justify-between h-full">
                     <MainSheet />
                     <SubSheet />
                 </div>
-                <div className=' flex flex-col gap-[2.5rem] ml-[1.5rem]'>
+                <div className=' w-[30vw] flex flex-col gap-[1vh]'>
                     <Calendar />
-                    <div className=' mt-[2.5rem]'>
+                    <div className=' mt-[40vh]'>
                         <StudentLog />  
-                        <S.Wrapper>
-                            <S.saveBtn>저장하기</S.saveBtn>
-                            <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
-                        </S.Wrapper>
-                        {saveModalOpen && (
-                            <BackupModal onClose={() => setSaveModalOpen(false)} />
-                        )}
                     </div>
+                    <S.Wrapper>
+                        <S.saveBtn>저장하기</S.saveBtn>
+                        <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
+                    </S.Wrapper>
+                    {saveModalOpen && (
+                        <BackupModal onClose={() => setSaveModalOpen(false)} />
+                    )}
                 </div>
             </div>
         </>
