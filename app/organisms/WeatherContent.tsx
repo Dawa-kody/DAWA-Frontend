@@ -98,7 +98,7 @@ function WeatherContent() {
   }, []);
 
   return (
-        <div className="w-[36.6875rem] h-[21.25rem] rounded-[0.625rem] bg-[#F9FAFB] flex flex-col justify-between p-[2rem]">
+        <div className="w-[30vw] h-full rounded-[10px] bg-[#F9FAFB] flex flex-col justify-between p-[2rem]">
             <div id="top" className="flex justify-between items-start">
                 <div className="text-[4rem] font-bold font-[pretendard] mt-[-1rem]">
                     {temperature !== null ? `${temperature}°` : "--"}
