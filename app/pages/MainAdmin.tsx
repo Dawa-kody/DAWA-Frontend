@@ -14,6 +14,7 @@ import { RentAdminDatas } from "../molecules/RentDataAdmin";
 import { RequestRentDatas } from "@/molecules/RequestRentData";
 import RequestRentData from "@/molecules/RequestRentData";
 import NoticeModal from "@/organisms/NoticeModal";
+import Weather from "@/organisms/WeatherContent";
 import NoticeWrite from "@/organisms/noticeWrite";
 
 interface noticeDTO {
@@ -49,7 +50,8 @@ function MainAdmin() {
       requestRentDataList,
       setRequestRentDataList,
     } = useStore();
-
+    
+    const goWrite = () => router.push("/Writepage")
 
     useEffect(() => {
       const access = window.localStorage.getItem("accessToken"); // 문자열 키 사용
@@ -271,31 +273,33 @@ function MainAdmin() {
       )}
 
       <Nav />
-      <div id="Container" className="w-full h-full flex flex-col overflow-hidden gap-[2rem] pt-[2rem] pl-[2rem] pr-[1rem]">
+      <div id="Container" className="w-full h-[90vh] flex flex-col overflow-hidden pt-[2rem] gap-[2rem] px-[2vw]">
         
-        <div id="topdiv" className="flex w-full h-full">
-          
-          <div id="topleft" className="w-[20rem] h-[12rem] flex flex-col gap-[2rem]">
+        <div id="topdiv" className="flex w-full h-[30vh] gap-[2vw]">
+          <div id="topleft" className="w-[20vw] h-full flex flex-col gap-[2rem] justify-between">
             {/* 선생님 현황 */}
-            <div className="w-full h-[6rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[7rem]">
-              <div className="w-[3rem] h-[3rem] bg-primaryPurple rounded-[0.3125rem] flex justify-center items-center">
-                <img className="w-[2rem] h-[2rem]" src={"/people.svg"} />
+            <div className="w-full h-[10vh] flex items-center justify-between bg-white rounded-[0.58988rem] px-[1.5rem]">
+              <div className="w-[2.5rem] h-[2.5rem] bg-primaryPurple rounded-[0.3125rem] flex justify-center items-center">
+                <img className="w-[1.5rem] h-[1.5rem]" src={"/people.svg"} />
               </div>
+              <div>
               {TActive ? (
-                <span className="text-[1.2rem] font-[700] text-primaryPurple">선생님 출근중</span>
+                <span className="text-[1rem] font-[700] text-primaryPurple">선생님 출근중</span>
               ) : (
-                <span className="text-[1.2em] font-[700] text-[#98A2B3]">선생님 부재중</span>
+                <span className="text-[1em] font-[700] text-[#98A2B3]">선생님 부재중</span>
               )}
+              </div>
             </div>
             {/* 문진표 작성 */}
-            <div className="w-full h-[6rem] bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center cursor-pointer">
+            <div className="w-full h-[16vh] bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center cursor-pointer"
+            onClick={goWrite}>
               <span className="text-[1.5rem] text-white font-[700] font-pretendard">
                 문진표 작성
               </span>
             </div>
           </div>
           {/* 공지사항 */}
-          <div id="notice" className="w-[45rem] ml-[1rem] flex flex-col bg-white">
+          <div id="notice" className="w-[60vw] flex flex-col bg-white">
             <div id="title" className="w-full pl-[1rem] pr-[1rem] pt-[0.75rem] flex flex-row justify-between ">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
               <button className="w-[10rem] h-[2.5rem] bg-subPurple text-black font-[500] text-[1rem] rounded-[0.3125rem]" onClick={() => setWriteNotice(true)}>공지사항 작성</button>
@@ -316,13 +320,13 @@ function MainAdmin() {
               )}
             </div>
             </div>
-          </div>
           {/* 캘린더*/}
-        </div> {/* top div 끝나는 지점 */}
+          <Weather />
+          </div> {/* topdiv 끝나는 지점점 */}
 
-        <div id="contentDiv" className="w-full flex flex-row gap-[2rem] mt-[2rem] pl-[2rem] pr-[2rem]">
+        <div id="contentDiv" className="w-full h-[40vh] flex justify-between">
 
-          <div className="w-[90rem] h-[21rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+          <div className="w-[75vw] h-full flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
 
             {/* 제목: 왼쪽 상단 */}
             <div className="text-left">
@@ -357,9 +361,9 @@ function MainAdmin() {
 
               {requestBarOpen && (
                 <div className={`
-                    absolute mt-[-2rem] right-0 w-[80%] h-full bg-[#D9D6FE] rounded-[10px]
+                  absolute mt-[-2rem] right-0 w-[80%] h-full bg-[#D9D6FE] rounded-[10px]
                     ${isClosing ? 'animate-slideOut' : 'animate-slideIn'}
-                  `}>
+                    `}>
                   <img src="./X.svg"
                     className="w-[26px] h-[26px] absolute top-[15px] right-[15px] cursor-pointer"
                     onClick={closeRequestBar}/>
@@ -370,22 +374,22 @@ function MainAdmin() {
                   <div className="relative max-w-[1260px] top-[50px] left-[35px] grid grid-flow-col auto-cols-[178px] overflow-scroll scrollbar-hide">
                     {requestRentDataList.map(({ rentalId, ...rentData }) => (
                       <RequestRentData
-                        key={rentalId}
-                        rentalId={rentalId}
-                        {...rentData}
-                        onRemove={handleRemoveRequest}/>))}
+                      key={rentalId}
+                      rentalId={rentalId}
+                      {...rentData}
+                      onRemove={handleRemoveRequest}/>))}
                   </div>
                 </div>
               )}
             </div>
 
-          <div className="w-[22rem] h-[21rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
-            <div className="w-full pt-[1.06rem]">
+          <div className="w-[20vw] h-full rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center justify-center relative gap-[1rem]">
+            <div className="w-full pt-[1.06rem] absolute top-5 left-4">
               <span className="text-black font-[700] text-[1.5rem]">침대 현황</span>
             </div>
 
             {/* 1번 침대 + 토글 */}
-            <div className="flex flex-col items-center mt-[0.5rem]">
+            <div className="flex flex-col items-center mt-[5rem]">
               <div
                 className={`w-[19rem] h-[6.5rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
                   bedStatus.bed1 ? "bg-[#7CD4FD]" : "bg-[#F2F4F7]"
@@ -421,7 +425,8 @@ function MainAdmin() {
               </div>
             </div>
           </div>
-        </div> {/* contentDiv 끝나는 지점 */}
+        </div>
+      </div> 
     </>
   )
 }
