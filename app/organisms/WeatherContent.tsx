@@ -98,9 +98,9 @@ function WeatherContent() {
   }, []);
 
   return (
-        <div className="w-[30vw] h-full rounded-[10px] bg-[#F9FAFB] flex flex-col justify-between p-[2rem]">
+        <div className="w-[34vw] h-full rounded-[10px] bg-[#F9FAFB] text-black flex flex-col justify-between p-[2rem] ml-[1vw]">
             <div id="top" className="flex justify-between items-start">
-                <div className="text-[4rem] font-bold font-[pretendard] mt-[-1rem]">
+                <div className="text-[1.25rem] font-bold font-[pretendard] mt-[-1rem]">
                     {temperature !== null ? `${temperature}°` : "--"}
                 </div>
 
@@ -131,7 +131,7 @@ function WeatherContent() {
                     </div>
 
                 <img
-                    className="w-[9rem] h-[9rem] mt-[0.5rem]"
+                    className="w-[7rem] h-[7rem] mt-[0.5rem]"
                     src="/WeatherSun.svg"
                     alt="날씨 아이콘"
                 />

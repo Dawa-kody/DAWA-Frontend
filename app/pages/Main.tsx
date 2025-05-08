@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import Nav from "../organisms/Nav";
 import RentModal from "../organisms/RentModal";
 import RentData from "../molecules/RentData";
-import noticeModal from "../organisms/NoticeModal";
-
+import Weather from "@/organisms/WeatherContent";
 import { RentDatas } from "../molecules/RentData";
 import NoticeModal from "@/organisms/NoticeModal";
 
@@ -172,12 +171,12 @@ function Main() {
 
       <div id="Container" className="w-full h-full flex flex-col overflow-hidden pt-[2rem] pl-[2rem] pr-[1rem]">
         
-        <div id="topdiv" className="flex w-full h-full">
+        <div id="topdiv" className="flex w-full h-[40vh]">
           
-          <div id="topleft" className="w-[20rem] h-[12rem] flex flex-col gap-[2rem]">
+          <div id="topleft" className="w-[20rem] h-full flex flex-col gap-[2rem]">
             
             {/* 선생님 출근 확인 */}
-            <div className="w-full h-[6rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[7rem]">
+            <div className="w-full h-[8rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[7rem]">
               <div className="w-[3rem] h-[3rem] bg-primaryPurple rounded-[0.3125rem] flex justify-center items-center">
                 <img className="w-[2rem] h-[2rem]" src={"/people.svg"} />
               </div>
@@ -189,7 +188,7 @@ function Main() {
             </div>
 
             {/* 물품 대여 버튼 */}
-            <div className="w-full h-[6rem] bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center">
+            <div className="w-full h-full bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center cursor-pointer" onClick={rentModalClick}>
               <span className="text-[1.5rem] text-white font-[700] cursor-pointer" onClick={rentModalClick}>
                 물품 대여
               </span>
@@ -197,7 +196,7 @@ function Main() {
           </div>
 
           {/* 공지사항 */}
-          <div id="topcenter" className="w-[45rem] ml-[1rem] flex flex-col bg-white">
+          <div id="topcenter" className="w-[45vw] ml-[1rem] flex flex-col bg-white">
             <div className="w-full pl-[1rem] pt-[0.75rem]">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
             </div>
@@ -217,22 +216,24 @@ function Main() {
               )}
             </div>
           </div>
+          {/* 날씨 */}
+          <Weather/>
 
         </div>
 
         {/* footer div */}
-        <div className="w-full mt-[1.5rem] flex gap-[2rem]">
+        <div className="w-full h-[40vh] mt-[1.5rem] flex gap-[2rem]">
           
           {/* 대여기록 */}
-          <div className="w-[90rem] h-[20.25rem] flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+          <div className="w-[71vw] h-full flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
             <div className="text-left">
-              <span className="font-[700] text-[2rem] text-black">대여기록</span>
+              <span className="font-[700] text-[1.5rem] text-black">대여기록</span>
             </div>
 
             {/* 렌트 기록이 없는 경우 */}
             {rentDataList.length === 0 && (
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <span className="font-[700] text-[1.5rem] text-[#98A2B3] text-center">
+                <span className="font-[700] text-[1rem] text-[#98A2B3] text-center">
                   대여한 기록이 존재하지 않습니다.
                 </span>
               </div>
@@ -247,26 +248,26 @@ function Main() {
           </div>
 
           {/* 침대 현황 */}
-          <div className="w-[22rem] h-[20.25rem] rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
-            <div className="w-full pt-[1.06rem]">
-              <span className="text-black font-[700] text-[1.875rem]">침대 현황</span>
+          <div className="w-[25vw] h-[40vh] rounded-[0.9375rem] justify-center pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center relative">
+            <div className="w-full pt-[1.06rem] absolute top-[1vh] left-[1vw]">
+              <span className="text-black font-[700] text-[1.25rem]">침대 현황</span>
             </div>
 
-            <div className={`w-[19rem] h-[6.5rem] rounded-[0.9375rem] mt-[1rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
-              <img className="w-[9rem] h-[3rem]" src={"/Bed.svg"} />
+            <div className={`w-[18vw] h-[12vh] rounded-[0.9375rem] mt-[1rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed1 ? 'bg-[#7CD4FD]' : 'bg-[#F2F4F7]'}`}>
+              <img className="w-[7vw] h-[5vh]" src={"/Bed.svg"} />
               {bedStatus.bed1 ? (
-                <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span>
+                <span className="text-[1rem] font-bold text-white">침대 사용 가능</span>
               ) : (
-                <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>
+                <span className="text-[1rem] font-bold text-white">침대 사용 중</span>
               )}
             </div>
 
-            <div className={`w-[19rem] h-[6.5rem] rounded-[0.9375rem] mt-[1rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
-              <img className="w-[9rem] h-[3rem]" src={"/Bed.svg"} />
+            <div className={`w-[18vw] h-[12vh] rounded-[0.9375rem] mt-[1rem] flex flex-col items-center justify-center gap-[0.94rem] ${bedStatus.bed2 ? 'bg-[#FEA3B4]' : 'bg-[#F2F4F7]'}`}>
+              <img className="w-[7vw] h-[5vh]" src={"/Bed.svg"} />
               {bedStatus.bed2 ? (
-                <span className="text-[1.25rem] font-bold text-white">침대 사용 가능</span>
+                <span className="text-[1rem] font-bold text-white">침대 사용 가능</span>
               ) : (
-                <span className="text-[1.25rem] font-bold text-white">침대 사용 중</span>
+                <span className="text-[1rem] font-bold text-white">침대 사용 중</span>
               )}
             </div>
           </div>
