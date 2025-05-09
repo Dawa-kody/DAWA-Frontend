@@ -4,9 +4,8 @@ export const Wrapper = styled.div`
   background-color: white;
   padding: 24px;
   border-radius: 24px;
-  width: 34rem
-  height: 25rem;
-  margin: 0 auto;
+  width: full; 
+  height: 30vh;
 `;
 
 export const TopBar = styled.div`
