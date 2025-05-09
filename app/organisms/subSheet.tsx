@@ -31,28 +31,28 @@ function SubSheet() {
   return (
     <div className="overflow-x-auto">
       <table className="table-auto border-collapse border text-black border-gray-300 w-full text-center">
-        <thead className="bg-gray-100">
+        <thead className="bg-gray-100 text-[0.75rem] font-[700]">
           <tr className="bg-tableheader">
             <th className="border border-gray-300 p-2">종류</th>
             <th className="border border-gray-300 p-2">성별</th>
             {categories.map((category) => (
-              <th key={category} className="border border-gray-300 p-2">
+              <th key={category} className="border border-gray-300 p-2 text-[0.75rem]">
                 {category}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-[0.75rem] font-[400]">
           {statistics ? (
             (["일계", "월계", "누계"] as const).map((type) => (
               <React.Fragment key={type}>
-                <tr>
+                <tr className="text-[0.6rem]">
                   <td className="border border-gray-300 p-2 bg-white" rowSpan={2}>
                     {type}
                   </td>
                   {renderCategoryRow(type, "남")}
                 </tr>
-                <tr>{renderCategoryRow(type, "여")}</tr>
+                <tr className="text-[0.6rem]">{renderCategoryRow(type, "여")}</tr>
               </React.Fragment>
             ))
           ) : (
