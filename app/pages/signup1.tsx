@@ -121,22 +121,30 @@ function Signup1() {
 
   return (
     <S.Container>
+
       <S.LeftSection>
-        <S.HelloText>어서오세요!</S.HelloText>
-        <S.SubText>이미 계정이 있다면?</S.SubText>
-        <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
-        <S.Title>회원가입</S.Title>
+        <S.TopTexts>
+          <S.HelloText>어서오세요!</S.HelloText>
+          <S.SubTextWrapper>
+            <S.SubText>이미 계정이 있다면?</S.SubText>
+            <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
+          </S.SubTextWrapper>
+          <S.Title>회원가입</S.Title>
+        </S.TopTexts>
+
         <S.Inputs>
           <S.InputGroup>
             <S.EmailText>이메일</S.EmailText>
-            <S.EmailInput
-              value={EmailValue}
-              placeholder="이메일 입력"
-              type="text"
-              onChange={handleEmailChange}
-              required
-            />
-            <S.EmailTextE>@gsm.hs.kr</S.EmailTextE>
+            <S.EmailInputGroup>
+              <S.EmailInput
+                value={EmailValue}
+                placeholder="이메일 입력"
+                type="text"
+                onChange={handleEmailChange}
+                required
+              />
+              <S.EmailTextE>@gsm.hs.kr</S.EmailTextE>
+          </S.EmailInputGroup>
           </S.InputGroup>
 
           <S.InputGroup>
@@ -175,31 +183,38 @@ function Signup1() {
           </S.InputGroup>
 
           <S.Password>
-            <S.InputLabel>비밀번호</S.InputLabel>
-            <S.PaaswordInput
-              value={PasswordValue}
-              placeholder="비밀번호 입력(문자,숫자,특수문자 포함 8~1자)"
-              type={showPassword ? "text" : "password"}
-              onChange={handlePasswordChange}
-              required
-            />
-            <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-            </S.IconWrapper>
-            <S.InputGroup>
-              <S.InputLabel>비밀번호 확인</S.InputLabel>
-              <S.PaaswordCheckInput
-                value={PasswordReValue}
-                placeholder="비밀번호 확인"
-                type={showPasswordRe ? "text" : "password"}
-                onChange={handlePasswordReChange}
-                required
-              />
-              <S.IconWrapper2 onClick={() => setShowPasswordRe(!showPasswordRe)}>
-                {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-              </S.IconWrapper2>
-            </S.InputGroup>
-          </S.Password>
+  <S.InputGroup>
+    <S.InputLabel>비밀번호</S.InputLabel>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <S.PasswordInput
+        value={PasswordValue}
+        placeholder="비밀번호"
+        type={showPassword ? 'text' : 'password'}
+        onChange={handlePasswordChange}
+        required
+      />
+      <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
+        {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+      </S.IconWrapper>
+    </div>
+  </S.InputGroup>
+
+  <S.InputGroup>
+    <S.InputLabel>비밀번호 확인</S.InputLabel>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <S.PaaswordCheckInput
+        value={PasswordReValue}
+        placeholder="비밀번호 확인"
+        type={showPasswordRe ? 'text' : 'password'}
+        onChange={handlePasswordReChange}
+        required
+      />
+      <S.IconWrapper onClick={() => setShowPasswordRe(!showPasswordRe)}>
+        {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+      </S.IconWrapper>
+    </div>
+  </S.InputGroup>
+</S.Password>
 
           <S.Pages>
             <S.Count1page />

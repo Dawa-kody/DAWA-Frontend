@@ -79,13 +79,20 @@ function Signupspecial() {
   return (
     <S.Container>
       <S.LeftSection>
-        <S.HelloText>어서오세요!</S.HelloText>
-        <S.SubText>이미 계정이 있다면?</S.SubText>
-        <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
+        <S.TopTexts>
+          <S.HelloBlock>
+            <S.HelloText>어서오세요!</S.HelloText>
+            <S.RowWrapper>
+              <S.SubText>이미 계정이 있다면?</S.SubText>
+              <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
+            </S.RowWrapper>
+          </S.HelloBlock>
+          <S.Title>회원가입 - 특이사항 선택</S.Title>
+          <S.SpecialText>본인의 특이사항을 선택해주세요</S.SpecialText>
+        </S.TopTexts>
 
-        <S.Title>회원가입 - 특이상항 선택</S.Title>
-        <S.SpecialText>본인의 특이상항을 선택해주세요</S.SpecialText>
-        <S.DiseaseTextWrapper>
+
+       <S.DiseaseTextWrapper>
           {/* 알레르기 */}
           <S.AllergyItem>
             <S.CheckboxRow>
@@ -179,6 +186,7 @@ function Signupspecial() {
           </S.GitaItem>
         </S.DiseaseTextWrapper>
 
+      <S.Divs>
         <S.Pages>
           <S.Count1page />
           <S.Count2page />
@@ -189,11 +197,12 @@ function Signupspecial() {
             onClick={handleSubmit}
             disabled={!selected || !isAllInputValid}
             as="button"
-          >
+            >
             {selected ? '완료' : '특이사항 없음'}
           </S.NextButton>
           <S.BeforeButton onClick={Gotobefore}>이전</S.BeforeButton>
         </S.ButtonDiv>
+        </S.Divs>
       </S.LeftSection>
 
       <S.RightSection>

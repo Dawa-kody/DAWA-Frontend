@@ -173,105 +173,108 @@ function Password() {
             <S.LeftSection>
                 <S.Title>비밀번호 변경</S.Title>
                 <S.Inputs>
-                <S.InputGroup>
-                <S.InputLabel>이메일</S.InputLabel>
-                <S.FlexRow>
-                    <S.FormStyledInput
-                      placeholder="이메일 입력"
-                      type="text"
-                      value={emailValue}
-                      onChange={handleEmailChange}
-                      required
-                    />
-                    <S.EmailText>@gsm.hs.kr</S.EmailText>
-                  </S.FlexRow>
-                  {emailError && <S.ErrorMessage>{emailError}</S.ErrorMessage>}
-                </S.InputGroup>
-
-                <S.InputGroup>
-                  <S.InputLabel>인증번호</S.InputLabel>
-                  <S.FlexRowWide>
-                    <S.FormEmailInput
-                      placeholder="인증번호 입력"
-                      type="text"
-                      value={codeValue}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => setCodeValue(e.target.value)}
-                      required
-                      disabled={!isCodeSent}
-                      style={{ flex: 1 }} // 필요시 스타일드 컴포넌트로 교체
-                    />
-                    <S.Button
-                      onClick={handleEmailSubmit}
-                      disabled={!validateEmailPrefix(emailValue)}
-                    >
-                      {isCodeSent ? '인증번호 재요청' : '인증번호 요청'}
-                    </S.Button>
-                  </S.FlexRowWide>
-                  {isCodeSent && (
-                    <S.TimerInfo>
-                      <S.AccessText>
-                        인증번호가 전송되었습니다. (유효시간: 
-                        <S.RedTimerText>
-                          <AuthTimer
-                            key={timerKey}
-                                initialTime={180}
-                                onExpire={handleTimerExpire}
-                              />
-                            </S.RedTimerText>
-                            )
-                          </S.AccessText>
-                        </S.TimerInfo>
-                      )}
-                      {codeError && <S.ErrorMessage>{codeError}</S.ErrorMessage>}
+                    <S.InputGroup>
+                        <S.InputLabel>이메일</S.InputLabel>
+                        <S.FlexRow>
+                            <S.FormStyledInput
+                              placeholder="이메일 입력"
+                              type="text"
+                              value={emailValue}
+                              onChange={handleEmailChange}
+                              required
+                            />
+                            <S.EmailText>@gsm.hs.kr</S.EmailText>
+                        </S.FlexRow>
+                          {emailError && <S.ErrorMessage>{emailError}</S.ErrorMessage>}
                     </S.InputGroup>
+
+                    <S.InputGroup>
+                       <S.InputLabel>인증번호</S.InputLabel>
+                       <S.FlexRowWide>
+                         <S.FormEmailInput
+                           placeholder="인증번호 입력"
+                           type="text"
+                           value={codeValue}
+                           onChange={(e: ChangeEvent<HTMLInputElement>) => setCodeValue(e.target.value)}
+                           required
+                           disabled={!isCodeSent}
+                            />
+                         <S.Button
+                           onClick={handleEmailSubmit}
+                           disabled={!validateEmailPrefix(emailValue)}
+                            >
+                           {isCodeSent ? '인증번호 재요청' : '인증번호 요청'}
+                         </S.Button>
+                       </S.FlexRowWide>
+                       {isCodeSent && (
+                         <S.TimerInfo>
+                           <S.AccessText>
+                             인증번호가 전송되었습니다. (유효시간: 
+                             <S.RedTimerText>
+                               <AuthTimer
+                                 key={timerKey}
+                                     initialTime={180}
+                                     onExpire={handleTimerExpire}
+                                   />
+                             </S.RedTimerText>
+                            )
+                            </S.AccessText>
+                         </S.TimerInfo>
+                           )}
+                           {codeError && <S.ErrorMessage>{codeError}</S.ErrorMessage>}
+                     </S.InputGroup>
                   
-                    <S.PasswordGroup>
+                     <S.PasswordGroup>
                       <S.InputLabel>새 비밀번호</S.InputLabel>
                       <S.PasswordInputWrapper>
-                        <S.StyledInput
-                          placeholder="새 비밀번호 (8~16자, 영문/숫자/특수문자 조합)"
-                          type={showNewPassword ? "text" : "password"}
-                          value={NewPwValue}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPwValue(e.target.value)}
-                          required
-                        />
-                        <S.IconWrapper onClick={() => setShowNewPassword((prev) => !prev)}>
-                          {showNewPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-                        </S.IconWrapper>
+                        <S.FlexRowWide>
+                          <S.StyledInput
+                            placeholder="새 비밀번호 (8~16자, 영문/숫자/특수문자 조합)"
+                            type={showNewPassword ? "text" : "password"}
+                            value={NewPwValue}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPwValue(e.target.value)}
+                            required
+                          />
+                          <S.IconWrapper onClick={() => setShowNewPassword((prev) => !prev)}>
+                            {showNewPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+                          </S.IconWrapper>
+                        </S.FlexRowWide>
                       </S.PasswordInputWrapper>
+                                        
+                      <S.InputLabel>비밀번호 확인</S.InputLabel>
+                      <S.PasswordInputWrapper>
+                        <S.FlexRowWide>
+                          <S.StyledInput
+                            placeholder="비밀번호 확인"
+                            type={showNewPasswordRe ? "text" : "password"}
+                            value={NewRePwValue}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewRePwValue(e.target.value)}
+                            required
+                          />
+                          <S.IconWrapper onClick={() => setShowNewPasswordRe((prev) => !prev)}>
+                            {showNewPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+                          </S.IconWrapper>
+                        </S.FlexRowWide>
+                      </S.PasswordInputWrapper>
+                    </S.PasswordGroup>
 
-      <S.InputLabel>비밀번호 확인</S.InputLabel>
-      <S.PasswordInputWrapper>
-        <S.StyledInput
-          placeholder="비밀번호 확인"
-          type={showNewPasswordRe ? "text" : "password"}
-          value={NewRePwValue}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setNewRePwValue(e.target.value)}
-          required
-        />
-        <S.IconWrapper2 onClick={() => setShowNewPasswordRe((prev) => !prev)}>
-          {showNewPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-        </S.IconWrapper2>
-      </S.PasswordInputWrapper>
-    </S.PasswordGroup>          
                     <S.ButtonDiv>
                         <S.NextButton 
                             onClick={handleSubmit}
                             isActive={!!emailValue && !!codeValue && !!NewPwValue}
-                        >
-                            <S.NextbuttonText isActive={!!emailValue && !!codeValue && !!NewPwValue}>
-                                완료
-                            </S.NextbuttonText>
+                            >
+                            <S.NextbuttonText isActive={!!emailValue && !!codeValue && !!NewPwValue}>완료</S.NextbuttonText>
                         </S.NextButton>
                     </S.ButtonDiv>
                 </S.Inputs>
             </S.LeftSection>
+
             <S.RightSection>
                 <S.GradientOverlay />
-                <S.Img src={'/Login.svg'} />
+                <S.Img src={'/Sigin.svg'} />
             </S.RightSection>
         </S.Container>
-    );
-}
+     );
+ }
 
 export default Password;
