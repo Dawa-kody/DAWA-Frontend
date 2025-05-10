@@ -2,24 +2,29 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  html, body, #__next {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+    html, body, #__next {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+
+    }
+    body {
+      overflow: hidden;
+    }
 `;
 
 export const Container = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100vw;
-  overflow: auto;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-  }
+      @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
 `;
+
 
 export const LeftSection = styled.div`
   flex: 1;
@@ -103,7 +108,7 @@ export const PasswordGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1rem;
   `;
 
 export const InputLabel = styled.label`
@@ -158,7 +163,7 @@ export const StyledInput = styled.input`
 `;
 
 export const FormEmailInput = styled.input`
-  width: 25rem;
+  width: 22rem;
   height: 3rem;
   border: none;
   border-radius: 8px 0 8px 0;
@@ -234,7 +239,7 @@ export const PasswordInputWrapper = styled.div`
 export const FlexRowWide = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+
 `;
 
 export const RedTimerText = styled.span`
@@ -311,7 +316,7 @@ export const Button = styled.button`
   height: 3rem;
   border-radius: 0px 8px 8px 0px;
   display: flex;
-  left: 31.6rem;
+  left: 22.6rem;
   top: 22.6rem;
   justify-content: center;
   align-items: center;
@@ -368,7 +373,7 @@ export const Inputs = styled.div`
   height: 33rem;
   margin-left: auto;
   margin-right: auto;
-  top:200vw;
+  margin-top:10rem;
 
   @media (max-width: 768px) {
     width: 90%;
