@@ -8,19 +8,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  body, #__next {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
 `;
 
 export const Container = styled.div`
   display: flex;
-  height: 1000px;
-  width: 100vw;
+  height: 100%;
   overflow: auto;
 
   @media (max-width: 768px) {
@@ -68,102 +60,110 @@ export const GradientOverlay = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: relative;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   position: relative;
 
-  @media (max-width: 768px) {
-    object-fit: contain;
-    height: 100%;
-  }
+     @media (max-width: 768px) {
+       height: 100%;
+      object-fit: contain;
+   }
 `;
 
 export const HelloText = styled.span`
-  position: absolute;
-  left: clamp(4vw, 7vw, 106px);
-  top: clamp(5vh, 38vh, 100px);
-  font-family: 'Pretendard';
-  font-weight: 700;
-  font-size: clamp(1.5rem, 2vw, 2.25rem);
-  line-height: 1.3;
-  color: #000000;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(2rem, 2.8vw, 3rem);
+    line-height: 1.3;
+    color: #000000;
 
-  @media (max-width: 768px) {
-    position: static;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 1.8rem;
-    top: auto;
-    left: auto;
-  }
+    @media (max-width: 768px) {
+
+      position: static;
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+`;
+
+export const TopTexts = styled.div`
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+margin-left: 5rem;
+margin-top:-6rem;
+width: 80%;
+@media (max-width: 768px) {
+
+  margin-left: 0;
+  margin-top:2rem;
+}
+
+`;
+
+export const SubTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const SubText = styled.span`
-  position: absolute;
-  left: clamp(4vw, 7vw, 105px);
-  top: clamp(7vh, 34vh, 138px);
   font-family: 'Pretendard';
   font-weight: 300;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: clamp(14px, 2.5vw, 18px);
   line-height: 1.3;
-  color: #000000;
+  color: #000;
 
-  @media (max-width: 768px) {
-    position: static;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 1rem;
-    top: auto;
-    left: auto;
-  }
+   @media (max-width: 768px) {
+      margin-left: 0;
+    }
+
 `;
 
 export const GoLogin = styled.span`
-  position: absolute;
-  left: clamp(15vw, 20vw, 251px);
-  top: clamp(8vh, 39vh, 140px);
   font-family: 'Pretendard';
   font-weight: 300;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: clamp(14px, 2.8vw, 20px);
   line-height: 1.3;
   color: #6948ED;
   cursor: pointer;
+  
+    @media (max-width: 768px) {
+      margin-left: 0; 
+      margin-bottom: 0.2rem;
+    }
 
-  @media (max-width: 768px) {
-    position: static;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 1rem;
-    top: auto;
-    left: auto;
-  }
 `;
 
 export const Title = styled.span`
-  position: absolute;
-  left: clamp(5vw, 9vw, 124px);
-  top: clamp(10vh, 27vh, 260px);
-  font-family: 'Pretendard';
-  font-weight: 700;
-  font-size: clamp(1.5rem, 2vw, 2.25rem);
-  line-height: 1.3;
-  color: #000000;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    line-height: 1.3;
+    margin-left:2rem;
+    color: #000000;
 
-  @media (max-width: 768px) {
-    position: static;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-    top: auto;
-    left: auto;
-  }
+    @media (max-width: 768px) {
+      position: static; 
+      width: 100%;        
+      margin-left:1rem;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
 `;
 
+ 
 export const InputGroup = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
+  position: static;
 `;
 
 export const InputLabel = styled.label`
@@ -174,6 +174,67 @@ export const InputLabel = styled.label`
   color: #000000;
 `;
 
+
+export const EmailText = styled.label`
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+  margin-bottom: 8px;
+  display: inline-block;
+`;
+
+export const EmailTextE = styled.span`
+  color: #98A2B3;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: normal;
+  /* left, top 제거! */
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0;
+  }
+`;
+
+export const EmailInputGroup = styled.div`
+display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 20px);  // 화면 크기에 따라 8px~20px 사이로 gap 조절
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+`;
+
+    
+export const EmailInput = styled.input`
+  width: 350px;
+  height: 50px;
+  background: #F2F4F4;
+  border-radius: 8px;
+  padding-left: 20px;
+  font-family: 'Pretendard';
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  border: none;
+
+  &::placeholder {
+    color: #95979D;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    min-width: 0;
+  }
+`;
+  
 export const EmailAcess = styled.label`
   font-family: 'Pretendard';
   font-weight: 600;
@@ -181,118 +242,48 @@ export const EmailAcess = styled.label`
   line-height: 21px;
   color: #000000;
   position: relative;
-  top: 14px;
-
-  @media (max-width: 768px) {
-    top: 0;
-  }
+  top: clamp(2px, 5px, 10px);
 `;
-
-export const EmailText = styled.span`
-  font-family: 'Pretendard';
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 21px;
+  
+export const FormEmailInput = styled.input`
+  width: 350px;
+  height: 50px;
+  position: relative;
+  top: clamp(2px, 5px, 10px);
   color: #000000;
-  position: relative;
-  top: 20px;
-
-  @media (max-width: 768px) {
-    top: 0;
-    text-align: center;
-    display: block;
-    margin-bottom: 10px;
-  }
-`;
-
-export const EmailTextE = styled.span`
-  font-family: 'Pretendard';
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 21px;
-  color: #98A2B3;
-  position: relative;
-  top: -23px;
-  left: 370px;
-
-  @media (max-width: 768px) {
-    position: static;
-    top: 0;
-    left: 0;
-    display: block;
-    margin: 0 auto 10px auto;
-    text-align: center;
-  }
-`;
-
-export const EmailInput = styled.input`
-  width: clamp(280px, 40vw, 355px);
-  height: clamp(45px, 7vh, 51px);
-  position: relative;
-  top: 20px;
-  background: #F2F4F4;
-  border-radius: 8px;
+  background: #F2F4F7;
+  border-radius: 8px 0 0 8px;
   padding-left: 20px;
   font-family: 'Pretendard';
-  font-size: 16px;
-  color: #000000;
 
   &::placeholder {
     color: #95979D;
   }
   outline: none;
 
-  @media (max-width: 768px) {
+  &::placeholder {
+    color: #95979D;
+  }
+
+  @media (max-width: 600px) {
     width: 100%;
-    top: 0;
-    padding-left: 12px;
+    min-width: 0;
   }
 `;
-
-export const StyledInput = styled.input`
+      
+      
+  export const PasswordInput = styled.input`
   width: 100%;
-  height: 53px;
-  position: relative;
-  top: 171px;
-  background: #F2F4F7;
-  border-radius: 8px;
-  padding-left: 20px;
-  font-family: 'Pretendard';
-  color: #000000;
+ height: 53px;
+ position: relative;
+ top: clamp(-5px,-8px,10px);
+ background: #F2F4F7;
+ border-radius: 8px;
+ padding-left: 20px;
+ font-family: 'Pretendard';
+ color: #000000;
+ outline: none;
 
-  &::placeholder {
-    color: #95979D;
-  }
-  outline: none;
-
-  @media (max-width: 768px) {
-    top: 0;
-    height: 45px;
-    padding-left: 12px;
-  }
-`;
-
-export const PaaswordInput = styled.input`
-  width: 100%;
-  height: 53px;
-  position: relative;
-  top: -8px;
-  background: #F2F4F7;
-  border-radius: 8px;
-  padding-left: 20px;
-  font-family: 'Pretendard';
-  color: #000000;
-
-  &::placeholder {
-    color: #95979D;
-  }
-  outline: none;
-
-  @media (max-width: 768px) {
-    top: 0;
-    height: 45px;
-    padding-left: 12px;
-  }
 `;
 
 export const PaaswordCheckInput = styled.input`
@@ -318,38 +309,14 @@ export const PaaswordCheckInput = styled.input`
   }
 `;
 
-export const FormEmailInput = styled.input`
-  width: clamp(300px, 22rem, 352px);
-  height: 53px;
-  position: relative;
-  top: 12px;
-  color: #000000;
-  background: #F2F4F7;
-  border-radius: 8px 0 0 8px;
-  padding-left: 20px;
-  font-family: 'Pretendard';
-
-  &::placeholder {
-    color: #95979D;
-  }
-  outline: none;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    top: 0;
-    border-radius: 8px;
-    padding-left: 12px;
-  }
-`;
-
 export const EmailInputButton = styled.button`
-  width: 8rem;
-  height: 3.34rem;
+  width: 120px;
+  height: 50px;
   border-radius: 0px 8px 8px 0px;
-  position: absolute;
-  left: clamp(32vw, 450px, 450px);
-  top: clamp(33vh, 380px, 378px);
   display: flex;
+  margin-left: 22rem;
+  position:relative;
+  top:-4rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -361,12 +328,14 @@ export const EmailInputButton = styled.button`
 
   @media (max-width: 768px) {
     position: static;
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-    left: auto;
-    top: auto;
-  }
+    width: 100%;  // 화면 크기 작을 때 버튼을 전체 너비로 확장
+    max-width: 300px;  // 최대 너비 제한
+    border-radius: 8px;  // 둥근 모서리
+    margin-top: 10px;  // 위쪽 여백 추가
+    margin-left: 0;  // 왼쪽 여백 제거
+    top: auto;  // top 위치 제거
+    left: auto;  // left 위치 제거
+    font-size: 16px;  // 폰트 크기 조정
 `;
 
 export const Div = styled.div`
@@ -388,7 +357,7 @@ export const Password = styled.div`
   flex-direction: column;
   gap: 18px;
   position: relative;
-  top: 30px;
+  top: -5vh;
 
   @media (max-width: 768px) {
     top: 0;
@@ -437,16 +406,16 @@ export const EmailSentInfo = styled.div`
 export const Inputs = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: -1px;
   width: 63%;
-  height: 10vh;
+  height: 33rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: -70vh;
+
 
   @media (max-width: 768px) {
     width: 90%;
-    margin-top: 20px;
+    margin-top: 2rem;
     height: auto;
   }
 `;
@@ -534,23 +503,18 @@ export const BeforeButton = styled.button`
 `;
 
 export const IconWrapper = styled.div`
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: #6948ED;
-  top: clamp(4vh, 7vh, 50px);
-  left: clamp(25vw, 28vw, 600px);
-
+  margin-left: -3rem;
+  margin-top: -0.2rem;
+  z-index:1;
   @media (max-width: 768px) {
-    position: static;
-`
+    margin: 1rem 0 0 0;
+    justify-content: flex-end;
+  }
+`;
 
-export const IconWrapper2 = styled.div`
-  position: absolute;
-  cursor: pointer;
-  color: #6948ED;
-  top: clamp(4vh, 22vh, 200px);
-  left: clamp(25vw, 28vw, 600px);
 
-  @media (max-width: 768px) {
-    position: static;
-`

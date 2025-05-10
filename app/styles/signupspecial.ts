@@ -1,11 +1,22 @@
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
+
+export const breakpoints = {
+  mobile: '480px',
+  tablet: '768px',
+  desktop: '1024px',
+};
+
 export const GlobalStyle = createGlobalStyle`
   html, body, #__next {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+  }
+  body {
+    overflow: hidden;
   }
 
 `;
@@ -13,27 +24,43 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Container = styled.div`
   display: flex;
-  height: 1000px;
+  height: 100vh;
   width: 100vw;
-  overflow: auto; 
+  overflow: hidden;
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export const LeftSection = styled.div`
-    flex: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; // 상단 정렬
+  justify-content: center;
   align-items: flex-start;
   background-color: #FFFFFF;
-  min-height: 700px; // 필요에 따라 조정
+
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: 20px;
+  }
 `;
 
 export const RightSection = styled.div`
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 250px; 
+    margin-top: 0; 
+  }
 `;
 
 export const GradientOverlay = styled.div`
@@ -47,68 +74,209 @@ export const GradientOverlay = styled.div`
 `;
 
 export const Img = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
 
-export const HelloText = styled.span`
- position: absolute;
-    left: 105px;
-    top: 104px;
+  
+  @media (max-width: 768px) {
+    height: 100%;
+    object-fit: contain;
+  }
+  `
+  export const RowWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: -0.8rem;
+  margin-left: -0.2vw;
+  @media (max-width: 768px) {
+    flex-direction: row; /* 줄 바꿈 방지 */
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0;     
+    margin-left: 0;
+  }
+`;
+
+  export const HelloText = styled.span`
 
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: 34px;
-    line-height: 48px;
-
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    line-height: 1.3;
     color: #000000;
-      
-    -ms-user-select: none;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
 
-`
+    @media (max-width: 768px) {
+      position: static;
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+`;
+
+
+export const TextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+
+  color: #000000;
+  user-select: none;
+
+    @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.4;
+    gap: 0.3rem;
+  }
+`;
 
 export const SubText = styled.span`
-    position: absolute;
-    left: 105px;
-    top: 145px;
+  color: #000000;
 
+    @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const GoLogin = styled.span`
+color: #6948ED;
+cursor: pointer;
+user-select: none;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const Title = styled.span`
     font-family: 'Pretendard';
     font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 24px;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    line-height: 1.3;
 
     color: #000000;
-    
-    -ms-user-select: none;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
+
+     @media (max-width: 768px) {
+    position: static; 
+    width: 100%;        
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
   
-`
+  `;
+  export const HelloBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+    @media (max-width: 768px) {
+    gap: 0.2rem;
+  }
+`;
+
+
+  export const TopTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  margin-left: 5rem;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    margin-bottom: 0;
+    margin-left: -40vw;
+  }
+`;
+
+  export const SpecialText=styled.span`
+      color: #98A2B3;
+      font-family: Pretendard;
+      font-size: clamp(1rem, 1.2vw, 1.13rem);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      display: flex;
+    
+      
+     -ms-user-select: none;
+     -moz-user-select: -moz-none;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     user-select: none;
+   
+       @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+
+  `
+
+export const PageContainer = styled.div`
+  display: flex;
+  min-height: 100vh;
+  align-items: center;      // 수직 중앙 정렬
+  justify-content: flex-start; // 왼쪽 정렬 (원하면 center로)
+  background: #fff;
+
+  @media (max-width: 768px) {
+    justify-content: center; // 모바일에선 가운데 정렬
+    padding: 2rem 0;
+  }
+`;
+
+
+export const DiseaseTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 420px;
+  width: 100%;
+
+  margin-top: 3rem;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: 7rem;
+
+
+  padding: 0 2rem;
+  background: #fff;
+  box-sizing: border-box;
+  max-width: 600px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    gap: 1.25rem;
+    padding: 0 1rem;
+    min-height: auto;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+`;
+
+
 
 export const AllergyItem=styled.div`
- display: flex;
-  flex-direction: column; /* 설명란이 아래로 */
-  align-items: flex-start;
-  gap: 8px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 8px;
 ` 
 
 export const DiseaseItem = styled(AllergyItem)``;
 export const MedicationItem = styled(AllergyItem)``;
 export const GitaItem = styled(AllergyItem)``;
-
-
-
-
 
 
 interface CheckboxProps {
@@ -117,57 +285,58 @@ interface CheckboxProps {
 } 
 
 export const CheckboxRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
+display: flex;
+align-items: center;
+gap: 12px;
 `;
 
 export const Checkbox = styled.div<CheckboxProps>`
-  width: 22px;
-  height: 22px;
-  border: 2px solid ${({ checked }) => (checked ? '#6948ED' : '#49454F')};
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: ${({ checked }) => (checked ? '#6948ED' : 'white')};
+width: 22px;
+height: 22px;
+border: 2px solid ${({ checked }) => (checked ? '#6948ED' : '#49454F')};
+border-radius: 6px;
+cursor: pointer;
+background-color: ${({ checked }) => (checked ? '#6948ED' : 'white')};
 
-  position:relative;
+position:relative;
 
 
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
+-ms-user-select: none;
+-moz-user-select: -moz-none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+user-select: none;
 `;
 
 export const AllergyCheckbox = styled.div<CheckboxProps>`
-  width: 22px;
-  height: 22px;
-  border: 2px solid ${({ checked }) => (checked ? '#6948ED' : '#49454F')};
-  border-radius: 6px;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  background-color: ${({ checked }) => (checked ? '#6948ED' : 'white')};
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+width: 22px;
+height: 22px;
+border: 2px solid ${({ checked }) => (checked ? '#6948ED' : '#49454F')};
+border-radius: 6px;
+cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+background-color: ${({ checked }) => (checked ? '#6948ED' : 'white')};
+opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   user-select: none;
-`;
-
-export const AllergyExtra = styled.div`
+  `;
+  
+  export const AllergyExtra = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-top: 10px;
   border-left: 2px solid #7C3AED;
   padding-left: 16px;
-`;
-
-export const DiseaseExtra = styled(AllergyExtra)``;
-export const MedicationExtra = styled(AllergyExtra)``;
-export const GitaExtra = styled(AllergyExtra)``;
+  `;
+  
+  
+  export const DiseaseExtra = styled(AllergyExtra)``;
+  export const MedicationExtra = styled(AllergyExtra)``;
+  export const GitaExtra = styled(AllergyExtra)``;
 
 export const AllergyLabel = styled.div`
   font-size: 14px;
@@ -196,7 +365,7 @@ export const DiseaseCheckbox = styled.div<CheckboxProps>`
   export const DiseaseText = styled.span`
     color: #000;
     font-family: Pretendard;
-    font-size: 1.4rem;
+    font-size: clamp(1rem, 1.5vw, 2rem);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -207,10 +376,6 @@ export const DiseaseCheckbox = styled.div<CheckboxProps>`
     -khtml-user-select: none;
     user-select: none;
   `;
-
-
-
-
 
 
   export const MedicationCheckbox = styled.div<CheckboxProps>`
@@ -246,20 +411,6 @@ export const GitaCheckbox = styled.div<CheckboxProps>`
 `;
 
 
-
-
-
-export const DiseaseTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px; /* 항목 간격 */
-  position: relative;
-  left: 160px;
-  top: 180px;
-   margin-top: 154px;
-`;
-
-
 export const AllergyInput =styled.input`
   width: 370px;
   height: 38px;
@@ -277,66 +428,7 @@ export const DiseaseInput = styled(AllergyInput)``;
 export const MedicationInput = styled(AllergyInput)``;
 export const GitaInput = styled(AllergyInput)``;
 
-export const GoLogin = styled.span`
-    position: absolute;
-    left: 251px;
-    top: 145px;
 
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 24px;
-
-    color: #6948ED;
-    cursor: pointer;
-  
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
- 
-`
-
-export const Title = styled.span`
-    position: absolute;
-    left: 124px;
-    top: 205px;
-
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 48px;
-
-    color: #000000;
-
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
- 
-`
-export const SpecialText=styled.span`
-    color: #98A2B3;
-    font-family: Pretendard;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    position:absolute;
-    left:130px;
-    top:250px;
-
-   -ms-user-select: none;
-   -moz-user-select: -moz-none;
-   -webkit-user-select: none;
-   -khtml-user-select: none;
-   user-select: none;
- 
-`
 
 export const InputGroup = styled.div`
     width: 100%;
@@ -368,20 +460,9 @@ export const StyledInput = styled.input`
 
     &::placeholder{
         color: #95979D;
-    }
+}
     outline:none;
     color:#000000;
-`
-
-export const Inputs = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    width: 63%;
-    height: 10vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:20px;
 `
 
 export const Count1page = styled.div`
@@ -399,25 +480,58 @@ export const Count1page = styled.div`
 `
 
 export const Pages = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 9px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 420px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  position: relative;  
+  top: 0;
+  left: 0;
+
+  @media (max-width: 768px) { 
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+
 `
 
-export const ButtonDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-`
+export const Divs=styled.div`
+   display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 2rem; 
+
+
+  margin-top: -10rem;
+  margin-left: 4rem;
+  @media (max-width: 768px) {
+    gap: 1.5rem; 
+    margin-top: 3rem;
+    margin-left:-1rem;
+  }
+  
+  `
+  export const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rem;
+  height: 43px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 20rem;
+  }
+`;
+
+
+
+// NextButton: position 제거, width 100%로 확장(모바일)
 export const NextButton = styled.button<{ disabled?: boolean }>`
   width: 125px;
   height: 43px;
   border-radius: 10px;
-  position: relative;
-  left: 490px;
-  top: -165px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -428,47 +542,37 @@ export const NextButton = styled.button<{ disabled?: boolean }>`
   font-family: 'Pretendard';
   font-weight: 600;
   font-size: 16px;
+  transition: background 0.2s;
 
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 15px;
+    height: 40px;
+  }
+`;
+
+// BeforeButton: position 제거, width 100%로 확장(모바일)
+export const BeforeButton = styled.button`
+  width: 85px;
+  height: 43px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #F2F4F7;
+  color: black;
+  border: none;
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-size: 16px;
+  transition: background 0.2s;
+
+  @media (max-width: 768px) {
+    width: 75px;
+    font-size: 15px;
+    height: 40px;
+  }
 `;
 
 
-export const BeforeButton=styled.button`
-    width: 85px;
-    height: 43px;
-    border-radius: 10px;
-    position:relative;
-    top:-210px;
-    left:140px;
-    cursor: pointer;
-
-
-    background-color: #F2F4F7;
-    color: black;
-    outline:none;
-    font-family: 'Pretendard';
-    font-weight: 700;
-    font-size: 16px;
-    align-items: center;
-    justify-content: center;
-    
-    -ms-user-select: none;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
-
-`
-
-
-export const IconWrapper = styled.div`
-    position: absolute;
-    margin-top: 42px;
-    margin-left: 500px;
-    cursor: pointer;
-    color: #6948ED;
-`;

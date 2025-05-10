@@ -4,7 +4,7 @@ import * as S from "../styles/login";
 import { useRouter } from "next/navigation";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-const JWT_EXPIRY_TIME = 24 * 3600 * 1000; 
+const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
 function Login() {
     const router = useRouter();
@@ -137,62 +137,76 @@ function Login() {
 
     return (
         <S.Container>
-            <div className="flex h-full w-full">
-                <div className="flex flex-1 flex-direction-col justify-center items-center bg-white">
-                    <S.HelloText>반가워요!</S.HelloText>
-                    <S.SubText>다와가 처음이라면?</S.SubText>
-                    <S.GoSignup onClick={GoSignup}>회원가입하기</S.GoSignup>
+                <S.LoginFormSection>
+                    <S.LoginFormInnerWrapper>
 
-                    <S.Title>로그인</S.Title>
+                        <S.TopTexts>
+                          <S.HelloBlock>
+                            <S.HelloText>반가워요!</S.HelloText>
+                            <S.RowWrapper>
+                                <S.SubText>다와가 처음이라면?</S.SubText>
+                                <S.GoSignup onClick={GoSignup}>회원가입하기</S.GoSignup>
+                            </S.RowWrapper>
+                          </S.HelloBlock>
+                          <S.Title>로그인</S.Title>
+                        </S.TopTexts>
 
-                    <S.Inputs>
-                        <S.InputGroup>
-                            <S.InputLabel>이메일</S.InputLabel>
-                            <S.EmailInput
-                                placeholder="이메일 입력"
-                                value={EmailValue}
-                                type="text"
-                                onChange={handleEmailChange}
-                                required
-                                style={{ borderColor: emailError ? 'red' : undefined }}
-                            />
-                            <S.EmailText>@gsm.hs.kr</S.EmailText>
-                            {emailError && (
-                              <S.ErrorMessage>{emailError}</S.ErrorMessage>
-                            )}
-                        </S.InputGroup>
+                        <S.Inputs>
+                            <S.InputGroup>
+                                <S.InputLabel>이메일</S.InputLabel>
+                                <S.EmailInputWrapper>
+                                    <S.EmailInput
+                                        placeholder="이메일 입력"
+                                        value={EmailValue}
+                                        type="text"
+                                        onChange={handleEmailChange}
+                                        required
+                                        style={{ borderColor: emailError ? 'red' : undefined }}
+                                    />
+                                    <S.EmailText>@gsm.hs.kr</S.EmailText>
+                                </S.EmailInputWrapper>
 
-                        <S.InputGroup>
-                            <S.InputLabel>비밀번호</S.InputLabel>
-                            <S.PasswordInput
-                                placeholder="비밀번호"
-                                value={PasswordValue}
-                                type={showPassword ? "text" : "password"}
-                                onChange={handlePasswordChange}
-                                required
-                                style={passwordError ? { borderColor: 'red' } : {}}
-                            />
-                            <S.MissingpasswordText onClick={handleMissingpassword}>비밀번호를 잊으셨나요?</S.MissingpasswordText>
-                            <S.IconWrapper  $showPassword={showPassword}  onClick={() => setShowPassword(!showPassword)}>  {showPassword    ? <AiFillEyeInvisible size={24} />    : <AiFillEye size={24} />}</S.IconWrapper>
+                                {emailError && (
+                                    <S.ErrorMessage>{emailError}</S.ErrorMessage>
+                                )}
+                            </S.InputGroup>
 
-                            {passwordError && (
-                                <S.PasswordMessage>{passwordError}</S.PasswordMessage> 
-                            )}
-                        </S.InputGroup>
 
-                        <S.ButtonDiv>
-                            <S.NextButton onClick={handleSubmit} isActive={EmailValue.trim() !== ""}>
-                                <S.NextButtonText isActive={EmailValue.trim() !== ""}>완료</S.NextButtonText>
-                            </S.NextButton>
-                        </S.ButtonDiv>
-                    </S.Inputs>
-                </div>
-``
+                            <S.InputGroup>
+                                <S.InputLabel>비밀번호</S.InputLabel>
+                                <S.PasswordInputWrapper>
+                                    <S.PasswordInput
+                                        placeholder="비밀번호"
+                                        value={PasswordValue}
+                                        type={showPassword ? "text" : "password"}
+                                        onChange={handlePasswordChange}
+                                        required
+                                        style={passwordError ? { borderColor: 'red' } : {}}
+                                    />
+                                    <S.MissingpasswordText onClick={handleMissingpassword}>비밀번호를 잊으셨나요?</S.MissingpasswordText>
+                                    <S.IconWrapper $showPassword={showPassword} onClick={() => setShowPassword(!showPassword)}>  {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}</S.IconWrapper>
+                                </S.PasswordInputWrapper>
+
+                                {passwordError && (
+                                    <S.PasswordMessage>{passwordError}</S.PasswordMessage>
+                                )}
+
+                                <S.ButtonDiv>
+                                    <S.NextButton onClick={handleSubmit} isActive={EmailValue.trim() !== ""}>
+                                        <S.NextButtonText isActive={EmailValue.trim() !== ""}>완료</S.NextButtonText>
+                                    </S.NextButton>
+                                </S.ButtonDiv>
+                            </S.InputGroup>
+
+                        </S.Inputs>
+                    </S.LoginFormInnerWrapper>
+                </S.LoginFormSection>
+
                 <S.RightSection>
                     <S.GradientOverlay />
-                    <S.Img src={"/Login.svg"} />
+                    <S.Img src={'/Sigin.svg'} />
                 </S.RightSection>
-            </div>
+
         </S.Container>
     );
 }
