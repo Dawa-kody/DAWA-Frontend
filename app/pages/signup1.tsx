@@ -210,11 +210,12 @@ function Signup1() {
                               onChange={handlePasswordReChange}
                               required
                             />
-                            <S.IconWrapper onClick={() => setShowPasswordRe(!showPasswordRe)}>
+                            <S.IconWrapper2 onClick={() => setShowPasswordRe(!showPasswordRe)}>
                               {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-                            </S.IconWrapper>
+                            </S.IconWrapper2>
                           </div>
                         </S.InputGroup>
+
                   </S.Password>
                       
                       <S.Pages>
@@ -226,6 +227,7 @@ function Signup1() {
                         <S.NextButton
                           isActive={EmailValue.trim() !== "" && isCodeVerified}
                           onClick={GoNextPage}
+                          disabled={!(EmailValue.trim() !== "" && isCodeVerified)}
                         >
                           다음
                         </S.NextButton>
