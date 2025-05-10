@@ -189,7 +189,7 @@ function Password() {
                     </S.InputGroup>
 
                     <S.InputGroup>
-                       <S.InputLabel>인증번호</S.InputLabel>
+                       <S.InputLabel>이메일 인증</S.InputLabel>
                        <S.FlexRowWide>
                          <S.FormEmailInput
                            placeholder="인증번호 입력"
@@ -240,8 +240,7 @@ function Password() {
                           </S.IconWrapper>
                         </S.FlexRowWide>
                       </S.PasswordInputWrapper>
-                                        
-                      <S.InputLabel>비밀번호 확인</S.InputLabel>
+                  
                       <S.PasswordInputWrapper>
                         <S.FlexRowWide>
                           <S.StyledInput

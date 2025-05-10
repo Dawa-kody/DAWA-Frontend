@@ -64,13 +64,13 @@ export const RightSection = styled.div`
 `;
 
 export const GradientOverlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%);
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%);
+  z-index: 1;
 `;
 
 export const Img = styled.img`
@@ -79,20 +79,21 @@ export const Img = styled.img`
   object-fit: cover;
   position: relative;
 
-  
   @media (max-width: 768px) {
     height: 100%;
     object-fit: contain;
   }
   `
-  export const RowWrapper = styled.div`
+
+export const RowWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: -0.8rem;
   margin-left: -0.2vw;
+
   @media (max-width: 768px) {
-    flex-direction: row; /* 줄 바꿈 방지 */
+    flex-direction: row; 
     align-items: center;
     gap: 0.3rem;
     margin-top: 0;     
@@ -101,20 +102,19 @@ export const Img = styled.img`
 `;
 
   export const HelloText = styled.span`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2vw, 2.25rem);
+  line-height: 1.3;
+  color: #000000;
 
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-size: clamp(1.5rem, 2vw, 2.25rem);
-    line-height: 1.3;
-    color: #000000;
-
-    @media (max-width: 768px) {
-      position: static;
-      display: block;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+  @media (max-width: 768px) {
+    position: static;
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 
@@ -128,29 +128,29 @@ export const TextWrapper = styled.div`
   font-weight: 300;
   font-size: 18px;
   line-height: 24px;
-
+  
   color: #000000;
   user-select: none;
 
-    @media (max-width: 768px) {
-    font-size: 1rem;
-    line-height: 1.4;
-    gap: 0.3rem;
+  @media (max-width: 768px) {
+  font-size: 1rem;
+  line-height: 1.4;
+  gap: 0.3rem;
   }
 `;
 
 export const SubText = styled.span`
   color: #000000;
 
-    @media (max-width: 768px) {
-    font-size: 1rem;
+  @media (max-width: 768px) {
+  font-size: 1rem;
   }
 `;
 
 export const GoLogin = styled.span`
-color: #6948ED;
-cursor: pointer;
-user-select: none;
+  color: #6948ED;
+  cursor: pointer;
+  user-select: none;
 
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -158,81 +158,80 @@ user-select: none;
 `;
 
 export const Title = styled.span`
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-size: clamp(1.5rem, 2vw, 2.2rem);
-    line-height: 1.3;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+  line-height: 1.3;
+  color: #000000;
 
-    color: #000000;
-
-     @media (max-width: 768px) {
-    position: static; 
-    width: 100%;        
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+   @media (max-width: 768px) {
+  position: static; 
+  width: 100%;        
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
   }
   
-  `;
+`;
+
   export const HelloBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     @media (max-width: 768px) {
     gap: 0.2rem;
-  }
+    }
 `;
 
 
   export const TopTexts = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  margin-left: 5rem;
-
-  @media (max-width: 768px) {
-    gap: 0.5rem;
-    margin-bottom: 0;
-    margin-left: -40vw;
-  }
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    margin-left: 5rem;
+  
+    @media (max-width: 768px) {
+      gap: 0.5rem;
+      margin-bottom: 0;
+      margin-left: -40vw;
+    }
 `;
 
-  export const SpecialText=styled.span`
-      color: #98A2B3;
-      font-family: Pretendard;
-      font-size: clamp(1rem, 1.2vw, 1.13rem);
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      display: flex;
-    
-      
-     -ms-user-select: none;
-     -moz-user-select: -moz-none;
-     -webkit-user-select: none;
-     -khtml-user-select: none;
-     user-select: none;
-   
-       @media (max-width: 768px) {
-        font-size: 1rem;
+ export const SpecialText=styled.span`
+     color: #98A2B3;
+     font-family: Pretendard;
+     font-size: clamp(1rem, 1.2vw, 1.13rem);
+     font-style: normal;
+     font-weight: 500;
+     line-height: normal;
+     display: flex;
+     margin-top: -0.5rem; 
+     
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+ 
+     @media (max-width: 768px) {
+       font-size: 1rem;
       }
+ `;
 
-  `
+  export const PageContainer = styled.div`
+    display: flex;
+    min-height: 100vh;
+    align-items: center;     
+    justify-content: flex-start; 
+    background: #fff;
 
-export const PageContainer = styled.div`
-  display: flex;
-  min-height: 100vh;
-  align-items: center;      // 수직 중앙 정렬
-  justify-content: flex-start; // 왼쪽 정렬 (원하면 center로)
-  background: #fff;
-
-  @media (max-width: 768px) {
-    justify-content: center; // 모바일에선 가운데 정렬
-    padding: 2rem 0;
-  }
-`;
+    @media (max-width: 768px) {
+      justify-content: center; 
+      padding: 2rem 0;
+    }
+  `;
 
 
 export const DiseaseTextWrapper = styled.div`
@@ -241,6 +240,7 @@ export const DiseaseTextWrapper = styled.div`
   gap: 2rem;
   min-height: 420px;
   width: 100%;
+
 
   margin-top: 3rem;
   margin-right: auto;
@@ -340,7 +340,7 @@ opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
 export const AllergyLabel = styled.div`
   font-size: 14px;
-  color: #7C3AED; // 보라색
+  color: #7C3AED;
   font-weight: 500;
 `;
 
@@ -501,9 +501,9 @@ export const Divs=styled.div`
   flex-direction: column;
   align-items: center; 
   gap: 2rem; 
+  position:relative;
 
-
-  margin-top: -10rem;
+  margin-top: -7rem;
   margin-left: 4rem;
   @media (max-width: 768px) {
     gap: 1.5rem; 
@@ -527,7 +527,6 @@ export const Divs=styled.div`
 
 
 
-// NextButton: position 제거, width 100%로 확장(모바일)
 export const NextButton = styled.button<{ disabled?: boolean }>`
   width: 125px;
   height: 43px;
@@ -551,7 +550,7 @@ export const NextButton = styled.button<{ disabled?: boolean }>`
   }
 `;
 
-// BeforeButton: position 제거, width 100%로 확장(모바일)
+
 export const BeforeButton = styled.button`
   width: 85px;
   height: 43px;

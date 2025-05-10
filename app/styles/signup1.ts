@@ -2,23 +2,27 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  html, body, #__next {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+    html, body, #__next {
+      height: 100%;
+      margin: 0;
+      padding: 0;
 
+    }
+    body {
+      overflow: hidden;
+    }
 `;
 
 export const Container = styled.div`
-  display: flex;
-  height: 100%;
-  overflow: auto;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-  }
+      @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
 `;
 
 export const LeftSection = styled.div`
@@ -27,11 +31,15 @@ export const LeftSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-color: #FFFFFF;
+  background-color: #FFFFFF;  
+  overflow: hidden;
+
 
   @media (max-width: 768px) {
     align-items: center;
     padding: 20px;
+   overflow: hidden;
+
   }
 `;
 
@@ -75,7 +83,7 @@ export const HelloText = styled.span`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(2rem, 2.8vw, 3rem);
+    font-size: clamp(1.6rem, 2vw, 2.5rem);
     line-height: 1.3;
     color: #000000;
 
@@ -92,8 +100,8 @@ export const TopTexts = styled.div`
 display: flex;
 flex-direction: column;
 gap: 0.75rem;
-margin-left: 5rem;
-margin-top:-6rem;
+margin-left: 7rem;
+margin-top:5rem;
 width: 80%;
 @media (max-width: 768px) {
 
@@ -104,30 +112,43 @@ width: 80%;
 `;
 
 export const SubTextWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: row; /* 줄 바꿈 방지 */
+      align-items: center;
+      gap: 0.3rem;
+    }
 `;
 
 export const SubText = styled.span`
   font-family: 'Pretendard';
   font-weight: 300;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(10px, 2vw, 16px);
   line-height: 1.3;
   color: #000;
 
+
    @media (max-width: 768px) {
       margin-left: 0;
+        margin-bottom: 0.2rem;
     }
 
 `;
 
+export const HelloBlock = styled.div`
+display: flex;
+flex-direction: column;
+gap: -1rem;
+`;
+
+
 export const GoLogin = styled.span`
   font-family: 'Pretendard';
   font-weight: 300;
-  font-size: clamp(14px, 2.8vw, 20px);
+  font-size: clamp(10px, 2vw, 16px);
   line-height: 1.3;
   color: #6948ED;
   cursor: pointer;
@@ -143,10 +164,13 @@ export const Title = styled.span`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    font-size: clamp(2rem, 2vw, 2rem);
     line-height: 1.3;
     margin-left:2rem;
     color: #000000;
+    position:relative;
+    top:-0.2rem;
+    left:-1rem;
 
     @media (max-width: 768px) {
       position: static; 
@@ -162,7 +186,7 @@ export const InputGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   position: static;
 `;
 
@@ -178,11 +202,9 @@ export const InputLabel = styled.label`
 export const EmailText = styled.label`
   font-family: 'Pretendard';
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 21px;
   color: #000000;
-  margin-bottom: 8px;
-  display: inline-block;
 `;
 
 export const EmailTextE = styled.span`
@@ -214,16 +236,20 @@ display: flex;
 
     
 export const EmailInput = styled.input`
-  width: 350px;
-  height: 50px;
-  background: #F2F4F4;
+  width: 22rem;
+  height: 3rem;
+  position: relative;
+  top: clamp(2px, 5px, 10px);
+  color: #000000;
+  background: #F2F4F7;
   border-radius: 8px;
   padding-left: 20px;
   font-family: 'Pretendard';
-  font-size: 16px;
-  color: #000000;
+
+  &::placeholder {
+    color: #95979D;
+  }
   outline: none;
-  border: none;
 
   &::placeholder {
     color: #95979D;
@@ -243,11 +269,12 @@ export const EmailAcess = styled.label`
   color: #000000;
   position: relative;
   top: clamp(2px, 5px, 10px);
+  margin-top: 1rem; 
 `;
-  
+
 export const FormEmailInput = styled.input`
-  width: 350px;
-  height: 50px;
+  width: 22rem;
+  height: 3rem;
   position: relative;
   top: clamp(2px, 5px, 10px);
   color: #000000;
@@ -316,7 +343,7 @@ export const EmailInputButton = styled.button`
   display: flex;
   margin-left: 22rem;
   position:relative;
-  top:-4rem;
+  top:-3.4rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -336,6 +363,7 @@ export const EmailInputButton = styled.button`
     top: auto;  // top 위치 제거
     left: auto;  // left 위치 제거
     font-size: 16px;  // 폰트 크기 조정
+}
 `;
 
 export const Div = styled.div`
@@ -355,7 +383,7 @@ export const Password = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 18px;
+  gap: -1rem;
   position: relative;
   top: -5vh;
 
@@ -407,8 +435,7 @@ export const Inputs = styled.div`
   display: flex;
   flex-direction: column;
   gap: -1px;
-  width: 63%;
-  height: 33rem;
+
   margin-left: auto;
   margin-right: auto;
 

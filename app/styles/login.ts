@@ -137,7 +137,7 @@
     export const RowWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 0.6rem;
 
     @media (max-width: 768px) {
       flex-direction: row; /* 줄 바꿈 방지 */
