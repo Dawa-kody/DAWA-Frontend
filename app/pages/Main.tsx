@@ -176,7 +176,7 @@ function Main() {
           <div id="topleft" className="w-[20rem] h-full flex flex-col gap-[2rem]">
             
             {/* 선생님 출근 확인 */}
-            <div className="w-full h-[8rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] gap-[7rem]">
+            <div className="w-full h-[8rem] flex items-center bg-white rounded-[0.58988rem] pl-[1.5rem] pr-[1rem] gap-[6rem]">
               <div className="w-[3rem] h-[3rem] bg-primaryPurple rounded-[0.3125rem] flex justify-center items-center">
                 <img className="w-[2rem] h-[2rem]" src={"/people.svg"} />
               </div>
@@ -196,7 +196,7 @@ function Main() {
           </div>
 
           {/* 공지사항 */}
-          <div id="topcenter" className="w-[45vw] ml-[1rem] flex flex-col bg-white">
+          <div id="topcenter" className="w-[45vw] ml-[1rem] flex flex-col rounded-[10px] bg-white">
             <div className="w-full pl-[1rem] pt-[0.75rem]">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
             </div>
