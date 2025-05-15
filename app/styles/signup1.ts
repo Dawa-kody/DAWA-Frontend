@@ -164,7 +164,7 @@ export const Title = styled.span`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(2rem, 2vw, 2rem);
+    font-size: clamp(1.8rem, 1.8vw, 1.8rem);
     line-height: 1.3;
     margin-left:2rem;
     color: #000000;
@@ -225,7 +225,7 @@ export const EmailTextE = styled.span`
 export const EmailInputGroup = styled.div`
 display: flex;
   align-items: center;
-  gap: clamp(8px, 2vw, 20px);  // 화면 크기에 따라 8px~20px 사이로 gap 조절
+  gap: clamp(8px, 1vw, 20px);  
   flex-wrap: wrap;
 
   @media (max-width: 480px) {
@@ -355,14 +355,14 @@ export const EmailInputButton = styled.button`
 
   @media (max-width: 768px) {
     position: static;
-    width: 100%;  // 화면 크기 작을 때 버튼을 전체 너비로 확장
-    max-width: 300px;  // 최대 너비 제한
-    border-radius: 8px;  // 둥근 모서리
-    margin-top: 10px;  // 위쪽 여백 추가
-    margin-left: 0;  // 왼쪽 여백 제거
-    top: auto;  // top 위치 제거
-    left: auto;  // left 위치 제거
-    font-size: 16px;  // 폰트 크기 조정
+    width: 100%;  
+    max-width: 300px; 
+    border-radius: 8px; 
+    margin-top: 10px; 
+    margin-left: 0;  
+    top: auto;  
+    left: auto;  
+    font-size: 16px; 
 }
 `;
 
@@ -536,12 +536,28 @@ export const IconWrapper = styled.div`
   cursor: pointer;
   color: #6948ED;
   margin-left: -3rem;
-  margin-top: -0.2rem;
+  margin-top:-1vh;
   z-index:1;
   @media (max-width: 768px) {
     margin: 1rem 0 0 0;
     justify-content: flex-end;
   }
 `;
+
+export const IconWrapper2 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6948ED;
+  margin-left: -3rem;
+  height: 3rem;
+  z-index:1;
+  @media (max-width: 768px) {
+    margin: 1rem 0 0 0;
+    justify-content: flex-end;
+  }
+`;
+
 
 
