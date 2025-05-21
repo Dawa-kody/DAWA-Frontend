@@ -77,9 +77,9 @@ export const Img = styled.img`
 `;
 
 export const Title = styled.span`
-  position: absolute;
-  left: 124px;
-  top: 5rem;
+  position:relative;
+  top:6rem;
+  left: 7rem;
 
   font-family: 'Pretendard';
   font-style: normal;
@@ -405,6 +405,7 @@ export const NextButton = styled.div<{ isActive: boolean }>`
   }
 `;
 
+
 export const NextbuttonText = styled.span<{ isActive: boolean }>`
   color: ${({ isActive }) => (isActive ? "#ffffff" : "#98A2B3")};
   font-family: 'Pretendard';
@@ -415,6 +416,31 @@ export const NextbuttonText = styled.span<{ isActive: boolean }>`
   position: relative;
 `;
 
+
+export const BeforeButton = styled.button`
+  width: 85px;
+  height: 43px;
+  border-radius: 10px;
+  position: relative;
+  top: -50px;
+  left: 10px;
+  cursor: pointer;
+  background-color: #F2F4F7;
+  color: black;
+  outline: none;
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-size: 16px;
+  user-select: none;
+
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    top: auto;
+    left: auto;
+  }
+`;
 
 export const IconWrapper = styled.div`
   cursor: pointer;
