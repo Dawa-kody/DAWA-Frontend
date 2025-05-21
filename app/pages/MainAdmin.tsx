@@ -324,7 +324,7 @@ function MainAdmin() {
           <Weather />
           </div> {/* topdiv 끝나는 지점점 */}
 
-        <div id="contentDiv" className="w-full h-[40vh] flex justify-between">
+        <div id="contentDiv" className="w-full h-[48vh] flex justify-between">
 
           <div className="w-[75vw] h-full flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
 
@@ -384,14 +384,14 @@ function MainAdmin() {
             </div>
 
           <div className="w-[20vw] h-full rounded-[0.9375rem] pl-[1.56rem] pr-[1.56rem] bg-white flex flex-col items-center justify-center relative gap-[1rem]">
-            <div className="w-full pt-[1.06rem] absolute top-5 left-4">
+            <div className="w-full pt-[1.06rem] absolute top-[1vh] left-[1vw]">
               <span className="text-black font-[700] text-[1.5rem]">침대 현황</span>
             </div>
 
             {/* 1번 침대 + 토글 */}
             <div className="flex flex-col items-center mt-[5rem]">
               <div
-                className={`w-[19rem] h-[6.5rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
+                className={`w-[18vw] h-[6.5rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
                   bedStatus.bed1 ? "bg-[#7CD4FD]" : "bg-[#F2F4F7]"
                 }`}
                 >
@@ -410,7 +410,7 @@ function MainAdmin() {
 
             {/* 2번 침대 + 토글 */}
             <div className="flex flex-col items-center mt-[0.2rem]">
-              <div className={`w-[19rem] h-[6.5rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
+              <div className={`w-[18vw] h-[6.5rem] rounded-[0.9375rem] flex flex-col items-center justify-center gap-[0.94rem] ${
                 bedStatus.bed2 ? "bg-[#FEA3B4]" : "bg-[#F2F4F7]"}`}>
                 <img className="w-[9rem] h-[3rem]" src={"/Bed.svg"} alt="Bed Icon" />
                 <span className="text-[1.25rem] font-bold text-white">

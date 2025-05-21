@@ -19,13 +19,6 @@ function Signupspecial() {
   const [medicationInput, setMedicationInput] = useState('');
   const [gitaInput, setGitaInput] = useState('');
 
-  // 완료 버튼 활성화 조건
-  const isAllInputValid =
-    (selected === 'allergy' && allergyInput.trim()) ||
-    (selected === 'disease' && diseaseInput.trim()) ||
-    (selected === 'medication' && medicationInput.trim()) ||
-    (selected === 'gita' && gitaInput.trim());
-
   // 이동 함수
   const GoLogin = () => router.push("/Login");
   const Gotobefore = () => router.back();
@@ -33,27 +26,27 @@ function Signupspecial() {
   // 완료 버튼 클릭
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!selected || !isAllInputValid) return;
 
     if (!email || !password) {
       alert("이메일 또는 비밀번호 정보가 없습니다. 이전 단계부터 다시 진행해 주세요.");
       return;
     }
 
+    // 선택이 없으면 모두 빈 값으로
     const dto = {
       email,
       password,
       healthIssues: {
-        allergyImmune: allergyInput,
-        chronicMedication: diseaseInput,
-        emergencyPossible: medicationInput,
-        etc: gitaInput
+        allergyImmune: selected === 'allergy' ? allergyInput : '',
+        chronicMedication: selected === 'disease' ? diseaseInput : '',
+        emergencyPossible: selected === 'medication' ? medicationInput : '',
+        etc: selected === 'gita' ? gitaInput : ''
       }
     };
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signup `,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signup`,
         dto,
         {
           headers: {
@@ -79,12 +72,18 @@ function Signupspecial() {
   return (
     <S.Container>
       <S.LeftSection>
-        <S.HelloText>어서오세요!</S.HelloText>
-        <S.SubText>이미 계정이 있다면?</S.SubText>
-        <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
+        <S.TopTexts>
+          <S.HelloBlock>
+            <S.HelloText>어서오세요!</S.HelloText>
+            <S.RowWrapper>
+              <S.SubText>이미 계정이 있다면?</S.SubText>
+              <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
+            </S.RowWrapper>
+          </S.HelloBlock>
+          <S.Title>회원가입 - 특이사항 선택</S.Title>
+          <S.SpecialText>본인의 특이사항을 선택해주세요</S.SpecialText>
+        </S.TopTexts>
 
-        <S.Title>회원가입 - 특이상항 선택</S.Title>
-        <S.SpecialText>본인의 특이상항을 선택해주세요</S.SpecialText>
         <S.DiseaseTextWrapper>
           {/* 알레르기 */}
           <S.AllergyItem>
@@ -179,21 +178,19 @@ function Signupspecial() {
           </S.GitaItem>
         </S.DiseaseTextWrapper>
 
-        <S.Pages>
-          <S.Count1page />
-          <S.Count2page />
-        </S.Pages>
+        <S.Divs>
+          <S.Pages>
+            <S.Count1page />
+            <S.Count2page />
+          </S.Pages>
 
-        <S.ButtonDiv>
-          <S.NextButton
-            onClick={handleSubmit}
-            disabled={!selected || !isAllInputValid}
-            as="button"
-          >
-            {selected ? '완료' : '특이사항 없음'}
-          </S.NextButton>
-          <S.BeforeButton onClick={Gotobefore}>이전</S.BeforeButton>
-        </S.ButtonDiv>
+          <S.ButtonDiv>
+            <S.BeforeButton onClick={Gotobefore}>이전</S.BeforeButton>
+            <S.NextButton onClick={handleSubmit}>
+              {selected ? '완료' : '특이사항 없음'}
+            </S.NextButton>
+          </S.ButtonDiv>
+        </S.Divs>
       </S.LeftSection>
 
       <S.RightSection>

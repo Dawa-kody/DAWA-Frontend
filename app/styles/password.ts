@@ -2,24 +2,29 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  html, body, #__next {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+    html, body, #__next {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+
+    }
+    body {
+      overflow: hidden;
+    }
 `;
 
 export const Container = styled.div`
-  display: flex;
-  height: 1000px;
-  width: 100vw;
-  overflow: auto;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-  }
+      @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
 `;
+
 
 export const LeftSection = styled.div`
   flex: 1;
@@ -74,7 +79,7 @@ export const Img = styled.img`
 export const Title = styled.span`
   position: absolute;
   left: 124px;
-  top: 125px;
+  top: 5rem;
 
   font-family: 'Pretendard';
   font-style: normal;
@@ -103,10 +108,8 @@ export const PasswordGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  position: relative;
-  top: 5px;
-`;
+  gap: 1rem;
+  `;
 
 export const InputLabel = styled.label`
   font-family: 'Pretendard';
@@ -124,9 +127,8 @@ export const EmailText = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  position: absolute;
-  left: 515px;
-  top: 270px;
+  left: 51rem;
+  top: 27rem;
 
   @media (max-width: 768px) {
     position: static;
@@ -137,30 +139,32 @@ export const EmailText = styled.span`
 `;
 
 export const StyledInput = styled.input`
-  width: 100%;
-  height: 53px;
-  top: 361px;
-  color: #000000;
-  background: #F2F4F7;
+  width: 30rem;
+  height: 3rem;
+  border: none;
   border-radius: 8px;
+  background: transparent;
   padding-left: 20px;
-  font-family: 'Pretendard';
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #000;
 
   &::placeholder {
     color: #95979D;
   }
   outline: none;
+  background-color: #F2F4F7;
 
   @media (max-width: 768px) {
-    top: 0;
-    height: 45px;
+    width: 100%;
+    border-radius: 8px;
     padding-left: 12px;
   }
 `;
 
 export const FormEmailInput = styled.input`
-  width: 200px;
-  height: 48px;
+  width: 22rem;
+  height: 3rem;
   border: none;
   border-radius: 8px 0 8px 0;
   background: transparent;
@@ -183,8 +187,8 @@ export const FormEmailInput = styled.input`
 `;
 
 export const FormStyledInput = styled.input`
-  width: 360px;
-  height: 45px;
+  width: 22rem;
+  height: 3rem;
   background: #F2F4F4;
   border-radius: 8px;
   padding-left: 20px;
@@ -235,7 +239,7 @@ export const PasswordInputWrapper = styled.div`
 export const FlexRowWide = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+
 `;
 
 export const RedTimerText = styled.span`
@@ -284,7 +288,6 @@ export const EmailInputButton = styled.button`
   border-radius: 0 8px 8px 0;
   cursor: pointer;
   transition: background 0.2s;
-
   &:hover {
     background: #6948ED;
   }
@@ -313,9 +316,8 @@ export const Button = styled.button`
   height: 3rem;
   border-radius: 0px 8px 8px 0px;
   display: flex;
-  position: absolute;
-  left: 500px;
-  top: 354.3px;
+  left: 22.6rem;
+  top: 22.6rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -363,14 +365,15 @@ export const EmailCheckButton = styled.button`
 `;
 
 export const Inputs = styled.div`
+  position:flex;
   display: flex;
   flex-direction: column;
   gap: 18px;
   width: 63%;
-  height: 10vh;
+  height: 33rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: -68vh;
+  margin-top:10rem;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -389,7 +392,7 @@ export const NextButton = styled.div<{ isActive: boolean }>`
   width: 78px;
   height: 43px;
   border-radius: 6px;
-  margin-left: auto;
+  margin-left: 25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,6 +401,7 @@ export const NextButton = styled.div<{ isActive: boolean }>`
 
   @media (max-width: 768px) {
     width: 100%;
+
   }
 `;
 
@@ -408,35 +412,21 @@ export const NextbuttonText = styled.span<{ isActive: boolean }>`
   font-size: 15px;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
+
 
 export const IconWrapper = styled.div`
-  left: 440px;
-  top: 13px;
-  position: absolute;
-  cursor: pointer;
-  color: #6948ED;
-
-  @media (max-width: 768px) {
-    position: static;
-    margin-top: 8px;
-    margin-left: 0;
-  }
-`;
-
-export const IconWrapper2 = styled.div`
-  position: absolute;
-  margin-top: 42px;
-  margin-left: 500px;
   cursor: pointer;
   color: #6948ED;
   z-index: 1;
-
-  @media (max-width: 768px) {
-    position: static;
-    margin: 10px 0 0 0;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -3rem;
 `;
+
+
 
 export const ReportMessage = styled.span`
   color: #D23B3B;
@@ -444,9 +434,8 @@ export const ReportMessage = styled.span`
   margin-left: 210px;
 
   @media (max-width: 768px) {
-    margin-left: 0;
-    display: block;
-    text-align: center;
-    padding: 10px 0;
+    position: static;
+    margin-left:30rem;
+    margin-top: -2rem;
   }
 `;
