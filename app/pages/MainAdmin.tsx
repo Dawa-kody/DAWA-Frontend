@@ -299,7 +299,7 @@ function MainAdmin() {
             </div>
           </div>
           {/* 공지사항 */}
-          <div id="notice" className="w-[60vw] flex flex-col bg-white">
+          <div id="notice" className="w-[60vw] flex flex-col bg-white rounded-[10px]">
             <div id="title" className="w-full pl-[1rem] pr-[1rem] pt-[0.75rem] flex flex-row justify-between ">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
               <button className="w-[10rem] h-[2.5rem] bg-subPurple text-black font-[500] text-[1rem] rounded-[0.3125rem]" onClick={() => setWriteNotice(true)}>공지사항 작성</button>
