@@ -137,34 +137,30 @@ function Writepage() {
   return (
     <>
       <Nav />
-      <S.Background>
-        <S.WhiteNemo>
-          <S.NameText>이름</S.NameText>
-          <S.NameInput
-            value={Name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="이름입력"
-            required
-          />
-
-          <S.DivisionText>구분</S.DivisionText>
-          <S.DivisionSelect
-            value={Division}
-            onChange={(e) => setDivision(e.target.value)}
-            required
-          >
-            <option value="" disabled hidden>
-              구분을 선택하세요
-            </option>
-            <option value="DIGESTIVE_SYSTEM">소화기계</option>
-            <option value="RESPIRATORY_SYSTEM">호흡기계</option>
-            <option value="MUSCULOSKELETAL_SYSTEM">근골격계</option>
-            <option value="INTEGUMENTARY_SYSTEM">피부피하계</option>
-            <option value="DENTAL_SYSTEM">구강치아계</option>
-            <option value="OTORHINOLARYNGOLOGY">이비인후과계</option>
-            <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
-            <option value="OTHER">기타</option>
-          </S.DivisionSelect>
+      <div id='background' className='bg-#F2F4F7 h-auto w-full flex justify-center'>
+        <div id='container' className='bg-white absolute  w-[75rem] h-[78.75rem] mt-[5vh] rounded-[10px] flex flex-col items-center pl-[2rem] pt-[1vh]'>
+          <div id='header1' className='w-full justify-between flex flex-row '>
+            <div id='name' className=''>
+              <span id='nameText' className=''>이름</span>
+              <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="이름입력" required/>
+            </div>
+            <div>
+              <S.Label>구분</S.Label>
+              <S.DivisionSelect value={Division} onChange={(e) => setDivision(e.target.value)} required>
+                <option value="" disabled hidden>
+                  구분을 선택하세요
+                </option>
+                <option value="DIGESTIVE_SYSTEM">소화기계</option>
+                <option value="RESPIRATORY_SYSTEM">호흡기계</option>
+                <option value="MUSCULOSKELETAL_SYSTEM">근골격계</option>
+                <option value="INTEGUMENTARY_SYSTEM">피부피하계</option>
+                <option value="DENTAL_SYSTEM">구강치아계</option>
+                <option value="OTORHINOLARYNGOLOGY">이비인후과계</option>
+                <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
+                <option value="OTHER">기타</option>
+              </S.DivisionSelect>
+            </div>
+          </div>
 
           <S.ClassText>학번</S.ClassText>
           <S.ClassInput
@@ -268,8 +264,8 @@ function Writepage() {
               <S.CancelbuttonText>취소</S.CancelbuttonText>
             </S.Cancelbutton>
           </S.ButtonContainer>
-        </S.WhiteNemo>
-      </S.Background>
+        </div>
+      </div>
     </>
   );
 }

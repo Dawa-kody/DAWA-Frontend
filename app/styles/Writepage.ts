@@ -6,7 +6,7 @@ export const Background = styled.div`
   height: 87.5rem; /* 1400px */
 `
 
-export const WhiteNemo = styled.div`
+export const Container = styled.div`
   position: absolute;
   width: 75rem; /* 1200px */
   height: 78.75rem; /* 1260px */
@@ -18,7 +18,7 @@ export const WhiteNemo = styled.div`
   border-radius: 0.625rem; /* 10px */
 `
 
-export const NameText = styled.div`
+export const Label = styled.div`
   position: absolute;
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */

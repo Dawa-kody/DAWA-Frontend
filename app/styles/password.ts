@@ -77,9 +77,15 @@ export const Img = styled.img`
 `;
 
 export const Title = styled.span`
+<<<<<<< HEAD
+  position: absolute;
+  left: 124px;
+  top: 5rem;
+=======
   position:relative;
   top:6rem;
   left: 7rem;
+>>>>>>> c937304135b3896e122250a15a46b6558a1e079a
 
   font-family: 'Pretendard';
   font-style: normal;
@@ -414,6 +420,8 @@ export const NextbuttonText = styled.span<{ isActive: boolean }>`
   align-items: center;
   justify-content: center;
   position: relative;
+<<<<<<< HEAD
+=======
 `;
 
 
@@ -440,7 +448,9 @@ export const BeforeButton = styled.button`
     top: auto;
     left: auto;
   }
+>>>>>>> c937304135b3896e122250a15a46b6558a1e079a
 `;
+
 
 export const IconWrapper = styled.div`
   cursor: pointer;
