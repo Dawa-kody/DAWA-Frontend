@@ -77,9 +77,15 @@ export const Img = styled.img`
 `;
 
 export const Title = styled.span`
+<<<<<<< HEAD
   position: absolute;
   left: 124px;
   top: 5rem;
+=======
+  position:relative;
+  top:6rem;
+  left: 7rem;
+>>>>>>> c937304135b3896e122250a15a46b6558a1e079a
 
   font-family: 'Pretendard';
   font-style: normal;
@@ -405,6 +411,7 @@ export const NextButton = styled.div<{ isActive: boolean }>`
   }
 `;
 
+
 export const NextbuttonText = styled.span<{ isActive: boolean }>`
   color: ${({ isActive }) => (isActive ? "#ffffff" : "#98A2B3")};
   font-family: 'Pretendard';
@@ -413,6 +420,35 @@ export const NextbuttonText = styled.span<{ isActive: boolean }>`
   align-items: center;
   justify-content: center;
   position: relative;
+<<<<<<< HEAD
+=======
+`;
+
+
+export const BeforeButton = styled.button`
+  width: 85px;
+  height: 43px;
+  border-radius: 10px;
+  position: relative;
+  top: -50px;
+  left: 10px;
+  cursor: pointer;
+  background-color: #F2F4F7;
+  color: black;
+  outline: none;
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-size: 16px;
+  user-select: none;
+
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    top: auto;
+    left: auto;
+  }
+>>>>>>> c937304135b3896e122250a15a46b6558a1e079a
 `;
 
 

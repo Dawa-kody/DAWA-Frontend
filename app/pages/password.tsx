@@ -168,7 +168,12 @@ function Password() {
         }
     };
 
-    return (
+
+    function Gotobefore() {
+        router.back();
+      }
+    
+      return (
         <S.Container>
             <S.LeftSection>
                 <S.Title>비밀번호 변경</S.Title>
@@ -264,6 +269,7 @@ function Password() {
                             >
                             <S.NextbuttonText isActive={!!emailValue && !!codeValue && !!NewPwValue}>완료</S.NextbuttonText>
                         </S.NextButton>
+                        <S.BeforeButton onClick={Gotobefore}>이전</S.BeforeButton>
                     </S.ButtonDiv>
                 </S.Inputs>
             </S.LeftSection>
