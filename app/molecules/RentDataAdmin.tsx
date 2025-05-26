@@ -17,9 +17,11 @@ function RentDataAdmin({ rentalId, count, formattedDate, rental, rentaled, name 
 
     const handleReturn = async () => {
         try {
-            await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/${rentalId}`);
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/${rentalId}`);
             setIsReturned(true);
-        } catch (error) {
+        }
+        
+        catch (error) {
             console.error(error);
             alert("반납 요청 중 오류가 발생했습니다.");
         }

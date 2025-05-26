@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaTrashAlt, FaPen } from 'react-icons/fa';
 import axios from 'axios';
@@ -97,6 +97,20 @@ const ActionTd = styled.td`
   }
 `;
 
+// 컴포넌트 상단에 추가
+const getTypeLabel = (type: any) => {
+  switch (type) {
+    case 'GENERAL_MEDICINE':
+      return '일반약';
+    case 'COLD_MEDICINE':
+      return '감기약';
+    case 'PAINKILLER':
+      return '진통제';
+    default:
+      return type; // 혹시 모르는 타입은 그대로 출력
+  }
+};
+
 const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
   const { medicines, fetchMedicines } = useMedicalStore();
 
@@ -142,7 +156,7 @@ const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) => {
             {medicines.map((item) => (
               <tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td>{item.type}</Td>
+                <Td>{getTypeLabel(item.type)}</Td>
                 <Td style={{ fontWeight: 'bold' }}>{item.count}</Td>
                 <ActionTd>
                   <FaPen onClick={() => onEdit(item)} />

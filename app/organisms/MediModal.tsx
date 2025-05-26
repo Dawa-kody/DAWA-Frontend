@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import useMedicalStore from '@/store/useMedicalStore';
 
 interface DrugModalProps {
@@ -84,7 +83,7 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
         // 수정 로직
         if (!initialData?.id) throw new Error('Invalid ID');
         await updateMedicine({
-          id: initialData.id, // ✅ number
+          id: initialData.id,
           name,
           type: category,
           count: parsedQuantity,
@@ -117,9 +116,9 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="일반약">일반약</option>
-          <option value="감기약">감기약</option>
-          <option value="진통제">진통제</option>
+          <option value="GENERAL_MEDICINE">일반약</option>
+          <option value="COLD_MEDICINE">감기약</option>
+          <option value="PAINKILLER">진통제</option>
         </Select>
         <Input
           placeholder="용량"

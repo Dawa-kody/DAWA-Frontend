@@ -19,6 +19,11 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
     const [healthData, setHealthData] = useState<HealthIssues | null>(null);
 
     const handleClick = async () => {
+        if (isExpanded) {
+            // If already open, just close it
+            setIsExpanded(false);
+            return;
+        }
         try {
             const res = await axios.post(
                 `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/user/healthissues/${schoolNumber}`
@@ -29,7 +34,8 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
             console.error("특이사항 요청 실패:", err);
             alert("특이사항을 불러오지 못했습니다.");
         }
-    };  
+    };
+
 
     const renderHealthItem = (label: string, value?: string) => {
         if (!value) return null;
@@ -60,7 +66,7 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
                     className="h-[2rem] font-[pretendard] border rounded-[0.5rem] border-[#98A2B3] inline-flex text-[1.25rem] px-[5.94rem] py-[0.5rem] justify-center items-center"
                     onClick={handleClick}
                 >
-                    학생 특이사항 확인
+                    {isExpanded ? "학생 특이사항 닫기" : "학생 특이사항 확인"}
                 </button>
             </div>
 

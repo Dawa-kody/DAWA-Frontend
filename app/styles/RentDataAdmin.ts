@@ -171,7 +171,7 @@ export const student = styled.span`
 
 export const StudentName = styled.span`
     position: absolute;
-    width: 42px;
+    width: 62px;
     height: 19px;
     top: 16px;
 
