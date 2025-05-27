@@ -3,7 +3,7 @@ const DEBOUNCE_DELAY = 2000;
 
 export async function getDustData(sidoName: string): Promise<any> {
     const DUST_API_KEY = process.env.NEXT_PUBLIC_DAWA_WEATHER_API_KEY;
-    const url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty';
+    const url = 'https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty';
 
     const params = {
         serviceKey: DUST_API_KEY,
