@@ -30,7 +30,6 @@ function Main() {
   const [token, setToken] = useState<string | null>(null);
 
   const [TActive, setTActive] = useState(false); // 선생님 부재중, 출근중 상태
-  const [BActive, setBActive] = useState(true);  // 침대 현황 상태
 
   const { rentDataList, setRentDataList } = useStore();
   const [bedStatus, setBedStatus] = useState<{ bed1: boolean; bed2: boolean }>({
