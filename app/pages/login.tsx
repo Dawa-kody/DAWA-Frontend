@@ -60,40 +60,37 @@ function Login() {
         setEmailError("");
 
         const fullEmail = `${EmailValue}@gsm.hs.kr`;
-        const dto = {
-            email: fullEmail,
-            password: PasswordValue,
-        };
-
+        
         try {
-            const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signin`,
-                dto,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "ngrok-skip-browser-warning": "69240",
-                    },
-                    withCredentials: true,
-                }
-            );
+            const response = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: fullEmail,
+                    password: PasswordValue,
+                }),
+            });
 
-            if (response.status === 200) {
-                const { accessToken, refreshToken, role } = response.data;
+            const data = await response.json();
+            
+            if (response.ok) {
+                const { accessToken, refreshToken, role } = data;
 
-                localStorage.setItem("accessToken", accessToken);  //accessToken token 
-                localStorage.setItem("refreshToken", refreshToken);  //refresh token
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
                 localStorage.setItem("role", role);
-                // accessToken 만료 시각도 저장
                 localStorage.setItem("accessTokenExpiry", (Date.now() + JWT_EXPIRY_TIME).toString());
 
                 // 자동 토큰 갱신 예약
                 setTimeout(onSilentRefresh, JWT_EXPIRY_TIME - 60000);
-
+                
                 router.push("/");
             }
         } catch (error) {
-            setPasswordError("비밀번호가 틀렸습니다.");
+            console.error('Login error:', error);
+            setPasswordError("이메일 또는 비밀번호를 확인해주세요.");
         }
     };
 
