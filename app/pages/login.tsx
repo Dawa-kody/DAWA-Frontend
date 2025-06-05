@@ -62,7 +62,7 @@ function Login() {
         const fullEmail = `${EmailValue}@gsm.hs.kr`;
         
         try {
-            const response = await fetch('/api/auth/signin', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
