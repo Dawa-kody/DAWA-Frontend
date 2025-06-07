@@ -22,8 +22,8 @@ export const Label = styled.div`
   position: absolute;
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */
-  left: 4.375rem; /* 70px */
-  top: 4.375rem; /* 70px */
+  left: 40.875rem; /* 670px */
+  top: 5rem; /* 70px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -41,8 +41,8 @@ export const Label = styled.div`
 
 export const NameInput = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 6.875rem; /* 110px */
+  left: 2.375rem; /* 70px */
+  top: 6.8rem; /* 110px */
   width: 32.5rem; /* 520px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -52,7 +52,30 @@ export const NameInput = styled.input`
   padding-left: 0.625rem; /* 10px */
 `
 
-export const DivisionText = styled.span`
+
+export const NameText = styled.span`
+  position: absolute;
+  width: 2rem; /* 32px */
+  height: 1.3125rem; /* 21px */
+  left: 4.875rem; /* 670px */
+  top: 5rem; /* 70px */
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.3125rem; /* 21px */
+  color: #000000;
+
+  /* 드래그 방지 */
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user
+
+  `
+
+  export const DivisionText = styled.span`
   position: absolute;
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */
@@ -75,7 +98,7 @@ export const DivisionText = styled.span`
 
 export const DivisionSelect = styled.select`
   position: relative;
-  left: 8.75rem; /* 140px */
+  left: -3.75rem; /* 140px */
   top: 6.875rem; /* 110px */
   width: 31.25rem; /* 500px */
   padding: 0.625rem 0.75rem; /* 10px 12px */
@@ -94,8 +117,8 @@ export const ClassText = styled.span`
   position: absolute;
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */
-  left: 4.375rem; /* 70px */
-  top: 11.25rem; /* 180px */
+  left: 5rem; /* 70px */
+  top: 12rem; /* 180px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -113,7 +136,7 @@ export const ClassText = styled.span`
 
 export const ClassInput = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
+  left: -18rem; /* 70px */
   top: 10rem; /* 160px */
   width: 32.5rem; /* 520px */
   height: 3.25rem; /* 52px */
@@ -126,8 +149,8 @@ export const ClassInput = styled.input`
 
 export const HandleText = styled.span`
   position: absolute;
-  left: 41.875rem; /* 670px */
-  top: 11.25rem; /* 180px */
+  left: 40.875rem; /* 670px */
+  top: 11.7rem; /* 180px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -145,8 +168,8 @@ export const HandleText = styled.span`
 
 export const HandleInput = styled.input`
   position: relative;
-  left: 9.375rem; /* 150px */
-  top: 10rem; /* 160px */
+  left: 15.375rem; /* 150px */
+  top: 6.7rem; /* 160px */
   width: 27.5rem; /* 440px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -163,8 +186,8 @@ export const HandleButton = styled.button<{ isClicked: boolean }>`
   border: 1px solid #676D79;
   background-color: ${({ isClicked }) => (isClicked ? '#ffffff' : '#6948ED')};
   position: relative;
-  left: 10.625rem; /* 170px */
-  top: 10rem; /* 160px */
+  left: 31.625rem; /* 170px */
+  top: 4.6rem; /* 160px */
 `
 
 export const DiseaseText = styled.span`
@@ -185,11 +208,15 @@ export const DiseaseText = styled.span`
   -khtml-user-select: none;
   user-select: none;
 `
+export const Option=styled.option`
+margin-left: 7.375rem; /* 70px */
+margin-top:18.75rem;
+`
 
 export const DiseaseInput = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 13.75rem; /* 220px */
+  left: -0.6rem; /* 70px */
+  top: 9rem; /* 220px */
   width: 66.875rem; /* 1070px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -204,7 +231,7 @@ export const GenderText = styled.span`
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */
   left: 4.375rem; /* 70px */
-  top: 26.25rem; /* 420px */
+  top: 25.25rem; /* 420px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -225,8 +252,8 @@ export const GenderMan = styled.div<{ isActive: boolean }>`
   width: 15.625rem; /* 250px */
   height: 3.25rem; /* 52px */
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 18.75rem; /* 300px */
+  left: -26.375rem; /* 70px */
+  top: 12.75rem; /* 300px */
   border-radius: 0.25rem; /* 4px */
   color: black;
   outline: none;
@@ -263,8 +290,8 @@ export const GenderWoman = styled.div<{ isActive: boolean }>`
   width: 15rem; /* 240px */
   height: 3.25rem; /* 52px */
   position: relative;
-  left: 23.75rem; /* 380px */
-  top: 15.625rem; /* 250px */
+  left: -9.375rem; /* 70px */
+  top: 9.5rem; /* 300px */
   border-radius: 0.25rem; /* 4px */
   color: black;
   outline: none;
@@ -302,8 +329,8 @@ export const GuesuText = styled.span`
   position: absolute;
   width: 2rem; /* 32px */
   height: 1.3125rem; /* 21px */
-  top: 26.25rem; /* 420px */
-  left: 41.875rem; /* 670px */
+  top: 25.6rem; /* 420px */
+  left: 41.3rem; /* 670px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -321,8 +348,8 @@ export const GuesuText = styled.span`
 
 export const GuesuInput = styled.input`
   position: relative;
-  left: 41.875rem; /* 670px */
-  top: 12.5rem; /* 200px */
+  left: 17.875rem; /* 670px */
+  top: 6.5rem; /* 200px */
   width: 30.625rem; /* 490px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -335,7 +362,7 @@ export const GuesuInput = styled.input`
 export const Dosage1Text = styled.span`
   position: absolute;
   left: 4.375rem; /* 70px */
-  top: 35rem; /* 560px */
+  top: 34rem; /* 560px */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -355,8 +382,8 @@ export const HandleSelect = styled.select`
   width: 20rem; /* 320px */
   height: 2.5rem; /* 40px */
   position: relative;
-  left: 9.375rem; /* 150px */
-  top: 10rem; /* 160px */
+  left: 12.375rem; /* 150px */
+  top: 7rem; /* 160px */
   padding: 0.5rem; /* 8px */
   border-radius: 0.5rem; /* 8px */
   border: 1px solid #ccc;
@@ -367,8 +394,8 @@ export const HandleSelect = styled.select`
 
 export const Dosage1Input = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 16.875rem; /* 270px */
+  left: -0.375rem; /* 70px */
+  top: 11.875rem; /* 270px */
   width: 67.8125rem; /* 1085px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -399,8 +426,8 @@ export const Guesu1Text = styled.span`
 
 export const Guesu1Input = styled.input<{ $active: boolean }>`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 20.625rem; /* 330px */
+  left: -0.375rem; /* 70px */
+  top: 15.875rem; /* 270px */
   width: 67.8125rem; /* 1085px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -433,8 +460,8 @@ export const Dosage2Text = styled.span`
 
 export const Dosage2Input = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 25rem; /* 400px */
+  left: 2.375rem; /* 70px */
+  top: 20rem; /* 400px */
   width: 67.8125rem; /* 1085px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;
@@ -466,8 +493,8 @@ export const Guesu2Text = styled.span`
 
 export const Guesu2Input = styled.input`
   position: relative;
-  left: 4.375rem; /* 70px */
-  top: 28.75rem; /* 460px */
+  left: 2.375rem; /* 70px */
+  top: 23.75rem; /* 460px */
   width: 67.8125rem; /* 1085px */
   height: 3.25rem; /* 52px */
   background: #F2F4F7;

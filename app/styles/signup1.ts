@@ -400,10 +400,26 @@ export const ErrorMessage = styled.div`
   font-family: 'Pretendard', sans-serif;
 `;
 
+export const SuccessMessage =styled.span`
+  color: #6948ED;
+  position: relative;
+  top: -2.5rem;
+  left:24rem;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    position: static;
+    top: 0;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+  }
+`
 export const Text = styled.span`
   color: #6948ED;
   position: relative;
-  top: 53px;
+  top: -1rem;
+  left:4rem;
   z-index: 10;
 
   @media (max-width: 768px) {

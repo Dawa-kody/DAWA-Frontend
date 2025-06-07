@@ -25,6 +25,7 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+
 const AddButton = styled.button`
   background-color: #6a5acd;
   color: white;
@@ -68,6 +69,7 @@ const Th = styled.th`
 const Td = styled.td`
   padding: 16px;
   border-top: 1px solid #f0f0f0;
+  color: #000000;
 `;
 
 const ActionTd = styled.td`

@@ -171,9 +171,7 @@ function Signup1() {
                             인증번호 확인
                           </S.EmailInputButton>
                         ) : (
-                          <span style={{ color: "#6948ED", marginLeft: "-5px", marginTop: "20px" }}>
-                            인증 완료
-                          </span>
+                          <S.SuccessMessage>인증 완료</S.SuccessMessage>
                         )}
                         {isCodeSent && !isCodeVerified && (
                           <S.EmailSentInfo>

@@ -20,6 +20,7 @@ export const Title = styled.h1`
   font-weight: bold;
   margin: 0;
   white-space: nowrap;
+  color:#000000;
 `;
 
 export const SearchContainer = styled.div`
@@ -36,6 +37,7 @@ export const SearchInput = styled.input`
   font-size: 14px;
   width: 120px;
   outline: none;
+  color: #000000;   
 `;
 
 export const SearchButton = styled.button`
@@ -75,6 +77,7 @@ export const Th = styled.th`
   padding: 10px 12px;
   border: 1px solid #dcdcdc;
   text-align: center;
+  color:#000000;
 `;
 
 export const Td = styled.td`
