@@ -188,7 +188,7 @@ function Main() {
 
             {/* 물품 대여 버튼 */}
             <div className="w-full h-full bg-primaryPurple rounded-[0.58988rem] flex items-center justify-center cursor-pointer" onClick={rentModalClick}>
-              <span className="text-[1.5rem] text-white font-[700] cursor-pointer" onClick={rentModalClick}>
+              <span className="text-[1.5rem] text-white font-[700] cursor-pointer">
                 물품 대여
               </span>
             </div>
