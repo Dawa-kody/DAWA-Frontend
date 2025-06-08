@@ -118,7 +118,7 @@ function StudentLog() {
                 ))
               ) : (
                 <S.Tr>
-                  <S.Td colSpan={4} style={{ textAlign: "center" }}>
+                  <S.Td colSpan={4} style={{ textAlign: "center", color:"black"}}>
                     기록이 없습니다.
                   </S.Td>
                 </S.Tr>

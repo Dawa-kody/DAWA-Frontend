@@ -140,11 +140,11 @@ function Writepage() {
       <div id='background' className='bg-#F2F4F7 h-auto w-full flex justify-center'>
         <div id='container' className='bg-white absolute  w-[75rem] h-[78.75rem] mt-[5vh] rounded-[10px] flex flex-col items-center pl-[2rem] pt-[1vh]'>
           <div id='header1' className='w-full justify-between flex flex-row '>
-            <div id='name' className=''>
-              <span id='nameText' className=''>이름</span>
-              <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="이름입력" required/>
-            </div>
-            <div>
+
+            <S.NameText>이름</S.NameText>
+            <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="학번 입력" required/>
+          
+          
               <S.Label>구분</S.Label>
               <S.DivisionSelect value={Division} onChange={(e) => setDivision(e.target.value)} required>
                 <option value="" disabled hidden>
@@ -159,14 +159,15 @@ function Writepage() {
                 <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
                 <option value="OTHER">기타</option>
               </S.DivisionSelect>
-            </div>
+      
+        
           </div>
 
           <S.ClassText>학번</S.ClassText>
           <S.ClassInput
             value={Class}
             onChange={(e) => setClass(e.target.value)}
-            placeholder="학번 입력"
+            placeholder="이름 입력"
             required
           />
 
@@ -185,9 +186,9 @@ function Writepage() {
               disabled={!Division}
               required
             >
-              <option value="" disabled hidden>
+              <S.Option value="" disabled hidden>
                 {Division ? "처치상황에 적을 약을 선택하세요" : "구분을 먼저 선택하세요"}
-              </option>
+              </S.Option>
               {Division &&
                 categoryOptions[Division]?.map((item, index) => (
                   <option key={index} value={item}>
@@ -205,7 +206,7 @@ function Writepage() {
           <S.DiseaseInput
             value={Disease}
             onChange={(e) => setDisease(e.target.value)}
-            placeholder="증상"
+            placeholder="학생의 증상을 적어주세요"
           />
 
           <S.GenderText>성별</S.GenderText>
@@ -227,7 +228,7 @@ function Writepage() {
           <S.Dosage1Input
             value={Dosage1}
             onChange={(e) => setDosage1(e.target.value)}
-            placeholder="약 이름을 써주세요"
+            placeholder="숫자만 써주세요"
           />
           <S.Guesu1Text>수량1</S.Guesu1Text>
           <S.Guesu1Input

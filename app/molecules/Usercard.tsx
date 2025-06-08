@@ -61,7 +61,7 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
                 </div>
             </div>
 
-            <div className="w-full flex items-center justify-center mt-[3.5rem]">
+            <div className="w-full flex items-center justify-center mt-[3.5rem] text-black" >
                 <button
                     className="h-[2rem] font-[pretendard] border rounded-[0.5rem] border-[#98A2B3] inline-flex text-[1.25rem] px-[5.94rem] py-[0.5rem] justify-center items-center"
                     onClick={handleClick}
@@ -71,7 +71,7 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
             </div>
 
             {isExpanded && healthData && (
-                <div className="mt-4 px-[1.62rem]">
+                <div className="mt-4 px-[1.62rem] text-black">
                     {renderHealthItem("알레르기 및 면역 관련 질환", healthData.allergyImmune)}
                     {renderHealthItem("만성 질환 및 약물관리 필요", healthData.chronicMedication)}
                     {renderHealthItem("응급 상황 발생 가능 질환", healthData.emergencyPossible)}

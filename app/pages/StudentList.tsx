@@ -186,14 +186,14 @@ function StudentList() {
     <div className="h-screen overflow-hidden flex flex-col">
       <Nav />
       <div className="w-[100rem] ml-[4.06rem] mt-[2.94rem] flex flex-row justify-between font-[pretendard]">
-        <p className="text-[3.125rem] font-bold">학생 명렬표 페이지</p>
+        <p className="text-[3.125rem] font-bold text-black">학생 명렬표 페이지</p>
         <div className="flex flex-row gap-[1.56rem]">
-          <button className="bg-subPurple h-[3.5rem] text-[1.25rem] inline-block px-[2.19rem] rounded-[0.3125rem] font-medium">
+          <button className="bg-subPurple h-[3.5rem] text-[1.25rem] inline-block px-[2.19rem] rounded-[0.3125rem] font-medium text-black">
             선생님 파일 업로드
           </button>
           <label
             htmlFor="fileUpload"
-            className="bg-subPurple h-[3.5rem] text-[1.25rem] inline-flex justify-center items-center px-[2.19rem] rounded-[0.3125rem] font-medium cursor-pointer"
+            className="bg-subPurple h-[3.5rem] text-[1.25rem] inline-flex justify-center items-center px-[2.19rem] rounded-[0.3125rem] font-medium cursor-pointer text-black"
           >
             학생 파일 업로드
           </label>

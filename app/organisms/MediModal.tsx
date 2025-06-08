@@ -35,6 +35,7 @@ const Input = styled.input`
   margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color:#000000;
 `;
 
 const Select = styled.select`
@@ -43,6 +44,7 @@ const Select = styled.select`
   margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #000000;
 `;
 
 const ButtonGroup = styled.div`
@@ -116,9 +118,9 @@ export default function DrugModal({ onClose, initialData }: DrugModalProps) {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="GENERAL_MEDICINE">일반약</option>
-          <option value="COLD_MEDICINE">감기약</option>
-          <option value="PAINKILLER">진통제</option>
+          <option  className="text-black" value="GENERAL_MEDICINE">일반약</option>
+          <option  className="text-black" value="COLD_MEDICINE">감기약</option>
+          <option  className="text-black" value="PAINKILLER">진통제</option>
         </Select>
         <Input
           placeholder="용량"

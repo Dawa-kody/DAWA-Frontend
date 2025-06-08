@@ -312,8 +312,8 @@ function MainAdmin() {
                   <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(notice)}>
                     <div id="noticeTitle" className="font-bold text-black text-[1rem]">{notice.title}</div>
                     <div className=" flex gap-[2rem]">
-                        <span className="text-noticeText text-[0.75rem]">보건선생님</span>
-                        <span className="text-noticeText text-[0.75rem]">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
+                        <span className="text-noticeText text-[0.75rem] text-gray-400">보건선생님</span>
+                        <span className="text-noticeText text-[0.75rem] text-gray-400">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
                       </div>
                   </button>
                 ))
@@ -349,11 +349,11 @@ function MainAdmin() {
             </div>
 
             <div className="absolute top-[15px] right-[20px] flex items-center justify-center gap-[10px]">
-              <div className="w-[210px] h-[46px] flex items-center justify-center font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
+              <div className="w-[210px] h-[46px] flex items-center justify-center font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer text-black"
               onClick={rentModalClick}>
                 대여 기록 추가하기
               </div>
-              <div className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer"
+              <div className="w-[210px] h-[46px] flex items-center justify-center font-pretendard font-semibold text-[16px] bg-[#D9D6FE] rounded-[6px] cursor-pointer text-black"
               onClick={() => setRequestBarOpen(true)}>
                 대여 신청 확인하기
               </div>
@@ -367,7 +367,7 @@ function MainAdmin() {
                   <img src="./X.svg"
                     className="w-[26px] h-[26px] absolute top-[15px] right-[15px] cursor-pointer"
                     onClick={closeRequestBar}/>
-                  <span className="font-pretendard font-bold text-[26px] relative top-[20px] left-[25px] cursor-pointer">
+                  <span className="font-pretendard font-bold text-[26px] relative top-[20px] left-[25px] cursor-pointer text-black">
                     학생들의 대여 신청
                   </span>
 

@@ -92,6 +92,7 @@ export const CardsDiv = styled.div`
 export const RentCard = styled.div<{ Click: boolean }>`
     width: 150px;
     height: 180px;
+    color: #000000;
     font-family: Pretendard;
     font-size: 22px;
     font-weight: 500;
@@ -185,7 +186,7 @@ export const information = styled.span`
     position: absolute;
     top: 340px;
     left: 40px;
-
+    color: #000000;
     font-family: Pretendard;
     font-size: 15px;
     font-weight: 600;
@@ -204,10 +205,10 @@ export const inforinputbox = styled.div`
 export const inforinput = styled.input`
     width: 160px;
     height: 52px;
-
+    color: #000000;
     display: flex;
     align-items: center;
-
+    outline: none; 
     font-family: Pretendard;
 
     padding-left: 10px;
