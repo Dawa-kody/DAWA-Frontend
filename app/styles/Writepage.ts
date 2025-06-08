@@ -1,37 +1,34 @@
 import styled from "styled-components";
 
-
 export const Background = styled.div`
   background-color: #F2F4F7;
-  height: 87.5rem; /* 1400px */
+  height: 87.5rem;
 `
 
 export const Container = styled.div`
   position: absolute;
-  width: 75rem; /* 1200px */
-  height: 78.75rem; /* 1260px */
+  width: 75rem;
+  height: 78.75rem;
   left: 50%;
-  top: 50rem; /* 800px */
-  gap: 0.625rem; /* 10px */
+  top: 50rem;
+  gap: 0.625rem;
   transform: translate(-50%, -50%);
   background: #FFFFFF;
-  border-radius: 0.625rem; /* 10px */
+  border-radius: 0.625rem;
 `
 
 export const Label = styled.div`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 40.875rem; /* 670px */
-  top: 5rem; /* 70px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 40.875rem;
+  top: 5rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -41,54 +38,49 @@ export const Label = styled.div`
 
 export const NameInput = styled.input`
   position: relative;
-  left: 2.375rem; /* 70px */
-  top: 6.8rem; /* 110px */
-  width: 32.5rem; /* 520px */
-  height: 3.25rem; /* 52px */
+  left: 2.375rem;
+  top: 6.8rem;
+  width: 32.5rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
-
 
 export const NameText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 4.875rem; /* 670px */
-  top: 5rem; /* 70px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 4.875rem;
+  top: 12rem;
+  
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   user
+`
 
-  `
-
-  export const DivisionText = styled.span`
+export const DivisionText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 41.875rem; /* 670px */
-  top: 4.375rem; /* 70px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 41.875rem;
+  top: 4.375rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -98,14 +90,14 @@ export const NameText = styled.span`
 
 export const DivisionSelect = styled.select`
   position: relative;
-  left: -3.75rem; /* 140px */
-  top: 6.875rem; /* 110px */
-  width: 31.25rem; /* 500px */
-  padding: 0.625rem 0.75rem; /* 10px 12px */
+  left: -3.75rem;
+  top: 6.875rem;
+  width: 31.25rem;
+  padding: 0.625rem 0.75rem;
   border: 1px solid #ccc;
-  border-radius: 0.5rem; /* 8px */
-  font-size: 1rem; /* 16px */
-  margin-bottom: 1.25rem; /* 20px */
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
   outline: none;
   background-color: #ffffff;
   color: #000000;
@@ -115,18 +107,16 @@ export const DivisionSelect = styled.select`
 
 export const ClassText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 5rem; /* 70px */
-  top: 12rem; /* 180px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 5rem;
+  top: 5rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -136,29 +126,27 @@ export const ClassText = styled.span`
 
 export const ClassInput = styled.input`
   position: relative;
-  left: -18rem; /* 70px */
-  top: 10rem; /* 160px */
-  width: 32.5rem; /* 520px */
-  height: 3.25rem; /* 52px */
+  left: -18rem;
+  top: 10rem;
+  width: 32.5rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding: 0.625rem; /* 10px */
+  padding: 0.625rem;
 `
 
 export const HandleText = styled.span`
   position: absolute;
-  left: 40.875rem; /* 670px */
-  top: 11.7rem; /* 180px */
+  left: 40.875rem;
+  top: 11.7rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -168,40 +156,38 @@ export const HandleText = styled.span`
 
 export const HandleInput = styled.input`
   position: relative;
-  left: 15.375rem; /* 150px */
-  top: 6.7rem; /* 160px */
-  width: 27.5rem; /* 440px */
-  height: 3.25rem; /* 52px */
+  left: 15.375rem;
+  top: 6.7rem;
+  width: 27.5rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
 
 export const HandleButton = styled.button<{ isClicked: boolean }>`
-  width: 1.5rem; /* 24px */
+  width: 1.5rem;
   height: 1.5rem;
-  border-radius: 0.3125rem; /* 5px */
+  border-radius: 0.3125rem;
   border: 1px solid #676D79;
   background-color: ${({ isClicked }) => (isClicked ? '#ffffff' : '#6948ED')};
   position: relative;
-  left: 31.625rem; /* 170px */
-  top: 4.6rem; /* 160px */
+  left: 31.625rem;
+  top: 4.6rem;
 `
 
 export const DiseaseText = styled.span`
   position: absolute;
-  left: 4.375rem; /* 70px */
-  top: 18.75rem; /* 300px */
+  left: 4.375rem;
+  top: 18.75rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -209,37 +195,35 @@ export const DiseaseText = styled.span`
   user-select: none;
 `
 export const Option=styled.option`
-margin-left: 7.375rem; /* 70px */
+margin-left: 7.375rem;
 margin-top:18.75rem;
 `
 
 export const DiseaseInput = styled.input`
   position: relative;
-  left: -0.6rem; /* 70px */
-  top: 9rem; /* 220px */
-  width: 66.875rem; /* 1070px */
-  height: 3.25rem; /* 52px */
+  left: -0.6rem;
+  top: 9rem;
+  width: 66.875rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
 
 export const GenderText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 4.375rem; /* 70px */
-  top: 25.25rem; /* 420px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 4.375rem;
+  top: 25.25rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -247,20 +231,18 @@ export const GenderText = styled.span`
   user-select: none;
 `
 
-
 export const GenderMan = styled.div<{ isActive: boolean }>`
-  width: 15.625rem; /* 250px */
-  height: 3.25rem; /* 52px */
+  width: 15.625rem;
+  height: 3.25rem;
   position: relative;
-  left: -26.375rem; /* 70px */
-  top: 12.75rem; /* 300px */
-  border-radius: 0.25rem; /* 4px */
+  left: -26.375rem;
+  top: 12.75rem;
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
   background-color: ${({ isActive }) => (isActive ? '#E4E7EC' : '#F2F4F7')};
   cursor: pointer;
-
   &::placeholder {
     text-align: center;
   }
@@ -268,17 +250,15 @@ export const GenderMan = styled.div<{ isActive: boolean }>`
 
 export const GenderManText = styled.span`
   position: absolute;
-  left: 6.875rem; /* 110px */
-  top: 0.875rem; /* 14px */
+  left: 6.875rem;
+  top: 0.875rem;
   display: flex;
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -287,18 +267,17 @@ export const GenderManText = styled.span`
 `
 
 export const GenderWoman = styled.div<{ isActive: boolean }>`
-  width: 15rem; /* 240px */
-  height: 3.25rem; /* 52px */
+  width: 15rem;
+  height: 3.25rem;
   position: relative;
-  left: -9.375rem; /* 70px */
-  top: 9.5rem; /* 300px */
-  border-radius: 0.25rem; /* 4px */
+  left: -9.375rem;
+  top: 9.5rem;
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
   background-color: ${({ isActive }) => (isActive ? '#E4E7EC' : '#F2F4F7')};
   cursor: pointer;
-
   &::placeholder {
     text-align: center;
   }
@@ -306,18 +285,16 @@ export const GenderWoman = styled.div<{ isActive: boolean }>`
 
 export const GenderWomanText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  left: 7.75rem; /* 124px */
-  top: 1.0625rem; /* 17px */
+  width: 2rem;
+  height: 1.3125rem;
+  left: 7.75rem;
+  top: 1.0625rem;
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -327,18 +304,16 @@ export const GenderWomanText = styled.span`
 
 export const GuesuText = styled.span`
   position: absolute;
-  width: 2rem; /* 32px */
-  height: 1.3125rem; /* 21px */
-  top: 25.6rem; /* 420px */
-  left: 41.3rem; /* 670px */
+  width: 2rem;
+  height: 1.3125rem;
+  top: 25.6rem;
+  left: 41.3rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -348,29 +323,27 @@ export const GuesuText = styled.span`
 
 export const GuesuInput = styled.input`
   position: relative;
-  left: 17.875rem; /* 670px */
-  top: 6.5rem; /* 200px */
-  width: 30.625rem; /* 490px */
-  height: 3.25rem; /* 52px */
+  left: 17.875rem;
+  top: 6.5rem;
+  width: 30.625rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
 
 export const Dosage1Text = styled.span`
   position: absolute;
-  left: 4.375rem; /* 70px */
-  top: 34rem; /* 560px */
+  left: 4.375rem;
+  top: 34rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -379,13 +352,13 @@ export const Dosage1Text = styled.span`
 `
 
 export const HandleSelect = styled.select`
-  width: 20rem; /* 320px */
-  height: 2.5rem; /* 40px */
+  width: 20rem;
+  height: 2.5rem;
   position: relative;
-  left: 12.375rem; /* 150px */
-  top: 7rem; /* 160px */
-  padding: 0.5rem; /* 8px */
-  border-radius: 0.5rem; /* 8px */
+  left: 12.375rem;
+  top: 7rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   border: 1px solid #ccc;
   color: #000000;
   z-index: 100;
@@ -394,29 +367,27 @@ export const HandleSelect = styled.select`
 
 export const Dosage1Input = styled.input`
   position: relative;
-  left: -0.375rem; /* 70px */
-  top: 11.875rem; /* 270px */
-  width: 67.8125rem; /* 1085px */
-  height: 3.25rem; /* 52px */
+  left: -0.375rem;
+  top: 11.875rem;
+  width: 67.8125rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
 
 export const Guesu1Text = styled.span`
   position: absolute;
-  left: 4.375rem; /* 70px */
-  top: 41.875rem; /* 670px */
+  left: 4.375rem;
+  top: 41.875rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -426,31 +397,29 @@ export const Guesu1Text = styled.span`
 
 export const Guesu1Input = styled.input<{ $active: boolean }>`
   position: relative;
-  left: -0.375rem; /* 70px */
-  top: 15.875rem; /* 270px */
-  width: 67.8125rem; /* 1085px */
-  height: 3.25rem; /* 52px */
+  left: -0.375rem;
+  top: 15.875rem;
+  width: 67.8125rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
-  gap: 0.625rem; /* 10px */
-  margin-bottom: ${({ $active }) => ($active ? '0.25rem' : '1rem')}; /* 4px or 16px */
+  padding-left: 0.625rem;
+  gap: 0.625rem;
+  margin-bottom: ${({ $active }) => ($active ? '0.25rem' : '1rem')};
 `
 
 export const Dosage2Text = styled.span`
   position: absolute;
-  left: 4.375rem; /* 70px */
-  top: 49.375rem; /* 790px */
+  left: 4.375rem;
+  top: 49.375rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -460,30 +429,27 @@ export const Dosage2Text = styled.span`
 
 export const Dosage2Input = styled.input`
   position: relative;
-  left: 2.375rem; /* 70px */
-  top: 20rem; /* 400px */
-  width: 67.8125rem; /* 1085px */
-  height: 3.25rem; /* 52px */
+  left: 2.375rem;
+  top: 20rem;
+  width: 67.8125rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
-
 
 export const Guesu2Text = styled.span`
   position: absolute;
-  left: 4.375rem; /* 70px */
-  top: 56.5625rem; /* 905px */
+  left: 4.375rem;
+  top: 56.5625rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -493,42 +459,40 @@ export const Guesu2Text = styled.span`
 
 export const Guesu2Input = styled.input`
   position: relative;
-  left: 2.375rem; /* 70px */
-  top: 23.75rem; /* 460px */
-  width: 67.8125rem; /* 1085px */
-  height: 3.25rem; /* 52px */
+  left: 2.375rem;
+  top: 23.75rem;
+  width: 67.8125rem;
+  height: 3.25rem;
   background: #F2F4F7;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   color: black;
   outline: none;
-  padding-left: 0.625rem; /* 10px */
+  padding-left: 0.625rem;
 `
 
 export const Checkbutton = styled.button<{ isActive: boolean }>`
   background-color: ${({ isActive }) => (isActive ? '#6948ED' : '#DEDEDE')};
   position: relative;
-  width: 66.875rem; /* 1070px */
-  height: 3.5rem; /* 56px */
-  left: 0.5rem; /* 8px */
-  top: 33.125rem; /* 530px */
+  width: 66.875rem;
+  height: 3.5rem;
+  left: 0.5rem;
+  top: 33.125rem;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  border-radius: 0.5rem; /* 8px */
+  border-radius: 0.5rem;
   cursor: pointer;
 `
 
 export const CheckbuttonText = styled.span`
-  left: 4.375rem; /* 70px */
-  top: 43.75rem; /* 700px */
+  left: 4.375rem;
+  top: 43.75rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.3125rem; /* 21px */
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
   color: #ffffff;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -538,26 +502,24 @@ export const CheckbuttonText = styled.span`
 
 export const Cancelbutton = styled.button`
   position: relative;
-  width: 66.875rem; /* 1070px */
-  height: 3.5rem; /* 56px */
-  left: 0.5rem; /* 8px */
-  top: 35rem; /* 560px */
+  width: 66.875rem;
+  height: 3.5rem;
+  left: 0.5rem;
+  top: 35rem;
   margin-left: auto;
   margin-right: auto;
   display: block;
   background: #E4E7EC;
-  border-radius: 0.5rem; /* 8px */
+  border-radius: 0.5rem;
 `
 
 export const CancelbuttonText = styled.span`
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 700;
-  font-size: 1.25rem; /* 20px */
-  line-height: 1.5rem; /* 24px */
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   color: #000000;
-
-  /* 드래그 방지 */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -568,5 +530,5 @@ export const CancelbuttonText = styled.span`
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: -3.125rem; /* -50px */
+  margin-top: -3.125rem;
 `

@@ -142,7 +142,7 @@ function Writepage() {
           <div id='header1' className='w-full justify-between flex flex-row '>
 
             <S.NameText>이름</S.NameText>
-            <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="이름입력" required/>
+            <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="학번 입력" required/>
           
           
               <S.Label>구분</S.Label>
@@ -167,7 +167,7 @@ function Writepage() {
           <S.ClassInput
             value={Class}
             onChange={(e) => setClass(e.target.value)}
-            placeholder="학번 입력"
+            placeholder="이름 입력"
             required
           />
 

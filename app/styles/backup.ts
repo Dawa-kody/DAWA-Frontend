@@ -23,7 +23,7 @@ export const saveBtn = styled.button`
 `
 
 export const backupBtn = styled.button`
-    width: 140px;
+    width: 26rem;
     height: 63px;
 
     background-color: #6948ED;

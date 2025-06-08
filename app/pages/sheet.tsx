@@ -30,7 +30,6 @@ function Sheet() {
                         <StudentLog />  
                     </div>
                     <div className='w-full flex flex-row gap-[1rem] mt-[1rem]'>
-                        <S.saveBtn>저장하기</S.saveBtn>
                         <S.backupBtn onClick={saveModalClick}>백업파일</S.backupBtn>
                     </div>
                     {saveModalOpen && (
