@@ -3,8 +3,10 @@ import styled from "styled-components";
 /* 카드 컴포넌트 큰 틀 */
 export const Container = styled.div`
     position: relative;
-    width: 162px;
-    height: 152px;
+    min-width: 162px;
+    min-height: 152px;
+    max-width: 162px;
+    max-height: 152px;
 
     display: flex;
     justify-content: center;

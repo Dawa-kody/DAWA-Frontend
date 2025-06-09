@@ -224,9 +224,9 @@ function Main() {
         <div className="w-full h-[40vh] mt-[1.5rem] flex gap-[2rem]">
           
           {/* 대여기록 */}
-          <div className="w-[71vw] h-full flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] gap-[0.625rem] relative">
+          <div id="rentContainer" className="w-[71vw] h-full flex flex-col bg-white rounded-[0.625rem] px-[2.38rem] pt-[2.06rem] relative">
             <div className="text-left">
-              <span className="font-[700] text-[1.5rem] text-black">대여기록</span>
+              <span id="rentTitle" className="font-[700] text-[1.5rem] text-black">대여기록</span>
             </div>
 
             {/* 렌트 기록이 없는 경우 */}
@@ -239,7 +239,20 @@ function Main() {
             )}
 
             {/* 렌트 기록 리스트 */}
-            <div className="w-full h-[18rem] flex mt-[1rem] overflow-x-scroll scrollbar-hide">
+            <div id="rentList" className="min-w-auto h-[16rem] flex gap-[1rem] mt-[1rem] pb-[-2rem] overflow-x-scroll">
+              <style jsx>{`
+                #rentList::-webkit-scrollbar {
+                  height: 8px;
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 100%;
+                }
+                #rentList::-webkit-scrollbar-thumb {
+                  border-radius: 10px;
+                  background-color: #D9D9D9;
+                }
+              `}</style>
               {rentDataList.map(({ id, ...visit }) => (
                 <RentData key={id} {...visit} />
               ))}
