@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import * as S from "../styles/RentModal";
-import { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 interface Modalprops {
@@ -139,53 +137,57 @@ function RentModal({ onClose }: Modalprops) {
   };
 
   return (
-    <S.background
+    <div id="background" data-testid="modal-background" className="w-full h-full bg-[rgba(58,61,67,0.5)] fixed top-0 left-0 z-[3000] flex justify-center items-center"
       ref={modalBackground}
       onClick={(e) => {
-        if (e.target === modalBackground.current) {
-          onClose();
-        }
-      }}
-    >
-      <S.ModalContainer>
-        <S.Title>보건실 물품 대여하기</S.Title>
-        <S.SubTitle>대여할 물품을 선택해주세요.</S.SubTitle>
+        if (e.target === modalBackground.current) { onClose(); }
+      }}>
+      <div id="ModalContainer" data-testid="modal-container" className="w-[620px] h-[438px] absolute top-[260px] bg-white rounded-[10px] pl-[40px] pr-[40px]">
+        <div id="titleContainer" data-testid="title-container" className=" mt-[1.3rem] flex flex-col text-black font-[pretendard]">
+          <span id="title" data-testid="title" className="font-[700] text-[1.5rem]">보건실 물품 대여하기</span>
+          <span id="subtitle" data-testid="subtitle" className="font-[400] text-[1rem] text-[#98A2B3]">대여할 물품을 선택해주세요.</span>
+        </div>
 
-        <S.CardsDiv>
+        <div id="cardsContainer" data-testid="cards-container" className="relative mt-[5vh] max-w-[580px] flex flex-row gap-[15px] overflow-x-scroll overflow-y-hidden">
+          <style jsx>{`
+            #cardsContainer::-webkit-scrollbar {
+              height: 8px;
+            }
+            #cardsContainer::-webkit-scrollbar-thumb {
+              border-radius: 10px;
+              background-color: #D9D9D9;
+            }
+          `}</style>
           {cards.map((card, index) => (
-            <S.RentCard
-              key={card.name}
-              Click={card.selected}
-              onClick={() => handleCardClick(index)}
-            >
-              <div>{card.name}</div>
-              <S.ControlButtons>
-                <button
-                  onClick={(e) => {
+            <div id="rent-card" key={card.name} data-testid={`rent-card-${index}`}
+              className={`w-[150px] h-[180px] font-[pretendard] font-[500] text-[22px] flex flex-col justify-center items-center rounded-[16px] cursor-pointer ${
+                card.selected ? 'bg-[#6948ED] text-white' : 'bg-[#E4E7EC] text-[#98A2B3]'
+              }`} onClick={() => handleCardClick(index)}>
+
+              <div id="card-name" data-testid={`card-name-${index}`}>{card.name}</div>
+
+              <div id="countContainer" className=" mt-[1.3rem] flex justify-center w-full gap-[8px]">
+                <button id="minusCount" data-testid={`decrement-button-${index}`} onClick={(e) => {
                     e.stopPropagation();
                     handleDecrement(index);
-                  }}
-                >
-                  -
-                </button>
-                <span>{card.count}</span>
-                <button
-                  onClick={(e) => {
+                  }} className="w-[30px] h-[30px] rounded-[5px] border-none font-bold flex justify-center items-center hover:bg-[#ddd]">-</button>
+                <span id="count" data-testid={`card-count-${index}`} className="text-[18px] font-bold">{card.count}</span>
+                <button id="plusCount" data-testid={`increment-button-${index}`} onClick={(e) => {
                     e.stopPropagation();
                     handleIncrement(index);
-                  }}
-                >
-                  +
-                </button>
-              </S.ControlButtons>
-            </S.RentCard>
+                  }} className="w-[30px] h-[30px] rounded-[5px] border-none font-bold flex justify-center items-center hover:bg-[#ddd]">+</button>
+              </div>
+            </div>
           ))}
-        </S.CardsDiv>
-
-        <S.submitbutton onClick={handleSubmit}>확인</S.submitbutton>
-        <S.canclebutton onClick={onClose}>취소</S.canclebutton>
-      </S.ModalContainer>
-    </S.background>
+        </div>
+        <div id="buttonContainer" data-testid="button-container" className="mt-[5vh] flex justify-end gap-[1rem]">
+          <button id="submit-button" data-testid="submit-button" onClick={handleSubmit}
+            className="w-[99px] h-[50px] bg-[#6948ED] rounded-[5px] font-[pretendard] font-[700] text-[18px] text-white">확인</button>
+          <button id="cancel-button" data-testid="cancel-button" onClick={onClose}
+            className="w-[99px] h-[50px] bg-[#E4E7EC] rounded-[5px] font-[pretendard] font-[700] text-[18px] text-black">취소</button>
+        </div>
+      </div>
+    </div>
   );
 }
 
