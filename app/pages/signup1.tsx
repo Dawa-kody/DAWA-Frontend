@@ -120,124 +120,35 @@ function Signup1() {
   }
 
   return (
-                <S.Container>
+                <div id="container" className=" w-full h-full overflow-hidden flex m-0">
                 
-                  <S.LeftSection>
-                    <S.TopTexts>
-                      <S.HelloBlock>
-                        <S.HelloText>어서오세요!</S.HelloText>
-                        <S.SubTextWrapper>
-                          <S.SubText>이미 계정이 있다면?</S.SubText>
-                          <S.GoLogin onClick={GoLogin}>로그인하기</S.GoLogin>
-                        </S.SubTextWrapper>
-                        </S.HelloBlock>
-                      <S.Title>회원가입</S.Title>
-                    </S.TopTexts>
+                  <div id="leftSection" className="w-[100vw] h-[100vh] bg-white overflow-hidden relative flex flex-1 flex-col z-[1]">
+                    
+                    <div id="topText" className="pl-[5vw] pt-[10vh] flex flex-col z-[10]">
+                      <span id="helloText" className="font-[700] font-[pretendard] text-[2rem] text-black">어서오세요!</span>
+                      <div id="firstContainer" className="flex flex-row gap-[0.2rem]">
+                        <span id="subText" className=" text-[0.75rem] font-[300] font-[pretendard] text-black">이미 계정이 있다면?</span>
+                        <span id="goLogin" onClick={GoLogin} className=" text-[0.75rem] font-[300] font-[pretendard] text-primaryPurple cursor-pointer">로그인하기</span>
+                      </div>
+                    </div>
+                    <span id="title" className="mt-[5vh] ml-[5vw] font-[700] font-[pretendard] text-[2rem] text-black">회원가입</span>
+                    <div id="inputContainer" className=" mt-[3vh] w-full flex justify-center items-center">
+                      <div id="emailInputDiv" className="flex flex-col gap-2 w-[30vw]">
+                        <span id="emailText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">이메일</span>
+                        <div>
+                          <input id="emailInput" placeholder="이메일 입력" className="w-[20em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none bg-[#F2F4F7] text-black"/>
+                          <span>@gsm.hs.kr</span>
+                        </div>
+                        
+                      </div>
 
-                    <S.Inputs>
-                      <S.InputGroup>
-                        <S.EmailText>이메일</S.EmailText>
-                        <S.EmailInputGroup>
-                          <S.EmailInput
-                            value={EmailValue}
-                            placeholder="이메일 입력"
-                            type="text"
-                            onChange={handleEmailChange}
-                            required
-                            />
-                          <S.EmailTextE>@gsm.hs.kr</S.EmailTextE>
-                        </S.EmailInputGroup>
-                      </S.InputGroup>
-
-                      <S.InputGroup>
-                        <S.EmailAcess>이메일 인증</S.EmailAcess>
-                        <S.FormEmailInput
-                          placeholder="인증 번호 입력"
-                          type="text"
-                          value={codeValue}
-                          onChange={handleChangeCode}
-                          required
-                          disabled={!isCodeSent || isCodeVerified}
-                        />
-                        {codeError && (
-                          <S.ErrorMessage>{codeError}</S.ErrorMessage>
-                        )}
-                        {!isCodeSent ? (
-                          <S.EmailInputButton onClick={handleEmailSubmit}>
-                            인증번호 요청
-                          </S.EmailInputButton>
-                        ) : !isCodeVerified ? (
-                          <S.EmailInputButton onClick={handleCodeVerify}>
-                            인증번호 확인
-                          </S.EmailInputButton>
-                        ) : (
-                          <S.SuccessMessage>인증 완료</S.SuccessMessage>
-                        )}
-                        {isCodeSent && !isCodeVerified && (
-                          <S.EmailSentInfo>
-                            <S.Text>
-                              인증번호가 요청되었습니다. (유효시간: <AuthTimer key={timerKey} initialTime={180} />)
-                            </S.Text>
-                          </S.EmailSentInfo>
-                        )}
-                      </S.InputGroup>
-                      
-                      <S.Password>
-                          <S.InputGroup>
-                          <S.InputLabel>비밀번호</S.InputLabel>
-                          <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <S.PasswordInput
-                              value={PasswordValue}
-                              placeholder="비밀번호(문자,숫자,특수문자 포함 8~10자)"
-                              type={showPassword ? 'text' : 'password'}
-                              onChange={handlePasswordChange}
-                              required
-                            />
-                            <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
-                              {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-                            </S.IconWrapper>
-                          </div>
-                        </S.InputGroup>
-                      
-                        <S.InputGroup>
-                          <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <S.PaaswordCheckInput
-                              value={PasswordReValue}
-                              placeholder="비밀번호 확인"
-                              type={showPasswordRe ? 'text' : 'password'}
-                              onChange={handlePasswordReChange}
-                              required
-                            />
-                            <S.IconWrapper2 onClick={() => setShowPasswordRe(!showPasswordRe)}>
-                              {showPasswordRe ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
-                            </S.IconWrapper2>
-                          </div>
-                        </S.InputGroup>
-
-                  </S.Password>
-                      
-                      <S.Pages>
-                        <S.Count1page />
-                        <S.Count2page />
-                      </S.Pages>
-                      
-                      <S.ButtonDiv>
-                        <S.NextButton
-                          isActive={EmailValue.trim() !== "" && isCodeVerified}
-                          onClick={GoNextPage}
-                          disabled={!(EmailValue.trim() !== "" && isCodeVerified)}
-                        >
-                          다음
-                        </S.NextButton>
-                        <S.BeforeButton onClick={Gotobefore}>이전</S.BeforeButton>
-                      </S.ButtonDiv>
-                    </S.Inputs>
-                  </S.LeftSection>
-                  <S.RightSection>
-                    <S.GradientOverlay />
-                    <S.Img src={'/Sigin.svg'} />
-                  </S.RightSection>
-                </S.Container>
+                    </div>
+                  </div>
+                  <div id="rightSection" className="relative flex flex-1 justify-center items-center">
+                    <div id="blur" className="m-0 z-[1] w-full h-full bg-[radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%)]" />
+                    <img id="img" src={'/Sigin.svg'} alt="img" className="w-full h-full object-cover z-[-1]"/>
+                  </div>
+                </div>
   );
 }
 
