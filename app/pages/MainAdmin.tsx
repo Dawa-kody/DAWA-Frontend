@@ -286,7 +286,7 @@ function MainAdmin() {
               {TActive ? (
                 <span className="text-[1rem] font-[700] text-primaryPurple">선생님 출근중</span>
               ) : (
-                <span className="text-[1em] font-[700] text-[#98A2B3]">선생님 부재중</span>
+                <span className="text-[1.1em] font-[700] text-[#98A2B3]">선생님 부재중</span>
               )}
               </div>
             </div>

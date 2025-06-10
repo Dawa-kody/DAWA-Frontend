@@ -100,7 +100,7 @@ function WeatherContent() {
   return (
         <div className="w-[34vw] h-full rounded-[10px] bg-[#F9FAFB] text-black flex flex-col justify-between p-[2rem] ml-[1vw]">
             <div id="top" className="flex justify-between items-start">
-                <div className="text-[1.25rem] font-bold font-[pretendard] mt-[-1rem]">
+                <div className="text-[2rem] font-bold font-[pretendard] mt-[-1rem]">
                     {temperature !== null ? `${temperature}°` : "--"}
                 </div>
 
