@@ -142,7 +142,7 @@ function RentModal({ onClose }: Modalprops) {
       onClick={(e) => {
         if (e.target === modalBackground.current) { onClose(); }
       }}>
-      <div id="ModalContainer" data-testid="modal-container" className="w-[620px] h-[438px] absolute top-[260px] bg-white rounded-[10px] pl-[40px] pr-[40px]">
+      <div id="ModalContainer" data-testid="modal-container" className="w-[620px] h-[438px] absolute top-[20vh] bg-white rounded-[10px] pl-[40px] pr-[40px]">
         <div id="titleContainer" data-testid="title-container" className=" mt-[1.3rem] flex flex-col text-black font-[pretendard]">
           <span id="title" data-testid="title" className="font-[700] text-[1.5rem]">보건실 물품 대여하기</span>
           <span id="subtitle" data-testid="subtitle" className="font-[400] text-[1rem] text-[#98A2B3]">대여할 물품을 선택해주세요.</span>

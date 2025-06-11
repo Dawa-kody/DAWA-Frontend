@@ -191,7 +191,7 @@ export const Switch = styled.div`
     height: 26px;
     top: 100px;
     right: 10px;
-    
+    color:#000000;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -151,7 +151,7 @@ export const ReturnTrue = styled.span`
     line-height: 19px;
     /* identical to box height */
 
-    color: #95979D;
+    color: #000000;
 `
 
 export const Accept = styled.span`

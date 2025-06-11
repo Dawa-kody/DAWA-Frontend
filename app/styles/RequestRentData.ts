@@ -17,7 +17,7 @@ export const item = styled.span`
     position: absolute;
     top: 18px;
     left: 17px;
-
+    color: #000000;
     font-family: Pretendard;
     font-size: 17px;
     font-weight: 800;
@@ -27,7 +27,7 @@ export const count = styled.span`
     position: absolute;
     top: 19px;
     right: 17px;
-
+    color:#000000;
     font-family: Pretendard;
     font-size: 16px;
     font-weight: 600;
@@ -45,7 +45,7 @@ export const line = styled.div`
 export const requester = styled.span`
     position: absolute;
     top: 62px;
-    left: 35px;
+    left: 20px;
 
     font-family: Pretendard;
     font-size: 12px;
@@ -58,7 +58,7 @@ export const student = styled.span`
     position: absolute;
     top: 60px;
     right: 13px;
-
+    color: #000000;
     font-family: Pretendard;
     font-size: 14px;
     font-weight: 600;
@@ -78,8 +78,8 @@ export const acceptBtn = styled.div`
     font-family: Pretendard;
     font-size: 14px;
     font-weight: 500;
-
-    color: white;
+    cursor: pointer;
+    color: black;
     background-color: #6948ED;
     border-bottom-right-radius: 10px;
 `

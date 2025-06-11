@@ -36,10 +36,10 @@ function RentCancleModal({ onClose, onSubmit  }: Modalprops){
                 className="absolute w-[620px] h-[360px] top-[260px] ml-auto mr-auto bg-white rounded-[10px]"
             >
                 <div className="flex flex-col">
-                    <p className="font-[pretendard] font-bold text-[1.5rem] mt-[1.3rem] ml-[1.8rem]">이 학생의 대여 신청을 취소하시겠습니까?</p>
-                    <p className="font-[pretendard] font-medium mt-[1rem] ml-[1.9rem]">대여 신청 거절 사유</p>
+                    <p className="font-[pretendard] font-bold text-[1.5rem] mt-[1.3rem] ml-[1.8rem] text-black">이 학생의 대여 신청을 취소하시겠습니까?</p>
+                    <p className="font-[pretendard] font-medium mt-[1rem] ml-[1.9rem] text-black">대여 신청 거절 사유</p>
                     <textarea
-                        className="w-[92%] h-[160px] bg-slategray mt-[1rem] ml-auto mr-auto rounded-[10px] resize-none pt-[0.8rem] pl-[1rem] placeholder:text-[#98A2B3]"
+                        className="w-[92%] h-[160px] bg-slategray mt-[1rem] ml-auto mr-auto rounded-[10px] resize-none pt-[0.8rem] pl-[1rem] placeholder:text-[#98A2B3] outline-none text-black bg-gray-100" 
                         placeholder="대여신청을 거절한 사유를 적어주세요."
                         value={reason}
                         onChange={SetReasonChange}

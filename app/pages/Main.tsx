@@ -207,8 +207,8 @@ function Main() {
                   <button key={idx} className="w-full text-left mb-2 p-2 flex flex-row justify-between rounded bg-noticeGray hover:bg-gray-100 transition" onClick={() => setSelectedNotice(notice)}>
                     <div id="noticeTitle" className="font-bold text-black text-[1rem]">{notice.title}</div>
                     <div className=" flex gap-[2rem]">
-                        <span className="text-noticeText text-[0.75rem]">보건선생님</span>
-                        <span className="text-noticeText text-[0.75rem]">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
+                        <span className="text-noticeText text-[0.75rem] text-gray-400">보건선생님</span>
+                        <span className="text-noticeText text-[0.75rem] text-gray-400">{new Date(notice.yearMonthDay).toLocaleDateString()}</span>
                       </div>
                   </button>
                 ))
