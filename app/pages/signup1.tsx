@@ -83,12 +83,11 @@ function Signup1() {
     const value = e.target.value;
     SetEmailValue(value);
   
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if (!emailRegex.test(value)) {
-      setEmailError("이메일 형식으로 입력해주세요");
-    } else {
+    // 6자리 이상이면 통과 (도메인은 @gsm.hs.kr로 자동 추가됨)
+    if (value.length >= 6) {
       setEmailError("");
+    } else {
+      setEmailError("6자리 이상 입력해주세요");
     }
   }
 
@@ -136,16 +135,38 @@ function Signup1() {
                       {/*이메일 입력*/}
                       <div id="emailInputDiv" className="flex flex-col gap-2 w-[30vw]">
                         <span id="emailText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">이메일</span>
-                        <input id="emailInput" placeholder="@gsm.hs.kr" onChange={handleEmailChange} required className="w-[30em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <input id="emailInput" value={EmailValue} placeholder="@gsm.hs.kr" type="text" onChange={handleEmailChange} required className="w-[30em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
                       </div>
 
                       {/*이메일 인증*/}
                       <div id="emailAccept" className="flex flex-col gap-2 w-[30vw]">
                         <span id="emailAcceptText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">이메일 인증</span>
                         <div className="flex flex-row w-full">
-                          <input id="emailAcceptInput" placeholder="인증번호 입력" onChange={handleChangeCode} required className="w-[25rem] h-[2.5rem] rounded-l-[8px] rounded-r-none p-[1rem] border-none outline-none bg-[#F2F4F7] text-black"/>
-                          <button onClick={handleEmailSubmit} className="w-[7rem] h-[2.5rem] rounded-r-[8px] rounded-l-none p-[1rem] border-none outline-none bg-primaryPurple text-white whitespace-nowrap flex items-center justify-center">인증번호 받기</button>
+                          
+                          <input id="emailAcceptInput" value={codeValue} placeholder={isCodeSent ? "인증번호 6자리 입력" : "이메일 인증을 먼저 진행해주세요"} required onChange={handleChangeCode} maxLength={6} inputMode="numeric" pattern="\d*" disabled={!isCodeSent} className={`w-[25rem] h-[2.5rem] rounded-l-[8px] p-[1rem] border-none outline-none ${isCodeSent ? 'bg-[#F2F4F7] text-black' : 'bg-gray-100 text-gray-400'}`}/>
+                          <button onClick={handleEmailSubmit} disabled={!EmailValue || !!emailError}className="w-[7rem] h-[2.5rem] rounded-r-[8px] rounded-l-none p-[1rem] border-none outline-none bg-primaryPurple text-white whitespace-nowrap flex items-center justify-center disabled:bg-gray-300 disabled:cursor-not-allowed">
+                            {isCodeSent ? '재전송' : '인증번호 받기'}
+                          </button>
                         </div>
+                        {isCodeSent && (
+                          <div className="flex items-center gap-2">
+
+                            <button onClick={handleCodeVerify} disabled={!codeValue || isCodeVerified}className="text-xs text-primaryPurple font-medium disabled:text-gray-400">
+                              {isCodeVerified ? '인증 완료' : '인증 확인'}
+                            </button>
+
+                            <span className="text-xs text-gray-500">
+                              <AuthTimer key={timerKey} initialTime={180} onExpire={() => {
+                                  setIsCodeSent(false);
+                                  setIsCodeVerified(false);
+                                  SetCodeValue('');
+                                }}/>
+                            </span>
+                          </div>
+                        )}
+                        {codeError && <span className="text-red-500 text-xs">{codeError}</span>}
+                        {emailError && <span className="text-red-500 text-xs">{emailError}</span>}
+                        {isCodeVerified && <span className="text-green-500 text-xs">이메일 인증이 완료되었습니다.</span>}
                       </div>
 
                       {/*비밀번호 입력, 확인란*/}
