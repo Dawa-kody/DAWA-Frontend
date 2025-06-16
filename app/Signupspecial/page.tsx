@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react'
-import Signupspecial from "../pages/signupspecial"
+import { Signupspecial } from '@/container/Auth';
+
 const SignupspecialPage:React.FC=()=> {
   return  <Signupspecial/>
     

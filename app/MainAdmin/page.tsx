@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import MA from '../pages/MainAdmin';
+import { MainAdmin } from '@/container/Home';
 
 const MainAdminPage: React.FC = () => {
-  return <MA />;
+  return <MainAdmin />;
 };
 
 export default MainAdminPage;

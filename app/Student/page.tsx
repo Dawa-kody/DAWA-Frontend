@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import StudentList from '@/pages/StudentList';
+import { StudentList } from '@/container/Teacher';
 
 const StudentListPage: React.FC = () => {
   return <StudentList />;

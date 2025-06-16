@@ -1,10 +1,10 @@
 import React from "react";
-import DrugManagementPage from "@/pages/MediMangament";
+import { MediManagement } from "@/container/Teacher";
 
-const DrugPage = () => {
+const MediManagementPage = () => {
     return(
-        <DrugManagementPage />
+        <MediManagement />
     )
 }
 
-export default DrugPage
+export default MediManagementPage
