@@ -3,6 +3,7 @@ import { WeatherField } from "../@Molecules";
 import { getWeatherData } from "@/apis/WeatherHsAPI";
 import { getDustData } from "@/apis/DustAPI";
 import { WarningItem, getWeatherWarnings } from '@/apis//WarningAPI';
+import { ICON } from "@/constants";
 
 export function WeatherContent() {
   const [temperature, setTemperature] = useState<number | null>(null);
@@ -132,7 +133,7 @@ export function WeatherContent() {
 
                 <img
                     className="w-[7rem] h-[7rem] mt-[0.5rem]"
-                    src="/WeatherSun.svg"
+                    src={`${ICON.SVG_ICON}/WeatherSun.svg`}
                     alt="날씨 아이콘"
                 />
                 </div>
@@ -141,12 +142,12 @@ export function WeatherContent() {
             <div id="middle" className="flex gap-[2rem] mt-[-2.25rem]">
                 <WeatherField
                 title="습도"
-                svg="/Waterdrop.svg"
+                svg={`${ICON.SVG_ICON}/Waterdrop.svg`}
                 percent={humidity !== null ? `${humidity}%` : "--"}
                 />
                 <WeatherField
                 title="미세먼지"
-                svg="/Dustdrop.svg"
+                svg={`${ICON.SVG_ICON}/Dustdrop.svg`}
                 percent={
                     pm10 ? (
                         <span>
@@ -165,7 +166,7 @@ export function WeatherContent() {
                 className="w-[31.9375rem] h-[10rem] rounded-[0.5rem] bg-slategray text-left text-[1.25rem] px-[1rem] flex items-center gap-[1rem] mt-[1rem]"
             >
                 <div className="w-full flex flex-row gap-[1rem] items-center">
-                    <img src="/PlusMessage.svg" className="w-[1.6rem] h-[1.6rem]" />
+                    <img src={`${ICON.SVG_ICON}/PlusMessage.svg`} className="w-[1.6rem] h-[1.6rem]" />
                     <span className="text-[1.25rem] font-[pretendard]">
                         {warnings || "건강 항상 조심하세요"}
                     </span>
