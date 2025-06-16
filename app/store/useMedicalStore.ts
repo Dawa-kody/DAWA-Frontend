@@ -18,7 +18,7 @@ interface MedicalStore {
     updateMedicine: (updatedMedicine: Medicine) => Promise<void>;
   }
 
-const useMedicalStore = create<MedicalStore>((set) => ({
+export const useMedicalStore = create<MedicalStore>((set) => ({
   medicines: [],
 
   fetchMedicines: async () => {

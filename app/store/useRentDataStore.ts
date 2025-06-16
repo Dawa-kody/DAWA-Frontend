@@ -1,10 +1,6 @@
 // app/store/useRentDataStore.ts
 import { create } from "zustand";
-import { RentAdminDatas } from "@/molecules/RentDataAdmin";
-import { VisitAdminDatas } from "@/molecules/VisitDataAdmin";
-import { RequestRentDatas } from "@/molecules/RequestRentData";
-import { RentDatas } from "@/molecules/RentData"; // 일반 RentDatas
-import { VisitDatas } from "@/molecules/VisitData"; // 일반 VisitDatas
+import { RentAdminDatas, VisitAdminDatas, RequestRentDatas, RentDatas, VisitDatas } from "@/components/@Molecules";
 
 interface Store {
   // 관리자용 데이터

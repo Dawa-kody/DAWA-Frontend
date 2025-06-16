@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Sheet from '../pages/sheet';
+import { Sheet } from '@/container/Teacher';
 
 const SheetPage: React.FC = () => {
   return <Sheet />;

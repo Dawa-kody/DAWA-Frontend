@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import Writepage from '../pages/Writepage';
+import { Write } from '@/container/Teacher';
 
 const WritePage: React.FC = () => {
-  return <Writepage />;
+  return <Write />;
 };
 
 export default WritePage;

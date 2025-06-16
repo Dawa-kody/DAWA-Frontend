@@ -1,0 +1,99 @@
+import { useState, useEffect } from 'react';
+import { useCalendarStore } from '@/store/useCalendarStore';
+import { format, addMonths, subMonths, startOfMonth, endOfMonth, addDays, isToday, isSameDay, getDay, subDays } from 'date-fns';
+
+export const Calendar = () => {
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const { selectedDate, setSelectedDate, fetchDailyData } = useCalendarStore();
+
+  const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
+  const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
+
+  const handleDateClick = (date: Date) => {
+    setSelectedDate(date);
+    fetchDailyData(date);
+  };
+
+  const renderDays = () => {
+    const startDate = startOfMonth(currentMonth);
+    const endDate = endOfMonth(currentMonth);
+    const startDayIndex = getDay(startDate);
+    let days = [];
+
+    const prevMonthEndDate = subDays(startDate, startDayIndex);
+    for (let i = 0; i < startDayIndex; i++) {
+      const prevDate = addDays(prevMonthEndDate, i);
+      days.push(
+        <div key={`prev-${i}`} className="w-12 h-10 flex items-center justify-center text-gray-400">
+          {format(prevDate, "d")}
+        </div>
+      );
+    }
+
+    let day = startDate;
+    while (day <= endDate) {
+      const currentDay = new Date(day);
+      const isSelected = selectedDate && isSameDay(currentDay, selectedDate);
+      const isCurrentDay = isToday(currentDay);
+      const dayOfWeek = getDay(currentDay);
+
+      const textColor = dayOfWeek === 0 ? "text-red-500" : dayOfWeek === 6 ? "text-blue-500" : "text-gray-600";
+
+      days.push(
+        <div key={day.toString()} className={`w-12 h-10 flex items-center justify-center ${textColor}`}>
+          <div
+            className={`w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-sm
+              ${isSelected ? "bg-purple-500 text-white" : ""}
+              ${isCurrentDay && !isSelected ? "bg-blue-500 text-white" : ""}
+              ${!isSelected && !isCurrentDay ? "hover:bg-gray-200" : ""}`}
+            onClick={() => handleDateClick(currentDay)}
+          >
+            {format(currentDay, "d")}
+          </div>
+        </div>
+      );
+
+      day = addDays(day, 1);
+    }
+
+    return days;
+  };
+
+  useEffect(() => {
+    const { initialize } = useCalendarStore.getState();
+    initialize();
+  }, []);
+
+  return (
+    <div className="w-full h-[35vh] text-black bg-white rounded-lg shadow-md flex">
+      <div className="w-full h-[30vh] p-4">
+        <div className="flex justify-between items-center mb-4">
+          <button className="px-8" onClick={prevMonth}>&lt;</button>
+          <h2 className="text-sm font-bold">{format(currentMonth, "yyyy년 MM월")}</h2>
+          <button className="px-8" onClick={nextMonth}>&gt;</button>
+        </div>
+
+        <div className="grid grid-cols-7 gap-y-0.5 text-center text-sm border-b pb-2">
+          {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
+            <div
+              key={index}
+              className={`w-12 flex justify-center text-xs font-medium ${day === "일" ? "text-red-500" : day === "토" ? "text-blue-500" : "text-gray-600"}`}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-7 gap-y-0.5 text-xs text-center">
+          {renderDays()}
+        </div>
+
+        {selectedDate && (
+          <p className="mt-[2rem] text-center text-sm font-semibold">
+            {format(selectedDate, "yyyy년 MM월 dd일")}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
