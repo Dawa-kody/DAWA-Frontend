@@ -3,6 +3,7 @@ import axios from "axios";
 import * as S from "../../styles/login";
 import { useRouter } from "next/navigation";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { ICON } from "@/constants";
 
 const JWT_EXPIRY_TIME = 24 * 60 * 60 * 1000; // 24시간
 
@@ -181,7 +182,7 @@ export function Signin() {
 
             <S.RightSection>
                 <S.GradientOverlay />
-                <S.Img src={'/Sigin.svg'} />
+                <S.Img src={`${ICON.SVG_ICON}/Sigin.svg`} />
             </S.RightSection>
         </S.Container>
     );
