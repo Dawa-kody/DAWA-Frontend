@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import { Nav, SubSheet, StudentLog, BackupModal, MainSheet, Calendar } from '@/components/@Organisms';
 import * as S from "../../styles/backup"

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef } from "react";
 import { Nav } from "@/components/@Organisms";
 import { FilterTag, Usercard } from "@/components/@Molecules";

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ICON } from "@/constants";
 
 interface NoticeModalProps {
   onClose: () => void;
@@ -48,7 +49,7 @@ export function NoticeModal({ onClose, id }: NoticeModalProps) {
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[30rem] pl-[2.5rem] pr-[2.5rem] pt-[2rem] bg-white p-[2rem] rounded-[0.625rem] text-black z-[3000] shadow-lg">
         <div id="header" className="w-full flex flex-row justify-between ">
           <span className="text-[1.8rem] font-[700]">공지사항</span>
-          <img src="/X.svg"
+          <img src={`${ICON.SVG_ICON}/X.svg`}
             className="cursor-pointer size-8" alt="닫기" onClick={onClose} />
         </div>
 
