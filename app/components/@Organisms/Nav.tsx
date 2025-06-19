@@ -85,7 +85,7 @@ export function Nav() {
     router.push(routes[icon]);
   };
 
-  const handlelogout = () => router.push('/Login');
+  const handlelogout = () => router.push('/Signin');
   const handlepw = () => router.push('/Password');
   const gotohome = () => router.push('/');
 

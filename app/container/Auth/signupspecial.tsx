@@ -195,7 +195,7 @@ export function Signupspecial() {
 
       <S.RightSection>
         <S.GradientOverlay />
-        <S.Img src={'/Sigin.svg'} />
+        <S.Img src={'icon/svg/Sigin.svg'} />
       </S.RightSection>
     </S.Container>
   );
