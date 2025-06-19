@@ -77,15 +77,9 @@ export const Img = styled.img`
 `;
 
 export const Title = styled.span`
-<<<<<<< HEAD
-  position: absolute;
-  left: 124px;
-  top: 5rem;
-=======
   position:relative;
   top:6rem;
   left: 7rem;
->>>>>>> c937304135b3896e122250a15a46b6558a1e079a
 
   font-family: 'Pretendard';
   font-style: normal;

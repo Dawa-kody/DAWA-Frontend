@@ -187,10 +187,12 @@ export function Signup1() {
                     </div>
                   </div>
                   {/*오른쪽 보건실 배경*/}
-                  <div id="rightSection" className="relativge flex flex-1 justify-center items-center overflow-hidden">
-                    <div id="blur" className="m-0 z-[1] w-full h-full bg-[radial-gradient(circle, rgba(105, 72, 237, 0.3) 0%, #6948ED 100%)]" />
-                    <img id="img" src={'/Sigin.svg'} alt="img" className="w-full h-full object-cover z-[-1]"/>
+                  <div id="rightSection" className="relative flex flex-1 justify-center items-center overflow-hidden">
+                    <div id="blur" className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle,_rgba(105,_72,_237,_0.3)_0%,_#6948ED_100%)] z-[1]"></div>
+                    <img id="img" src={'icon/svg/Sigin.svg'} alt="이게안되노" className="relative w-full h-full object-cover md:object-contain md:h-full z-[0]" />
                   </div>
-                </div>
+                  </div>
+
+             
   );
 }

@@ -276,7 +276,7 @@ export function Password() {
 
             <S.RightSection>
                 <S.GradientOverlay />
-                <S.Img src={'/Sigin.svg'} />
+                <S.Img src={'icon/svg/Sigin.svg'} alt="아아" />
             </S.RightSection>
         </S.Container>
      );
