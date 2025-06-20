@@ -53,4 +53,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .inputNum::-webkit-outer-spin-button,
+  .inputNum::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .inputNum {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
 }
