@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useRouter, usePathname } from 'next/navigation';
 import { ICON } from '@/constants';
@@ -18,11 +18,13 @@ const MAIL_API = `${BASE_URL}/mail`;
 export function Nav() {
   const router = useRouter();
   const pathname = usePathname();
-  const [MouseOver, setMouseOver] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); 
   const [MailOver, setMailOver] = useState(false);
   const [activeIcon, setActiveIcon] = useState<'home' | 'folder' | 'setting' | 'graduation'>('home');
   const [isAdmin, setIsAdmin] = useState('학생');
   const [mailList, setMailList] = useState<mailDTO[]>([]);
+
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (pathname === '/') setActiveIcon('home');
@@ -58,14 +60,26 @@ export function Nav() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [MailOver]);
+  }, [MailOver]); 
+
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
 
   const fetchMailList = async () => {
     const token = window.localStorage.getItem('accessToken');
     try {
       const response = await axios.get<mailDTO[]>(MAIL_API, {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': '69420',
         },
       });
@@ -90,23 +104,27 @@ export function Nav() {
   const gotohome = () => router.push('/');
 
   return (
-    <div className='w-full h-[10vh] bg-white user-select-none flex justify-between items-center pl-[10vw] pr-[10vw]'>
-      <div className='flex items-center cursor-pointer' onClick={gotohome}>
-        <img className='w-[3.5rem] h-[2.2rem] mb-[0.5rem]' src={`${ICON.SVG_ICON}/Logo.svg`} />
-        <span className=' font-pretendard font-[700] text-[1.6rem] text-primaryPurple ml-[1vw]'>다와</span>
+    <div className="w-full h-[10vh] bg-white user-select-none flex justify-between items-center pl-[10vw] pr-[10vw]">
+      <div className="flex items-center cursor-pointer" onClick={gotohome}>
+        <img className="w-[3.5rem] h-[2.2rem] mb-[0.5rem]" src={`${ICON.SVG_ICON}/Logo.svg`} />
+        <span className="font-pretendard font-[700] text-[1.6rem] text-primaryPurple ml-[1vw]">다와</span>
       </div>
 
       {isAdmin === '선생님' && (
-        <div className='w-[36rem] h-[4rem] flex items-center gap-[2.5rem]'>
+        <div className="w-[36rem] h-[4rem] flex items-center gap-[2.5rem]">
           {(['home', 'folder', 'setting', 'graduation'] as const).map((icon) => (
             <div
               key={icon}
-              className='w-[4rem] h-full cursor-pointer flex justify-center items-center'
+              className="w-[4rem] h-full cursor-pointer flex justify-center items-center"
               onClick={() => handleIconClick(icon)}
             >
               <img
-                className='w-[2.2rem] h-[2.2rem]'
-                src={activeIcon === icon ? `${ICON.SVG_ICON}/Clicked${capitalize(icon)}.svg` : `${ICON.SVG_ICON}/Unclicked${capitalize(icon)}.svg`}
+                className="w-[2.2rem] h-[2.2rem]"
+                src={
+                  activeIcon === icon
+                    ? `${ICON.SVG_ICON}/Clicked${capitalize(icon)}.svg`
+                    : `${ICON.SVG_ICON}/Unclicked${capitalize(icon)}.svg`
+                }
               />
             </div>
           ))}
@@ -128,7 +146,6 @@ export function Nav() {
                 mailList.length >= 8 ? 'max-h-[40rem] overflow-y-auto' : 'min-h-[6rem]'
               } bg-white absolute right-[6vw] top-[4rem] z-[3000] shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-[0.5rem] flex flex-col pb-4`}
             >
-
               <div id="MailTop" className="w-full pl-[0.9rem] pt-[0.8rem] pr-[0.9rem]">
                 <span className="text-black text-[0.9rem] font-[700] font-pretendard">알림함</span>
                 <div
@@ -152,22 +169,19 @@ export function Nav() {
         </>
       )}
 
+      {/* 프로필 아이콘 클릭으로 메뉴 토글 */}
       <img
-        className='w-[3.5rem] h-[3.5rem] absolute right-[8vw] cursor-pointer'
-        onMouseLeave={() => setMouseOver(false)}
-        onMouseEnter={() => setMouseOver(true)}
+        className="w-[3.5rem] h-[3.5rem] absolute right-[8vw] cursor-pointer"
+        onClick={() => setMenuOpen((prev) => !prev)}
         src={`${ICON.SVG_ICON}/PersonPurple.svg`}
         alt="프로필"
       />
-      {MouseOver && (
-        <div
-          className='flex flex-col items-center gap-[0.5rem] absolute top-[70px] right-[5vw] z-[10] bg-white border-[1px] border-[#e0e0e0] rounded-[8px] shadow-md p-[2rem]'
-          onMouseLeave={() => setMouseOver(false)}
-          onMouseEnter={() => setMouseOver(true)}
+      {menuOpen && (
+        <div ref={menuRef} className="flex flex-col items-center gap-[0.5rem] absolute top-[70px] right-[5vw] z-[10] bg-white border-[1px] border-[#e0e0e0] rounded-[8px] shadow-md p-[2rem]"
         >
-          <div className='flex flex-col items-center gap-[0.5rem]'>
-            <span className='font-[400] text-[1rem] text-black cursor-pointer' onClick={handlelogout}>로그아웃</span>
-            <span className='font-[400] text-[1rem] text-black cursor-pointer' onClick={handlepw}>비밀번호 변경</span>
+          <div className="flex flex-col items-center gap-[0.5rem]">
+            <span className="font-[400] text-[1rem] text-black cursor-pointer" onClick={handlelogout}>로그아웃</span>
+            <span className="font-[400] text-[1rem] text-black cursor-pointer" onClick={handlepw}>비밀번호 변경</span>
           </div>
         </div>
       )}

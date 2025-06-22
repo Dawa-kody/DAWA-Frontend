@@ -98,7 +98,7 @@ export function Signup1() {
   }
 
   function GoLogin() {
-    router.push("/signup2");
+    router.push("/Signin");
   }
 
   function GoNextPage() {
@@ -130,17 +130,20 @@ export function Signup1() {
                       
                       {/*이메일 입력*/}
                       <div id="emailInputDiv" className="flex flex-col gap-2 w-[30vw]">
-                        <span id="emailText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">이메일</span>
-                        <input id="emailInput" value={EmailValue} placeholder="@gsm.hs.kr" type="text" onChange={handleEmailChange} required className="w-[30em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <span id="emailText" className="text-black text-[0.f8rem] font-[500] font-[pretendard]">이메일</span>
+                        <div className="flex items-center gap-2">
+                        <input id="emailInput" value={EmailValue} placeholder="이메일 입력" type="text" onChange={handleEmailChange} required className="w-[22em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <span id="emailtext" className="text-gray-400 text-[1..04rem] font-[300] font-[pretendard]">@gsm.hs.kr</span>
+                      </div>
                       </div>
 
                       {/*이메일 인증*/}
                       <div id="emailAccept" className="flex flex-col gap-2 w-[30vw]">
-                        <span id="emailAcceptText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">이메일 인증</span>
+                        <span id="emailAcceptText" className="text-black text-[0.f8rem] font-[500] font-[pretendard]">이메일 인증</span>
                         <div className="flex flex-row w-full">
                           
-                          <input id="emailAcceptInput" value={codeValue} placeholder={isCodeSent ? "인증번호 6자리 입력" : "이메일 인증을 먼저 진행해주세요"} required onChange={handleChangeCode} maxLength={6} inputMode="numeric" pattern="\d*" disabled={!isCodeSent} className={`w-[25rem] h-[2.5rem] rounded-l-[8px] p-[1rem] border-none outline-none ${isCodeSent ? 'bg-[#F2F4F7] text-black' : 'bg-gray-100 text-gray-400'}`}/>
-                          <button onClick={handleEmailSubmit} disabled={!EmailValue || !!emailError}className="w-[7rem] h-[2.5rem] rounded-r-[8px] rounded-l-none p-[1rem] border-none outline-none bg-primaryPurple text-white whitespace-nowrap flex items-center justify-center disabled:bg-gray-300 disabled:cursor-not-allowed">
+                          <input id="emailAcceptInput" value={codeValue} placeholder={isCodeSent ? "인증번호 6자리 입력" : "이메일 인증을 먼저 진행해주세요"} required onChange={handleChangeCode} maxLength={6} inputMode="numeric" pattern="\d*" disabled={!isCodeSent} className={`w-[25rem] h-[3rem] rounded-l-[8px] p-[1rem] border-none outline-none ${isCodeSent ? 'bg-[#F2F4F7] text-black' : 'bg-gray-100 text-gray-400'}`}/>
+                          <button onClick={handleEmailSubmit} disabled={!EmailValue || !!emailError}className="w-[7rem] h-[3rem] rounded-r-[8px] rounded-l-none p-[1rem] border-none outline-none bg-primaryPurple text-white whitespace-nowrap flex items-center justify-center disabled:bg-gray-300 disabled:cursor-not-allowed">
                             {isCodeSent ? '재전송' : '인증번호 받기'}
                           </button>
                         </div>
@@ -167,9 +170,9 @@ export function Signup1() {
 
                       {/*비밀번호 입력, 확인란*/}
                       <div id="password" className="flex flex-col w-[30vw] gap-4">
-                        <span id="passwordText" className="text-black text-[0.8rem] font-[500] font-[pretendard]">비밀번호</span>
-                        <input id="passwordInput" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~10자)" required className="w-[30em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
-                        <input id="passwordCheck" placeholder="비밀번호 확인" required className="w-[30em] h-[2.5rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <span id="passwordText" className="text-black text-[0.8frem] font-[500] font-[pretendard]">비밀번호</span>
+                        <input id="passwordInput" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~10자)" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <input id="passwordCheck" placeholder="비밀번호 확인" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
                       </div>
 
                       {/*signup1, 2 구분분*/}
@@ -180,8 +183,8 @@ export function Signup1() {
 
                       {/*이전 & 다음 버튼*/}
                       <div id="nextButton" className="mt-8 flex flex-row w-[30vw] justify-between">
-                        <button className="w-[4vw] h-[2rem] rounded-[10px] justify-center items-center bg-[#E4E7EC] text-[#98A2B3] font-[700] font-[pretendard] text-[1rem]">이전</button>
-                        <button onClick={GoNextPage} className="w-[4vw] h-[2rem] rounded-[10px] justify-center items-center bg-[#F2F4F7] text-[#98A2B3] font-[700] font-[pretendard] text-[1rem]">다음</button>
+                        <button className="w-[5vw] h-[2.3rem] rounded-[10px] justify-center items-center bg-[#E4E7EC] text-[#98A2B3] font-[700] font-[pretendard] text-[1rem]">이전</button>
+                        <button onClick={GoNextPage} className="w-[5vw] h-[2.3rem] rounded-[10px] justify-center items-center bg-[#F2F4F7] text-[#98A2B3] font-[700] font-[pretendard] text-[1rem]">다음</button>
                       </div>
 
                     </div>
