@@ -192,11 +192,11 @@ export function Main() {
           </div>
 
           {/* 공지사항 */}
-          <div id="topcenter" className="w-[45vw] ml-[1rem] flex flex-col rounded-[10px] bg-white">
+          <div id="topcenter" className="w-[45vw] ml-[1rem] flex flex-col rounded-[10px] pb-3  bg-white">
             <div className="w-full pl-[1rem] pt-[0.75rem]">
               <span className=" text-black text-[1.5rem] font-[700]">공지사항</span>
             </div>
-            <div id="noticeroll" className="w-full h-[8rem] overflow-y-auto scrollbar-hide px-4 py-2"> 
+            <div id="noticeroll" className="w-full h-full overflow-y-auto scrollbar-hide px-4 py-2"> 
               {noticeList.length === 0 ? (
                 <span className="text-[#98A2B3]">공지사항이 없습니다.</span>
               ) : (

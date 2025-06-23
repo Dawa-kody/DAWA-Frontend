@@ -335,7 +335,7 @@
     color: #6948ED;
   `;
 
-  export const LoginFormSection = styled.div`
+  export const LoginFormSection = styled.form`
     position: relative;
     flex: 1;
     display: flex;
@@ -347,8 +347,8 @@
      @media (max-width: 768px) {
     align-items: center;
     transform: none;
-    padding: 0 0.5rem; // 패딩 최소화
-    margin-bottom: 0;  // 불필요한 마진 제거
+    padding: 0 0.5rem;
+    margin-bottom: 0;  
   }
   `;
 
@@ -377,4 +377,11 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+  `;
+
+  export const Form=styled.form` 
+  width: 100%;
+
+  position: relative;
+  left:-1rem;
   `;

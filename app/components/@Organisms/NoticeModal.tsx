@@ -60,7 +60,7 @@ export function NoticeModal({ onClose, id }: NoticeModalProps) {
             </span>
             <div className="flex flex-row gap-[2rem]">
               <span className="text-[1.2rem] text-NoticeModal text-black">보건선생님</span>
-              <span id="date" className="text-[1.2rem] text-NoticeModal">
+              <span id="date" className="text-[1.2rem] text-Not iceModal">
                 {notice?.yearMonthDay ?? "날짜 불러오는중"}
               </span>
             </div>

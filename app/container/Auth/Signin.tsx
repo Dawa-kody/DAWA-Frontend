@@ -78,7 +78,7 @@ export function Signin() {
         router.push("/Login");
     }
 
-    const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!EmailValue || !validateEmailPrefix(EmailValue)) {
@@ -122,9 +122,10 @@ export function Signin() {
 
     return (
         <S.Container>
-            <S.LoginFormSection>
+            <S.LoginFormSection onSubmit={handleSubmit}>
                 <S.LoginFormInnerWrapper>
-                    <S.TopTexts>
+   
+                  <S.TopTexts>
                         <S.HelloBlock>
                             <S.HelloText>반가워요!</S.HelloText>
                             <S.RowWrapper>
@@ -137,6 +138,7 @@ export function Signin() {
 
                     <S.Inputs>
                         <S.InputGroup>
+
                             <S.InputLabel>이메일</S.InputLabel>
                             <S.EmailInputWrapper>
                                 <S.EmailInput
@@ -171,12 +173,13 @@ export function Signin() {
                             {passwordError && <S.PasswordMessage>{passwordError}</S.PasswordMessage>}
 
                             <S.ButtonDiv>
-                                <S.NextButton onClick={handleSubmit} isActive={EmailValue.trim() !== ""}>
-                                    <S.NextButtonText isActive={EmailValue.trim() !== ""}>완료</S.NextButtonText>
+                                <S.NextButton type='submit' isActive={EmailValue.trim() !== ""}>
+                                    <S.NextButtonText isActive={EmailValue.trim() !== ""} >완료</S.NextButtonText>
                                 </S.NextButton>
                             </S.ButtonDiv>
                         </S.InputGroup>
                     </S.Inputs>
+
                 </S.LoginFormInnerWrapper>
             </S.LoginFormSection>
 

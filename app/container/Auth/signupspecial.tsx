@@ -92,7 +92,7 @@ export function Signupspecial() {
                 checked={selected === 'allergy'}
                 onClick={() => setSelected(selected === 'allergy' ? null : 'allergy')}
               >
-                {selected === 'allergy' && <img src="/check_small.svg" alt="체크" />}
+                {selected === 'allergy' && <img src="/icon/svg/check_small.svg" alt="체크" />}
               </S.AllergyCheckbox>
               <S.DiseaseText>알레르기 및 면역 관련 질환</S.DiseaseText>
             </S.CheckboxRow>
@@ -115,7 +115,7 @@ export function Signupspecial() {
                 checked={selected === 'disease'}
                 onClick={() => setSelected(selected === 'disease' ? null : 'disease')}
               >
-                {selected === 'disease' && <img src="/check_small.svg" alt="체크" />}
+                {selected === 'disease' && <img src="/icon/svg/check_small.svg" alt="체크" />}
               </S.DiseaseCheckbox>
               <S.DiseaseText>만성 질환 및 약물 관리 필요</S.DiseaseText>
             </S.CheckboxRow>
@@ -138,7 +138,7 @@ export function Signupspecial() {
                 checked={selected === 'medication'}
                 onClick={() => setSelected(selected === 'medication' ? null : 'medication')}
               >
-                {selected === 'medication' && <img src="/check_small.svg" alt="체크" />}
+                {selected === 'medication' && <img src="/icon/svg/check_small.svg" alt="체크" />}
               </S.MedicationCheckbox>
               <S.DiseaseText>응급 상황 발생 가능 질환</S.DiseaseText>
             </S.CheckboxRow>
@@ -161,7 +161,7 @@ export function Signupspecial() {
                 checked={selected === 'gita'}
                 onClick={() => setSelected(selected === 'gita' ? null : 'gita')}
               >
-                {selected === 'gita' && <img src="/check_small.svg" alt="체크" />}
+                {selected === 'gita' && <img src="/icon/svg/check_small.svg" alt="체크" />}
               </S.GitaCheckbox>
               <S.DiseaseText>기타</S.DiseaseText>
             </S.CheckboxRow>
