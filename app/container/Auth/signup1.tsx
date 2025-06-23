@@ -106,6 +106,7 @@ export function Signup1() {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
+
     localStorage.setItem("Email", `${EmailValue}@gsm.hs.kr`);
     localStorage.setItem("Password", PasswordValue);
     router.push("/Signupspecial");
@@ -171,8 +172,10 @@ export function Signup1() {
                       {/*비밀번호 입력, 확인란*/}
                       <div id="password" className="flex flex-col w-[30vw] gap-4">
                         <span id="passwordText" className="text-black text-[0.8frem] font-[500] font-[pretendard]">비밀번호</span>
-                        <input id="passwordInput" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~10자)" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
-                        <input id="passwordCheck" placeholder="비밀번호 확인" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"/>
+                        <input id="passwordInput" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~10자)" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black" 
+                         value={PasswordValue} onChange={handlePasswordChange}/>
+                        <input id="passwordCheck" placeholder="비밀번호 확인" required className="w-[30em] h-[3rem] rounded-[8px] p-[1rem] inline-flex border-none outline-none bg-[#F2F4F7] text-black"
+                          value={PasswordReValue} onChange={handlePasswordReChange}/>
                       </div>
 
                       {/*signup1, 2 구분분*/}

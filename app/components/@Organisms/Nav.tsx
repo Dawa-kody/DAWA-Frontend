@@ -142,7 +142,7 @@ export function Nav() {
           {MailOver && (
             <div
               id="MailContainer"
-              className={`w-[90vw] max-w-[28rem] min-w-[16rem] scrollbar-hide ${
+              className={`w-[90vw] max-w-[28rem] min-w-[16rem] max-h-[22vh] ${
                 mailList.length >= 8 ? 'max-h-[40rem] overflow-y-auto' : 'min-h-[6rem]'
               } bg-white absolute right-[6vw] top-[4rem] z-[3000] shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-[0.5rem] flex flex-col pb-4`}
             >
