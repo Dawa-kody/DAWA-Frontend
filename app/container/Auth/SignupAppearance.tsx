@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import * as S from '../../styles/signupspecial';
 import axios from "axios";
 
-export function Signupspecial() {
+export function SignupAppearance() {
   const router = useRouter();
 
   // localStorage에서 email, password 읽기

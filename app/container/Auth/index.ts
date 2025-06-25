@@ -1,4 +1,4 @@
 export * from "./Signin"
-export * from "./signup1"
-export * from "./signupspecial"
+export * from "./Signup"
+export * from "./SignupAppearance"
 export * from "./Password"
