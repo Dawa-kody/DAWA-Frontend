@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import * as S from "../../styles/Writepage";
 import axios from 'axios';
 import { Nav } from '@/components/@Organisms';
 import { useRouter } from 'next/navigation';
+import { ICON } from '@/constants';
 
 export function Write() {
   const [serialNumber, setserialNumber] = useState('');
@@ -11,20 +11,19 @@ export function Write() {
   const [Division, setDivision] = useState('');
   const [Class, setClass] = useState('');
   const [Handle, setHandle] = useState('');
-  const [Guesu, setGuesu] = useState('');
-  const [Dosage1, setDosage1] = useState('');
-  const [Guesu1, setGuesu1] = useState('');
+  const [count, setCount] = useState('');
+  const [medications, setMedications] = useState([{ dosage: '', count: '' }]);
   const [Bigo, setBigo] = useState('');
   const [GenderManColor, setGenderManColor] = useState(false);
   const [GenderWomanColor, setGenderWomanColor] = useState(false);
-  const [Dosage2, setDosage2] = useState('');
-  const [Guesu2, setGuesu2] = useState('');
   const [Disease, setDisease] = useState('');
   const [handleButtonClicked, setHandleButtonClicked] = useState(true); // true: 직접입력, false: 목록선택
 
   const router = useRouter();
 
-  const CheckbuttonColor = Name || Division || Class || Handle || Guesu || Dosage1 || Guesu1;
+  // 모든 투약/수량 입력란이 채워졌는지 확인
+  const allMedicationsFilled = medications.every(m => m.dosage && m.count);
+  const CheckbuttonColor = Name && Division && Class && Handle && count && allMedicationsFilled;
 
   const [Gender, setGender] = useState('');
   const handleGenderManClick = () => {
@@ -94,18 +93,15 @@ export function Write() {
     // 기타 필요한 필드도 필요시 유효성 검사 추가 가능
 
     const dto = {
-      serialNumber: serialNumber,
       userName: Name,
-      schoolNumber: Class,
-      gender: Gender,
       division: Division,
+      schoolNumber: Class,
+      serialNumber: serialNumber,
+      gender: Gender,
       disease: Disease,
       treatment: Handle,
-      quantity: Guesu,
-      medication1: Dosage1,
-      quantity1: Guesu1,
-      medication2: Dosage2,
-      quantity2: Guesu2,
+      quantity: count,
+      medications: medications.filter(m => m.dosage && m.count), // 빈 값 제외
       notes: Bigo,
     };
 
@@ -137,134 +133,167 @@ export function Write() {
   return (
     <>
       <Nav />
-      <div id='background' className='bg-#F2F4F7 h-auto w-full flex justify-center'>
-        <div id='container' className='bg-white absolute  w-[75rem] h-[78.75rem] mt-[5vh] rounded-[10px] flex flex-col items-center pl-[2rem] pt-[1vh]'>
-          <div id='header1' className='w-full justify-between flex flex-row '>
+      <div id='background' className=" w-full h-auto bg-slate-gray flex flex-col justify-center items-center">
+        <div className=" mt-[5vh] w-[68vw] h-full bg-white flex flex-col px-[3vw] gap-[1rem] py-[4vh]">
 
-            <S.NameText>이름</S.NameText>
-            <S.NameInput value={Name} onChange={(e) => setName(e.target.value)} placeholder="학번 입력" required/>
+          {/*header */}
+          <div id='header' className='flex flex-row gap-[1rem] justify-between items-center'>
+            {/*headerLeft */}
+            <div id='headerLeft' className='flex flex-col w-[50%] gap-4'>
+              {/*이름 작성 */}
+              <div id='nameBox'>
+                <p id='nameText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>이름</p>
+                <input type="text" value={Name} onChange={(e) => setName(e.target.value)} placeholder='이름 입력' className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'/>
+              </div>
+
+              {/*학번 작성 */}
+              <div id='classBox'>
+                <p id='classText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>학번</p>
+                <input type="text" value={Class} onChange={(e) => setClass(e.target.value)} placeholder='학번 입력' className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'/>
+              </div>
+              
+              {/*성별 선택 */}
+              <div id='genderBox'>
+                <p id='genderText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>성별</p>
+                <div id='genderButtonBox' className='flex flex-row justify-between w-[100%]'>
+                  <button onClick={handleGenderManClick} className={`w-[48%] h-[3rem] ${GenderManColor ? 'bg-manBlue' : 'bg-slate-gray'} text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[0.5rem] outline-none`}>남</button>
+                  <button onClick={handleGenderWomanClick} className={`w-[48%] h-[3rem] ${GenderWomanColor ? 'bg-womanPink' : 'bg-slate-gray'} text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[0.5rem] outline-none`}>여</button>
+                </div>
+              </div>
+            </div> {/*headerLeft */}
+
+            {/*headerRight */}
+            <div id='headerRight' className='flex flex-col w-[50%] gap-4'>
+
+              {/*구분 선택 */}
+              <div id='divisionBox'>
+                <p id='divisionText' className='text-[1.2rem] text-black xfont-[pretendard] font-[500]'>구분</p>
+                <select value={Division} onChange={(e) => setDivision(e.target.value)} className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none appearance-none'>
+                  <option value="" disabled hidden className='text-slate-gray'>구분을 선택해주세요.</option>
+                  <option value="DIGESTIVE_SYSTEM">소화기계</option>
+                  <option value="RESPIRATORY_SYSTEM">호흡기계</option>
+                  <option value="MUSCULOSKELETAL_SYSTEM">근골격계</option>
+                  <option value="INTEGUMENTARY_SYSTEM">피부피하계</option>
+                  <option value="DENTAL_SYSTEM">구강치아계</option>
+                  <option value="OTORHINOLARYNGOLOGY">이비인후과계</option>
+                  <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
+                  <option value="OTHER">기타 </option>
+                </select>
+              </div>
+
+              {/*처치상황 작성 */}
+              <div id='aidBox'>
+                <p id='aidText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>처치상황</p>
+                <input type="text" value={Handle} onChange={(e) => setHandle(e.target.value)} placeholder='처치상황 입력' className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'/>
+              </div>
+
+              {/*수량 선택 */}
+              <div id='countBox'>
+                <p id='countText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>수량</p>
+                <input type="number" value={count} onChange={(e) => setCount(e.target.value)} placeholder='숫자만 입력해주세요' className="inputNum w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none"/>
+              </div>
+
+            </div> {/*headerRight */}
+          </div> {/*header */}
+
+          {/*content */}
+          <div id='content' className='flex flex-col gap-4'>
           
-          
-              <S.Label>구분</S.Label>
-              <S.DivisionSelect value={Division} onChange={(e) => setDivision(e.target.value)} required>
-                <option value="" disabled hidden>
-                  구분을 선택하세요
-                </option>
-                <option value="DIGESTIVE_SYSTEM">소화기계</option>
-                <option value="RESPIRATORY_SYSTEM">호흡기계</option>
-                <option value="MUSCULOSKELETAL_SYSTEM">근골격계</option>
-                <option value="INTEGUMENTARY_SYSTEM">피부피하계</option>
-                <option value="DENTAL_SYSTEM">구강치아계</option>
-                <option value="OTORHINOLARYNGOLOGY">이비인후과계</option>
-                <option value="OPHTHALMOLOGY_SYSTEM">안과계</option>
-                <option value="OTHER">기타</option>
-              </S.DivisionSelect>
-      
-        
+            {/* 증상 */}
+            <div id='symptomBox'>
+              <p id='symptomText' className='text-[1.2rem] text-black font-[pretendard] font-[500]'>증상</p>
+              <input type="text" value={Disease} onChange={(e) => setDisease(e.target.value)} placeholder='증상 입력' className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'/>
+            </div>
+
+             {/* 투약/수량 동적 입력란 */}
+            {/* 투약/수량 입력란 최대 2쌍만 보이게 */}
+            <div className="flex flex-row gap-2 items-center">
+              <div className="flex-1">
+                <p className='text-[1.2rem] text-black font-[pretendard] font-[500]'>투약1</p>
+                <input type="text" value={medications[0].dosage}
+                  onChange={e => {
+                    const newMeds = [...medications];
+                    newMeds[0].dosage = e.target.value;
+                    if (
+                      newMeds.length === 1 &&
+                      e.target.value &&
+                      newMeds[0].count
+                    ) {
+                      newMeds.push({ dosage: '', count: '' });
+                    }
+                    setMedications(newMeds.slice(0, 2));
+                  }}
+                  placeholder='투약1 입력'
+                  className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'/>
+              </div>
+              <div className="flex-1">
+                <p className="text-[1.2rem] text-black font-[pretendard] font-[500]">수량1</p>
+                <input type="number" value={medications[0].count}
+                  onChange={e => {
+                    const newMeds = [...medications];
+                    newMeds[0].count = e.target.value;
+                    if (
+                      newMeds.length === 1 &&
+                      e.target.value &&
+                      newMeds[0].dosage
+                    ) {
+                      newMeds.push({ dosage: '', count: '' });
+                    }
+                    setMedications(newMeds.slice(0, 2));
+                  }}
+                  placeholder='수량1 입력'
+                  className="inputNum w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none"/>
+              </div>
+            </div>
+            {/* 두 번째 입력란은 첫 번째가 모두 입력됐을 때만 보이게 */}
+            {medications.length === 2 && (
+              <div className="flex flex-row gap-2 items-center mt-2">
+                <div className="flex-1">
+                  <p className='text-[1.2rem] text-black font-[pretendard] font-[500]'>투약2</p>
+                  <input
+                    type="text"
+                    value={medications[1].dosage}
+                    onChange={e => {
+                      const newMeds = [...medications];
+                      newMeds[1].dosage = e.target.value;
+                      setMedications(newMeds);
+                    }}
+                    placeholder='투약2 입력'
+                    className='w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none'
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[1.2rem] text-black font-[pretendard] font-[500]">수량2</p>
+                  <input
+                    type="number"
+                    value={medications[1].count}
+                    onChange={e => {
+                      const newMeds = [...medications];
+                      newMeds[1].count = e.target.value;
+                      setMedications(newMeds);
+                    }}
+                    placeholder='수량2 입력'
+                    className="inputNum w-[100%] h-[3rem] bg-slate-gray text-black font-[pretendard] font-[500] border border-none rounded-[8px] pl-[1rem] outline-none"
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-          <S.ClassText>학번</S.ClassText>
-          <S.ClassInput
-            value={Class}
-            onChange={(e) => setClass(e.target.value)}
-            placeholder="이름 입력"
-            required
-          />
-
-          <S.HandleText>처치상황</S.HandleText>
-          {handleButtonClicked ? (
-            <S.HandleInput
-              value={Handle}
-              onChange={(e) => setHandle(e.target.value)}
-              placeholder="처치상황에 적을 약을 골라주세요"
-              required
-            />
-          ) : (
-            <S.HandleSelect
-              value={Handle}
-              onChange={(e) => setHandle(e.target.value)}
-              disabled={!Division}
-              required
+          {/*footer */}
+          <div id='footer' className='mt-[1rem] flex flex-col gap-4'>
+            
+            {/* 확인 버튼 */}
+            <button
+              id='submitButton'
+              className={`w-[100%] h-[3rem] rounded-[8px] font-[pretendard] font-[700] text-[1rem] transition-colors duration-200 ${allMedicationsFilled ? 'bg-primaryPurple text-white cursor-pointer' : 'bg-[#E4E7EC] text-[#98A2B3] cursor-not-allowed'}`}
+              disabled={!allMedicationsFilled}
+              onClick={handleSubmit}
             >
-              <S.Option value="" disabled hidden>
-                {Division ? "처치상황에 적을 약을 선택하세요" : "구분을 먼저 선택하세요"}
-              </S.Option>
-              {Division &&
-                categoryOptions[Division]?.map((item, index) => (
-                  <option key={index} value={item}>
-                    {item}
-                  </option>
-                ))}
-            </S.HandleSelect>
-          )}
-
-          <S.HandleButton onClick={handleButtonClick} isClicked={handleButtonClicked}>
-            <img src="./checkbutton.svg" alt="확인버튼" />
-          </S.HandleButton>
-
-          <S.DiseaseText>증상</S.DiseaseText>
-          <S.DiseaseInput
-            value={Disease}
-            onChange={(e) => setDisease(e.target.value)}
-            placeholder="학생의 증상을 적어주세요"
-          />
-
-          <S.GenderText>성별</S.GenderText>
-          <S.GenderMan isActive={GenderManColor} onClick={handleGenderManClick}>
-            <S.GenderManText>남성</S.GenderManText>
-          </S.GenderMan>
-          <S.GenderWoman isActive={GenderWomanColor} onClick={handleGenderWomanClick}>
-            <S.GenderManText>여성</S.GenderManText>
-          </S.GenderWoman>
-
-          <S.GuesuText>수량</S.GuesuText>
-          <S.GuesuInput
-            value={Guesu}
-            onChange={(e) => setGuesu(e.target.value)}
-            placeholder="숫자만 써주세요"
-          />
-
-          <S.Dosage1Text>투약1</S.Dosage1Text>
-          <S.Dosage1Input
-            value={Dosage1}
-            onChange={(e) => setDosage1(e.target.value)}
-            placeholder="숫자만 써주세요"
-          />
-          <S.Guesu1Text>수량1</S.Guesu1Text>
-          <S.Guesu1Input
-            value={Guesu1}
-            onChange={(e) => setGuesu1(e.target.value)}
-            placeholder="숫자만 써주세요"
-            $active={!!Dosage1 && !!Guesu1}
-          />
-
-          {Dosage1 && Guesu1 && (
-            <>
-              <div style={{ display: Dosage1 && Guesu1 ? 'block' : 'none' }}>
-                <S.Dosage2Text>투약2</S.Dosage2Text>
-                <S.Dosage2Input
-                  value={Dosage2}
-                  onChange={(e) => setDosage2(e.target.value)}
-                  placeholder="약 이름을 써주세요"
-                />
-                <S.Guesu2Text>수량2</S.Guesu2Text>
-                <S.Guesu2Input
-                  value={Guesu2}
-                  onChange={(e) => setGuesu2(e.target.value)}
-                  placeholder="숫자만 써주세요"
-                />
-              </div>
-            </>
-          )}
-
-          <S.ButtonContainer>
-            <S.Checkbutton onClick={handleSubmit} isActive={!!CheckbuttonColor}>
-              <S.CheckbuttonText>확인</S.CheckbuttonText>
-            </S.Checkbutton>
-            <S.Cancelbutton onClick={handleCancel}>
-              <S.CancelbuttonText>취소</S.CancelbuttonText>
-            </S.Cancelbutton>
-          </S.ButtonContainer>
+              확인
+            </button>
+            <button id='cancelButton' className='w-[100%] h-[3rem] rounded-[8px] bg-slate-gray text-black text-[1rem] font-[pretendard] font-[700]'>취소</button>
+          </div>
         </div>
       </div>
     </>

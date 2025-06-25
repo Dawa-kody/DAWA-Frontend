@@ -20,6 +20,8 @@ const config: Config = {
         "text-black": "#000000", //감은색
         background: "var(--background)",
         foreground: "var(--foreground)",
+        manBlue: "#7CD4FD",
+        womanPink: "#FEA3B4",
       },
       keyframes: {
         slideIn: {
