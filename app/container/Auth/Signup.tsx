@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-export function Signup1() {
+export function Signup() {
   const [EmailValue, SetEmailValue] = useState("");
   const [codeValue, SetCodeValue] = useState("");
   const [PasswordValue, SetPasswordValue] = useState("");
