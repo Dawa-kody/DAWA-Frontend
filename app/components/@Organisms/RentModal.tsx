@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { useDelay } from "@/hooks";
 
 interface Modalprops {
   onClose: () => void;
@@ -13,6 +14,7 @@ interface CardState {
 
 export function RentModal({ onClose }: Modalprops) {
   const modalBackground = useRef<HTMLDivElement>(null);
+  const { runWithDelay, isDelaying } = useDelay({ delay: 2000 });
 
   const [cards, setCards] = useState<CardState[]>([
     { name: "아이스팩", count: 0, selected: false },
@@ -59,19 +61,35 @@ export function RentModal({ onClose }: Modalprops) {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const token = localStorage.getItem("accessToken");
 
-    // 선택된 아이템 필터링
-    const selectedItems = cards.filter((card) => card.selected);
+    // 딜레이 실행
+    runWithDelay(async () => {
+      const token = localStorage.getItem("accessToken");
 
-    try {
-      for (const item of selectedItems) {
-        // 각 아이템별로 요청 전송
+      const selectedItems = cards.filter((card) => card.selected);
+
+      try {
+        for (const item of selectedItems) {
+          await axios.post(
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
+            {
+              rental: item.name,
+              count: item.count,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              withCredentials: true,
+            }
+          );
+        }
+
         await axios.post(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail`,
           {
-            rental: item.name,
-            count: item.count,
+            message: "학생이 대여를 신청했습니다.",
           },
           {
             headers: {
@@ -81,31 +99,20 @@ export function RentModal({ onClose }: Modalprops) {
             withCredentials: true,
           }
         );
+
+        console.log("대여물품 기록 작성 및 알림 전송 성공");
+
+        //SSE 연결 시작
+        listenForTeacherResponse();
+      } catch (error) {
+        console.error("대여물품 기록 작성 또는 알림 전송 실패:", error);
       }
-
-      // /mail로 알림 전송
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail`,
-        {
-          message: "학생이 대여를 신청했습니다.",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
-
-      console.log("대여물품 기록 작성 및 알림 전송 성공");
-
-      // SSE 연결 시작
-      listenForTeacherResponse();
-    } catch (error) {
-      console.error("대여물품 기록 작성 또는 알림 전송 실패:", error);
-    }
+    }).catch((err) => {
+      // 딜레이 중일 때 클릭하면 여기로 빠짐
+      console.warn("딜레이 중 재요청 방지:", err.message);
+    });
   };
+
 
   const listenForTeacherResponse = () => {
     const eventSource = new EventSource(
