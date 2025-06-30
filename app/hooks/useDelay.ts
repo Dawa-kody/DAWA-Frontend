@@ -16,7 +16,7 @@ export function useDelay({ delay = 1000, once = false }: UseDelayOptions = {}): 
 
   const runWithDelay = async <T>(fn: () => Promise<T> | T): Promise<T> => {
     if (isDelaying || (once && hasRunOnce.current)) {
-      throw new Error("Delay active or function already run once");
+      throw new Error("재요청이 너무 빠릅니다. 대기 후 재시도 부탁드립니다.");
     }
 
     setIsDelaying(true);
