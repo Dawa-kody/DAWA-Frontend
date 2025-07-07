@@ -6,6 +6,8 @@ import * as S from "../../styles/login";
 import { useRouter } from "next/navigation";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { ICON } from "@/constants";
+import { POST } from "@/api/auth/signin/route";
+import { error } from "console";
 
 const JWT_EXPIRY_TIME = 24 * 60 * 60 * 1000; // 24시간
 
@@ -83,7 +85,7 @@ export function Signin() {
     } catch (e) {
       console.warn("Logout error:", e);
     }
-    router.push("/Login");
+    router.push("/Signin");
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -98,27 +100,31 @@ export function Signin() {
     const fullEmail = `${EmailValue}@gsm.hs.kr`;
 
     try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signin`,
-        {
-          email: fullEmail,
-          password: PasswordValue,
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            'ngrok-skip-browser-warning': '69420',
-          },
-          withCredentials: true,
-        }
-      );
+        credentials: "include",
+        body: JSON.stringify({
+          email: fullEmail,
+          password: PasswordValue
+        })
+      });
 
-      setTimeout(onSilentRefresh, JWT_EXPIRY_TIME - 60000);
-      router.push("/");
-    } 
+      if (!res.ok) {
+        const data = await res.json();
+        console.error(data.error || "로그인 실패");
+        return;
+      }
+
+      if (res.ok) {
+        router.push("/");
+      }
+    }
     
     catch (error) {
-      console.error("Login error:", error);
+      console.error("요청 실패:", error);
       setPasswordError("이메일 또는 비밀번호를 확인해주세요.");
     }
   };
