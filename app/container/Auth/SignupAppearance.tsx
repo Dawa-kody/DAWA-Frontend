@@ -46,7 +46,7 @@ export function SignupAppearance() {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/signup`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/signup`,
         dto,
         {
           headers: {

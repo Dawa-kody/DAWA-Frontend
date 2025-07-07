@@ -26,7 +26,7 @@ export function Usercard({ name, gender, schoolNumber }: UsercardProps) {
         }
         try {
             const res = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/user/healthissues/${schoolNumber}`
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/user/healthissues/${schoolNumber}`
             );
             setHealthData(res.data);
             setIsExpanded(true);

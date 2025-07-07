@@ -13,7 +13,7 @@ interface mailDTO {
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-const MAIL_API = `${BASE_URL}/mail`;
+const MAIL_API = `${BASE_URL}/api/mail`;
 
 export function Nav() {
   const router = useRouter();

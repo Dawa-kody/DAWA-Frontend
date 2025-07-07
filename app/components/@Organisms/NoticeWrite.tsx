@@ -20,7 +20,7 @@ export function NoticeWrite({ onClose }: NoticeWriteProps) {
     const handleSubmit = async (data: NoticeData) => {
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice`,
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice`,
                 data,
                 {
                     headers: {

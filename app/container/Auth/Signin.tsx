@@ -51,7 +51,7 @@ export function Signin() {
   const onSilentRefresh = async () => {
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/reissue`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/reissue`,
         {},
         {
           headers: {
@@ -73,7 +73,7 @@ export function Signin() {
   const logout = async () => {
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/logout`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/logout`,
         {},
         {
             headers: {

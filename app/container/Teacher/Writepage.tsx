@@ -107,7 +107,7 @@ export function Write() {
 
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/write`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/questionnaire/write`,
         dto,
         {
           headers: {
