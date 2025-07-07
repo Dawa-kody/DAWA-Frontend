@@ -121,7 +121,7 @@ export const MedicineTable: React.FC<MedicineTableProps> = ({ onAdd, onEdit }) =
     if (!confirmDelete) return;
   
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/medicine/delete/${id}`, {
+      await axios.delete(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/medicine/delete/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           'ngrok-skip-browser-warning': '69420',

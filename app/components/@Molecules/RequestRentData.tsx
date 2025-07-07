@@ -41,7 +41,7 @@ export function RequestRentData({ rentalId, count, rental, schoolNumber, name, o
   
     try {
       await axios.put(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept/${rentalId}`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/rentalAccept/${rentalId}`,
         dto,
         {
           headers: {

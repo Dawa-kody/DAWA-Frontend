@@ -48,7 +48,7 @@ export function Signup() {
     e.preventDefault();
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/email/send`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/email/send`,
         { email: `${EmailValue}@gsm.hs.kr` },
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
@@ -64,7 +64,7 @@ export function Signup() {
   const handleCodeVerify = async () => {
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/email/verify`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/email/verify`,
         { email: `${EmailValue}@gsm.hs.kr`, code: codeValue },
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );

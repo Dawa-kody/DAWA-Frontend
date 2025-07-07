@@ -71,7 +71,7 @@ export function RentModal({ onClose }: Modalprops) {
       try {
         for (const item of selectedItems) {
           await axios.post(
-            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/request`,
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/request`,
             {
               rental: item.name,
               count: item.count,
@@ -87,7 +87,7 @@ export function RentModal({ onClose }: Modalprops) {
         }
 
         await axios.post(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/mail`,
           {
             message: "학생이 대여를 신청했습니다.",
           },
@@ -116,7 +116,7 @@ export function RentModal({ onClose }: Modalprops) {
 
   const listenForTeacherResponse = () => {
     const eventSource = new EventSource(
-      `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/mail/sse`,
+      `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/mail/sse`,
       {
         withCredentials: true,
       }

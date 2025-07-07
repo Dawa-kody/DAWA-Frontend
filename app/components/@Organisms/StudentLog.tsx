@@ -24,7 +24,7 @@ export function StudentLog() {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/search?userName=${username}`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/questionnaire/search?userName=${username}`,
         {},
         { headers: { "ngrok-skip-browser-warning": "69420" } }
       );
@@ -53,7 +53,7 @@ export function StudentLog() {
   const fetchStudentRecords = async (userId: string) => {
     const numericUserId = Number(userId);
     const recordResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/questionnaire/studentRecord/${numericUserId}`,
+      `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/questionnaire/studentRecord/${numericUserId}`,
       { headers: { "ngrok-skip-browser-warning": "69420" } }
     );
     setRecords(recordResponse.data);

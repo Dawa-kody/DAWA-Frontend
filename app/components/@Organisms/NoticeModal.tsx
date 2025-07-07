@@ -22,7 +22,7 @@ export function NoticeModal({ onClose, id }: NoticeModalProps) {
     async function fetchNotice() {
       try {
         const response = await axios.get<NoticeData>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${id}`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice/${id}`,
           {
             headers:{
               'ngrok-skip-browser-warning': '69420',
@@ -30,7 +30,7 @@ export function NoticeModal({ onClose, id }: NoticeModalProps) {
           }
         );
         console.log("받은 공지사항 데이터:", response.data);
-        console.log(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${id}`);
+        console.log(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice/${id}`);
         setNotice(response.data); // ✅ 상태에 저장
       } catch (error) {
         console.error("공지사항 불러오기 실패:", error);

@@ -71,7 +71,7 @@ export function RentModalAdmin({ onClose }: Modalprops) {
         try {
             for (const item of selectedItems) {
                 await axios.post(
-                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/write`,
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/write`,
                     {
                         rental: item.name,
                         count: item.count,

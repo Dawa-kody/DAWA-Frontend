@@ -57,7 +57,7 @@ export function Main() {
     async function fetchNotice() {
       try {
         const response = await axios.get<noticeDTO[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ export function Main() {
           const firstNoticeId = response.data[0]?.id; // 첫 번째 공지사항의 id
           if (firstNoticeId) {
             const detailRes = await axios.get<noticeDTO>(
-              `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${firstNoticeId}`,
+              `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice/${firstNoticeId}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -102,7 +102,7 @@ export function Main() {
     async function fetchRentData() {
       try {
         const response = await axios.get<RentDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -131,7 +131,7 @@ export function Main() {
     async function fetchBedStatus() {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/bed`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

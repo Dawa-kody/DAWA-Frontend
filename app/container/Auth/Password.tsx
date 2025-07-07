@@ -80,7 +80,7 @@ export function Password() {
         try {
             const fullEmail = `${emailValue}@gsm.hs.kr`;
             await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/password/change/email/send`,
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/password/change/email/send`,
                 { email: fullEmail },
                 {
                     headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ export function Password() {
         const fullEmail = `${emailValue}@gsm.hs.kr`;
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/password/change/email/verify`,
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/password/change/email/verify`,
                 {
                     email: fullEmail,
                     code: codeValue,

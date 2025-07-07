@@ -61,7 +61,7 @@ export function VisitModal({ onClose }: Modalprops) {
 
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit/write`, contentValue, {
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/visit/write`, contentValue, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,

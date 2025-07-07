@@ -17,7 +17,7 @@ export function RentDataAdmin({ rentalId, count, formattedDate, rental, rentaled
 
     const handleReturn = async () => {
         try {
-            const response = await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/${rentalId}`);
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/${rentalId}`);
             setIsReturned(true);
         }
         

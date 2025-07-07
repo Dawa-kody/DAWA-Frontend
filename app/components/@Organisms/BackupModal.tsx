@@ -16,7 +16,7 @@ export function BackupModal({ onClose }: Modalprops){
         try {
             if (!isChecked) {
                 const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`,
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/excel`,
                     {
                         responseType: 'blob', // 바이너리 응답으로 받기
                         headers: {
@@ -40,7 +40,7 @@ export function BackupModal({ onClose }: Modalprops){
             else {
                 const Date = date.split("-").slice(1).join(".");
                 const response = await axios.post(
-                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/excel`, { date: Date },
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/excel`, { date: Date },
                     {
                         responseType: 'blob', // 바이너리 응답으로 받기
                         headers: {

@@ -45,7 +45,7 @@ export function MainAdmin() {
       setRequestRentDataList,
     } = useStore();
     
-    const goWrite = () => router.push("/Writepage")
+    const goWrite = () => router.push("/api/Writepage")
 
     useEffect(() => {
       const access = window.localStorage.getItem("accessToken"); // 문자열 키 사용
@@ -80,7 +80,7 @@ export function MainAdmin() {
       async function fetchNotice() {
         try {
           const response = await axios.get<noticeDTO[]>(
-            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice`,
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ export function MainAdmin() {
             const firstNoticeId = response.data[0]?.id; // 첫 번째 공지사항의 id
             if (firstNoticeId) {
               const detailRes = await axios.get<noticeDTO>(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/notice/${firstNoticeId}`,
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/notice/${firstNoticeId}`,
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ export function MainAdmin() {
     async function fetchVisitAdminData() {
       try {
         const response = await axios.get<VisitAdminDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/visit/allRecord`,
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/visit/allRecord`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -145,7 +145,7 @@ export function MainAdmin() {
     async function fetchAdminRentData() {
       try {
         const response = await axios.get<RentAdminDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/allRental`, {
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/allRental`, {
             headers: { Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': '69420',
             withCredentials: true,
@@ -161,7 +161,7 @@ export function MainAdmin() {
     async function fetchAdminRequestRentData() {
       try {
         const response = await axios.get<RequestRentDatas[]>(
-          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/rental/rentalAccept`, {
+          `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/rental/rentalAccept`, {
             headers: { Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': '69420',
             withCredentials: true,
@@ -202,7 +202,7 @@ export function MainAdmin() {
     async function fetchBedStatus() {
         try {
             const response = await axios.get(
-                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/bed`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -228,7 +228,7 @@ export function MainAdmin() {
       const newBedStatus = { ...bedStatus, [gender === "M" ? "bed1" : "bed2"]: !bedStatus[gender === "M" ? "bed1" : "bed2"] };
       setBedStatus(newBedStatus);
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/bed`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/bed`,
         newBedStatus,
         {
           headers: {

@@ -129,7 +129,7 @@ export function StudentList() {
       );
 
       await axios.post(
-        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/user/batch`,
+        `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/user/batch`,
         allStudentData.flat()
       );
 
@@ -144,7 +144,7 @@ export function StudentList() {
   };
 
   const fetchUserList = async () => {
-    let url = `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/user/users`;
+    let url = `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/user/users`;
     const queryParams: string[] = [];
 
     if (selectedTags.length > 0) {
